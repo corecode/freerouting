@@ -30,11 +30,22 @@ import board.Item;
  * Class for reading and writing package scopes from dsn-files.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Package
 {
     
-    /** Creates a new instance of Package */
+    /**
+     * Creates a new instance of Package
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_pin_info_arr an array of {@link designformats.specctra.Package.PinInfo} objects.
+     * @param p_outline a java$util$Collection object.
+     * @param p_keepouts a java$util$Collection object.
+     * @param p_via_keepouts a java$util$Collection object.
+     * @param p_place_keepouts a java$util$Collection object.
+     * @param p_is_front a boolean.
+     */
     public Package(String p_name, PinInfo[] p_pin_info_arr, Collection<Shape> p_outline, Collection<Shape.ReadAreaScopeResult> p_keepouts,
             Collection<Shape.ReadAreaScopeResult> p_via_keepouts, Collection<Shape.ReadAreaScopeResult> p_place_keepouts, boolean p_is_front)
     {
@@ -47,6 +58,13 @@ public class Package
         is_front = p_is_front;
     }
     
+    /**
+     * <p>read_scope.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.Package} object.
+     */
     public static Package read_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
         try
@@ -155,6 +173,13 @@ public class Package
         }
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_package a {@link library.Package} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par, library.Package p_package) throws java.io.IOException
     {
         p_par.file.start_scope();
@@ -410,6 +435,10 @@ public class Package
     
     /**
      * Writes the placements of p_package to a Specctra dsn-file.
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_package a {@link library.Package} object.
+     * @throws java.io.IOException if any.
      */
     public static void write_placement_scope(WriteScopeParameter p_par, library.Package p_package)
     throws java.io.IOException

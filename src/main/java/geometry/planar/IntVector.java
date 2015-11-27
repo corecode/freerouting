@@ -27,13 +27,16 @@ import datastructures.Signum;
  * Implementation of the interface Vector via a tuple of integers
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class IntVector extends Vector implements java.io.Serializable
 {
     
     /**
      * creates an  IntVector from two integer coordinates
+     *
+     * @param p_x a int.
+     * @param p_y a int.
      */
     public IntVector(int p_x, int p_y)
     {
@@ -43,6 +46,8 @@ public class IntVector extends Vector implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * returns true, if this IntVector is equal to p_ob
      */
     public final boolean equals( Object p_ob )
@@ -65,6 +70,8 @@ public class IntVector extends Vector implements java.io.Serializable
     
     /**
      * returns true, if both coordinates of this vector are 0
+     *
+     * @return a boolean.
      */
     public final boolean is_zero()
     {
@@ -73,17 +80,29 @@ public class IntVector extends Vector implements java.io.Serializable
     
     /**
      * returns the Vector such that this plus this.minus() is zero
+     *
+     * @return a {@link geometry.planar.Vector} object.
      */
     public Vector negate()
     {
         return new IntVector(-x, -y);
     }
     
+    /**
+     * <p>is_orthogonal.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_orthogonal()
     {
         return ( x == 0 || y == 0 ) ;
     }
     
+    /**
+     * <p>is_diagonal.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_diagonal()
     {
         return ( Math.abs(x) == Math.abs(y) ) ;
@@ -92,12 +111,16 @@ public class IntVector extends Vector implements java.io.Serializable
     /**
      * Calculates the determinant of the matrix consisting of this
      * Vector and p_other.
+     *
+     * @param p_other a {@link geometry.planar.IntVector} object.
+     * @return a long.
      */
     public final long determinant(IntVector p_other)
     {
         return (long)x * p_other.y - (long)y * p_other.x;
     }
     
+    /** {@inheritDoc} */
     public Vector turn_90_degree(int p_factor)
     {
         int n = p_factor;
@@ -137,11 +160,21 @@ public class IntVector extends Vector implements java.io.Serializable
     }
     
     
+    /**
+     * <p>mirror_at_y_axis.</p>
+     *
+     * @return a {@link geometry.planar.Vector} object.
+     */
     public Vector mirror_at_y_axis()
     {
         return new IntVector(-this.x, this.y);
     }
     
+    /**
+     * <p>mirror_at_x_axis.</p>
+     *
+     * @return a {@link geometry.planar.Vector} object.
+     */
     public Vector mirror_at_x_axis()
     {
         return new IntVector(this.x, -this.y);
@@ -149,6 +182,9 @@ public class IntVector extends Vector implements java.io.Serializable
     
     /**
      * adds p_other to this vector
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Vector} object.
      */
     public final Vector add( Vector p_other)
     {
@@ -186,6 +222,9 @@ public class IntVector extends Vector implements java.io.Serializable
      *         Side.ON_THE_LEFT, if this Vector is on the left of L
      *         Side.ON_THE_RIGHT, if this Vector is on the right of L
      *     and Side.COLLINEAR, if this Vector is collinear with L.
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(Vector p_other)
     {
@@ -210,12 +249,16 @@ public class IntVector extends Vector implements java.io.Serializable
      *   Signum.POSITIVE, if the scalar product of this vector and p_other > 0,
      *   Signum.NEGATIVE, if the scalar product Vector is < 0,
      *   and Signum.ZERO, if the scalar product is equal 0.
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a {@link datastructures.Signum} object.
      */
     public Signum projection(Vector p_other)
     {
         return p_other.projection(this);
     }
     
+    /** {@inheritDoc} */
     public double scalar_product(Vector p_other)
     {
         return p_other.scalar_product(this);
@@ -225,12 +268,15 @@ public class IntVector extends Vector implements java.io.Serializable
     
     /**
      * converts this vector to a PointFloat.
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint to_float()
     {
         return new FloatPoint(x, y);
     }
     
+    /** {@inheritDoc} */
     public Vector change_length_approx(double p_length)
     {
         FloatPoint new_point = this.to_float().change_size(p_length);

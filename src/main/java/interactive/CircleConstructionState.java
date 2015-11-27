@@ -35,12 +35,19 @@ import board.FixedState;
  * Interactive creation of a circle obstacle
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CircleConstructionState extends InteractiveState
 {
     /**
      * Returns a new instance of this class.
      * If p_logfile != null; the creation of this item is stored in a logfile
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.CircleConstructionState} object.
      */
     public static CircleConstructionState get_instance(FloatPoint p_location,
             InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
@@ -60,6 +67,7 @@ public class CircleConstructionState extends InteractiveState
         }
     }
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         if (logfile != null)
@@ -69,6 +77,11 @@ public class CircleConstructionState extends InteractiveState
         return this.complete();
     }
     
+    /**
+     * <p>mouse_moved.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState mouse_moved()
     {
         super.mouse_moved();
@@ -78,6 +91,8 @@ public class CircleConstructionState extends InteractiveState
     
     /**
      * completes the circle construction state
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState complete()
     {
@@ -134,6 +149,8 @@ public class CircleConstructionState extends InteractiveState
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Used when reading the next point from a logfile.
      * Calls complete, because only 1 additional point is stored in the logfile.
      */
@@ -144,6 +161,8 @@ public class CircleConstructionState extends InteractiveState
     }
     
     /**
+     * {@inheritDoc}
+     *
      * draws the graphic construction aid for the circle
      */
     public void draw(java.awt.Graphics p_graphics)
@@ -157,11 +176,19 @@ public class CircleConstructionState extends InteractiveState
         hdlg.graphics_context.draw_circle(circle_center, circle_radius, 300, java.awt.Color.white, p_graphics, 1);
     }
     
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_insert_cancel;
     }
     
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(resources.getString("creating_circle"));

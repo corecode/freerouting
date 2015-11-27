@@ -41,11 +41,16 @@ import geometry.planar.Limits;
  * from M. de Berg, M. van Kreveld, M Overmars  and O Schwarzkopf.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PlanarDelaunayTriangulation
 {
     
-    /** Creates a new instance of PlanarDelaunayTriangulation from p_object_list. */
+    /**
+     * Creates a new instance of PlanarDelaunayTriangulation from p_object_list.
+     *
+     * @param p_object_list a java$util$Collection object.
+     */
     public PlanarDelaunayTriangulation(Collection<PlanarDelaunayTriangulation.Storable> p_object_list)
     {
         List<Corner> corner_list = new LinkedList<Corner>();
@@ -103,6 +108,8 @@ public class PlanarDelaunayTriangulation
     
     /**
      * Returns all edge lines of the result of the Delaunay Triangulation.
+     *
+     * @return a java$util$Collection object.
      */
     public Collection<ResultEdge> get_edge_lines()
     {
@@ -294,6 +301,8 @@ public class PlanarDelaunayTriangulation
     /**
      * Checks the consistancy of the triangles in this triagulation.
      * Used for debugging purposes.
+     *
+     * @return a boolean.
      */
     public boolean validate()
     {

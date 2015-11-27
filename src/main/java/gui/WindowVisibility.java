@@ -24,11 +24,19 @@ package gui;
  * Interactive Frame to adjust the visibility of a set of objects
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class WindowVisibility extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of VisibilityFrame */
+    /**
+     * Creates a new instance of VisibilityFrame
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_title a {@link java.lang.String} object.
+     * @param p_header_message a {@link java.lang.String} object.
+     * @param p_message_arr an array of {@link java.lang.String} objects.
+     */
     public WindowVisibility(BoardFrame p_board_frame, String p_title, String p_header_message, String[] p_message_arr)
     {
         this.board_panel = p_board_frame.board_panel;
@@ -86,6 +94,9 @@ public abstract class WindowVisibility extends BoardSavableSubWindow
     
     /**
      * Sets the values of the p_no-ths slider contained in this frame.
+     *
+     * @param p_no a int.
+     * @param p_value a double.
      */
     public void set_slider_value( int p_no, double p_value)
     {
@@ -93,11 +104,19 @@ public abstract class WindowVisibility extends BoardSavableSubWindow
         slider_arr[p_no].setValue(visibility);
     }
     
+    /**
+     * <p>get_board_handling.</p>
+     *
+     * @return a {@link interactive.BoardHandling} object.
+     */
     protected interactive.BoardHandling get_board_handling()
     {
         return board_panel.board_handling;
     }
     
+    /**
+     * <p>set_all_minimum.</p>
+     */
     protected void set_all_minimum()
     {
         for (int i = 0; i < slider_arr.length; ++i)
@@ -107,6 +126,9 @@ public abstract class WindowVisibility extends BoardSavableSubWindow
         }
     }
     
+    /**
+     * <p>set_all_maximum.</p>
+     */
     protected void set_all_maximum()
     {
         for (int i = 0; i < slider_arr.length; ++i)
@@ -118,6 +140,9 @@ public abstract class WindowVisibility extends BoardSavableSubWindow
     
     /**
      * Stores the new value in the board database, when a slider value was changed.
+     *
+     * @param p_index a int.
+     * @param p_value a double.
      */
     protected abstract void set_changed_value(int p_index, double p_value);
     

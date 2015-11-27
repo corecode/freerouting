@@ -24,11 +24,16 @@ package gui;
  * Window handling parameters of the automatic routing.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowAutorouteParameter extends BoardSavableSubWindow
 {
 
-    /** Creates a new instance of WindowAutorouteParameter */
+    /**
+     * Creates a new instance of WindowAutorouteParameter
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowAutorouteParameter(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;
@@ -192,18 +197,27 @@ public class WindowAutorouteParameter extends BoardSavableSubWindow
         this.detail_window.refresh();
     }
 
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         detail_window.dispose();
         super.dispose();
     }
 
+    /**
+     * <p>parent_iconified.</p>
+     */
     public void parent_iconified()
     {
         detail_window.parent_iconified();
         super.parent_iconified();
     }
 
+    /**
+     * <p>parent_deiconified.</p>
+     */
     public void parent_deiconified()
     {
         detail_window.parent_deiconified();

@@ -26,11 +26,16 @@ import board.ItemSelectionFilter;
  * Window for the handling of the interactive selection parameters,
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowSelectParameter extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of SelectWindow */
+    /**
+     * Creates a new instance of SelectWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowSelectParameter(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;
@@ -166,6 +171,8 @@ public class WindowSelectParameter extends BoardSavableSubWindow
     
     /**
      * Selects the layer with the input signal number.
+     *
+     * @param p_signal_layer_no a int.
      */
     public void select(int p_signal_layer_no)
     {

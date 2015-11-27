@@ -24,11 +24,17 @@ package gui;
  * Creates the rules menu of a board frame.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuRules extends javax.swing.JMenu
 {
     
-    /** Returns a new windows menu for the board frame. */
+    /**
+     * Returns a new windows menu for the board frame.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a {@link gui.BoardMenuRules} object.
+     */
     public static BoardMenuRules get_instance(BoardFrame p_board_frame)
     {
         final BoardMenuRules rules_menu = new BoardMenuRules(p_board_frame);

@@ -50,6 +50,7 @@ import autoroute.CompleteFreeSpaceExpansionRoom;
  * Contains higher level functions of a board
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class RoutingBoard extends BasicBoard implements java.io.Serializable
 {
@@ -59,6 +60,14 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * p_bounding_box
      * Rules contains the restrictions to obey when inserting items.
      * Among other things it may contain a clearance matrix.
+     *
+     * @param p_bounding_box a {@link geometry.planar.IntBox} object.
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_outline_shapes an array of {@link geometry.planar.PolylineShape} objects.
+     * @param p_outline_cl_class_no a int.
+     * @param p_rules a rules$BoardRules object.
+     * @param p_board_communication a {@link board.Communication} object.
+     * @param p_test_level a {@link board.TestLevel} object.
      */
     public RoutingBoard(IntBox p_bounding_box, LayerStructure p_layer_structure, PolylineShape[] p_outline_shapes,
             int p_outline_cl_class_no, BoardRules p_rules, Communication p_board_communication, TestLevel p_test_level)
@@ -68,6 +77,8 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Maintains the autorouter database after p_item is inserted, changed, or deleted.
      */
     public void additional_update_after_change(Item p_item)
@@ -103,6 +114,12 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     /**
      * Removes the items in p_item_list  and pulls the nearby rubbertraces tight.
      * Returns false, if some items could not be removed, because they were fixed.
+     *
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @param p_with_delete_fixed a boolean.
+     * @return a boolean.
      */
     public boolean remove_items_and_pull_tight(Collection<Item> p_item_list, int p_tidy_width,
             int p_pull_tight_accuracy, boolean p_with_delete_fixed)
@@ -173,6 +190,9 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * enlarges the changed area on p_layer, so that it contains p_point
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_layer a int.
      */
     public void join_changed_area(FloatPoint p_point, int p_layer)
     {
@@ -209,6 +229,13 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * p_trace_cost_arr is used for optimizing vias and may be null.
      * If p_stoppable_thread != null, the agorithm can be requested to be stopped.
      * If p_time_limit > 0; the algorithm will be stopped after p_time_limit Milliseconds.
+     *
+     * @param p_only_net_no_arr an array of int.
+     * @param p_clip_shape a {@link geometry.planar.IntOctagon} object.
+     * @param p_accuracy a int.
+     * @param p_trace_cost_arr an array of {@link autoroute.AutorouteControl.ExpansionCostFactor} objects.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a int.
      */
     public void opt_changed_area(int[] p_only_net_no_arr, IntOctagon p_clip_shape, int p_accuracy, ExpansionCostFactor[] p_trace_cost_arr,
             Stoppable p_stoppable_thread, int p_time_limit)
@@ -226,6 +253,15 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * If p_time_limit > 0; the algorithm will be stopped after p_time_limit Milliseconds.
      * If p_keep_point != null, traces on layer p_keep_point_layer containing p_keep_point
      *  will also contain this point after optimizing.
+     *
+     * @param p_only_net_no_arr an array of int.
+     * @param p_clip_shape a {@link geometry.planar.IntOctagon} object.
+     * @param p_accuracy a int.
+     * @param p_trace_cost_arr an array of {@link autoroute.AutorouteControl.ExpansionCostFactor} objects.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a int.
+     * @param p_keep_point a {@link geometry.planar.Point} object.
+     * @param p_keep_point_layer a int.
      */
     public void opt_changed_area(int[] p_only_net_no_arr, IntOctagon p_clip_shape, int p_accuracy, ExpansionCostFactor[] p_trace_cost_arr,
             Stoppable p_stoppable_thread, int p_time_limit, Point p_keep_point, int p_keep_point_layer)
@@ -251,6 +287,15 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * The result length is the maximal line length from p_line.a to p_line.b,
      *  which can be inserted without conflict (Integer.MAX_VALUE, if no conflict exists).
      * If p_only_not_shovable_obstacles, unfixed traces and vias are ignored.
+     *
+     * @param p_from_point a {@link geometry.planar.Point} object.
+     * @param p_to_point a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_trace_half_width a int.
+     * @param p_cl_class_no a int.
+     * @param p_only_not_shovable_obstacles a boolean.
+     * @return a double.
      */
     public double check_trace_segment(Point p_from_point, Point p_to_point, int p_layer, int[] p_net_no_arr,
             int p_trace_half_width, int p_cl_class_no, boolean p_only_not_shovable_obstacles)
@@ -271,6 +316,14 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * The result length is the maximal line length from p_line.a to p_line.b,
      *  which can be inserted without conflict (Integer.MAX_VALUE, if no conflict exists).
      * If p_only_not_shovable_obstacles, unfixed traces and vias are ignored.
+     *
+     * @param p_line_segment a {@link geometry.planar.LineSegment} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_trace_half_width a int.
+     * @param p_cl_class_no a int.
+     * @param p_only_not_shovable_obstacles a boolean.
+     * @return a double.
      */
     public double check_trace_segment(LineSegment p_line_segment, int p_layer, int[] p_net_no_arr,
             int p_trace_half_width, int p_cl_class_no, boolean p_only_not_shovable_obstacles)
@@ -343,6 +396,11 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     /**
      * Checks, if p_item can be translated by p_vector without
      * producing overlaps or clearance violations.
+     *
+     * @param p_item a {@link board.Item} object.
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @param p_ignore_items a {@link java.util.Collection} object.
+     * @return a boolean.
      */
     public boolean check_move_item(Item p_item, Vector p_vector, Collection<Item> p_ignore_items)
     {
@@ -401,6 +459,10 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * Checks, if the net number of p_item can be  changed without producing clearance violations.
+     *
+     * @param p_item a {@link board.Item} object.
+     * @param p_new_net_no a int.
+     * @return a boolean.
      */
     public boolean check_change_net(Item p_item, int p_new_net_no)
     {
@@ -428,6 +490,15 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * traces aside. Returns false, if that was not possible without creating
      * clearance violations. In this case the database may be damaged, so that an undo
      * becomes necessesary.
+     *
+     * @param p_drill_item a {@link board.DrillItem} object.
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @param p_pull_tight_time_limit a int.
+     * @return a boolean.
      */
     public boolean move_drill_item(DrillItem p_drill_item, Vector p_vector,
             int p_max_recursion_depth, int p_max_via_recursion_depth,
@@ -489,6 +560,11 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * ignored.
      * Returns null, if no item is found,
      * If p_layer < 0, the layer is ignored
+     *
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_from_item a {@link board.Item} object.
+     * @return a {@link board.Item} object.
      */
     public Item pick_nearest_routing_item(Point p_location, int p_layer, Item p_from_item)
     {
@@ -572,6 +648,18 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * Shoves aside traces, so that a via with the input parameters can be
      * inserted without clearance violations. If the shove failed, the database may be damaged, so that an undo
      * becomes necessesary. Returns false, if the forced via failed.
+     *
+     * @param p_via_info a {@link rules.ViaInfo} object.
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_net_no_arr an array of int.
+     * @param p_trace_clearance_class_no a int.
+     * @param p_trace_pen_halfwidth_arr an array of int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @param p_pull_tight_time_limit a int.
+     * @return a boolean.
      */
     public boolean forced_via(ViaInfo p_via_info, Point p_location, int[] p_net_no_arr,
             int p_trace_clearance_class_no, int[] p_trace_pen_halfwidth_arr,
@@ -617,6 +705,21 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * Returns null, if the check was inaccurate and an error accured while
      * inserting, so that the database may be damaged and an undo necessary.
      * p_search_tree is the shape search tree used in the algorithm.
+     *
+     * @param p_from_corner a {@link geometry.planar.Point} object.
+     * @param p_to_corner a {@link geometry.planar.Point} object.
+     * @param p_half_width a int.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class_no a int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_max_spring_over_recursion_depth a int.
+     * @param p_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @param p_with_check a boolean.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point insert_forced_trace_segment(Point p_from_corner,
             Point p_to_corner, int p_half_width, int p_layer, int[] p_net_no_arr,
@@ -652,6 +755,16 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     /**
      * Checks, if a trace polyline with the input parameters can be inserted
      * while shoving aside obstacle traces and vias.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_half_width a int.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class_no a int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_max_spring_over_recursion_depth a int.
+     * @return a boolean.
      */
     public boolean check_forced_trace_polyline(Polyline p_polyline, int p_half_width, int p_layer, int[] p_net_no_arr,
             int p_clearance_class_no, int p_max_recursion_depth, int p_max_via_recursion_depth,
@@ -689,6 +802,20 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * on the polyline, to which the shove succeeded.
      * Returns null, if the check was inaccurate and an error accured while
      * inserting, so that the database may be damaged and an undo necessary.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_half_width a int.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class_no a int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_max_spring_over_recursion_depth a int.
+     * @param p_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @param p_with_check a boolean.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point insert_forced_trace_polyline(Polyline p_polyline, int p_half_width, int p_layer, int[] p_net_no_arr,
             int p_clearance_class_no, int p_max_recursion_depth, int p_max_via_recursion_depth,
@@ -905,6 +1032,13 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * Initialises the autoroute database for routing a connection.
      * If p_retain_autoroute_database, the autoroute database is retained and maintained after
      * the algorithm for performance reasons.
+     *
+     * @param p_net_no a int.
+     * @param p_trace_clearance_class_no a int.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @param p_retain_autoroute_database a boolean.
+     * @return a {@link autoroute.AutorouteEngine} object.
      */
     public AutorouteEngine init_autoroute(int p_net_no, int p_trace_clearance_class_no,
             Stoppable p_stoppable_thread, TimeLimit p_time_limit, boolean p_retain_autoroute_database)
@@ -933,6 +1067,13 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * Routes automatically p_item to another item of the same net, to which it
      * is not yet electrically connected.
      * Returns an enum of type AutorouteEngine.AutorouteResult
+     *
+     * @param p_item a {@link board.Item} object.
+     * @param p_settings a {@link interactive.Settings} object.
+     * @param p_via_costs a int.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a {@link autoroute.AutorouteEngine.AutorouteResult} object.
      */
     public AutorouteEngine.AutorouteResult autoroute(Item p_item, interactive.Settings p_settings, int p_via_costs, Stoppable p_stoppable_thread, TimeLimit p_time_limit)
     {
@@ -981,6 +1122,13 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      *  Autoroutes from the input pin until the first via, in case the pin and its connected set
      *  has only 1 layer. Ripup is allowed if p_ripup_costs is >= 0.
      *  Returns an enum of type AutorouteEngine.AutorouteResult
+     *
+     * @param p_pin a {@link board.Pin} object.
+     * @param p_settings a {@link interactive.Settings} object.
+     * @param p_ripup_costs a int.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a {@link autoroute.AutorouteEngine.AutorouteResult} object.
      */
     public AutorouteEngine.AutorouteResult fanout(Pin p_pin, interactive.Settings p_settings, int p_ripup_costs,
             Stoppable p_stoppable_thread, TimeLimit p_time_limit)
@@ -1029,6 +1177,12 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     /**
      * Inserts a trace from p_from_point to the nearest point on p_to_trace.
      * Returns false, if that is not possible without clearance violation.
+     *
+     * @param p_from_point a {@link geometry.planar.IntPoint} object.
+     * @param p_to_trace a {@link board.Trace} object.
+     * @param p_pen_half_width a int.
+     * @param p_cl_type a int.
+     * @return a boolean.
      */
     public boolean connect_to_trace(IntPoint p_from_point, Trace p_to_trace,
             int p_pen_half_width, int p_cl_type)
@@ -1097,6 +1251,10 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     /**
      * Checks, if the list p_items contains traces, which have no contact at their
      * start or end point. Trace with net number p_except_net_no are ignored.
+     *
+     * @param p_items a {@link java.util.Collection} object.
+     * @param p_except_net_no_arr an array of int.
+     * @return a boolean.
      */
     public boolean contains_trace_tails(Collection<Item> p_items, int[] p_except_net_no_arr)
     {
@@ -1123,6 +1281,10 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * Removes all trace tails of the input net.
      * If p_net_no <= 0, the tails of all nets are removed.
      *  Returns true, if something was removed.
+     *
+     * @param p_net_no a int.
+     * @param p_stop_connection_option a {@link board.Item.StopConnectionOption} object.
+     * @return a boolean.
      */
     public boolean remove_trace_tails(int p_net_no, Item.StopConnectionOption p_stop_connection_option)
     {
@@ -1185,6 +1347,9 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
         return true;
     }
 
+    /**
+     * <p>clear_all_item_temporary_autoroute_data.</p>
+     */
     public void clear_all_item_temporary_autoroute_data()
     {
         Iterator<UndoableObjects.UndoableObjectNode> it = this.item_list.start_read_object();
@@ -1201,6 +1366,8 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * Sets, if all conduction areas on the board are obstacles for route of foreign nets.
+     *
+     * @param p_value a boolean.
      */
     public void change_conduction_is_obstacle(boolean p_value)
     {
@@ -1240,6 +1407,8 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * Tries to educe the nets of traces and vias,  so that the nets are a subset of the nets of the contact
      * items. This is applied to traces and vias with more than 1 net  connected to tie pins.
      * Returns true, if the nets of some items were reduced.
+     *
+     * @return a boolean.
      */
     public boolean reduce_nets_of_route_items()
     {
@@ -1339,6 +1508,8 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * Returns the obstacle responsible for the last shove to fail.
+     *
+     * @return a {@link board.Item} object.
      */
     public Item get_shove_failing_obstacle()
     {
@@ -1350,6 +1521,11 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
         shove_failing_obstacle = p_item;
     }
 
+    /**
+     * <p>get_shove_failing_layer.</p>
+     *
+     * @return a int.
+     */
     public int get_shove_failing_layer()
     {
         return shove_failing_layer;

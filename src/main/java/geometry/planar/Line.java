@@ -25,13 +25,16 @@ import datastructures.Signum;
  * Implements functionality for lines in the plane.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class Line implements Comparable<Line>, java.io.Serializable
 {
     
     /**
      * creates a directed Line from two Points
+     *
+     * @param p_a a {@link geometry.planar.Point} object.
+     * @param p_b a {@link geometry.planar.Point} object.
      */
     public Line(Point p_a, Point p_b)
     {
@@ -46,6 +49,11 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * creates a directed Line from four integer Coordinates
+     *
+     * @param p_a_x a int.
+     * @param p_a_y a int.
+     * @param p_b_x a int.
+     * @param p_b_y a int.
      */
     public Line(int p_a_x, int p_a_y, int p_b_x, int p_b_y)
     {
@@ -56,6 +64,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * creates a directed Line from a Point and a Direction
+     *
+     * @param p_a a {@link geometry.planar.Point} object.
+     * @param p_dir a {@link geometry.planar.Direction} object.
      */
     public Line(Point p_a, Direction p_dir)
     {
@@ -70,6 +81,10 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * create a directed line from an IntPoint and an IntDirection
+     *
+     * @param p_a a {@link geometry.planar.Point} object.
+     * @param p_dir a {@link geometry.planar.Direction} object.
+     * @return a {@link geometry.planar.Line} object.
      */
     public static Line get_instance(Point p_a, Direction p_dir)
     {
@@ -78,6 +93,8 @@ public class Line implements Comparable<Line>, java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * returns true, if this and p_ob define the same line
      */
     public final boolean equals( Object p_ob )
@@ -106,6 +123,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * Returns true, if this and p_other define the same line.
      * Is designed for good performance, but
      * works only for lines consisting of IntPoints.
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a boolean.
      */
     public final boolean fast_equals(Line p_other)
     {
@@ -127,6 +147,8 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * get the direction of this directed line
+     *
+     * @return a {@link geometry.planar.Direction} object.
      */
     public Direction direction()
     {
@@ -143,6 +165,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      *         Side.ON_THE_LEFT, if this Line is on the left of p_point,
      *         Side.ON_THE_RIGHT, if this Line is on the right of p_point
      *     and Side.COLLINEAR, if this Line contains p_point.
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(Point p_point)
     {
@@ -155,6 +180,10 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * Returns Side.COLLINEAR, if p_point is on the line with tolerance p_tolerance.
      * Otherwise Side.ON_THE_LEFT, if this line is on the left of p_point,
      * or Side.ON_THE_RIGHT, if this line is on the right of p_point,
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_tolerance a double.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(FloatPoint p_point, double p_tolerance)
     {
@@ -185,6 +214,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * returns Side.ON_THE_LEFT, if this line is on the left of p_point,
      *         Side.ON_THE_RIGHT, if this line is on the right of p_point,
      *         Side.COLLINEAR otherwise.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(FloatPoint p_point)
     {
@@ -195,6 +227,10 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * Returns Side.ON_THE_LEFT, if this line is on the left of the intersection
      * of p_1 and p_2, Side.ON_THE_RIGHT, if this line is on the right of the intersection,
      *  and Side.COLLINEAR, if all 3 lines intersect in exacly 1 point.
+     *
+     * @param p_1 a {@link geometry.planar.Line} object.
+     * @param p_2 a {@link geometry.planar.Line} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of_intersection(Line p_1, Line p_2)
     {
@@ -214,6 +250,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * Looks, if all interiour points of p_tile are on the right side of this line.
+     *
+     * @param p_tile a {@link geometry.planar.TileShape} object.
+     * @return a boolean.
      */
     public boolean is_on_the_left(TileShape p_tile)
     {
@@ -229,6 +268,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * Looks, if all interiour points of p_tile are on the left side of this line.
+     *
+     * @param p_tile a {@link geometry.planar.TileShape} object.
+     * @return a boolean.
      */
     public boolean is_on_the_right(TileShape p_tile)
     {
@@ -246,6 +288,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * Returns the signed distance of this line from p_point.
      * The result will be positive, if the line is on the left of p_point,
      * else negative.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public double signed_distance(FloatPoint p_point)
     {
@@ -265,6 +310,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     /**
      * returns true, if the 2 lines defins the same set of points, but may
      * have opposite directions
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a boolean.
      */
     public boolean overlaps(Line p_other)
     {
@@ -275,6 +323,8 @@ public class Line implements Comparable<Line>, java.io.Serializable
     /**
      * Returns the line defining the same set of points, but
      * with opposite direction
+     *
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line opposite()
     {
@@ -284,6 +334,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     /**
      * Returns the intersection point of the 2 lines.
      * If the lines are parallel result.is_infinite() will be true.
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point intersection(Line p_other)
     {
@@ -402,6 +455,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * FloatPoint. If the lines are parallel the result coordinates will be
      * Integer.MAX_VALUE. Useful in situations ehere performance is
      * more important than accuracy.
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint intersection_approx(Line p_other)
     {
@@ -436,6 +492,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * returns the perpendicular projection of p_point onto this line
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point perpendicular_projection(Point p_point)
     {
@@ -445,6 +504,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     /**
      * translates the line perpendicular at about p_dist.
      * If p_dist > 0, the line will be translated to the left, else to the right
+     *
+     * @param p_dist a double.
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line translate(double p_dist)
     {
@@ -474,6 +536,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * translates the line by p_vector
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line translate_by(Vector p_vector)
     {
@@ -489,6 +554,8 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * returns true, if the line is axis_parallel
+     *
+     * @return a boolean.
      */
     public boolean is_orthogonal()
     {
@@ -497,6 +564,8 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * returns true, if this line is diagonal
+     *
+     * @return a boolean.
      */
     public boolean is_diagonal()
     {
@@ -505,6 +574,8 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * returns true, if the direction of this line is a multiple of 45 degree
+     *
+     * @return a boolean.
      */
     public boolean is_multiple_of_45_degree()
     {
@@ -513,6 +584,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * checks, if this Line and p_other are parallel
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a boolean.
      */
     public boolean is_parallel(Line p_other)
     {
@@ -521,6 +595,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * checks, if this Line and p_other are perpendicular
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a boolean.
      */
     public boolean is_perpendicular(Line p_other)
     {
@@ -531,6 +608,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * returns true, if this and p_ob define the same line
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a boolean.
      */
     public boolean is_equal_or_opposite(Line p_other )
     {
@@ -542,6 +622,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * calculates the cosinus of the angle between this line and p_other
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a double.
      */
     public double cos_angle( Line p_other)
     {
@@ -557,6 +640,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * Throws a cast exception, if p_other is not a Line.
      * Fast implementation only for lines consisting of IntPoints
      * because of critical performance
+     *
+     * @param p_other a {@link geometry.planar.Line} object.
+     * @return a int.
      */
     public int compareTo(Line p_other)
     {
@@ -622,6 +708,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     /**
      * Calculates an approximation of the function value of this line at p_x,
      * if the line is not vertical.
+     *
+     * @param p_x a double.
+     * @return a double.
      */
     public double function_value_approx(double p_x)
     {
@@ -642,6 +731,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
     /**
      * Calculates an approximation of the function value in y of this line at p_y,
      * if the line is not horizontal.
+     *
+     * @param p_y a double.
+     * @return a double.
      */
     public double function_in_y_value_approx(double p_y)
     {
@@ -663,6 +755,9 @@ public class Line implements Comparable<Line>, java.io.Serializable
      * Calculates the direction from p_from_point to the nearest point on
      * this line to p_fro_point.
      * Returns null, if p_from_point is contained in this line.
+     *
+     * @param p_from_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Direction} object.
      */
     public Direction perpendicular_direction(Point p_from_point)
     {
@@ -700,6 +795,10 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * Turns this line by p_factor times 90 degree around p_pole.
+     *
+     * @param p_factor a int.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line turn_90_degree(int p_factor, IntPoint p_pole)
     {
@@ -708,7 +807,12 @@ public class Line implements Comparable<Line>, java.io.Serializable
         return new Line(new_a, new_b);
     }
     
-    /** Mirrors this line at the vertical line through p_pole */
+    /**
+     * Mirrors this line at the vertical line through p_pole
+     *
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.Line} object.
+     */
     public Line mirror_vertical(IntPoint p_pole)
     {
         Point new_a = b.mirror_vertical(p_pole);
@@ -716,7 +820,12 @@ public class Line implements Comparable<Line>, java.io.Serializable
         return new Line(new_a, new_b);
     }
     
-    /** Mirrors this line at the horizontal line through p_pole */
+    /**
+     * Mirrors this line at the horizontal line through p_pole
+     *
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.Line} object.
+     */
     public Line mirror_horizontal(IntPoint p_pole)
     {
         Point new_a = b.mirror_horizontal(p_pole);

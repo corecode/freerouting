@@ -39,12 +39,17 @@ import board.Item;
  * so that it can be stored in a shape tree.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom implements CompleteExpansionRoom, SearchTreeObject
 {
     
     /**
      * Creates a new instance of CompleteFreeSpaceExpansionRoom
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_layer a int.
+     * @param p_id_no a int.
      */
     public CompleteFreeSpaceExpansionRoom(TileShape p_shape, int p_layer, int p_id_no)
     {
@@ -53,11 +58,13 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
         id_no = p_id_no;
     }
     
+    /** {@inheritDoc} */
     public void set_search_tree_entries(ShapeTree.Leaf [] p_entries, ShapeTree p_tree)
     {
         tree_entries = p_entries;
     }
     
+    /** {@inheritDoc} */
     public int compareTo(Object p_other)
     {
         int result;
@@ -74,32 +81,39 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     
     /**
      * Removes the tree entries of this roomm from p_shape_tree.
+     *
+     * @param p_shape_tree a {@link datastructures.ShapeTree} object.
      */
     public void remove_from_tree(ShapeTree p_shape_tree)
     {
         p_shape_tree.remove(this.tree_entries);
     }
     
+    /** {@inheritDoc} */
     public int tree_shape_count(ShapeTree p_shape_tree)
     {
         return 1;
     }
     
+    /** {@inheritDoc} */
     public TileShape get_tree_shape(ShapeTree p_shape_tree, int p_index)
     {
         return this.get_shape();
     }
     
+    /** {@inheritDoc} */
     public int shape_layer(int p_index)
     {
         return this.get_layer();
     }
     
+    /** {@inheritDoc} */
     public boolean is_obstacle(int p_net_no)
     {
         return true;
     }
     
+    /** {@inheritDoc} */
     public boolean is_trace_obstacle(int p_net_no)
     {
         return true;
@@ -116,6 +130,8 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     /**
      * Returns, if the room overlaps with net dependent objects.
      * In this case it cannot be retained, when the net number changes in autorouting.
+     *
+     * @return a boolean.
      */
     public boolean is_net_dependent()
     {
@@ -124,6 +140,8 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     
     /**
      * Returns the list doors to target items of this room
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<TargetItemExpansionDoor> get_target_doors()
     {
@@ -132,12 +150,15 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     
     /**
      * Adds p_door to the list of target doors of this room.
+     *
+     * @param p_door a {@link autoroute.TargetItemExpansionDoor} object.
      */
     public void add_target_door(TargetItemExpansionDoor p_door)
     {
         this.target_doors.add(p_door);
     }
     
+    /** {@inheritDoc} */
     public boolean remove_door(ExpandableObject p_door)
     {
         boolean result;
@@ -152,6 +173,11 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
         return result;
     }
     
+    /**
+     * <p>get_object.</p>
+     *
+     * @return a {@link board.SearchTreeObject} object.
+     */
     public SearchTreeObject get_object()
     {
         return this;
@@ -159,6 +185,10 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     
     /**
      * Calculates the doors to the start and destination items of the autoroute algorithm.
+     *
+     * @param p_own_net_object a {@link datastructures.ShapeTree.TreeEntry} object.
+     * @param p_net_no a int.
+     * @param p_autoroute_search_tree a {@link board.ShapeSearchTree} object.
      */
     public  void calculate_target_doors(ShapeTree.TreeEntry p_own_net_object, int p_net_no, ShapeSearchTree p_autoroute_search_tree)
     {
@@ -184,6 +214,8 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Draws the shape of this room.
      */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity)
@@ -196,6 +228,9 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
     
     /**
      * Check, if this FreeSpaceExpansionRoom is valid.
+     *
+     * @param p_autoroute_engine a {@link autoroute.AutorouteEngine} object.
+     * @return a boolean.
      */
     public boolean validate( AutorouteEngine p_autoroute_engine)
     {
@@ -243,6 +278,9 @@ public class CompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom imple
         this.target_doors = new LinkedList<TargetItemExpansionDoor>();
     }
     
+    /**
+     * <p>reset_doors.</p>
+     */
     public void reset_doors()
     {
         super.reset_doors();

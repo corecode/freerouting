@@ -25,33 +25,46 @@ import geometry.planar.TileShape;
  * An object, which can be expanded by the maze expansion algorithm.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public interface ExpandableObject
 {
 
     /**
      * Calculates the intersection of the shapes of the 2 objecta belonging to this door.
+     *
+     * @return a {@link geometry.planar.TileShape} object.
      */
     TileShape get_shape();
 
     /**
      * Returns the dimension ot the intersection of the shapes of the 2 objecta belonging to this door.
+     *
+     * @return a int.
      */
     int get_dimension();
 
     /**
      * Returns the other room to p_room if this is a door and the other room is a CompleteExpansionRoom.
      * Else null is returned.
+     *
+     * @param p_room a {@link autoroute.CompleteExpansionRoom} object.
+     * @return a {@link autoroute.CompleteExpansionRoom} object.
      */
     CompleteExpansionRoom other_room(CompleteExpansionRoom p_room);
 
     /**
      *  Returns the count of MazeSearchElements in this expandable object
+     *
+     * @return a int.
      */
     int maze_search_element_count();
 
     /**
      *  Returns the p_no-th MazeSearchElements in this expandable object
+     *
+     * @param p_no a int.
+     * @return a {@link autoroute.MazeSearchElement} object.
      */
     MazeSearchElement get_maze_search_element(int p_no);
 

@@ -24,10 +24,16 @@ package gui;
  * Creates the display menu of a board frame.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuDisplay extends javax.swing.JMenu
 {
-    /** Returns a new display menu for the board frame. */
+    /**
+     * Returns a new display menu for the board frame.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a {@link gui.BoardMenuDisplay} object.
+     */
     public static BoardMenuDisplay get_instance(BoardFrame p_board_frame)
     {
         final BoardMenuDisplay display_menu = new BoardMenuDisplay(p_board_frame);

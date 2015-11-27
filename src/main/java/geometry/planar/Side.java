@@ -21,18 +21,22 @@ package geometry.planar;
  * Implementation of an enum class Side with the three values
  * ON_THE_LEFT, ON_THE_RIGHT, COLLINEAR.
  *
-
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class Side
 {
+    /** Constant <code>ON_THE_LEFT</code> */
     public static final Side ON_THE_LEFT = new Side ("on_the_left");
+    /** Constant <code>ON_THE_RIGHT</code> */
     public static final Side ON_THE_RIGHT = new Side ("on_the_right");
+    /** Constant <code>COLLINEAR</code> */
     public static final Side COLLINEAR = new Side ("collinear");
 
     /**
      * returns the string of this instance
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String to_string ()
     {
@@ -41,6 +45,8 @@ public class Side
 
     /**
      * returns the opposite side of this side
+     *
+     * @return a {@link geometry.planar.Side} object.
      */
     public final Side negate()
     {

@@ -29,6 +29,7 @@ import geometry.planar.IntOctagon;
  * Describes padstack masks for pins or vias located at the origin.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Printable, java.io.Serializable
 {
@@ -53,6 +54,9 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
     /**
      * Compares 2 padstacks by name.
      * Useful for example to display padstacks in alphabetic order.
+     *
+     * @param p_other a {@link library.Padstack} object.
+     * @return a int.
      */
     public int compareTo(Padstack p_other)
     {
@@ -61,6 +65,9 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
     
     /**
      * Gets the shape of this padstack on layer p_layer
+     *
+     * @param p_layer a int.
+     * @return a {@link geometry.planar.ConvexShape} object.
      */
     public ConvexShape get_shape(int p_layer)
     {
@@ -74,6 +81,8 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
     
     /**
      * Returns the first layer of this padstack with a shape != null.
+     *
+     * @return a int.
      */
     public int from_layer()
     {
@@ -87,6 +96,8 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
     
     /**
      * Returns the last layer of this padstack with a shape != null.
+     *
+     * @return a int.
      */
     public int to_layer()
     {
@@ -98,12 +109,21 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
         return result;
     }
     
-    /** Returns the layer ciount of the board of this padstack. */
+    /**
+     * Returns the layer ciount of the board of this padstack.
+     *
+     * @return a int.
+     */
     public int board_layer_count()
     {
         return shapes.length;
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
@@ -113,6 +133,10 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
      * Calculates the allowed trace exit directions of the shape of this padstack on layer p_layer.
      * If the length of the pad is smaller than p_factor times the height of the pad,
      * connection also to the long side is allowed.
+     *
+     * @param p_layer a int.
+     * @param p_factor a double.
+     * @return a java$util$Collection object.
      */
     public java.util.Collection<Direction> get_trace_exit_directions(int p_layer, double p_factor)
     {
@@ -152,6 +176,7 @@ public class Padstack implements Comparable<Padstack>, board.ObjectInfoPanel.Pri
         return result;
     }
     
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

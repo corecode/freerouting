@@ -39,12 +39,25 @@ import library.Padstack;
  * Class with static functions for checking and inserting forced vias.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ForcedViaAlgo
 {
     /**
      * Checks, if a Via is possible at the input layer after evtl. shoving aside obstacle traces.
      * p_room_shape is used for calculating the from_side.
+     *
+     * @param p_via_radius a double.
+     * @param p_cl_class a int.
+     * @param p_attach_smd_allowed a boolean.
+     * @param p_room_shape a {@link geometry.planar.TileShape} object.
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @return a {@link board.ForcedPadAlgo.CheckDrillResult} object.
      */
     public static ForcedPadAlgo.CheckDrillResult check_layer(double p_via_radius, int p_cl_class, boolean p_attach_smd_allowed,
             TileShape p_room_shape, Point p_location, int p_layer,
@@ -92,6 +105,14 @@ public class ForcedViaAlgo
     
     /**
      * Checks, if a Via is possible with the input parameter after evtl. shoving aside obstacle traces.
+     *
+     * @param p_via_info a {@link rules.ViaInfo} object.
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_net_no_arr an array of int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @return a boolean.
      */
     public static boolean check(ViaInfo p_via_info, Point p_location, int[] p_net_no_arr, int p_max_recursion_depth,
             int p_max_via_recursion_depth, RoutingBoard p_board)
@@ -137,6 +158,16 @@ public class ForcedViaAlgo
      * p_trace_clearance_class_no and p_trace_pen_halfwidth_arr is provided to make space for starting a trace
      * in case the trace width is bigger than the via shape.
      * Returns false, if the forced via failed.
+     *
+     * @param p_via_info a {@link rules.ViaInfo} object.
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_net_no_arr an array of int.
+     * @param p_trace_clearance_class_no a int.
+     * @param p_trace_pen_halfwidth_arr an array of int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @return a boolean.
      */
     public static boolean insert( ViaInfo p_via_info, Point p_location, int[] p_net_no_arr,
             int p_trace_clearance_class_no, int [] p_trace_pen_halfwidth_arr, int p_max_recursion_depth,

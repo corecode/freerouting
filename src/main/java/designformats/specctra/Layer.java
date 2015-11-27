@@ -28,6 +28,7 @@ import java.util.LinkedList;
  * Describes a layer in a Specctra dsn file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Layer
 {
@@ -43,6 +44,11 @@ public class Layer
      * If p_is_signal, the layer is a signal layer, otherwise it is a powerground layer.
      * For Layer objects describing more than 1 layer the number is -1.
      * p_net_names is a list of nets for this layer, if the layer is a power plane.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_no a int.
+     * @param p_is_signal a boolean.
+     * @param p_net_names a {@link java.util.Collection} object.
      */
     public Layer(String p_name, int p_no, boolean p_is_signal, Collection<String> p_net_names)
     {
@@ -58,6 +64,10 @@ public class Layer
      * and ending at the solder side.
      * If p_is_signal, the layer is a signal layer, otherwise it is a powerground layer.
      * For Layer objects describing more than 1 layer the number is -1.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_no a int.
+     * @param p_is_signal a boolean.
      */
     public Layer(String p_name, int p_no, boolean p_is_signal)
     {
@@ -69,6 +79,11 @@ public class Layer
     
     /**
      * Writes a layer scope in the stucture scope.
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_layer_no a int.
+     * @param p_write_rule a boolean.
+     * @throws java.io.IOException if any.
      */
     public static void write_scope(WriteScopeParameter p_par, int p_layer_no,
             boolean p_write_rule) throws java.io.IOException

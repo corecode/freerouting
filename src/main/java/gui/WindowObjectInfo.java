@@ -27,6 +27,7 @@ import java.util.Collection;
  * Window displaying text information for a list of objects implementing the ObjectInfoWindow.Printable interface.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowObjectInfo extends BoardTemporarySubWindow implements board.ObjectInfoPanel
 {
@@ -34,6 +35,11 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
      * Displays a new ObjectInfoWindow with information about the items in p_item_list.
      * p_coordinate_transform is for transforming board to user coordinates,
      * and p_location is the location of the window.
+     *
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_coordinate_transform a {@link board.CoordinateTransform} object.
+     * @param p_location a {@link java.awt.Point} object.
      */
     public static void display(Collection<board.Item> p_item_list,
             BoardFrame p_board_frame, board.CoordinateTransform p_coordinate_transform, java.awt.Point p_location)
@@ -126,6 +132,12 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
      * Displays a new ObjectInfoWindow with information about the objects in p_object_list.
      * p_coordinate_transform is for transforming board to user coordinates,
      * and p_location is the location of the window.
+     *
+     * @param p_title a {@link java.lang.String} object.
+     * @param p_object_list a {@link java.util.Collection} object.
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_coordinate_transform a {@link board.CoordinateTransform} object.
+     * @return a {@link gui.WindowObjectInfo} object.
      */
     public static WindowObjectInfo display(String p_title, Collection<Printable> p_object_list,
             BoardFrame p_board_frame, board.CoordinateTransform p_coordinate_transform)
@@ -217,6 +229,9 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     /**
      * Appends p_string to the text pane.
      * Returns false, if that was not possible.
+     *
+     * @param p_string a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public boolean append(String p_string)
     {
@@ -224,6 +239,8 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Appends p_string in bold styleto the text pane.
      * Returns false, if that was not possible.
      */
@@ -236,6 +253,9 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
      * Appends p_value to the text pane after
      * transforming it to the user coordinate sytem.
      * Returns false, if that was not possible.
+     *
+     * @param p_value a double.
+     * @return a boolean.
      */
     public boolean append(double p_value)
     {
@@ -244,6 +264,8 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Appends p_value to the text pane without
      * transforming it to the user coordinate sytem.
      * Returns false, if that was not possible.
@@ -255,6 +277,8 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Appends p_point to the text pane
      * after transforming to the user coordinate sytem.
      * Returns false, if that was not possible.
@@ -266,6 +290,8 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Appends p_shape to the text pane
      * after transforming to the user coordinate sytem.
      * Returns false, if that was not possible.
@@ -282,6 +308,8 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     
     /**
      * Begins a new line in the text pane.
+     *
+     * @return a boolean.
      */
     public boolean newline()
     {
@@ -290,6 +318,8 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     
     /**
      * Appends a fixed number of spaces to the text pane.
+     *
+     * @return a boolean.
      */
     public boolean indent()
     {
@@ -299,6 +329,11 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     /**
      * Appends a button for creating a new ObjectInfoWindow with the information
      * of p_object to the text pane. Returns false, if that was not possible.
+     *
+     * @param p_button_name a {@link java.lang.String} object.
+     * @param p_window_title a {@link java.lang.String} object.
+     * @param p_object a WindowObjectInfo.Printable object.
+     * @return a boolean.
      */
     public boolean append( String p_button_name, String p_window_title, WindowObjectInfo.Printable p_object)
     {
@@ -310,6 +345,11 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     /**
      * Appends a button for creating a new ObjectInfoWindow with the information
      * of p_items to the text pane. Returns false, if that was not possible.
+     *
+     * @param p_button_name a {@link java.lang.String} object.
+     * @param p_window_title a {@link java.lang.String} object.
+     * @param p_items a java$util$Collection object.
+     * @return a boolean.
      */
     public boolean append_items( String p_button_name, String p_window_title, java.util.Collection<board.Item> p_items)
     {
@@ -321,6 +361,11 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
     /**
      * Appends a button for creating a new ObjectInfoWindow with the information
      * of p_objects to the text pane. Returns false, if that was not possible.
+     *
+     * @param p_button_name a {@link java.lang.String} object.
+     * @param p_window_title a {@link java.lang.String} object.
+     * @param p_objects a java$util$Collection object.
+     * @return a boolean.
      */
     public boolean append_objects( String p_button_name, String p_window_title,
             java.util.Collection<WindowObjectInfo.Printable> p_objects)
@@ -358,6 +403,9 @@ public class WindowObjectInfo extends BoardTemporarySubWindow implements board.O
         return true;
     }
     
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         for (WindowObjectInfo curr_subwindow : this.subwindows)

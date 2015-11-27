@@ -24,12 +24,16 @@ package gui;
  * Startup window visible when the program is loading.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowMessage extends javax.swing.JFrame
 {
 
     /**
      * Displays a window with the input message at the center of the screen.
+     *
+     * @param p_message a {@link java.lang.String} object.
+     * @return a {@link gui.WindowMessage} object.
      */
     public static WindowMessage show(String p_message)
     {
@@ -40,6 +44,9 @@ public class WindowMessage extends javax.swing.JFrame
 
     /**
      * Displays a window with the input messages at the center of the screen.
+     *
+     * @param p_messages an array of {@link java.lang.String} objects.
+     * @return a {@link gui.WindowMessage} object.
      */
     public static WindowMessage show(String[] p_messages)
     {
@@ -48,6 +55,9 @@ public class WindowMessage extends javax.swing.JFrame
 
     /**
      * Calls a confirm dialog. Returns true, if the user confirmed the action or if p_message is null.
+     *
+     * @param p_message a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public static boolean confirm(String p_message)
     {
@@ -63,6 +73,8 @@ public class WindowMessage extends javax.swing.JFrame
 
     /**
      * Calls a dialog with an ok-button.
+     *
+     * @param p_message a {@link java.lang.String} object.
      */
     public static void ok(String p_message)
     {

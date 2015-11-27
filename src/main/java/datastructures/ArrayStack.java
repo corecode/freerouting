@@ -27,11 +27,14 @@ package datastructures;
  * Implementation of a stack as an array.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ArrayStack <p_element_type>
 {
     /**
      * Creates a new instance of ArrayStack with an initial maximal capacity  for p_max_stack_depth elements.
+     *
+     * @param p_max_stack_depth a int.
      */
     public ArrayStack(int p_max_stack_depth)
     {
@@ -48,6 +51,8 @@ public class ArrayStack <p_element_type>
     
     /**
      *  Pushed p_element onto the stack.
+     *
+     * @param p_element a p_element_type object.
      */
     public void push(p_element_type p_element)
     {
@@ -65,6 +70,8 @@ public class ArrayStack <p_element_type>
     /**
      * Pops the next element from the top of the stack.
      * Returns null, if the stack is exhausted.
+     *
+     * @return a p_element_type object.
      */
     public p_element_type pop()
     {

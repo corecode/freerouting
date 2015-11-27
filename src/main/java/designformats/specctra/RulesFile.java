@@ -30,10 +30,18 @@ import  board.BasicBoard;
  * is creates anew  from the host system.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class RulesFile
 {
     
+    /**
+     * <p>write.</p>
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @param p_design_name a {@link java.lang.String} object.
+     */
     public static void write(interactive.BoardHandling p_board_handling, java.io.OutputStream p_output_stream, String p_design_name)
     {
         IndentFileWriter output_file = new IndentFileWriter(p_output_stream);
@@ -60,6 +68,14 @@ public class RulesFile
         }
     }
     
+    /**
+     * <p>read.</p>
+     *
+     * @param p_input_stream a {@link java.io.InputStream} object.
+     * @param p_design_name a {@link java.lang.String} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a boolean.
+     */
     public static boolean read(java.io.InputStream p_input_stream, String p_design_name, 
             interactive.BoardHandling p_board_handling)
     {

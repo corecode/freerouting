@@ -25,13 +25,19 @@ import rules.Net;
 import rules.NetClass;
 
 /**
+ * <p>WindowAssignNetClass class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowAssignNetClass extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of AssignNetRulesWindow */
+    /**
+     * Creates a new instance of AssignNetRulesWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowAssignNetClass(BoardFrame p_board_frame)
     {
         this.resources = java.util.ResourceBundle.getBundle("gui.resources.WindowAssignNetClass", p_board_frame.get_locale());
@@ -69,6 +75,9 @@ public class WindowAssignNetClass extends BoardSavableSubWindow
         this.table.getColumnModel().getColumn(1).setCellEditor(new javax.swing.DefaultCellEditor(net_rule_combo_box));
     }
     
+    /**
+     * <p>refresh.</p>
+     */
     public void refresh()
     {
         // Reinsert the net class column.

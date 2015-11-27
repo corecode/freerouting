@@ -26,15 +26,16 @@ import java.util.LinkedList;
  * points may be equal and no 3 consecutive points collinear.
  *
  * @author Alfons Wirtz#
+ * @version $Id: $Id
  */
-
-
 public class Polygon implements java.io.Serializable
 {
     /**
      * Creates a polygon from p_point_arr.
      * Multiple points and points, which are collinear with its previous
      * and next point will be removed.
+     *
+     * @param p_point_arr an array of {@link geometry.planar.Point} objects.
      */
     public Polygon(Point [] p_point_arr)
     {
@@ -104,6 +105,8 @@ public class Polygon implements java.io.Serializable
 
     /**
      * returns the array of corners of this polygon
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
      */
     public Point[] corner_array()
     {
@@ -117,8 +120,10 @@ public class Polygon implements java.io.Serializable
         return result;
     }
     
-    /** 
+    /**
      * Reverts the order of the corners of this polygon.
+     *
+     * @return a {@link geometry.planar.Polygon} object.
      */
     public Polygon revert_corners()
     {
@@ -134,6 +139,8 @@ public class Polygon implements java.io.Serializable
      * Returns the winding number of this polygon, treated as closed.
      * It will be > 0, if the corners are in countercock sense,
      * and < 0, if the corners are in clockwise sense.
+     *
+     * @return a int.
      */
     public int winding_number_after_closing()
     {

@@ -24,32 +24,45 @@ package datastructures;
  * Interface to observe changes on objects for syncronisatiation purposes.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public interface Observers<ObjectType>
 {
     /**
      * Tell the observers the deletion p_object.
+     *
+     * @param p_object a ObjectType object.
      */
     void notify_deleted(ObjectType p_object);
     
     /**
      * Notify the observers, that they can syncronize the changes on p_object.
+     *
+     * @param p_object a ObjectType object.
      */
     void notify_changed(ObjectType p_object);
     
     /**
      * Enable the observers to syncronize the new created item.
+     *
+     * @param p_object a ObjectType object.
      */
     void notify_new(ObjectType p_object);
     
-    /** Starts notifying the observers */
+    /**
+     * Starts notifying the observers
+     */
     void activate();
     
-    /** Ends notifying the observers */
+    /**
+     * Ends notifying the observers
+     */
     void deactivate();
     
     /**
      * Returns, if the observer is activated.
+     *
+     * @return a boolean.
      */
     boolean is_active();
 }

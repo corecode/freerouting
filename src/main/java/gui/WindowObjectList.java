@@ -24,11 +24,16 @@ package gui;
  *  Abstract class for windows displaying a list of objects
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class WindowObjectList extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of ObjectListWindow */
+    /**
+     * Creates a new instance of ObjectListWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowObjectList(BoardFrame p_board_frame)
     {
         this.board_frame = p_board_frame;
@@ -92,6 +97,7 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
         });
     }
     
+    /** {@inheritDoc} */
     public void setVisible(boolean p_value)
     {
         if (p_value == true)
@@ -101,6 +107,9 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
         super.setVisible(p_value);
     }
     
+    /**
+     * <p>recalculate.</p>
+     */
     protected void recalculate()
     {
         if (this.list_scroll_pane != null)
@@ -136,6 +145,9 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
         });
     }
     
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         for (WindowObjectInfo curr_subwindow : this.subwindows)
@@ -148,6 +160,11 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
         super.dispose();
     }
     
+    /**
+     * <p>add_to_list.</p>
+     *
+     * @param p_object a {@link java.lang.Object} object.
+     */
     protected void add_to_list(Object p_object)
     {
         this.list_model.addElement(p_object);
@@ -158,6 +175,9 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
      */
     abstract protected void fill_list();
     
+    /**
+     * <p>select_instances.</p>
+     */
     abstract protected void select_instances();
     
     protected final BoardFrame board_frame;
@@ -177,6 +197,7 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
     
     private final java.util.ResourceBundle resources;
     
+    /** Constant <code>DEFAULT_TABLE_SIZE=20</code> */
     protected static final int DEFAULT_TABLE_SIZE = 20;
     
     
@@ -241,6 +262,8 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Saves also the filter string to disk.
      */
     public void save(java.io.ObjectOutputStream p_object_stream)
@@ -265,6 +288,7 @@ public abstract class WindowObjectList extends BoardSavableSubWindow
         super.save(p_object_stream);
     }
     
+    /** {@inheritDoc} */
     public boolean read(java.io.ObjectInputStream p_object_stream)
     {
         int [] saved_selected_indices = null;

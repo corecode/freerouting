@@ -24,6 +24,7 @@ package board;
  * Enum for the userunits inch, mil or millimeter.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public enum Unit implements java.io.Serializable
 {
@@ -58,7 +59,14 @@ public enum Unit implements java.io.Serializable
         }
     };
     
-    /** Scales p_value from p_from_unit to p_to_unit */
+    /**
+     * Scales p_value from p_from_unit to p_to_unit
+     *
+     * @param p_value a double.
+     * @param p_from_unit a {@link board.Unit} object.
+     * @param p_to_unit a {@link board.Unit} object.
+     * @return a double.
+     */
     public static double scale(double p_value, Unit p_from_unit, Unit p_to_unit)
     {
         double result;
@@ -132,6 +140,9 @@ public enum Unit implements java.io.Serializable
     /**
      * Return the unit corresponding to the input string,
      * or null, if the input string is different from mil, inch and mm.
+     *
+     * @param p_string a {@link java.lang.String} object.
+     * @return a {@link board.Unit} object.
      */
     public static Unit from_string(String p_string)
     {
@@ -159,5 +170,6 @@ public enum Unit implements java.io.Serializable
         return result;
     }
     
+    /** Constant <code>INCH_TO_MM=25.4</code> */
     public static final double INCH_TO_MM = 25.4;
 }

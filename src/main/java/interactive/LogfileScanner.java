@@ -265,7 +265,6 @@ class LogfileScanner {
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
   private boolean zzRefill() throws java.io.IOException {
-
     /* first: make room (if you can) */
     if (zzStartRead > 0) {
       System.arraycopy(zzBuffer, zzStartRead,
@@ -302,9 +301,11 @@ class LogfileScanner {
   }
 
     
-  /**
-   * Closes the input stream.
-   */
+    /**
+     * Closes the input stream.
+     *
+     * @throws java.io.IOException if any.
+     */
   public final void yyclose() throws java.io.IOException {
     zzAtEOF = true;            /* indicate end of file */
     zzEndRead = zzStartRead;  /* invalidate buffer    */
@@ -314,16 +315,16 @@ class LogfileScanner {
   }
 
 
-  /**
-   * Resets the scanner to read from a new input stream.
-   * Does not close the old reader.
-   *
-   * All internal variables are reset, the old input stream 
-   * <b>cannot</b> be reused (internal buffer is discarded and lost).
-   * Lexical state is set to <tt>ZZ_INITIAL</tt>.
-   *
-   * @param reader   the new input stream 
-   */
+    /**
+     * Resets the scanner to read from a new input stream.
+     * Does not close the old reader.
+     *
+     * All internal variables are reset, the old input stream
+     * <b>cannot</b> be reused (internal buffer is discarded and lost).
+     * Lexical state is set to <tt>ZZ_INITIAL</tt>.
+     *
+     * @param reader   the new input stream
+     */
   public final void yyreset(java.io.Reader reader) {
     zzReader = reader;
     zzAtBOL  = true;
@@ -337,6 +338,8 @@ class LogfileScanner {
 
   /**
    * Returns the current lexical state.
+   *
+   * @return a int.
    */
   public final int yystate() {
     return zzLexicalState;
@@ -355,6 +358,8 @@ class LogfileScanner {
 
   /**
    * Returns the text matched by the current regular expression.
+   *
+   * @return a {@link java.lang.String} object.
    */
   public final String yytext() {
     return new String( zzBuffer, zzStartRead, zzMarkedPos-zzStartRead );
@@ -362,14 +367,13 @@ class LogfileScanner {
 
 
   /**
-   * Returns the character at position <tt>pos</tt> from the 
-   * matched text. 
-   * 
+   * Returns the character at position <tt>pos</tt> from the
+   * matched text.
+   *
    * It is equivalent to yytext().charAt(pos), but faster
    *
-   * @param pos the position of the character to fetch. 
+   * @param pos the position of the character to fetch.
    *            A value from 0 to yylength()-1.
-   *
    * @return the character at position pos
    */
   public final char yycharat(int pos) {
@@ -379,6 +383,8 @@ class LogfileScanner {
 
   /**
    * Returns the length of the matched text region.
+   *
+   * @return a int.
    */
   public final int yylength() {
     return zzMarkedPos-zzStartRead;
@@ -412,14 +418,14 @@ class LogfileScanner {
   } 
 
 
-  /**
-   * Pushes the specified amount of characters back into the input stream.
-   *
-   * They will be read again by then next call of the scanning method
-   *
-   * @param number  the number of characters to be read again.
-   *                This number must not be greater than yylength()!
-   */
+      /**
+       * Pushes the specified amount of characters back into the input stream.
+       *
+       * They will be read again by then next call of the scanning method
+       *
+       * @param number  the number of characters to be read again.
+       *                This number must not be greater than yylength()!
+       */
   public void yypushback(int number)  {
     if ( number > yylength() )
       zzScanError(ZZ_PUSHBACK_2BIG);
@@ -428,13 +434,14 @@ class LogfileScanner {
   }
 
 
-  /**
-   * Resumes scanning until the next regular expression is matched,
-   * the end of input is encountered or an I/O-Error occurs.
-   *
-   * @return      the next token
-   * @exception   java.io.IOException  if any I/O-Error occurs
-   */
+    /**
+     * Resumes scanning until the next regular expression is matched,
+     * the end of input is encountered or an I/O-Error occurs.
+     *
+     * @return      the next token
+     * @exception   java.io.IOException  if any I/O-Error occurs
+     * @throws java.io.IOException if any.
+     */
   public Object next_token() throws java.io.IOException {
     int zzInput;
     int zzAction;

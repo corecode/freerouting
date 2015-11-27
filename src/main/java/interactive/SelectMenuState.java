@@ -27,10 +27,17 @@ import geometry.planar.FloatPoint;
  * especially the different behaviour of the mouse button 1.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SelectMenuState extends MenuState
 {
-    /** Returns a new instance of SelectMenuState */
+    /**
+     * Returns a new instance of SelectMenuState
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.SelectMenuState} object.
+     */
     public static SelectMenuState get_instance(BoardHandling p_board_handling, Logfile p_logfile)
     {
         SelectMenuState new_state = new SelectMenuState(p_board_handling, p_logfile);
@@ -43,22 +50,32 @@ public class SelectMenuState extends MenuState
         super(p_board_handling, p_logfile);
     }
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         InteractiveState result =  select_items(p_location);
         return result;
     }
     
+    /** {@inheritDoc} */
     public InteractiveState mouse_dragged(FloatPoint p_point)
     {
         return SelectItemsInRegionState.get_instance(hdlg.get_current_mouse_position(), this, hdlg, logfile);
     }
     
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(resources.getString("in_select_menu"));
     }
     
+    /**
+     * <p>get_help_id.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_help_id()
     {
         return "MenuState_SelectMenuState";

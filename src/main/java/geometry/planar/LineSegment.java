@@ -23,8 +23,8 @@ import datastructures.Signum;
  * Line is, that a Line is infinite and a
  * LineSegment has a start and an endpoint.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class LineSegment implements java.io.Serializable
 {
@@ -34,6 +34,10 @@ public class LineSegment implements java.io.Serializable
      * It starts at the intersection of p_start_line and p_middle_line
      * and ends at the intersection of p_middle_line and p_end_line.
      * p_start_line and p_end_line must not be parallel to p_middle_line.
+     *
+     * @param p_start_line a {@link geometry.planar.Line} object.
+     * @param p_middle_line a {@link geometry.planar.Line} object.
+     * @param p_end_line a {@link geometry.planar.Line} object.
      */
     public LineSegment(Line p_start_line, Line p_middle_line, Line p_end_line)
     {
@@ -45,6 +49,9 @@ public class LineSegment implements java.io.Serializable
     /**
      * creates the p_no-th line segment of p_polyline
      * for p_no between 1 and p_polyline.line_count - 2.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_no a int.
      */
     public LineSegment(Polyline p_polyline, int p_no)
     {
@@ -64,6 +71,9 @@ public class LineSegment implements java.io.Serializable
     /**
      * Creates the p_no-th line segment of p_shape
      * for p_no between 0 and  p_shape.line_count - 1.
+     *
+     * @param p_shape a {@link geometry.planar.PolylineShape} object.
+     * @param p_no a int.
      */
     public LineSegment(PolylineShape p_shape, int p_no)
     {
@@ -97,6 +107,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns the intersection of the first 2 lines of this segment
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point start_point()
     {
@@ -109,6 +121,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns the intersection of the last 2 lines of this segment
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point end_point()
     {
@@ -121,6 +135,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns an approximation of the intersection of the first 2 lines of this segment
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint start_point_approx()
     {
@@ -138,6 +154,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns an approximation of the intersection of the last 2 lines of this segment
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint end_point_approx()
     {
@@ -155,6 +173,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns the (infinite) line of this segment.
+     *
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line get_line()
     {
@@ -163,6 +183,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns the start closing line of this segment.
+     *
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line get_start_closing_line()
     {
@@ -171,6 +193,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns the end closing line of this segment.
+     *
+     * @return a {@link geometry.planar.Line} object.
      */
     public Line get_end_closing_line()
     {
@@ -179,6 +203,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Returns the line segment with tje opposite direction.
+     *
+     * @return a {@link geometry.planar.LineSegment} object.
      */
     public LineSegment opposite()
     {
@@ -187,6 +213,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Transforms this LinsSegment into a polyline of lenght 3.
+     *
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline to_polyline()
     {
@@ -200,6 +228,8 @@ public class LineSegment implements java.io.Serializable
     /**
      * Creates a 1 dimensional simplex rom this line segment, which
      * has the same shape as the line sgment.
+     *
+     * @return a {@link geometry.planar.Simplex} object.
      */
     public Simplex to_simplex()
     {
@@ -228,6 +258,9 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Checks if p_point is contained in this line segment
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return a boolean.
      */
     public boolean contains(Point p_point)
     {
@@ -255,6 +288,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * calculates the smallest surrounding box of this line segmant
+     *
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox bounding_box()
     {
@@ -271,6 +306,8 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * calculates the smallest surrounding octagon of this line segmant
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
      */
     public IntOctagon bounding_octagon()
     {
@@ -296,6 +333,9 @@ public class LineSegment implements java.io.Serializable
     /**
      * Creates a new line segment with the same start and middle line and an end line,
      * so that the length of the new line segment is about p_new_length.
+     *
+     * @param p_new_length a double.
+     * @return a {@link geometry.planar.LineSegment} object.
      */
     public LineSegment change_length_approx(double p_new_length)
     {
@@ -319,6 +359,9 @@ public class LineSegment implements java.io.Serializable
      * the unique intersection or touching point.
      * The result is not symmetric in this and p_other, because intersecting lines
      * and not the intersection points are returned.
+     *
+     * @param p_other a {@link geometry.planar.LineSegment} object.
+     * @return an array of {@link geometry.planar.Line} objects.
      */
     public Line[] intersection(LineSegment p_other)
     {
@@ -385,6 +428,9 @@ public class LineSegment implements java.io.Serializable
 
     /**
      * Checks if this LineSegment and p_other contain a commen point
+     *
+     * @param p_other a {@link geometry.planar.LineSegment} object.
+     * @return a boolean.
      */
     public boolean intersects(LineSegment p_other)
     {
@@ -395,6 +441,9 @@ public class LineSegment implements java.io.Serializable
     /**
      * Checks if this LineSegment and p_other contain a common LineSegment,
      * which is not reduced to a point.
+     *
+     * @param p_other a {@link geometry.planar.LineSegment} object.
+     * @return a boolean.
      */
     public boolean overlaps(LineSegment p_other)
     {
@@ -406,6 +455,10 @@ public class LineSegment implements java.io.Serializable
      * Constructs an approximation of this line segment by orthogonal stairs with integer coordinates.
      *  The length of the stairs will be at most p_stair_width.
      *  If p_to_the_right, the stairs will be to the right of this line segment, else to the left.
+     *
+     * @param p_width a double.
+     * @param p_to_the_right a boolean.
+     * @return an array of {@link geometry.planar.IntPoint} objects.
      */
     public IntPoint[] stair_approximation(double p_width, boolean p_to_the_right)
     {
@@ -509,6 +562,10 @@ public class LineSegment implements java.io.Serializable
      * Constructs an approximation of this line segment by 45 degree stairs with integer coordinates.
      *  The length of the stairs will be at most p_stair_width.
      *  If p_to_the_right, the stairs will be to the right of this line segment, else to the left.
+     *
+     * @param p_width a double.
+     * @param p_to_the_right a boolean.
+     * @return an array of {@link geometry.planar.IntPoint} objects.
      */
     public IntPoint[] stair_approximation_45(double p_width, boolean p_to_the_right)
     {
@@ -629,6 +686,9 @@ public class LineSegment implements java.io.Serializable
      * The result array may have lenght 0, 1 or 2.
      * With 2 intersections the intersection which is nearest to the start
      * point of the line segment comes first.
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @return an array of int.
      */
     public int[] border_intersections(TileShape p_shape)
     {
@@ -853,6 +913,8 @@ public class LineSegment implements java.io.Serializable
     /**
      * Inverts the direction of this.middle, if start_point() has a bigger
      * x coordinate than end_point(), or an equal x coordinate and a bigger y coordinate.
+     *
+     * @return a {@link geometry.planar.LineSegment} object.
      */
     public LineSegment sort_endpoints_in_x_y()
     {

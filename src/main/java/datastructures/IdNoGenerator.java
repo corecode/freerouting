@@ -24,16 +24,21 @@ package datastructures;
  * Interface for creatiing unique identification number.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public interface IdNoGenerator
 {
     /**
      * Create a new unique identification number.
+     *
+     * @return a int.
      */
     int new_no();
     
     /**
      * Return the maximum generated id number so far.
+     *
+     * @return a int.
      */
     int max_generated_no();
 }

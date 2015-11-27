@@ -23,11 +23,18 @@ package gui;
 /**
  *  Abstract class for windows displaying a list of objects
  *  The object name can be filttered by an alphanumeric input string. * @author Alfons Wirtz
+ *
+ * @author harry
+ * @version $Id: $Id
  */
 public abstract class WindowObjectListWithFilter extends WindowObjectList
 {
     
-    /** Creates a new instance of ObjectListWindowWithFilter */
+    /**
+     * Creates a new instance of ObjectListWindowWithFilter
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowObjectListWithFilter(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -45,6 +52,8 @@ public abstract class WindowObjectListWithFilter extends WindowObjectList
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Adds p_object to the list only if its name matches the filter.
      */
     protected void add_to_list(Object p_object)
@@ -67,6 +76,8 @@ public abstract class WindowObjectListWithFilter extends WindowObjectList
     
     /**
      * Returns the filter text string of this window.
+     *
+     * @return a {@link gui.WindowObjectListWithFilter.SnapshotInfo} object.
      */
     public SnapshotInfo get_snapshot_info()
     {
@@ -82,6 +93,11 @@ public abstract class WindowObjectListWithFilter extends WindowObjectList
         return new SnapshotInfo(filter_string.getText(), selected_indices);
     }
     
+    /**
+     * <p>set_snapshot_info.</p>
+     *
+     * @param p_snapshot_info a {@link gui.WindowObjectListWithFilter.SnapshotInfo} object.
+     */
     public void set_snapshot_info(SnapshotInfo p_snapshot_info)
     {
         if (!p_snapshot_info.filter.equals(this.filter_string.getText()))
@@ -96,6 +112,8 @@ public abstract class WindowObjectListWithFilter extends WindowObjectList
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Saves also the filter string to disk.
      */
     public void save(java.io.ObjectOutputStream p_object_stream)
@@ -111,6 +129,7 @@ public abstract class WindowObjectListWithFilter extends WindowObjectList
         super.save(p_object_stream);
     }
     
+    /** {@inheritDoc} */
     public boolean read(java.io.ObjectInputStream p_object_stream)
     {
         try

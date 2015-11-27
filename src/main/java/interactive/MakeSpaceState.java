@@ -30,11 +30,19 @@ import board.BasicBoard;
  * For that purpose traces of an unvisible net are created tempory for shoving.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MakeSpaceState extends DragState
 {
     
-    /** Creates a new instance of MakeSpaceState */
+    /**
+     * Creates a new instance of MakeSpaceState
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     public MakeSpaceState(FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_location, p_parent_state, p_board_handling, p_logfile);
@@ -55,6 +63,7 @@ public class MakeSpaceState extends DragState
                 false, false, false, hdlg.settings.hilight_routing_obstacle);
     }
     
+    /** {@inheritDoc} */
     public InteractiveState move_to(FloatPoint p_to_location)
     {
         if (!something_dragged)
@@ -89,6 +98,11 @@ public class MakeSpaceState extends DragState
         return this;
     }
     
+    /**
+     * <p>button_released.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState button_released()
     {
         int delete_net_no = rules.Nets.hidden_net_no;
@@ -107,6 +121,7 @@ public class MakeSpaceState extends DragState
         return this.return_state;
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         if (route != null)

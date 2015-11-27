@@ -28,11 +28,17 @@ import java.awt.geom.Point2D;
  * Class for interactive zooming to a rectangle.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ZoomRegionState extends SelectRegionState
 {
     /**
      * Returns a new instance of this class.
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.ZoomRegionState} object.
      */
     public static ZoomRegionState get_instance(InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
@@ -41,6 +47,12 @@ public class ZoomRegionState extends SelectRegionState
     
     /**
      * Returns a new instance of this class with first point p_location.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.ZoomRegionState} object.
      */
     public static ZoomRegionState get_instance(FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
@@ -50,7 +62,13 @@ public class ZoomRegionState extends SelectRegionState
         return new_instance;
     }
     
-    /** Creates a new instance of ZoomRegionState */
+    /**
+     * Creates a new instance of ZoomRegionState
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     public ZoomRegionState(InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_parent_state, p_board_handling, p_logfile);
@@ -60,6 +78,11 @@ public class ZoomRegionState extends SelectRegionState
         }
     }
     
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         corner2 = hdlg.get_current_mouse_position();

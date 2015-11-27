@@ -36,8 +36,10 @@ import board.ShapeSearchTree;
 import board.TestLevel;
 
 /**
+ * <p>Abstract LocateFoundConnectionAlgo class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class LocateFoundConnectionAlgo
 {
@@ -45,6 +47,14 @@ public abstract class LocateFoundConnectionAlgo
     /**
      * Returns a new Instance of LocateFoundConnectionAlgo or null,
      * if p_destination_door is null.
+     *
+     * @param p_maze_search_result a {@link autoroute.MazeSearchAlgo.Result} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     * @param p_angle_restriction a {@link board.AngleRestriction} object.
+     * @param p_ripped_item_list a {@link java.util.SortedSet} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     * @return a {@link autoroute.LocateFoundConnectionAlgo} object.
      */
     public static LocateFoundConnectionAlgo get_instance(MazeSearchAlgo.Result p_maze_search_result, AutorouteControl p_ctrl,
             ShapeSearchTree p_search_tree, AngleRestriction p_angle_restriction, SortedSet<Item> p_ripped_item_list, TestLevel p_test_level)
@@ -67,7 +77,16 @@ public abstract class LocateFoundConnectionAlgo
         return result;
     }
 
-    /** Creates a new instance of LocateFoundConnectionAlgo */
+    /**
+     * Creates a new instance of LocateFoundConnectionAlgo
+     *
+     * @param p_maze_search_result a {@link autoroute.MazeSearchAlgo.Result} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     * @param p_angle_restriction a {@link board.AngleRestriction} object.
+     * @param p_ripped_item_list a {@link java.util.SortedSet} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     */
     protected LocateFoundConnectionAlgo(MazeSearchAlgo.Result p_maze_search_result, AutorouteControl p_ctrl,
             ShapeSearchTree p_search_tree, AngleRestriction p_angle_restriction, SortedSet<Item> p_ripped_item_list, TestLevel p_test_level)
     {
@@ -265,10 +284,17 @@ public abstract class LocateFoundConnectionAlgo
     /**
      * Returns the next list of corners for the construction of the trace
      * in calculate_next_trace. If the result is emppty, the trace is already completed.
+     *
+     * @return a java$util$Collection object.
      */
     protected abstract Collection<FloatPoint> calculate_next_trace_corners();
 
-    /** Test display of the baktrack rooms. */
+    /**
+     * Test display of the baktrack rooms.
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context)
     {
         for (int i = 0; i < backtrack_array.length; ++i)

@@ -24,6 +24,7 @@ package board;
  * Sorted fixed states of board items. The strongest fixed states came last.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public enum FixedState
 {

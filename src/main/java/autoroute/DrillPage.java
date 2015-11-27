@@ -43,7 +43,12 @@ import board.Item;
 class DrillPage implements ExpandableObject
 {
     
-    /** Creates a new instance of DrillPage */
+    /**
+     * Creates a new instance of DrillPage
+     *
+     * @param p_shape a {@link geometry.planar.IntBox} object.
+     * @param p_board a {@link board.RoutingBoard} object.
+     */
     public DrillPage(IntBox p_shape, RoutingBoard p_board)
     {
         shape = p_shape;
@@ -58,6 +63,10 @@ class DrillPage implements ExpandableObject
     /**
      * Returns the drills on this page.
      * If p_atttach_smd, drilling to smd pins is allowed.
+     *
+     * @param p_autoroute_engine a {@link autoroute.AutorouteEngine} object.
+     * @param p_attach_smd a boolean.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ExpansionDrill> get_drills(AutorouteEngine p_autoroute_engine, boolean p_attach_smd)
     {
@@ -143,21 +152,37 @@ class DrillPage implements ExpandableObject
         return this.drills;
     }
     
+    /**
+     * <p>get_shape.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_shape()
     {
         return this.shape;
     }
     
+    /**
+     * <p>get_dimension.</p>
+     *
+     * @return a int.
+     */
     public int get_dimension()
     {
         return 2;
     }
     
+    /**
+     * <p>maze_search_element_count.</p>
+     *
+     * @return a int.
+     */
     public int maze_search_element_count()
     {
         return this.maze_search_info_arr.length;
     }
     
+    /** {@inheritDoc} */
     public MazeSearchElement get_maze_search_element (int p_no)
     {
         return this.maze_search_info_arr[p_no];
@@ -192,6 +217,13 @@ class DrillPage implements ExpandableObject
     /*
      * Test draw of the drills on this page.
      */
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_intensity a double.
+     */
     public void draw(java.awt.Graphics p_graphics,
             boardgraphics.GraphicsContext p_graphics_context, double p_intensity)
     {
@@ -205,6 +237,7 @@ class DrillPage implements ExpandableObject
         }
     }
     
+    /** {@inheritDoc} */
     public CompleteExpansionRoom other_room(CompleteExpansionRoom p_room)
     {
         return null;

@@ -26,11 +26,16 @@ import board.Components;
  * Window displaying the components on the board.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowComponents extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of ComponentsWindow */
+    /**
+     * Creates a new instance of ComponentsWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowComponents(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -59,6 +64,9 @@ public class WindowComponents extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(components.count(), DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_components = list.getSelectedValues();

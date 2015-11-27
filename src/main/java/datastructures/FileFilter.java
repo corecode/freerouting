@@ -24,15 +24,25 @@ package datastructures;
  * Used in the file chooser to filter all files which do not have an extension from the input array.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class FileFilter extends javax.swing.filechooser.FileFilter
 {
     
-    /** Creates a new  FileFilter for the input extension*/
+    /**
+     * Creates a new  FileFilter for the input extension
+     *
+     * @param p_extensions an array of {@link java.lang.String} objects.
+     */
     public FileFilter(String []  p_extensions)
     {
         extensions = p_extensions;
     }
+    /**
+     * <p>getDescription.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String getDescription()
     {
         String message = "files with the extensions";
@@ -51,6 +61,7 @@ public class FileFilter extends javax.swing.filechooser.FileFilter
         return message;
     }
     
+    /** {@inheritDoc} */
     public boolean accept(java.io.File p_file)
     {
         if (p_file.isDirectory())

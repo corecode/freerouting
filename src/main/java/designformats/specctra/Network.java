@@ -39,16 +39,20 @@ import board.RoutingBoard;
  * Class for reading and writing net network from dsn-files.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Network extends ScopeKeyword
 {
 
-    /** Creates a new instance of Network */
+    /**
+     * Creates a new instance of Network
+     */
     public Network()
     {
         super("network");
     }
 
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         Collection<NetClass> classes = new LinkedList<NetClass>();
@@ -136,6 +140,12 @@ public class Network extends ScopeKeyword
         return true;
     }
 
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par) throws java.io.IOException
     {
         p_par.file.start_scope();
@@ -151,6 +161,14 @@ public class Network extends ScopeKeyword
         p_par.file.end_scope();
     }
 
+    /**
+     * <p>write_via_infos.</p>
+     *
+     * @param p_rules a rules$BoardRules object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_via_infos(rules.BoardRules p_rules, IndentFileWriter p_file, IdentifierType p_identifier_type)
             throws java.io.IOException
     {
@@ -173,6 +191,14 @@ public class Network extends ScopeKeyword
         }
     }
 
+    /**
+     * <p>write_via_rules.</p>
+     *
+     * @param p_rules a rules$BoardRules object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_via_rules(rules.BoardRules p_rules, IndentFileWriter p_file, IdentifierType p_identifier_type)
             throws java.io.IOException
     {
@@ -191,6 +217,12 @@ public class Network extends ScopeKeyword
         }
     }
 
+    /**
+     * <p>write_net_classes.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_net_classes(WriteScopeParameter p_par)
             throws java.io.IOException
     {
@@ -200,6 +232,13 @@ public class Network extends ScopeKeyword
         }
     }
 
+    /**
+     * <p>write_net_class.</p>
+     *
+     * @param p_net_class a {@link rules.NetClass} object.
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_net_class(rules.NetClass p_net_class, WriteScopeParameter p_par)
             throws java.io.IOException
     {

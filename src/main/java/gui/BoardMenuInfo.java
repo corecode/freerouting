@@ -21,12 +21,19 @@
 package gui;
 
 /**
+ * <p>BoardMenuInfo class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuInfo extends javax.swing.JMenu
 {
-    /** Returns a new info menu for the board frame. */
+    /**
+     * Returns a new info menu for the board frame.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a {@link gui.BoardMenuInfo} object.
+     */
     public static BoardMenuInfo get_instance(BoardFrame p_board_frame)
     {
         final BoardMenuInfo info_menu = new BoardMenuInfo(p_board_frame);

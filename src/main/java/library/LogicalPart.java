@@ -24,6 +24,7 @@ package library;
  * Contains contain information for gate swap and pin swap for a single component.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class LogicalPart implements board.ObjectInfoPanel.Printable, java.io.Serializable
 {
@@ -32,6 +33,10 @@ public class LogicalPart implements board.ObjectInfoPanel.Printable, java.io.Ser
      * Creates a new instance of LogicalPart.
      * The part pins are sorted by pin_no.
      * The pin_no's of the part pins must be the same number as in the componnents library package.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_no a int.
+     * @param p_part_pin_arr an array of {@link library.LogicalPart.PartPin} objects.
      */
     public LogicalPart(String p_name, int p_no, PartPin[] p_part_pin_arr)
     {
@@ -40,12 +45,22 @@ public class LogicalPart implements board.ObjectInfoPanel.Printable, java.io.Ser
         part_pin_arr = p_part_pin_arr;
     }
     
+    /**
+     * <p>pin_count.</p>
+     *
+     * @return a int.
+     */
     public int pin_count()
     {
         return part_pin_arr.length;
     }
     
-    /** Returns the pim with index p_no. Pin numbers are from 0 to pin_count - 1 */
+    /**
+     * Returns the pim with index p_no. Pin numbers are from 0 to pin_count - 1
+     *
+     * @param p_no a int.
+     * @return a {@link library.LogicalPart.PartPin} object.
+     */
     public PartPin get_pin(int p_no)
     {
         if (p_no < 0 || p_no >= part_pin_arr.length)
@@ -56,6 +71,7 @@ public class LogicalPart implements board.ObjectInfoPanel.Printable, java.io.Ser
         return part_pin_arr[p_no];
     }
     
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

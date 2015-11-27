@@ -24,6 +24,7 @@ package gui;
  * Subwindow of the board frame, whose location and visibility can be saved and read from disc.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class BoardSavableSubWindow extends BoardSubWindow
 {
@@ -31,6 +32,9 @@ public abstract class BoardSavableSubWindow extends BoardSubWindow
     /**
      * Reads the data of this frame from disc.
      * Returns false, if the reading failed.
+     *
+     * @param p_object_stream a {@link java.io.ObjectInputStream} object.
+     * @return a boolean.
      */
     public boolean read(java.io.ObjectInputStream p_object_stream)
     {
@@ -50,6 +54,8 @@ public abstract class BoardSavableSubWindow extends BoardSubWindow
     
     /**
      * Saves this frame to disk.
+     *
+     * @param p_object_stream a {@link java.io.ObjectOutputStream} object.
      */
     public void save(java.io.ObjectOutputStream p_object_stream)
     {
@@ -65,7 +71,7 @@ public abstract class BoardSavableSubWindow extends BoardSubWindow
         }
     }
     
-    /** 
+    /**
      * Refreshs the displayed values in this window.
      * To be overwritten in derived classes.
      */

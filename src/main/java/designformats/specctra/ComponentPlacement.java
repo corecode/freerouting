@@ -28,11 +28,16 @@ import java.util.Map;
  * Describes the placement data of a library component
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ComponentPlacement
 {
     
-    /** Creates a new instance of ComponentPlacement */
+    /**
+     * Creates a new instance of ComponentPlacement
+     *
+     * @param p_lib_name a {@link java.lang.String} object.
+     */
     public ComponentPlacement(String p_lib_name)
     {
         lib_name = p_lib_name;

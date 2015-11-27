@@ -25,10 +25,19 @@ package designformats.specctra;
  * Transformes a Specctra session file into an Eagle script file.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SessionToEagle extends javax.swing.JFrame
 {
     
+    /**
+     * <p>get_instance.</p>
+     *
+     * @param p_session a {@link java.io.InputStream} object.
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @param p_board a {@link board.BasicBoard} object.
+     * @return a boolean.
+     */
     public static boolean get_instance(java.io.InputStream p_session, java.io.OutputStream p_output_stream,
             board.BasicBoard p_board)
     {

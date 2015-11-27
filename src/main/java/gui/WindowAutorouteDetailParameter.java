@@ -21,13 +21,19 @@
 package gui;
 
 /**
+ * <p>WindowAutorouteDetailParameter class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowAutorouteDetailParameter extends BoardSavableSubWindow
 {
 
-    /** Creates a new instance of WindowAutorouteDetailParameter */
+    /**
+     * Creates a new instance of WindowAutorouteDetailParameter
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowAutorouteDetailParameter(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;

@@ -25,11 +25,16 @@ package gui;
  * Window with the parameters for moving components.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowMoveParameter extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of WindowMoveParameter */
+    /**
+     * Creates a new instance of WindowMoveParameter
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowMoveParameter(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;

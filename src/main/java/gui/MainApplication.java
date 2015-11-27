@@ -27,12 +27,15 @@ import board.TestLevel;
  * Main application for creating frames with new or existing board designs.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MainApplication extends javax.swing.JFrame
 {
 
     /**
      * Main function of the Application
+     *
+     * @param p_args an array of {@link java.lang.String} objects.
      */
     public static void main(String p_args[])
     {
@@ -136,6 +139,11 @@ public class MainApplication extends javax.swing.JFrame
     /**
      * Creates new form MainApplication
      * It takes the directory of the board designs as optional argument.
+     *
+     * @param p_design_dir a {@link java.lang.String} object.
+     * @param p_is_test_version a boolean.
+     * @param p_webstart_option a boolean.
+     * @param p_current_locale a {@link java.util.Locale} object.
      */
     public MainApplication(String p_design_dir, boolean p_is_test_version,
             boolean p_webstart_option, java.util.Locale p_current_locale)

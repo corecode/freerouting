@@ -26,30 +26,41 @@ import java.util.Set;
  * electrical connected to other items.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public interface Connectable
 {
     /**
      * Returns true if this item belongs to the net with number p_net_no.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean contains_net(int p_net_no);
     
     /**
      *  Returns true if the net number array of this and p_net_no_arr have a common
      *  number.
+     *
+     * @param p_net_no_arr an array of int.
+     * @return a boolean.
      */
     public boolean shares_net_no(int [] p_net_no_arr);
     
     /**
      * Returns a list of all connectable items overlapping
      * and sharing a net with this item.
+     *
+     * @return a {@link java.util.Set} object.
      */
     Set<Item> get_all_contacts();
     
     /**
      * Returns a list of all connectable items overlapping with
      * this item on the input layer and sharing a net with this item.
+     *
+     * @param p_layer a int.
+     * @return a {@link java.util.Set} object.
      */
     Set<Item> get_all_contacts(int p_layer );
     
@@ -59,6 +70,8 @@ public interface Connectable
      * Connection points of traces are there endpoints, connection
      * points of drill_items there center points, and connection
      * points of conduction areas are points on there border.
+     *
+     * @return a {@link java.util.Set} object.
      */
     Set<Item> get_normal_contacts();
     
@@ -66,12 +79,19 @@ public interface Connectable
      * Returns all connectable items of the net with number p_net_no, which can be reached recursively
      * from this item via normal contacts.
      * if (p_net_no <= 0, the net number is ignored.
+     *
+     * @param p_net_no a int.
+     * @return a {@link java.util.Set} object.
      */
     Set<Item> get_connected_set(int p_net_no);
     
     /**
      * Returns for each convex shape of a connectable item
      * the subshape of points, where traces can be connected to that item.
+     *
+     * @param p_tree a {@link board.ShapeSearchTree} object.
+     * @param p_index a int.
+     * @return a {@link geometry.planar.TileShape} object.
      */
     TileShape get_trace_connection_shape(ShapeSearchTree p_tree, int p_index);
 }

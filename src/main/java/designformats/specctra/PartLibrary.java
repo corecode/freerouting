@@ -21,18 +21,23 @@
 package designformats.specctra;
 
 /**
+ * <p>PartLibrary class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PartLibrary  extends ScopeKeyword
 {
     
-    /** Creates a new instance of PartLibrary */
+    /**
+     * Creates a new instance of PartLibrary
+     */
     public PartLibrary()
     {
         super("part_library");
     }
     
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         Object next_token = null;
@@ -88,6 +93,12 @@ public class PartLibrary  extends ScopeKeyword
         return true;
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par) throws java.io.IOException
     {
         library.LogicalParts logical_parts = p_par.board.library.logical_parts;

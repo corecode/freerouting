@@ -26,10 +26,17 @@ import java.awt.Color;
  * Stores the layer dependent colors used for drawing for the items on the board.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ItemColorTableModel extends ColorTableModel implements java.io.Serializable
 {
     
+    /**
+     * <p>Constructor for ItemColorTableModel.</p>
+     *
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public ItemColorTableModel(board.LayerStructure p_layer_structure, java.util.Locale p_locale)
     {
         super(p_layer_structure.arr.length, p_locale);
@@ -111,6 +118,13 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
         }
     }
     
+    /**
+     * <p>Constructor for ItemColorTableModel.</p>
+     *
+     * @param p_stream a {@link java.io.ObjectInputStream} object.
+     * @throws java.io.IOException if any.
+     * @throws java.lang.ClassNotFoundException if any.
+     */
     public ItemColorTableModel(java.io.ObjectInputStream p_stream)
             throws java.io.IOException, java.lang.ClassNotFoundException
     {
@@ -119,6 +133,8 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
     
     /**
      * Copy construcror.
+     *
+     * @param p_item_color_model a {@link boardgraphics.ItemColorTableModel} object.
      */
     public ItemColorTableModel(ItemColorTableModel p_item_color_model)
     {
@@ -130,16 +146,27 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
         }
     }
     
+    /**
+     * <p>getColumnCount.</p>
+     *
+     * @return a int.
+     */
     public int getColumnCount()
     {
         return ColumnNames.values().length;
     }
     
+    /**
+     * <p>getRowCount.</p>
+     *
+     * @return a int.
+     */
     public int getRowCount()
     {
         return data.length;
     }
     
+    /** {@inheritDoc} */
     public String getColumnName(int p_col)
     {
         java.util.ResourceBundle resources = 
@@ -147,6 +174,7 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
         return resources.getString(ColumnNames.values()[p_col].toString());
     }
     
+    /** {@inheritDoc} */
     public void setValueAt(Object p_value, int p_row, int p_col)
     {
         super.setValueAt(p_value, p_row, p_col);
@@ -154,6 +182,8 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Don't need to implement this method unless your table's
      * editable.
      */
@@ -246,6 +276,12 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
     }
     
     
+    /**
+     * <p>set_trace_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     * @param p_fixed a boolean.
+     */
     public void set_trace_colors(Color[] p_color_arr, boolean p_fixed)
     {
         if (p_fixed)
@@ -258,6 +294,12 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
         }
     }
     
+    /**
+     * <p>set_via_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     * @param p_fixed a boolean.
+     */
     public void set_via_colors(Color[] p_color_arr, boolean p_fixed)
     {
         if (p_fixed)
@@ -270,26 +312,51 @@ public class ItemColorTableModel extends ColorTableModel implements java.io.Seri
         }
     }
     
+    /**
+     * <p>set_pin_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     */
     public void set_pin_colors(Color[] p_color_arr)
     {
         set_colors(ColumnNames.PINS.ordinal(), p_color_arr);
     }
     
+    /**
+     * <p>set_conduction_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     */
     public void set_conduction_colors(Color[] p_color_arr)
     {
         set_colors(ColumnNames.CONDUCTION_AREAS.ordinal(), p_color_arr);
     }
     
+    /**
+     * <p>set_keepout_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     */
     public void set_keepout_colors(Color[] p_color_arr)
     {
         set_colors(ColumnNames.KEEPOUTS.ordinal(), p_color_arr);
     }
     
+    /**
+     * <p>set_via_keepout_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     */
     public void set_via_keepout_colors(Color[] p_color_arr)
     {
         set_colors(ColumnNames.VIA_KEEPOUTS.ordinal(), p_color_arr);
     }
     
+    /**
+     * <p>set_place_keepout_colors.</p>
+     *
+     * @param p_color_arr an array of {@link java.awt.Color} objects.
+     */
     public void set_place_keepout_colors(Color[] p_color_arr)
     {
         set_colors(ColumnNames.PLACE_KEEPOUTS.ordinal(), p_color_arr);

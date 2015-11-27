@@ -28,6 +28,7 @@ import java.util.LinkedList;
  * Vias at the beginning of the array are preferred to later vias.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Printable
 {
@@ -35,11 +36,21 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
     /** Empty via rule. Must nott be changed. */
     public static final ViaRule EMPTY = new ViaRule("empty");
     
+    /**
+     * <p>Constructor for ViaRule.</p>
+     *
+     * @param p_name a {@link java.lang.String} object.
+     */
     public ViaRule  (String p_name)
     {
         name = p_name;
     }
     
+    /**
+     * <p>append_via.</p>
+     *
+     * @param p_via a {@link rules.ViaInfo} object.
+     */
     public void append_via(ViaInfo p_via)
     {
         list.add(p_via);
@@ -48,23 +59,42 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
     /**
      * Removes p_via from the rule.
      * Returns false, if p_via was not contained in the rule.
+     *
+     * @param p_via a {@link rules.ViaInfo} object.
+     * @return a boolean.
      */
     public boolean remove_via(ViaInfo p_via)
     {
         return list.remove(p_via);
     }
     
+    /**
+     * <p>via_count.</p>
+     *
+     * @return a int.
+     */
     public int via_count()
     {
         return list.size();
     }
     
+    /**
+     * <p>get_via.</p>
+     *
+     * @param p_index a int.
+     * @return a {@link rules.ViaInfo} object.
+     */
     public ViaInfo get_via(int p_index)
     {
         assert  p_index >= 0 && p_index < list.size();
         return list.get(p_index);
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
@@ -72,6 +102,9 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
     
     /**
      * Returns true, if p_via_info is contained in the via list of this rule.
+     *
+     * @param p_via_info a {@link rules.ViaInfo} object.
+     * @return a boolean.
      */
     public boolean contains(ViaInfo p_via_info)
     {
@@ -87,6 +120,9 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
     
     /**
      * Returns true, if this rule contains a via with padstack p_padstack
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     * @return a boolean.
      */
     public boolean contains_padstack(library.Padstack p_padstack)
     {
@@ -103,6 +139,10 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
     /**
      * Searchs a via in this rule with first layer = p_from_layer and last layer = p_to_layer.
      * Returns null, if no such via exists.
+     *
+     * @param p_from_layer a int.
+     * @param p_to_layer a int.
+     * @return a {@link rules.ViaInfo} object.
      */
     public ViaInfo get_layer_range(int p_from_layer, int p_to_layer)
     {
@@ -119,6 +159,10 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
     /**
      * Swaps the locations of p_1 and p_2 in the rule.
      * Returns false, if p_1 or p_2 were not found in the list.
+     *
+     * @param p_1 a {@link rules.ViaInfo} object.
+     * @param p_2 a {@link rules.ViaInfo} object.
+     * @return a boolean.
      */
     public boolean swap(ViaInfo p_1, ViaInfo p_2)
     {
@@ -137,6 +181,7 @@ public class ViaRule implements java.io.Serializable, board.ObjectInfoPanel.Prin
         return true;
     }
     
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =

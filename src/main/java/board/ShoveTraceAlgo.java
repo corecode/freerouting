@@ -38,10 +38,16 @@ import java.util.Set;
  * for shoving traces
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ShoveTraceAlgo
 {
 
+    /**
+     * <p>Constructor for ShoveTraceAlgo.</p>
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     */
     public ShoveTraceAlgo(RoutingBoard p_board)
     {
         board = p_board;
@@ -51,6 +57,18 @@ public class ShoveTraceAlgo
      * Checks if a shove with the input parameters is possible without clearance violations
      * p_dir is used internally to prevent the check from bouncing back.
      * Returns false, if the shove failed.
+     *
+     * @param p_trace_shape a {@link geometry.planar.TileShape} object.
+     * @param p_from_side a {@link board.CalcFromSide} object.
+     * @param p_dir a {@link geometry.planar.Direction} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_cl_type a int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_max_spring_over_recursion_depth a int.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a boolean.
      */
     public boolean check(TileShape p_trace_shape, CalcFromSide p_from_side,
             Direction p_dir, int p_layer, int[] p_net_no_arr,
@@ -197,6 +215,17 @@ public class ShoveTraceAlgo
      * The result is the maximum lenght of a trace from the start of the line segment to the end of
      * the line segment, for wich the algoritm succeedes.
      * If the algorithm succeedes completely, the result will be equal to Integer.MAX_VALUE.
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_line_segment a {@link geometry.planar.LineSegment} object.
+     * @param p_shove_to_the_left a boolean.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_trace_half_width a int.
+     * @param p_cl_type a int.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @return a double.
      */
     public static double check(RoutingBoard p_board, LineSegment p_line_segment, boolean p_shove_to_the_left, int p_layer, int[] p_net_no_arr, int p_trace_half_width,
             int p_cl_type, int p_max_recursion_depth, int p_max_via_recursion_depth)
@@ -362,6 +391,17 @@ public class ShoveTraceAlgo
      * Puts in a trace segment with the input parameters and
      * shoves obstacles out of the way. If the shove does not work,
      * the database may be damaged. To prevent this, call check first.
+     *
+     * @param p_trace_shape a {@link geometry.planar.TileShape} object.
+     * @param p_from_side a {@link board.CalcFromSide} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_cl_type a int.
+     * @param p_ignore_items a {@link java.util.Collection} object.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_max_spring_over_recursion_depth a int.
+     * @return a boolean.
      */
     public boolean insert(TileShape p_trace_shape, CalcFromSide p_from_side, int p_layer, int[] p_net_no_arr,
             int p_cl_type, Collection<Item> p_ignore_items,

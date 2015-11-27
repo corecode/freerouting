@@ -25,59 +25,114 @@ package interactive;
  * that can be stopped by the user.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class InteractiveActionThread extends Thread implements datastructures.Stoppable
 {
 
+    /**
+     * <p>get_autoroute_instance.</p>
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.InteractiveActionThread} object.
+     */
     public static InteractiveActionThread get_autoroute_instance(BoardHandling p_board_handling)
     {
         return new AutorouteThread(p_board_handling);
     }
 
+    /**
+     * <p>get_batch_autorouter_instance.</p>
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.InteractiveActionThread} object.
+     */
     public static InteractiveActionThread get_batch_autorouter_instance(BoardHandling p_board_handling)
     {
         return new BatchAutorouterThread(p_board_handling);
     }
 
+    /**
+     * <p>get_fanout_instance.</p>
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.InteractiveActionThread} object.
+     */
     public static InteractiveActionThread get_fanout_instance(BoardHandling p_board_handling)
     {
         return new FanoutThread(p_board_handling);
     }
 
+    /**
+     * <p>get_pull_tight_instance.</p>
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.InteractiveActionThread} object.
+     */
     public static InteractiveActionThread get_pull_tight_instance(BoardHandling p_board_handling)
     {
         return new PullTightThread(p_board_handling);
     }
 
+    /**
+     * <p>get_read_logfile_instance.</p>
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_input_stream a {@link java.io.InputStream} object.
+     * @return a {@link interactive.InteractiveActionThread} object.
+     */
     public static InteractiveActionThread get_read_logfile_instance(BoardHandling p_board_handling, java.io.InputStream p_input_stream)
     {
         return new ReadLogfileThread(p_board_handling, p_input_stream);
     }
 
-    /** Creates a new instance of InteractiveActionThread */
+    /**
+     * Creates a new instance of InteractiveActionThread
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     */
     protected InteractiveActionThread(BoardHandling p_board_handling)
     {
         this.hdlg = p_board_handling;
     }
 
+    /**
+     * <p>thread_action.</p>
+     */
     protected abstract void thread_action();
 
+    /**
+     * <p>run.</p>
+     */
     public void run()
     {
         thread_action();
         hdlg.repaint();
     }
 
+    /**
+     * <p>request_stop.</p>
+     */
     public synchronized void request_stop()
     {
         stop_requested = true;
     }
 
+    /**
+     * <p>is_stop_requested.</p>
+     *
+     * @return a boolean.
+     */
     public synchronized boolean is_stop_requested()
     {
         return stop_requested;
     }
 
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     */
     public synchronized void draw(java.awt.Graphics p_graphics)
     {
     // Can be overwritten in derived classes.

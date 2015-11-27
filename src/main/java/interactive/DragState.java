@@ -32,12 +32,19 @@ import board.Item;
  * Class implementing functionality when the mouse is dragged on a routing board
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class DragState extends InteractiveState
 {
     /**
      * Returns a new instance of this state, if a item to drag was found at the input
      * location; null otherwise.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.DragState} object.
      */
     public static DragState get_instance(FloatPoint p_location, InteractiveState p_parent_state,
             BoardHandling p_board_handling, Logfile p_logfile)
@@ -108,16 +115,30 @@ public abstract class DragState extends InteractiveState
         return result;
     }
     
-    /** Creates a new instance of DragState */
+    /**
+     * Creates a new instance of DragState
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     protected DragState(FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_parent_state, p_board_handling, p_logfile);
         previous_location = p_location;
     }
     
+    /**
+     * <p>move_to.</p>
+     *
+     * @param p_to_location a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public abstract InteractiveState move_to(FloatPoint p_to_location);
     
     
+    /** {@inheritDoc} */
     public InteractiveState mouse_dragged(FloatPoint p_point)
     {
         InteractiveState result = this.move_to(p_point);
@@ -141,12 +162,18 @@ public abstract class DragState extends InteractiveState
         return result;
     }
     
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         return this.button_released();
     }
     
     
+    /** {@inheritDoc} */
     public InteractiveState process_logfile_point(FloatPoint p_point)
     {
         return move_to(p_point);

@@ -28,57 +28,105 @@ import java.util.LinkedList;
  * consist of straight lines.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PolylineArea implements Area, java.io.Serializable
 {
 
-    /** Creates a new instance of PolylineShapeWithHoles */
+    /**
+     * Creates a new instance of PolylineShapeWithHoles
+     *
+     * @param p_border_shape a {@link geometry.planar.PolylineShape} object.
+     * @param p_hole_arr an array of {@link geometry.planar.PolylineShape} objects.
+     */
     public PolylineArea(PolylineShape p_border_shape, PolylineShape[] p_hole_arr)
     {
         border_shape = p_border_shape;
         hole_arr = p_hole_arr;
     }
 
+    /**
+     * <p>dimension.</p>
+     *
+     * @return a int.
+     */
     public int dimension()
     {
         return border_shape.dimension();
     }
 
+    /**
+     * <p>is_bounded.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_bounded()
     {
         return border_shape.is_bounded();
     }
 
+    /**
+     * <p>is_empty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_empty()
     {
         return border_shape.is_empty();
     }
 
+    /** {@inheritDoc} */
     public boolean is_contained_in(IntBox p_box)
     {
         return border_shape.is_contained_in(p_box);
     }
 
+    /**
+     * <p>get_border.</p>
+     *
+     * @return a {@link geometry.planar.PolylineShape} object.
+     */
     public PolylineShape get_border()
     {
         return border_shape;
     }
 
+    /**
+     * <p>get_holes.</p>
+     *
+     * @return an array of {@link geometry.planar.PolylineShape} objects.
+     */
     public PolylineShape[] get_holes()
     {
         return hole_arr;
     }
 
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         return border_shape.bounding_box();
     }
 
+    /**
+     * <p>bounding_octagon.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon bounding_octagon()
     {
         return border_shape.bounding_octagon();
     }
 
+    /**
+     * <p>contains.</p>
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a boolean.
+     */
     public boolean contains(FloatPoint p_point)
     {
         if (!border_shape.contains(p_point))
@@ -95,6 +143,7 @@ public class PolylineArea implements Area, java.io.Serializable
         return true;
     }
 
+    /** {@inheritDoc} */
     public boolean contains(Point p_point)
     {
         if (!border_shape.contains(p_point))
@@ -111,6 +160,7 @@ public class PolylineArea implements Area, java.io.Serializable
         return true;
     }
 
+    /** {@inheritDoc} */
     public FloatPoint nearest_point_approx(FloatPoint p_from_point)
     {
         double min_dist = Double.MAX_VALUE;
@@ -129,6 +179,7 @@ public class PolylineArea implements Area, java.io.Serializable
         return result;
     }
 
+    /** {@inheritDoc} */
     public PolylineArea translate_by(Vector p_vector)
     {
         if (p_vector.equals(Vector.ZERO))
@@ -144,6 +195,11 @@ public class PolylineArea implements Area, java.io.Serializable
         return new PolylineArea(translated_border, translated_holes);
     }
 
+    /**
+     * <p>corner_approx_arr.</p>
+     *
+     * @return an array of {@link geometry.planar.FloatPoint} objects.
+     */
     public FloatPoint[] corner_approx_arr()
     {
         int corner_count = border_shape.border_line_count();
@@ -169,6 +225,8 @@ public class PolylineArea implements Area, java.io.Serializable
      * The result is not exact, because rounded intersections of lines are
      * used in the result pieces. It can be made exact, if Polylines are returned
      * instead of Polygons, so that no intersection points are needed in the result.
+     *
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[] split_to_convex()
     {
@@ -181,6 +239,9 @@ public class PolylineArea implements Area, java.io.Serializable
      * used in the result pieces. It can be made exact, if Polylines are returned
      * instead of Polygons, so that no intersection points are needed in the result.
      *  If p_stoppable_thread != null, this function can be interrupted.
+     *
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[] split_to_convex(datastructures.Stoppable p_stoppable_thread)
     {
@@ -236,6 +297,7 @@ public class PolylineArea implements Area, java.io.Serializable
         return precalculated_convex_pieces;
     }
 
+    /** {@inheritDoc} */
     public PolylineArea turn_90_degree(int p_factor, IntPoint p_pole)
     {
         PolylineShape new_border = border_shape.turn_90_degree(p_factor, p_pole);
@@ -247,6 +309,7 @@ public class PolylineArea implements Area, java.io.Serializable
         return new PolylineArea(new_border, new_hole_arr);
     }
 
+    /** {@inheritDoc} */
     public PolylineArea rotate_approx(double p_angle, FloatPoint p_pole)
     {
         PolylineShape new_border = border_shape.rotate_approx(p_angle, p_pole);
@@ -258,6 +321,7 @@ public class PolylineArea implements Area, java.io.Serializable
         return new PolylineArea(new_border, new_hole_arr);
     }
 
+    /** {@inheritDoc} */
     public PolylineArea mirror_vertical(IntPoint p_pole)
     {
         PolylineShape new_border = border_shape.mirror_vertical(p_pole);
@@ -270,6 +334,7 @@ public class PolylineArea implements Area, java.io.Serializable
 
     }
 
+    /** {@inheritDoc} */
     public PolylineArea mirror_horizontal(IntPoint p_pole)
     {
         PolylineShape new_border = border_shape.mirror_horizontal(p_pole);

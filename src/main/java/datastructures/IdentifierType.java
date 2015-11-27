@@ -26,12 +26,16 @@ import java.io.OutputStreamWriter;
  * Describes legal identifiers together with the character used for string quotes.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public class IdentifierType
 {
     /**
      * Defines the reserved characters and the string for quoting identifiers containing
      * reserved characters for a new instance of Identifier.
+     *
+     * @param p_reserved_chars an array of {@link java.lang.String} objects.
+     * @param p_string_quote a {@link java.lang.String} object.
      */
     public IdentifierType(String [] p_reserved_chars, String p_string_quote)
     {
@@ -41,6 +45,9 @@ public class IdentifierType
     
     /**
      * Writes p_name after puttiong it into quotes, if it contains reserved characters or blanks.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_file a {@link java.io.OutputStreamWriter} object.
      */
     public void write(String p_name, OutputStreamWriter p_file)
     {

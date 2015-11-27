@@ -23,13 +23,17 @@ package datastructures;
 
 /**
  * Class used to cancel a performance critical algorithm after a time limit is exceeded.
+ *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class TimeLimit
 {
     
     /**
      * Creates a new instance with a time limit of p_milli_seconds milli seconds
+     *
+     * @param p_milli_seconds a int.
      */
     public TimeLimit(int p_milli_seconds)
     {
@@ -39,6 +43,8 @@ public class TimeLimit
     
     /**
      * Returns true, if the time limit provided in the constructor of this class is exceeded.
+     *
+     * @return a boolean.
      */
     public boolean limit_exceeded()
     {
@@ -48,6 +54,8 @@ public class TimeLimit
     
     /**
      * Multiplies this TimeLimit by p_factor.
+     *
+     * @param p_factor a double.
      */
     public void muultiply(double  p_factor)
     {

@@ -32,10 +32,9 @@ import java.util.LinkedList;
  * of polygons with infinite precision rational coordinates
  * because of its better performance in geometric calculations.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class Polyline implements java.io.Serializable
 {
     /**
@@ -43,6 +42,8 @@ public class Polyline implements java.io.Serializable
      * so that the i-th corner of p_polygon will be the intersection of
      * the i-th and the i+1-th lines of the new created p_polyline
      * for 0 <= i < p_point_arr.length. p_polygon must have at least 2 corners
+     *
+     * @param p_polygon a {@link geometry.planar.Polygon} object.
      */
     public Polyline(Polygon p_polygon)
     {
@@ -69,6 +70,11 @@ public class Polyline implements java.io.Serializable
                 Line.get_instance(point_arr[point_arr.length - 1], dir.turn_45_degree(2));
     }
     
+    /**
+     * <p>Constructor for Polyline.</p>
+     *
+     * @param p_points an array of {@link geometry.planar.Point} objects.
+     */
     public Polyline(Point[] p_points)
     {
         this(new Polygon(p_points));
@@ -76,6 +82,9 @@ public class Polyline implements java.io.Serializable
     
     /**
      * creates a polyline consisting of 3 lines
+     *
+     * @param p_from_corner a {@link geometry.planar.Point} object.
+     * @param p_to_corner a {@link geometry.planar.Point} object.
      */
     public Polyline(Point p_from_corner, Point p_to_corner)
     {
@@ -97,6 +106,8 @@ public class Polyline implements java.io.Serializable
      * Lines, which are parallel to the previous line are skipped.
      * The directed lines are normalized, so that they intersect
      * the previous line before the next line
+     *
+     * @param p_line_arr an array of {@link geometry.planar.Line} objects.
      */
     public Polyline(Line[] p_line_arr)
     {
@@ -131,12 +142,19 @@ public class Polyline implements java.io.Serializable
     
     /**
      * Returns the number of lines minus 1
+     *
+     * @return a int.
      */
     public int corner_count()
     {
         return arr.length - 1;
     }
     
+    /**
+     * <p>is_empty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_empty()
     {
         return arr.length < 3;
@@ -144,6 +162,8 @@ public class Polyline implements java.io.Serializable
     
     /**
      * Checks, if this polyline is empty or if all corner points are equal.
+     *
+     * @return a boolean.
      */
     public boolean is_point()
     {
@@ -164,6 +184,8 @@ public class Polyline implements java.io.Serializable
     
     /**
      * checks, if all lines of this polyline are orthogonal
+     *
+     * @return a boolean.
      */
     public boolean is_orthogonal()
     {
@@ -179,6 +201,8 @@ public class Polyline implements java.io.Serializable
     
     /**
      * checks, if all lines of this polyline are multiples of 45 degree
+     *
+     * @return a boolean.
      */
     public boolean is_multiple_of_45_degree()
     {
@@ -194,6 +218,8 @@ public class Polyline implements java.io.Serializable
     
     /**
      * returns the intersection of the first line with the second line
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point first_corner()
     {
@@ -203,6 +229,8 @@ public class Polyline implements java.io.Serializable
     /**
      * returns the intersection of the last line with the line before
      * the last line
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point last_corner()
     {
@@ -212,6 +240,8 @@ public class Polyline implements java.io.Serializable
     /**
      * returns the array of the intersection of two consecutive lines
      * approximated by FloatPoint's.
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
      */
     public Point [] corner_arr()
     {
@@ -237,6 +267,8 @@ public class Polyline implements java.io.Serializable
     /**
      * returns the array of the intersection of two consecutive lines
      * approximated by FloatPoint's.
+     *
+     * @return an array of {@link geometry.planar.FloatPoint} objects.
      */
     public FloatPoint [] corner_approx_arr()
     {
@@ -262,6 +294,9 @@ public class Polyline implements java.io.Serializable
     /**
      * Returns an approximation of the intersection of the p_no-th with
      * the (p_no - 1)-th line by a FloatPoint.
+     *
+     * @param p_no a int.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint corner_approx(int p_no)
     {
@@ -299,6 +334,9 @@ public class Polyline implements java.io.Serializable
     
     /**
      * Returns  the intersection of the p_no-th with the (p_no - 1)-th edge line.
+     *
+     * @param p_no a int.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point corner(int p_no)
     {
@@ -341,6 +379,8 @@ public class Polyline implements java.io.Serializable
     
     /**
      * return the polyline with the reversed order of lines
+     *
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline reverse()
     {
@@ -355,6 +395,10 @@ public class Polyline implements java.io.Serializable
     /**
      * Calculates the length of this polyline from p_from_corner
      * to p_to_corner.
+     *
+     * @param p_from_corner a int.
+     * @param p_to_corner a int.
+     * @return a double.
      */
     public double length_approx(int p_from_corner, int p_to_corner)
     {
@@ -371,6 +415,8 @@ public class Polyline implements java.io.Serializable
     /**
      * Calculates the cumulative distance between consecutive corners of
      * this polyline.
+     *
+     * @return a double.
      */
     public double length_approx()
     {
@@ -382,6 +428,9 @@ public class Polyline implements java.io.Serializable
      * where the right and left edge lines have the distance p_half_width
      * from the center line
      * Returns an array of convex shapes of length line_count - 2
+     *
+     * @param p_half_width a int.
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[] offset_shapes(int p_half_width)
     {
@@ -392,6 +441,11 @@ public class Polyline implements java.io.Serializable
      * calculates for each line between p_from_no and p_to_no a shape around
      * this line, where the right and left edge lines have the distance p_half_width
      * from the center line
+     *
+     * @param p_half_width a int.
+     * @param p_from_no a int.
+     * @param p_to_no a int.
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[] offset_shapes(int p_half_width,
             int p_from_no, int p_to_no)
@@ -595,6 +649,10 @@ public class Polyline implements java.io.Serializable
      * Calculates for the p_no-th line segment a shape around this line
      * where the right and left edge lines have the distance p_half_width
      * from the center line. 0 <= p_no <=  arr.length - 3
+     *
+     * @param p_half_width a int.
+     * @param p_no a int.
+     * @return a {@link geometry.planar.TileShape} object.
      */
     public TileShape offset_shape(int p_half_width, int p_no)
     {
@@ -611,6 +669,10 @@ public class Polyline implements java.io.Serializable
      * Calculates for the p_no-th line segment a box shape around this line
      * where the border lines have the distance p_half_width
      * from the center line. 0 <= p_no <=  arr.length - 3
+     *
+     * @param p_half_width a int.
+     * @param p_no a int.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox offset_box(int p_half_width, int p_no)
     {
@@ -621,6 +683,9 @@ public class Polyline implements java.io.Serializable
     
     /**
      * Returns the by p_vector translated polyline
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline translate_by(Vector p_vector)
     {
@@ -638,6 +703,10 @@ public class Polyline implements java.io.Serializable
     
     /**
      * Returns the polyline turned by p_factor times 90 degree around p_pole.
+     *
+     * @param p_factor a int.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline turn_90_degree(int p_factor, IntPoint p_pole)
     {
@@ -649,6 +718,13 @@ public class Polyline implements java.io.Serializable
         return new Polyline(new_arr);
     }
     
+    /**
+     * <p>rotate_approx.</p>
+     *
+     * @param p_angle a double.
+     * @param p_pole a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.Polyline} object.
+     */
     public Polyline rotate_approx(double p_angle, FloatPoint p_pole)
     {
         if (p_angle == 0)
@@ -664,7 +740,12 @@ public class Polyline implements java.io.Serializable
         return new Polyline(new_corners);
     }
     
-    /** Mirrors this polyline at the vertical line through p_pole */
+    /**
+     * Mirrors this polyline at the vertical line through p_pole
+     *
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.Polyline} object.
+     */
     public Polyline mirror_vertical(IntPoint p_pole)
     {
         Line [] new_arr = new Line[arr.length];
@@ -675,7 +756,12 @@ public class Polyline implements java.io.Serializable
         return new Polyline(new_arr);
     }
     
-    /** Mirrors this polyline at the horizontal line through p_pole */
+    /**
+     * Mirrors this polyline at the horizontal line through p_pole
+     *
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.Polyline} object.
+     */
     public Polyline mirror_horizontal(IntPoint p_pole)
     {
         Line [] new_arr = new Line[arr.length];
@@ -691,6 +777,10 @@ public class Polyline implements java.io.Serializable
      * Returns the smallest box containing the intersection points
      * from index p_from_corner_no to index p_to_corner_no
      * of the lines of this polyline
+     *
+     * @param p_from_corner_no a int.
+     * @param p_to_corner_no a int.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox bounding_box(int p_from_corner_no, int p_to_corner_no)
     {
@@ -716,6 +806,8 @@ public class Polyline implements java.io.Serializable
     /**
      * Returns the smallest box containing the intersection points
      * of the lines of this polyline
+     *
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox bounding_box()
     {
@@ -730,6 +822,10 @@ public class Polyline implements java.io.Serializable
      * Returns the smallest octagon containing the intersection points
      * from index p_from_corner_no to index p_to_corner_no
      * of the lines of this polyline
+     *
+     * @param p_from_corner_no a int.
+     * @param p_to_corner_no a int.
+     * @return a {@link geometry.planar.IntOctagon} object.
      */
     public IntOctagon bounding_octagon(int p_from_corner_no, int p_to_corner_no)
     {
@@ -768,6 +864,9 @@ public class Polyline implements java.io.Serializable
     /**
      * Calculates an aproximation of the nearest point on this
      * polyline to p_from_point.
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint nearest_point_approx(FloatPoint p_from_point)
     {
@@ -807,6 +906,9 @@ public class Polyline implements java.io.Serializable
     /**
      * Calculates the distance of p_from_point to the the nearest point
      * on this polyline
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public double  distance(FloatPoint p_from_point)
     {
@@ -823,6 +925,9 @@ public class Polyline implements java.io.Serializable
      * p_other is inserted in front of this polyline.
      * If there is something to combine at the end of this polyline,
      * this polyline is inserted in front of p_other.
+     *
+     * @param p_other a {@link geometry.planar.Polyline} object.
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline combine(Polyline p_other)
     {
@@ -919,6 +1024,10 @@ public class Polyline implements java.io.Serializable
      * The order of the lines ins the two result pieces is preserved.
      * p_line_no must be bigger than 0 and less then arr.length - 1.
      * Returns null, if nothing was split.
+     *
+     * @param p_line_no a int.
+     * @param p_end_line a {@link geometry.planar.Line} object.
+     * @return an array of {@link geometry.planar.Polyline} objects.
      */
     public Polyline[] split(int p_line_no, Line p_end_line)
     {
@@ -980,6 +1089,10 @@ public class Polyline implements java.io.Serializable
     /**
      * create a new Polyline by skipping the lines of this Polyline
      * from p_from_no to p_to_no
+     *
+     * @param p_from_no a int.
+     * @param p_to_no a int.
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline skip_lines(int p_from_no, int p_to_no)
     {
@@ -993,6 +1106,12 @@ public class Polyline implements java.io.Serializable
         return new Polyline(new_lines);
     }
     
+    /**
+     * <p>contains.</p>
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return a boolean.
+     */
     public boolean contains(Point p_point)
     {
         for (int i = 1; i < arr.length - 1; ++i)
@@ -1012,6 +1131,9 @@ public class Polyline implements java.io.Serializable
      * Returns null, if the perpendicular line does not intersect the neares line
      * segment inside its segment bounds or if p_from_point is contained in
      * this polyline.
+     *
+     * @param p_from_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.LineSegment} object.
      */
     public LineSegment projection_line(Point p_from_point)
     {
@@ -1059,6 +1181,10 @@ public class Polyline implements java.io.Serializable
      * Shortens this polyline to p_new_line_count lines. Additioanally
      * the last line segment will be approximately shortened to p_new_length.
      * The last corner of the new polyline will be an IntPoint.
+     *
+     * @param p_new_line_count a int.
+     * @param p_last_segment_length a double.
+     * @return a {@link geometry.planar.Polyline} object.
      */
     public Polyline shorten(int p_new_line_count, double p_last_segment_length)
     {

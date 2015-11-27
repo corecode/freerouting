@@ -41,6 +41,7 @@ import board.ShoveTraceAlgo;
  * Auxiliary functions used in MazeSearchAlgo.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MazeShoveTraceAlgo
 {
@@ -48,6 +49,14 @@ public class MazeShoveTraceAlgo
     /**
      * Returns false, if the algorithm did not succeed and trying to shove from another door section
      * may be more successful.
+     *
+     * @param p_list_element a {@link autoroute.MazeListElement} object.
+     * @param p_obstacle_room a {@link autoroute.ObstacleExpansionRoom} object.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @param p_shove_to_the_left a boolean.
+     * @param p_to_door_list a {@link java.util.Collection} object.
+     * @return a boolean.
      */
     public static boolean check_shove_trace_line(MazeListElement p_list_element,
             ObstacleExpansionRoom p_obstacle_room, RoutingBoard p_board, AutorouteControl p_ctrl,

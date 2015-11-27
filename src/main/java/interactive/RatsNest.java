@@ -42,11 +42,17 @@ import boardgraphics.GraphicsContext;
  * Creates all Incompletes (Ratsnest) to display them on the screen
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class RatsNest
 {
     
-    /** Creates a new instance of RatsNest */
+    /**
+     * Creates a new instance of RatsNest
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public RatsNest(BasicBoard p_board, java.util.Locale p_locale)
     {
         this.locale = p_locale;
@@ -84,6 +90,9 @@ public class RatsNest
     
     /**
      * Recalculates the incomplete connections for the input net
+     *
+     * @param p_net_no a int.
+     * @param p_board a {@link board.BasicBoard} object.
      */
     public void recalculate(int p_net_no, BasicBoard p_board)
     {
@@ -96,6 +105,10 @@ public class RatsNest
     
     /**
      * Recalculates the incomplete connections for the input net with the input item list.
+     *
+     * @param p_net_no a int.
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_board a {@link board.BasicBoard} object.
      */
     public void recalculate(int p_net_no, Collection<Item> p_item_list, BasicBoard p_board)
     {
@@ -107,6 +120,11 @@ public class RatsNest
         }
     }
     
+    /**
+     * <p>incomplete_count.</p>
+     *
+     * @return a int.
+     */
     public int incomplete_count()
     {
         int result = 0;
@@ -117,6 +135,12 @@ public class RatsNest
         return result;
     }
     
+    /**
+     * <p>incomplete_count.</p>
+     *
+     * @param p_net_no a int.
+     * @return a int.
+     */
     public int incomplete_count(int p_net_no)
     {
         if (p_net_no <= 0 || p_net_no > net_incompletes.length)
@@ -126,6 +150,11 @@ public class RatsNest
         return net_incompletes[p_net_no - 1].count();
     }
     
+    /**
+     * <p>length_violation_count.</p>
+     *
+     * @return a int.
+     */
     public int length_violation_count()
     {
         int result = 0;
@@ -144,6 +173,9 @@ public class RatsNest
      *  > 0, if the cumulative trace length is to big,
      *  < 0, if the trace length is to smalll,
      *  0, if the thace length is ok or the net has no length restrictions
+     *
+     * @param p_net_no a int.
+     * @return a double.
      */
     public double get_length_violation(int p_net_no)
     {
@@ -156,6 +188,8 @@ public class RatsNest
     
     /**
      * Returns all airlines of the ratsnest.
+     *
+     * @return an array of {@link interactive.RatsNest.AirLine} objects.
      */
     public AirLine [] get_airlines()
     {
@@ -173,11 +207,17 @@ public class RatsNest
         return result;
     }
     
+    /**
+     * <p>hide.</p>
+     */
     public void hide()
     {
         hidden = true;
     }
     
+    /**
+     * <p>show.</p>
+     */
     public void show()
     {
         hidden = false;
@@ -186,6 +226,8 @@ public class RatsNest
     /**
      * Recalculate the length matching violations.
      * Return false, if the length violations have not changed.
+     *
+     * @return a boolean.
      */
     public boolean recalculate_length_violations()
     {
@@ -202,6 +244,8 @@ public class RatsNest
     
     /**
      * Used for  example to hide the incompletes during interactive routiing.
+     *
+     * @return a boolean.
      */
     public boolean is_hidden()
     {
@@ -211,6 +255,9 @@ public class RatsNest
     
     /**
      * Sets the visibility filter for the incompletes of the input net.
+     *
+     * @param p_net_no a int.
+     * @param p_value a boolean.
      */
     public void set_filter(int p_net_no, boolean p_value)
     {
@@ -221,6 +268,12 @@ public class RatsNest
         is_filtered[p_net_no - 1] = p_value;
     }
     
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)
     {
         boolean draw_length_violations_only = this.hidden;

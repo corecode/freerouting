@@ -40,6 +40,7 @@ import library.Padstack;
  * with a shape on 1 or several layers.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Pin extends DrillItem implements java.io.Serializable
 {
@@ -57,6 +58,8 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Calculates the relative location of this pin to its component.
+     *
+     * @return a {@link geometry.planar.Vector} object.
      */
     public Vector relative_location()
     {
@@ -92,6 +95,11 @@ public class Pin extends DrillItem implements java.io.Serializable
     }
     
     
+    /**
+     * <p>get_center.</p>
+     *
+     * @return a {@link geometry.planar.Point} object.
+     */
     public Point get_center()
     {
         Point pin_center = super.get_center();
@@ -129,6 +137,11 @@ public class Pin extends DrillItem implements java.io.Serializable
         return pin_center;
     }
     
+    /**
+     * <p>get_padstack.</p>
+     *
+     * @return a {@link library.Padstack} object.
+     */
     public Padstack get_padstack()
     {
         Component component = board.components.get(get_component_no());
@@ -141,6 +154,7 @@ public class Pin extends DrillItem implements java.io.Serializable
         return board.library.padstacks.get(padstack_no);
     }
     
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         int [] curr_net_no_arr = new int [this.net_count()];
@@ -154,6 +168,8 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Return the name of this pin in the package of this component.
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String name()
     {
@@ -168,12 +184,15 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Gets index of this pin in the library package of the pins component.
+     *
+     * @return a int.
      */
     public int get_index_in_package()
     {
         return pin_no;
     }
     
+    /** {@inheritDoc} */
     public Shape get_shape(int p_index)
     {
         Padstack padstack = get_padstack();
@@ -292,6 +311,9 @@ public class Pin extends DrillItem implements java.io.Serializable
      * together with the minimal trace line lengths into thei directions.
      * Currently only implemented only for box shapes, where traces are allowed to exit
      * the pad only on the small sides.
+     *
+     * @param p_layer a int.
+     * @return a {@link java.util.Collection} object.
      */
     public java.util.Collection<TraceExitRestriction> get_trace_exit_restrictions(int p_layer)
     {
@@ -375,6 +397,8 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Returns true, if this pin has exit restrictions on some kayer.
+     *
+     * @return a boolean.
      */
     public boolean has_trace_exit_restrictions()
     {
@@ -392,12 +416,20 @@ public class Pin extends DrillItem implements java.io.Serializable
     /**
      * Returns true, if vias throw the pads of this pins are allowed, false, otherwise.
      * Currently drills are allowed to SMD-pins.
+     *
+     * @return a boolean.
      */
     public boolean drill_allowed()
     {
         return (this.first_layer() == this.last_layer());
     }
     
+    /**
+     * <p>is_obstacle.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
+     */
     public boolean is_obstacle(Item p_other)
     {
         if (p_other == this || p_other instanceof ObstacleArea)
@@ -419,24 +451,30 @@ public class Pin extends DrillItem implements java.io.Serializable
         return true;
     }
     
+    /** {@inheritDoc} */
     public void turn_90_degree(int p_factor, IntPoint p_pole)
     {
         this.set_center(null);
         clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void rotate_approx(double p_angle_in_degree, FloatPoint p_pole)
     {
         this.set_center(null);
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void change_placement_side(IntPoint p_pole)
     {
         this.set_center(null);
         this.clear_derived_data();
     }
     
+    /**
+     * <p>clear_derived_data.</p>
+     */
     public void clear_derived_data()
     {
         super.clear_derived_data();
@@ -445,6 +483,8 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Return all Pins, that can be swapped with this pin.
+     *
+     * @return a {@link java.util.Set} object.
      */
     public java.util.Set<Pin> get_swappable_pins()
     {
@@ -493,6 +533,7 @@ public class Pin extends DrillItem implements java.io.Serializable
         return result;
     }
     
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -502,6 +543,7 @@ public class Pin extends DrillItem implements java.io.Serializable
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.PINS);
     }
     
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(boardgraphics.GraphicsContext p_graphics_context)
     {
         java.awt.Color[] result;
@@ -517,6 +559,7 @@ public class Pin extends DrillItem implements java.io.Serializable
         return result;
     }
     
+    /** {@inheritDoc} */
     public double get_draw_intensity(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_pin_color_intensity();
@@ -525,6 +568,9 @@ public class Pin extends DrillItem implements java.io.Serializable
     /**
      * Swaps the nets of this pin and p_other.
      * Returns false on error.
+     *
+     * @param p_other a {@link board.Pin} object.
+     * @return a boolean.
      */
     public boolean swap(Pin p_other)
     {
@@ -561,12 +607,15 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Returns the pin, this pin was changed to by pin swapping, or this pin, if it was not swapped.
+     *
+     * @return a {@link board.Pin} object.
      */
     public Pin get_changed_to()
     {
         return changed_to;
     }
     
+    /** {@inheritDoc} */
     public boolean write(java.io.ObjectOutputStream p_stream)
     {
         try
@@ -581,7 +630,11 @@ public class Pin extends DrillItem implements java.io.Serializable
     }
     
     
-    /** False, if this drillitem is places on the back side of the board */
+    /**
+     * False, if this drillitem is places on the back side of the board
+     *
+     * @return a boolean.
+     */
     public boolean is_placed_on_front()
     {
         boolean result = true;
@@ -595,6 +648,9 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Returns the smallest width of the pin shape on layer p_layer.
+     *
+     * @param p_layer a int.
+     * @return a double.
      */
     public double get_min_width(int p_layer)
     {
@@ -618,6 +674,9 @@ public class Pin extends DrillItem implements java.io.Serializable
      * Returns the neckdown half width for traces on p_layer.
      * The neckdown width is used, when the pin width is smmaller than the trace width
      * to enter or leave the pin with a trace.
+     *
+     * @param p_layer a int.
+     * @return a int.
      */
     public int get_trace_neckdown_halfwidth(int p_layer)
     {
@@ -627,6 +686,9 @@ public class Pin extends DrillItem implements java.io.Serializable
     
     /**
      * Returns the largest width of the pin shape on layer p_layer.
+     *
+     * @param p_layer a int.
+     * @return a double.
      */
     public double get_max_width(int p_layer)
     {
@@ -646,6 +708,7 @@ public class Pin extends DrillItem implements java.io.Serializable
         return padstack_bounding_box.max_width();
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 
@@ -745,6 +808,11 @@ public class Pin extends DrillItem implements java.io.Serializable
    /**
     * Calculates the nearest trace exit point of the pin on p_layer.
     * Returns null, if the pin has no trace exit restrictions.
+    *
+    * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+    * @param p_trace_half_width a int.
+    * @param p_layer a int.
+    * @return a {@link geometry.planar.FloatPoint} object.
     */
    public FloatPoint nearest_trace_exit_corner(FloatPoint p_from_point, int  p_trace_half_width, int p_layer)
    {

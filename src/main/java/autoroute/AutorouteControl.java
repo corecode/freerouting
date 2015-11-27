@@ -30,18 +30,33 @@ import board.RoutingBoard;
  * Structure for controlling the autoroute algorithm.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class AutorouteControl
 {
 
-    /** Creates a new instance of AutorouteControl for the input net */
+    /**
+     * Creates a new instance of AutorouteControl for the input net
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_net_no a int.
+     * @param p_settings a {@link interactive.Settings} object.
+     */
     public AutorouteControl(RoutingBoard p_board, int p_net_no, interactive.Settings p_settings)
     {
         this(p_board, p_settings, p_settings.autoroute_settings.get_trace_cost_arr());
         init_net(p_net_no, p_board, p_settings.autoroute_settings.get_via_costs());
     }
 
-    /** Creates a new instance of AutorouteControl for the input net */
+    /**
+     * Creates a new instance of AutorouteControl for the input net
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_net_no a int.
+     * @param p_settings a {@link interactive.Settings} object.
+     * @param p_via_costs a int.
+     * @param p_trace_cost_arr an array of {@link autoroute.AutorouteControl.ExpansionCostFactor} objects.
+     */
     public AutorouteControl(RoutingBoard p_board, int p_net_no, interactive.Settings p_settings, int p_via_costs, ExpansionCostFactor[] p_trace_cost_arr)
     {
         this(p_board, p_settings, p_trace_cost_arr);

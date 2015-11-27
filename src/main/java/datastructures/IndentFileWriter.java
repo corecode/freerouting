@@ -24,11 +24,16 @@ package datastructures;
  * Handles the indenting  of scopes while writing to an output text file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class IndentFileWriter extends java.io.OutputStreamWriter
 {
     
-    /** Creates a new instance of IndentFileWriter */
+    /**
+     * Creates a new instance of IndentFileWriter
+     *
+     * @param p_stream a {@link java.io.OutputStream} object.
+     */
     public IndentFileWriter(java.io.OutputStream p_stream)
     {
         super(p_stream);

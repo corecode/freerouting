@@ -23,11 +23,18 @@ package gui;
  * Creates the file menu of a board frame.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuFile extends javax.swing.JMenu
 {
 
-    /** Returns a new file menu for the board frame. */
+    /**
+     * Returns a new file menu for the board frame.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_session_file_option a boolean.
+     * @return a {@link gui.BoardMenuFile} object.
+     */
     public static BoardMenuFile get_instance(BoardFrame p_board_frame, boolean p_session_file_option)
     {
         final BoardMenuFile file_menu = new BoardMenuFile(p_board_frame, p_session_file_option);
@@ -149,6 +156,9 @@ public class BoardMenuFile extends javax.swing.JMenu
         return file_menu;
     }
 
+    /**
+     * <p>add_design_dependent_items.</p>
+     */
     public void add_design_dependent_items()
     {
         if (this.session_file_option)

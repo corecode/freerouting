@@ -32,13 +32,19 @@ import geometry.planar.FortyfiveDegreeBoundingDirections;
 import geometry.planar.Polyline;
 
 /**
+ * <p>SearchTreeManager class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SearchTreeManager
 {
     
-    /** Creates a new instance of SearchTreeManager */
+    /**
+     * Creates a new instance of SearchTreeManager
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     */
     public SearchTreeManager(BasicBoard p_board)
     {
         board = p_board;
@@ -50,6 +56,8 @@ public class SearchTreeManager
     
     /**
      * Inserts the tree shapes of p_item into all active search trees.
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void insert(Item p_item)
     {
@@ -62,6 +70,8 @@ public class SearchTreeManager
     
     /**
      * Removes all entries of an item from the search trees.
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void remove(Item p_item)
     {
@@ -86,6 +96,8 @@ public class SearchTreeManager
     
     /**
      * Returns the default tree used in interactive routing.
+     *
+     * @return a {@link board.ShapeSearchTree} object.
      */
     public ShapeSearchTree get_default_tree()
     {
@@ -110,6 +122,8 @@ public class SearchTreeManager
      * Returns, if clearance compensation is used for the default tree.
      * This is normally the case, if there exist only the clearance classes null and default
      * in the clearance matrix.
+     *
+     * @return a boolean.
      */
     public boolean is_clearance_compensation_used()
     {
@@ -118,6 +132,8 @@ public class SearchTreeManager
     
     /**
      * Sets the usage of clearance compensation to true or false.
+     *
+     * @param p_value a boolean.
      */
     public void set_clearance_compensation_used(boolean p_value)
     {
@@ -167,6 +183,8 @@ public class SearchTreeManager
     
     /**
      * Actions to be done, when a new clearance class is removed interactively.
+     *
+     * @param p_no a int.
      */
     public void clearance_class_removed(int p_no)
     {
@@ -189,6 +207,9 @@ public class SearchTreeManager
     /**
      * Returns the tree compensated for the clearance class with number p_clearance_vlass_no.
      * Initialized the tree, if it is not yet allocated.
+     *
+     * @param p_clearance_class_no a int.
+     * @return a {@link board.ShapeSearchTree} object.
      */
     public ShapeSearchTree get_autoroute_tree(int p_clearance_class_no)
     {

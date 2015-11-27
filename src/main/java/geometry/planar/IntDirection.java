@@ -25,24 +25,38 @@ import datastructures.Signum;
  *
  * Implements an abstract class Direction as an equivalence class of IntVector's.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class IntDirection extends Direction implements java.io.Serializable
 {
     
     
+    /**
+     * <p>is_orthogonal.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_orthogonal()
     {
         return ( x == 0 || y == 0 ) ;
     }
     
+    /**
+     * <p>is_diagonal.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_diagonal()
     {
         return ( Math.abs(x) == Math.abs(y) ) ;
     }
     
+    /**
+     * <p>get_vector.</p>
+     *
+     * @return a {@link geometry.planar.Vector} object.
+     */
     public Vector get_vector()
     {
         return new IntVector(x,y);
@@ -115,11 +129,17 @@ public class IntDirection extends Direction implements java.io.Serializable
         return Signum.as_int(determinant);
     }
     
+    /**
+     * <p>opposite.</p>
+     *
+     * @return a {@link geometry.planar.Direction} object.
+     */
     public Direction opposite()
     {
         return new IntDirection(-x, -y);
     }
     
+    /** {@inheritDoc} */
     public Direction turn_45_degree(int p_factor)
     {
         int n = p_factor % 8 ;
@@ -174,6 +194,9 @@ public class IntDirection extends Direction implements java.io.Serializable
      * 0, if this direction is equal to p_other_direction,
      * and -1 otherwise.
      * Throws an exception, if p_other_direction is not a Direction.
+     *
+     * @param p_other_direction a {@link geometry.planar.Direction} object.
+     * @return a int.
      */
     public int compareTo(Direction p_other_direction)
     {

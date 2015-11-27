@@ -24,13 +24,17 @@ package board;
 import datastructures.Observers;
 
 /**
+ * <p>BoardObservers interface.</p>
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public interface BoardObservers extends Observers<Item>
 {
     /**
      * Enable the observers to syncronize the moved component.
+     *
+     * @param p_component a {@link board.Component} object.
      */
     public void notify_moved(Component p_component);
 }

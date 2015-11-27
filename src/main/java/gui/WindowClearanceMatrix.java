@@ -28,11 +28,16 @@ import datastructures.UndoableObjects;
  * Window for interactive editing of the clearance Matrix.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowClearanceMatrix extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of ClearanceMatrixWindow */
+    /**
+     * Creates a new instance of ClearanceMatrixWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowClearanceMatrix(BoardFrame p_board_frame)
     {
         this.board_frame = p_board_frame;

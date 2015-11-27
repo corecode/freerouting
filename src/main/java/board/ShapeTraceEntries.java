@@ -32,8 +32,8 @@ import java.util.Iterator;
  * Auxiliary class used by the shove functions
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class ShapeTraceEntries
 {
     /**
@@ -216,6 +216,8 @@ public class ShapeTraceEntries
     /**
      * Looks if an unconnected endpoint of a trace of a foreign net
      * is contained in the interiour of the shape.
+     *
+     * @return a boolean.
      */
     public boolean trace_tails_in_shape()
     {
@@ -247,6 +249,13 @@ public class ShapeTraceEntries
         return this.found_obstacle;
     }
     
+    /**
+     * <p>cutout_trace.</p>
+     *
+     * @param p_trace a {@link board.PolylineTrace} object.
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_cl_class a int.
+     */
     public static void cutout_trace(PolylineTrace p_trace, ConvexShape p_shape, int  p_cl_class)
     {
         if (!p_trace.is_on_the_board())

@@ -21,15 +21,18 @@ package rules;
  * NxN Matrix describing the spacing restrictions
  * between N clearance classes on a fixed set of layers.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class ClearanceMatrix implements java.io.Serializable
 {
     /**
      * Creates a new instance with the 2 clearance classes "none"and "default"
      * ans initializes it with p_default_value.
+     *
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_default_value a int.
+     * @return a {@link rules.ClearanceMatrix} object.
      */
     public static ClearanceMatrix get_default_instance(board.LayerStructure p_layer_structure, int p_default_value)
     {
@@ -45,6 +48,10 @@ public class ClearanceMatrix implements java.io.Serializable
      * Creates a new instance for p_class_count clearance classes on
      * p_layer_count layers.
      * p_names is an array of dimension p_class_count;
+     *
+     * @param p_class_count a int.
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_name_arr an array of {@link java.lang.String} objects.
      */
     public ClearanceMatrix(int p_class_count, board.LayerStructure p_layer_structure, String [] p_name_arr)
     {
@@ -61,6 +68,9 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Returns the number of the clearance class with the input name,
      * or -1, if no such clearance class exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a int.
      */
     public int get_no(String p_name)
     {
@@ -76,6 +86,9 @@ public class ClearanceMatrix implements java.io.Serializable
     
     /**
      * Gets the name of the clearance class with the input number.
+     *
+     * @param p_cl_class a int.
+     * @return a {@link java.lang.String} object.
      */
     public String get_name(int p_cl_class)
     {
@@ -90,6 +103,8 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Sets the value of all clearance classes with number >= 1
      * to p_value on all layers.
+     *
+     * @param p_value a int.
      */
     public void set_default_value(int p_value)
     {
@@ -102,6 +117,9 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Sets the value of all clearance classes with number >= 1
      * to p_value on p_layer.
+     *
+     * @param p_layer a int.
+     * @param p_value a int.
      */
     public void set_default_value(int p_layer, int p_value)
     {
@@ -118,6 +136,10 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Sets the value of an entry in the clearance matrix to p_value
      * on all layers.
+     *
+     * @param p_i a int.
+     * @param p_j a int.
+     * @param p_value a int.
      */
     public void set_value(int p_i, int p_j, int p_value)
     {
@@ -130,6 +152,10 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Sets the value of an entry in the clearance matrix to p_value
      * on all inner layers.
+     *
+     * @param p_i a int.
+     * @param p_j a int.
+     * @param p_value a int.
      */
     public void set_inner_value(int p_i, int p_j, int p_value)
     {
@@ -141,6 +167,11 @@ public class ClearanceMatrix implements java.io.Serializable
     
     /**
      * Sets the value of an entry in the clearance matrix to p_value.
+     *
+     * @param p_i a int.
+     * @param p_j a int.
+     * @param p_layer a int.
+     * @param p_value a int.
      */
     public void set_value(int p_i, int p_j, int p_layer, int p_value)
     {
@@ -157,6 +188,11 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Cets the required spacing of clearance classes with index p_i and p_j
      * on p_layer. This value will be always an even integer.
+     *
+     * @param p_i a int.
+     * @param p_j a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int value(int p_i, int p_j, int p_layer)
     {
@@ -171,6 +207,10 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Returns the maximal required spacing of clearance class with
      * index p_i to all other clearance classes on layer p_layer.
+     *
+     * @param p_i a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int max_value(int p_i, int p_layer)
     {
@@ -181,6 +221,12 @@ public class ClearanceMatrix implements java.io.Serializable
         return row[i].max_value[layer];
     }
     
+    /**
+     * <p>max_value.</p>
+     *
+     * @param p_layer a int.
+     * @return a int.
+     */
     public int max_value(int p_layer)
     {
         int layer = Math.max(p_layer, 0);
@@ -191,6 +237,10 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Returns true, if the values of the clearance matrix
      * in the p_i-th column and the p_j-th row are not equal on all layers.
+     *
+     * @param p_i a int.
+     * @param p_j a int.
+     * @return a boolean.
      */
     public boolean is_layer_dependent(int p_i, int p_j)
     {
@@ -208,6 +258,10 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Returns true, if the values of the clearance matrix
      * in the p_i-th column and the p_j-th row are not equal on all inner layers.
+     *
+     * @param p_i a int.
+     * @param p_j a int.
+     * @return a boolean.
      */
     public boolean is_inner_layer_dependent(int p_i, int p_j)
     {
@@ -228,6 +282,9 @@ public class ClearanceMatrix implements java.io.Serializable
     
     /**
      * Returns the row with index p_no
+     *
+     * @param p_no a int.
+     * @return a {@link rules.ClearanceMatrix.Row} object.
      */
     public Row get_row(int p_no)
     {
@@ -239,6 +296,11 @@ public class ClearanceMatrix implements java.io.Serializable
         return this.row[p_no];
     }
     
+    /**
+     * <p>get_class_count.</p>
+     *
+     * @return a int.
+     */
     public int get_class_count()
     {
         return this.class_count;
@@ -246,6 +308,8 @@ public class ClearanceMatrix implements java.io.Serializable
     
     /**
      * Return the layer count of this clearance matrix;#
+     *
+     * @return a int.
      */
     public int get_layer_count()
     {
@@ -254,6 +318,10 @@ public class ClearanceMatrix implements java.io.Serializable
     
     /**
      * Return the clearance compensation value of p_clearance_class_no on layer p_layer.
+     *
+     * @param p_clearance_class_no a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int clearance_compensation_value(int p_clearance_class_no, int p_layer)
     {
@@ -264,6 +332,9 @@ public class ClearanceMatrix implements java.io.Serializable
      * Appends a new clearance class to the clearence matrix and
      * initializes it with the values of the default class.
      * Returns false, oif a clearance class with name p_class_name is already existing.
+     *
+     * @param p_class_name a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public boolean append_class(String p_class_name)
     {
@@ -357,6 +428,10 @@ public class ClearanceMatrix implements java.io.Serializable
     /**
      * Returns true, if all clearance values of the class with index p_1 are equal to
      * the clearance values of index p_2.
+     *
+     * @param p_1 a int.
+     * @param p_2 a int.
+     * @return a boolean.
      */
     public boolean is_equal(int p_1, int p_2)
     {

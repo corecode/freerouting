@@ -35,17 +35,30 @@ import boardgraphics.GraphicsContext;
  * Class describing a board outline.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class BoardOutline extends Item implements java.io.Serializable
 {
 
-    /** Creates a new instance of BoardOutline */
+    /**
+     * Creates a new instance of BoardOutline
+     *
+     * @param p_shapes an array of {@link geometry.planar.PolylineShape} objects.
+     * @param p_clearance_class_no a int.
+     * @param p_id_no a int.
+     * @param p_board a {@link board.BasicBoard} object.
+     */
     public BoardOutline(PolylineShape[] p_shapes, int p_clearance_class_no, int p_id_no, BasicBoard p_board)
     {
         super(new int[0], p_clearance_class_no, p_id_no, 0, FixedState.SYSTEM_FIXED, p_board);
         shapes = p_shapes;
     }
 
+    /**
+     * <p>tile_shape_count.</p>
+     *
+     * @return a int.
+     */
     public int tile_shape_count()
     {
         int result;
@@ -69,6 +82,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         return result;
     }
 
+    /** {@inheritDoc} */
     public int shape_layer(int p_index)
     {
         int shape_count = this.tile_shape_count();
@@ -88,11 +102,22 @@ public class BoardOutline extends Item implements java.io.Serializable
         return result;
     }
 
+    /**
+     * <p>is_obstacle.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
+     */
     public boolean is_obstacle(Item p_other)
     {
         return !(p_other instanceof BoardOutline || p_other instanceof ObstacleArea);
     }
 
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         IntBox result = IntBox.EMPTY;
@@ -103,21 +128,33 @@ public class BoardOutline extends Item implements java.io.Serializable
         return result;
     }
 
+    /**
+     * <p>first_layer.</p>
+     *
+     * @return a int.
+     */
     public int first_layer()
     {
         return 0;
     }
 
+    /**
+     * <p>last_layer.</p>
+     *
+     * @return a int.
+     */
     public int last_layer()
     {
         return this.board.layer_structure.arr.length - 1;
     }
 
+    /** {@inheritDoc} */
     public boolean is_on_layer(int p_layer)
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     public void translate_by(Vector p_vector)
     {
         for (PolylineShape curr_shape : this.shapes)
@@ -131,6 +168,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         keepout_lines = null;
     }
 
+    /** {@inheritDoc} */
     public void turn_90_degree(int p_factor, IntPoint p_pole)
     {
         for (PolylineShape curr_shape : this.shapes)
@@ -144,6 +182,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         keepout_lines = null;
     }
 
+    /** {@inheritDoc} */
     public void rotate_approx(double p_angle_in_degree, FloatPoint p_pole)
     {
         double angle = Math.toRadians(p_angle_in_degree);
@@ -159,6 +198,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         keepout_lines = null;
     }
 
+    /** {@inheritDoc} */
     public void change_placement_side(IntPoint p_pole)
     {
         for (PolylineShape curr_shape : this.shapes)
@@ -172,21 +212,38 @@ public class BoardOutline extends Item implements java.io.Serializable
         keepout_lines = null;
     }
 
+    /** {@inheritDoc} */
     public double get_draw_intensity(GraphicsContext p_graphics_context)
     {
         return 1;
     }
 
+    /**
+     * <p>get_draw_priority.</p>
+     *
+     * @return a int.
+     */
     public int get_draw_priority()
     {
         return boardgraphics.Drawable.MAX_DRAW_PRIORITY;
     }
 
+    /**
+     * <p>shape_count.</p>
+     *
+     * @return a int.
+     */
     public int shape_count()
     {
         return this.shapes.length;
     }
 
+    /**
+     * <p>get_shape.</p>
+     *
+     * @param p_index a int.
+     * @return a {@link geometry.planar.PolylineShape} object.
+     */
     public PolylineShape get_shape(int p_index)
     {
         if (p_index < 0 || p_index >= this.shapes.length)
@@ -197,6 +254,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         return this.shapes[p_index];
     }
 
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -206,6 +264,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.BOARD_OUTLINE);
     }
 
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(GraphicsContext p_graphics_context)
     {
         java.awt.Color[] color_arr = new java.awt.Color[this.board.layer_structure.arr.length];
@@ -244,6 +303,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         return this.keepout_lines;
     }
 
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_g, GraphicsContext p_graphics_context, java.awt.Color[] p_color_arr, double p_intensity)
     {
         if (p_graphics_context == null || p_intensity <= 0)
@@ -260,11 +320,13 @@ public class BoardOutline extends Item implements java.io.Serializable
         }
     }
 
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         return new BoardOutline(this.shapes, this.clearance_class_no(), p_id_no, this.board);
     }
 
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =
@@ -274,6 +336,7 @@ public class BoardOutline extends Item implements java.io.Serializable
         p_window.newline();
     }
 
+    /** {@inheritDoc} */
     public boolean write(java.io.ObjectOutputStream p_stream)
     {
         try
@@ -289,6 +352,8 @@ public class BoardOutline extends Item implements java.io.Serializable
     /**
      *  Returns, if keepout is generated outside the board outline.
      *  Otherwise only the line shapes of the outlines  are inserted as keepout.
+     *
+     * @return a boolean.
      */
     public boolean keepout_outside_outline_generated()
     {
@@ -298,6 +363,8 @@ public class BoardOutline extends Item implements java.io.Serializable
     /**
      *  Makes the area outside this Outline to Keepout, if p_valus = true.
      *  Reinserts this Outline into the search trees, if the value changes.
+     *
+     * @param p_value a boolean.
      */
     public void generate_keepout_outside(boolean p_value)
     {
@@ -317,6 +384,8 @@ public class BoardOutline extends Item implements java.io.Serializable
 
     /**
      * Returns the sum of the lines of all outline poligons.
+     *
+     * @return a int.
      */
     public int line_count()
     {
@@ -330,12 +399,15 @@ public class BoardOutline extends Item implements java.io.Serializable
 
     /**
      *  Returns the half width of the lines of this outline.
+     *
+     * @return a int.
      */
     public int get_half_width()
     {
         return HALF_WIDTH;
     }
 
+    /** {@inheritDoc} */
     protected TileShape[] calculate_tree_shapes(ShapeSearchTree p_search_tree)
     {
         return p_search_tree.calculate_tree_shapes(this);

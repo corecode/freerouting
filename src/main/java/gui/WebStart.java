@@ -24,13 +24,20 @@ package gui;
 /**
  * Function used for Java Websrart.
  * Some put to a separate class to avoid runtime undefined in offline applications.
+ *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WebStart
 {
    /*
     * Separate function to avoid runtime undefines in an offline application.
     */
+    /**
+     * <p>get_code_base.</p>
+     *
+     * @return a {@link java.net.URL} object.
+     */
     public static java.net.URL get_code_base()
     {
         try
@@ -46,6 +53,15 @@ public class WebStart
     }
     
     
+    /**
+     * <p>save_dialog.</p>
+     *
+     * @param p_parent a {@link java.lang.String} object.
+     * @param p_file_extensions an array of {@link java.lang.String} objects.
+     * @param p_input_stream a {@link java.io.InputStream} object.
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link javax.jnlp.FileContents} object.
+     */
     public static javax.jnlp.FileContents save_dialog(String p_parent, String[] p_file_extensions,
             java.io.InputStream p_input_stream,  String p_name)
     {
@@ -66,6 +82,9 @@ public class WebStart
     /**
      * Looks up a file with the input name in the Cookie file system of Java Web Start.
      * Returns an input stream from that file or null, if no such file was found.
+     *
+     * @param p_file_name a {@link java.lang.String} object.
+     * @return a {@link java.io.InputStream} object.
      */
     public static java.io.InputStream get_file_input_stream(String p_file_name)
     {
@@ -99,6 +118,9 @@ public class WebStart
      * Looks up a file with the input name in the Cookie file system of Java Web Start.
      * This file will be overwritten.
      * Creates a new file, if no such file exists yet.
+     *
+     * @param p_file_name a {@link java.lang.String} object.
+     * @return a {@link java.io.OutputStream} object.
      */
     public static java.io.OutputStream get_file_output_stream(String p_file_name)
     {
@@ -158,6 +180,13 @@ public class WebStart
      * Deletes all files ending with p_file_ending from the cookie file system.
      * Return false, if no file to delete was found
      * If p_confirm_message != null, the user is asked to confirm the delete action.
+     */
+    /**
+     * <p>delete_files.</p>
+     *
+     * @param p_file_ending a {@link java.lang.String} object.
+     * @param p_confirm_messsage a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public static boolean delete_files(String p_file_ending, String p_confirm_messsage)
     {

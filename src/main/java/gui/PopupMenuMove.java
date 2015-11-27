@@ -25,13 +25,19 @@
 package gui;
 
 /**
+ * <p>PopupMenuMove class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PopupMenuMove extends PopupMenuDisplay
 {
     
-    /** Creates a new instance of PopupMenuMove */
+    /**
+     * Creates a new instance of PopupMenuMove
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public PopupMenuMove(BoardFrame p_board_frame)
     {
         super(p_board_frame);

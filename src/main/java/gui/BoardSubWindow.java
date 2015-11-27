@@ -25,16 +25,23 @@ package gui;
  * Subwindows of the board frame.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardSubWindow extends javax.swing.JFrame
 {
   
+    /**
+     * <p>parent_iconified.</p>
+     */
     public void parent_iconified()
     {
         this.visible_before_iconifying = this.isVisible();
         this.setVisible(false);
     }
     
+    /**
+     * <p>parent_deiconified.</p>
+     */
     public void parent_deiconified()
     {
         this.setVisible(this.visible_before_iconifying);

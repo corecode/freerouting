@@ -42,6 +42,7 @@ import board.TestLevel;
  * Inserts the traces and vias of the connection found by the autoroute algorithm.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class InsertFoundConnectionAlgo
 {
@@ -49,6 +50,11 @@ public class InsertFoundConnectionAlgo
     /**
      * Creates a new instance of InsertFoundConnectionAlgo .
      * Returns null, if the insertion did not succeed.
+     *
+     * @param p_connection a {@link autoroute.LocateFoundConnectionAlgo} object.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @return a {@link autoroute.InsertFoundConnectionAlgo} object.
      */
     public static InsertFoundConnectionAlgo get_instance(LocateFoundConnectionAlgo p_connection,
             RoutingBoard p_board, AutorouteControl p_ctrl)

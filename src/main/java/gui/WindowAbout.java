@@ -26,9 +26,15 @@ package gui;
  * Displays general information about the freeroute software.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowAbout extends BoardSavableSubWindow
 {
+    /**
+     * <p>Constructor for WindowAbout.</p>
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public WindowAbout(java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =

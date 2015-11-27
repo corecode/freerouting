@@ -34,6 +34,7 @@ import board.Trace;
  * Describes a routing connection ending at the next fork or terminal item.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Connection
 {
@@ -41,6 +42,9 @@ public class Connection
     /**
      * Gets the connection this item belongs to. A connection ends at the next fork or terminal item.
      * Returns null, if p_item is not a route item, or if it is a via belonging to more than 1 connection.
+     *
+     * @param p_item a {@link board.Item} object.
+     * @return a {@link autoroute.Connection} object.
      */
     public static Connection get(Item p_item)
     {
@@ -170,6 +174,8 @@ public class Connection
     
     /**
      * Returns the cumulative length of the traces in this  connection.
+     *
+     * @return a double.
      */
     public double trace_length()
     {
@@ -187,6 +193,8 @@ public class Connection
     
     /**
      * Returns an estimation of the actual length of the connection divided by the minimal possible length.
+     *
+     * @return a double.
      */
     public double get_detour()
     {

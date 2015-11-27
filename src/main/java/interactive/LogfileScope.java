@@ -28,6 +28,7 @@ import geometry.planar.FloatPoint;
  * Each Object of the class must implement the read_scope method.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class LogfileScope
 {
@@ -37,67 +38,119 @@ public abstract class LogfileScope
     
     // scpopes logging undo and redo
     public static final LogfileScope UNDO = new UndoScope("undo");
+    /** Constant <code>REDO</code> */
     public static final LogfileScope REDO = new RedoScope("redo");
+    /** Constant <code>GENERATE_SNAPSHOT</code> */
     public static final LogfileScope GENERATE_SNAPSHOT = new GenerateSnapshotScope("generate_snapshot");
     
     // Scopes for logging changes in the interactive setting:
+    /** Constant <code>SET_CLEARANCE_COMPENSATION</code> */
     public static final LogfileScope SET_CLEARANCE_COMPENSATION = new SetClearanceCompensationScope("set_clearance_compensation");
+    /** Constant <code>SET_DRAG_COMPONENTS_ENABLED</code> */
     public static final LogfileScope SET_DRAG_COMPONENTS_ENABLED = new SetDragComponentsEnabledScope("set_drag_componente_enabled");
+    /** Constant <code>SET_LAYER</code> */
     public static final LogfileScope SET_LAYER = new SetLayerScope("set_layer");
+    /** Constant <code>SET_MANUAL_TRACE_CLEARANCE_CLASS</code> */
     public static final LogfileScope SET_MANUAL_TRACE_CLEARANCE_CLASS = new SetManualTraceClearanceClassScope("set_manual_trace_clearance_class");
+    /** Constant <code>SET_MANUAL_TRACE_HALF_WIDTH</code> */
     public static final LogfileScope SET_MANUAL_TRACE_HALF_WIDTH = new SetManualTraceHalfWidthScope("set_manual_trace_half_width");
+    /** Constant <code>SET_MANUAL_TRACEWITH_SELECTION</code> */
     public static final LogfileScope SET_MANUAL_TRACEWITH_SELECTION = new SetManualTraceWidthSelectionScope("set_manual_tracewidth_selection");
+    /** Constant <code>SET_PULL_TIGHT_ACCURACY</code> */
     public static final LogfileScope SET_PULL_TIGHT_ACCURACY = new SetPullTightAccuracyScope("set_pull_tight_accuracy");
+    /** Constant <code>SET_PULL_TIGHT_REGION_WIDTH</code> */
     public static final LogfileScope SET_PULL_TIGHT_REGION_WIDTH = new SetPullTightRegionWidthScope("set_pull_tight_region_width");
+    /** Constant <code>SET_PUSH_ENABLED</code> */
     public static final LogfileScope SET_PUSH_ENABLED = new SetPushEnabledScope("set_push_enabled");
+    /** Constant <code>SET_SNAP_ANGLE</code> */
     public static final LogfileScope SET_SNAP_ANGLE = new SetSnapAngleScope("set_snap_angle");
+    /** Constant <code>SET_SELECTABLE</code> */
     public static final LogfileScope SET_SELECTABLE = new SetSelectableScope(" set_selectable");
+    /** Constant <code>SET_SELECT_ON_ALL_LAYER</code> */
     public static final LogfileScope SET_SELECT_ON_ALL_LAYER = new SetSelectOnAllLayerScope(" set_select_on_all_layer");
+    /** Constant <code>SET_STITCH_ROUTE</code> */
     public static final LogfileScope SET_STITCH_ROUTE = new SetStitchRouteScope(" set_stitch_route");
+    /** Constant <code>SET_TRACE_HALF_WIDTH</code> */
     public static final LogfileScope SET_TRACE_HALF_WIDTH = new SetTraceHalfWidthScope("set_trace_halfwidth");
+    /** Constant <code>SET_IGNORE_CONDUCTION</code> */
     public static final LogfileScope SET_IGNORE_CONDUCTION = new SetIgnoreConductionScope("set_ignore_conduction");
     
     // scopes for logging changes in the interactively selected set of items:
+    /** Constant <code>START_SELECT</code> */
     public static final LogfileScope START_SELECT = new StartSelectScope("start_select");
+    /** Constant <code>TOGGLE_SELECT</code> */
     public static final LogfileScope TOGGLE_SELECT = new ToggleSelectScope("toggle_select");
+    /** Constant <code>SELECT_REGION</code> */
     public static final LogfileScope SELECT_REGION = new SelectRegionScope("select_region");
+    /** Constant <code>EXTEND_TO_WHOLE_CONNECTED_SETS</code> */
     public static final LogfileScope EXTEND_TO_WHOLE_CONNECTED_SETS = new ExtendToWholeConnectedSetsScope("extend_to_whole_connected_sets");
+    /** Constant <code>EXTEND_TO_WHOLE_CONNECTIONS</code> */
     public static final LogfileScope EXTEND_TO_WHOLE_CONNECTIONS = new ExtendToWholeConnectionsScope("extend_to_whole_connections");
+    /** Constant <code>EXTEND_TO_WHOLE_COMPONENTS</code> */
     public static final LogfileScope EXTEND_TO_WHOLE_COMPONENTS = new ExtendToWholeComponentsScope("extend_to_whole_components");
+    /** Constant <code>EXTEND_TO_WHOLE_NETS</code> */
     public static final LogfileScope EXTEND_TO_WHOLE_NETS = new ExtendToWholeNetsScope("extend_to_whole_nets");
     
     // scopes for logging actions on the interactively selected set of items:
+    /** Constant <code>ASSIGN_CLEARANCE_CLASS</code> */
     public static final LogfileScope ASSIGN_CLEARANCE_CLASS = new  AssignClearanceClassScope("assign_clearance_class");
+    /** Constant <code>ASSIGN_SELECTED_TO_NEW_NET</code> */
     public static final LogfileScope ASSIGN_SELECTED_TO_NEW_NET = new  AssignSelectedToNewNetScope("assign_selected_to_new_net");
+    /** Constant <code>ASSIGN_SELECTED_TO_NEW_GROUP</code> */
     public static final LogfileScope ASSIGN_SELECTED_TO_NEW_GROUP = new AssignSelectedToNewGroupScope("assign_selected_to_new_group");
+    /** Constant <code>FIX_SELECTED_ITEMS</code> */
     public static final LogfileScope FIX_SELECTED_ITEMS = new FixSelectedScope("fix_selected_items");
+    /** Constant <code>UNFIX_SELECTED_ITEMS</code> */
     public static final LogfileScope UNFIX_SELECTED_ITEMS = new UnfixSelectedScope("unfix_selected_items");
+    /** Constant <code>DELETE_SELECTED</code> */
     public static final LogfileScope DELETE_SELECTED = new DeleteSelectedScope("delete_selected");
+    /** Constant <code>CUTOUT_ROUTE</code> */
     public static final LogfileScope CUTOUT_ROUTE = new CutoutRouteScope("cutout_route");
+    /** Constant <code>OPTIMIZE_SELECTED</code> */
     public static final LogfileScope OPTIMIZE_SELECTED = new OptimizeSelectedScope("optmize_selected");
+    /** Constant <code>AUTOROUTE_SELECTED</code> */
     public static final LogfileScope AUTOROUTE_SELECTED = new AutorouteSelectedScope("autoroute_selected");
+    /** Constant <code>FANOUT_SELECTED</code> */
     public static final LogfileScope FANOUT_SELECTED = new FanoutSelectedScope("fanout_selected");
     
     // scopes for logging interactive creating or moving items.
+    /** Constant <code>COMPLETE_SCOPE</code> */
     public static final LogfileScope COMPLETE_SCOPE = new CompleteScope("complete_scope");
+    /** Constant <code>CANCEL_SCOPE</code> */
     public static final LogfileScope CANCEL_SCOPE = new CancelScope("cancel_scope");
+    /** Constant <code>CREATING_TILE</code> */
     public static final LogfileScope CREATING_TILE = new CreateTileScope("creating_tile");
+    /** Constant <code>CREATING_CIRCLE</code> */
     public static final LogfileScope CREATING_CIRCLE = new CreateCircleScope("creating_circle");
+    /** Constant <code>CREATING_POLYGONSHAPE</code> */
     public static final LogfileScope CREATING_POLYGONSHAPE = new CreatePolygonShapeScope("creating_polygonshape");
+    /** Constant <code>ADDING_HOLE</code> */
     public static final LogfileScope ADDING_HOLE = new AddHoleScope("adding_hole");
+    /** Constant <code>CREATING_TRACE</code> */
     public static final LogfileScope CREATING_TRACE = new CreateTraceScope("creating_trace");
+    /** Constant <code>CHANGE_LAYER</code> */
     public static final LogfileScope CHANGE_LAYER = new ChangeLayerScope("change_layer");
+    /** Constant <code>DRAGGING_ITEMS</code> */
     public static final LogfileScope DRAGGING_ITEMS = new DragItemScope("dragging_items");
+    /** Constant <code>MAKING_SPACE</code> */
     public static final LogfileScope MAKING_SPACE = new MakeSpaceScope("making_space");
+    /** Constant <code>COPYING_ITEMS</code> */
     public static final LogfileScope COPYING_ITEMS = new CopyItemScope("copying_items");
+    /** Constant <code>MOVE_ITEMS</code> */
     public static final LogfileScope MOVE_ITEMS = new MoveItemScope("moving_items");
+    /** Constant <code>TURN_90_DEGREE</code> */
     public static final LogfileScope TURN_90_DEGREE = new Turn90DegreeScope("turn_90_degree");
+    /** Constant <code>ROTATE</code> */
     public static final LogfileScope ROTATE = new RotateScope("rotate");
+    /** Constant <code>CHANGE_PLACEMENT_SIDE</code> */
     public static final LogfileScope CHANGE_PLACEMENT_SIDE = new ChangePlacementSideScope("change_placement_side");
+    /** Constant <code>SET_ZOOM_WITH_WHEEL</code> */
     public static final LogfileScope SET_ZOOM_WITH_WHEEL = new SetZoomWithWheelScope("set_zoom_with_wheel");
     
     // scopes for logging  displax changes
+    /** Constant <code>CENTER_DISPLAY</code> */
     public static final LogfileScope CENTER_DISPLAY = new CenterDisplayScope("center_display");
+    /** Constant <code>ZOOM_FRAME</code> */
     public static final LogfileScope ZOOM_FRAME = new ZoomFrameScope("zoom_frame");
     
     
@@ -127,12 +180,20 @@ public abstract class LogfileScope
     /**
      * Reads the scope from the input logfile.
      * Returns the active interactive state after reading the scope.
+     *
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @param p_return_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public abstract InteractiveState read_scope(Logfile p_logfile,
             InteractiveState p_return_state, BoardHandling p_board_handling);
     
     /**
      * Returns the LogfileScope with name p_name if it exists, else null.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link interactive.LogfileScope} object.
      */
     public static LogfileScope get_scope(String p_name)
     {

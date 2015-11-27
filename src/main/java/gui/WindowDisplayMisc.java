@@ -24,11 +24,16 @@ package gui;
  * Window for interactive changing of miscellanious display properties.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowDisplayMisc extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of DisplayMiscWindow */
+    /**
+     * Creates a new instance of DisplayMiscWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowDisplayMisc(BoardFrame p_board_frame)
     {
         this.panel = p_board_frame.board_panel;

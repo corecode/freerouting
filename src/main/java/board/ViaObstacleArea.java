@@ -27,6 +27,7 @@ import geometry.planar.Vector;
  * Describes Areas on the board, where vias are not allowed.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ViaObstacleArea extends ObstacleArea
 {
@@ -50,6 +51,7 @@ public class ViaObstacleArea extends ObstacleArea
         this(p_area, p_layer, p_translation, p_rotation_in_degree, p_side_changed, new int[0], p_clearance_type, p_id_no, p_group_no, p_name, p_fixed_state, p_board);
     }
     
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         int [] copied_net_nos = new int[net_no_arr.length];
@@ -59,6 +61,7 @@ public class ViaObstacleArea extends ObstacleArea
                 this.name, get_fixed_state(), board);
     }
     
+    /** {@inheritDoc} */
     public boolean is_obstacle(Item p_other)
     {
         if (p_other.shares_net(this))
@@ -68,11 +71,13 @@ public class ViaObstacleArea extends ObstacleArea
         return p_other instanceof Via;
     }
     
+    /** {@inheritDoc} */
     public boolean is_trace_obstacle(int p_net_no)
     {
         return false;
     }
     
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -82,6 +87,7 @@ public class ViaObstacleArea extends ObstacleArea
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.VIA_KEEPOUT);
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 
@@ -93,11 +99,13 @@ public class ViaObstacleArea extends ObstacleArea
         p_window.newline();
     }
     
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_via_obstacle_colors();
     }
     
+    /** {@inheritDoc} */
     public double get_draw_intensity(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_via_obstacle_color_intensity();

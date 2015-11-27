@@ -41,6 +41,7 @@ import geometry.planar.FloatPoint;
  * for shoving vias and pins
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MoveDrillItemAlgo
 {
@@ -48,6 +49,15 @@ public class MoveDrillItemAlgo
     /**
      * checks, if p_drill_item can be translated by p_vector by shoving obstacle
      * traces and vias aside, so that no clearance violations occur.
+     *
+     * @param p_drill_item a {@link board.DrillItem} object.
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_ignore_items a java$util$Collection object.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a boolean.
      */
     public static boolean check(DrillItem p_drill_item, Vector p_vector, int p_max_recursion_depth,
             int p_max_via_recursion_depth, Collection<Item> p_ignore_items,

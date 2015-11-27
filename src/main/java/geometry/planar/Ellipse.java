@@ -26,11 +26,19 @@ package geometry.planar;
  * Does not implement the ConvexShape interface, because coordinates are float.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Ellipse implements java.io.Serializable
 {
     
-    /** Creates a new instance of Ellipse */
+    /**
+     * Creates a new instance of Ellipse
+     *
+     * @param p_center a {@link geometry.planar.FloatPoint} object.
+     * @param p_rotation a double.
+     * @param p_radius_1 a double.
+     * @param p_radius_2 a double.
+     */
     public Ellipse(FloatPoint p_center, double p_rotation, double p_radius_1, double p_radius_2)
     {
         this.center = p_center;

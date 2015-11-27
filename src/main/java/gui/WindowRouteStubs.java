@@ -32,13 +32,19 @@ import geometry.planar.FloatPoint;
 import board.Item;
 
 /**
+ * <p>WindowRouteStubs class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowRouteStubs extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of WindowRouteStubs */
+    /**
+     * Creates a new instance of WindowRouteStubs
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowRouteStubs(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -48,6 +54,9 @@ public class WindowRouteStubs extends WindowObjectListWithFilter
         p_board_frame.set_context_sensitive_help(this, "WindowObjectList_RouteStubs");
     }
     
+    /**
+     * <p>fill_list.</p>
+     */
     protected void fill_list()
     {
         board.BasicBoard routing_board = this.board_frame.board_panel.board_handling.get_routing_board();
@@ -136,6 +145,9 @@ public class WindowRouteStubs extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(route_stub_info_set.size(), DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_list_values = list.getSelectedValues();

@@ -24,17 +24,28 @@ package board;
  * Describes the structure of a board layer.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Layer implements java.io.Serializable
 {
     
-    /** Creates a new instance of Layer */
+    /**
+     * Creates a new instance of Layer
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_is_signal a boolean.
+     */
     public Layer(String p_name, boolean p_is_signal)
     {
         name = p_name;
         is_signal = p_is_signal;
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return name;

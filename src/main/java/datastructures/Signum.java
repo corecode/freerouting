@@ -20,19 +20,24 @@ package datastructures;
  *
  * Implements the mathematical signum function.
  *
-
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class Signum
 {
+    /** Constant <code>POSITIVE</code> */
     public static final Signum POSITIVE = new Signum ("positive");
+    /** Constant <code>NEGATIVE</code> */
     public static final Signum NEGATIVE = new Signum ("negative");
+    /** Constant <code>ZERO</code> */
     public static final Signum ZERO = new Signum ("zero");
 
     /**
      * Returns the signum of p_value.
      * Values are Signum.POSITIVE, Signum.NEGATIVE and Signum.ZERO
+     *
+     * @param p_value a double.
+     * @return a {@link datastructures.Signum} object.
      */
     public static final Signum of (double p_value)
     {
@@ -56,6 +61,9 @@ public class Signum
     /**
      * Returns the signum of p_value as an int.
      * Values are +1, 0 and -1
+     *
+     * @param p_value a double.
+     * @return a int.
      */
     public static final int as_int (double p_value)
     {
@@ -78,6 +86,8 @@ public class Signum
 
     /**
      * Returns the string of this instance
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String to_string ()
     {
@@ -86,6 +96,8 @@ public class Signum
 
     /**
      * Returns the opposite Signum of this Signum
+     *
+     * @return a {@link datastructures.Signum} object.
      */
     public final Signum negate()
     {

@@ -25,10 +25,9 @@ package geometry.planar;
  * Implements functionality of orthogonal rectangles in the plane
  * with integer coordinates.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class IntBox extends RegularTileShape implements java.io.Serializable
 {
     /**
@@ -39,6 +38,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Creates an IntBox from its lower left and upper right corners.
+     *
+     * @param p_ll a {@link geometry.planar.IntPoint} object.
+     * @param p_ur a {@link geometry.planar.IntPoint} object.
      */
     public IntBox(IntPoint p_ll, IntPoint p_ur)
     {
@@ -49,6 +51,11 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     /**
      * creates an IntBox from the coordinates of its lower left and
      * upper right corners.
+     *
+     * @param p_ll_x a int.
+     * @param p_ll_y a int.
+     * @param p_ur_x a int.
+     * @param p_ur_y a int.
      */
     public IntBox(int p_ll_x, int p_ll_y, int p_ur_x, int p_ur_y)
     {
@@ -56,6 +63,11 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         ur = new IntPoint(p_ur_x, p_ur_y);
     }
     
+    /**
+     * <p>is_IntOctagon.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_IntOctagon()
     {
         return true;
@@ -64,12 +76,19 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns true, if the box is empty
+     *
+     * @return a boolean.
      */
     public boolean is_empty()
     {
         return (ll.x > ur.x || ll.y > ur.y);
     }
     
+    /**
+     * <p>border_line_count.</p>
+     *
+     * @return a int.
+     */
     public int border_line_count()
     {
         return 4;
@@ -77,6 +96,8 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * returns the horizontal extension of the box.
+     *
+     * @return a int.
      */
     public int width()
     {
@@ -85,32 +106,55 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns the vertical extension of the box.
+     *
+     * @return a int.
      */
     public int height()
     {
         return (ur.y - ll.y) ;
     }
     
+    /**
+     * <p>max_width.</p>
+     *
+     * @return a double.
+     */
     public double max_width()
     {
         return Math.max(ur.x - ll.x, ur.y - ll.y);
     }
     
+    /**
+     * <p>min_width.</p>
+     *
+     * @return a double.
+     */
     public double min_width()
     {
         return Math.min(ur.x - ll.x, ur.y - ll.y);
     }
     
+    /**
+     * <p>area.</p>
+     *
+     * @return a double.
+     */
     public double area()
     {
         return ((double)(ur.x - ll.x))* ((double) (ur.y - ll.y));
     }
     
+    /**
+     * <p>circumference.</p>
+     *
+     * @return a double.
+     */
     public double circumference()
     {
         return 2 * ((ur.x - ll.x) + (ur.y - ll.y));
     }
     
+    /** {@inheritDoc} */
     public IntPoint corner(int p_no)
     {
         if (p_no == 0)
@@ -132,6 +176,11 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         throw new IllegalArgumentException("IntBox.corner: p_no out of range");
     }
     
+    /**
+     * <p>dimension.</p>
+     *
+     * @return a int.
+     */
     public int dimension()
     {
         if (is_empty())
@@ -151,6 +200,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Chechs, if p_point is located in the interiour of this box.
+     *
+     * @param p_point a {@link geometry.planar.IntPoint} object.
+     * @return a boolean.
      */
     public boolean contains_inside(IntPoint p_point)
     {
@@ -158,11 +210,21 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
                 && p_point.y > this.ll.y &&  p_point.y < this.ur.y;
     }
     
+    /**
+     * <p>is_IntBox.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_IntBox()
     {
         return true;
     }
     
+    /**
+     * <p>simplify.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape simplify()
     {
         return this;
@@ -170,6 +232,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Calculates the nearest point of this box to p_from_point.
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint nearest_point(FloatPoint p_from_point)
     {
@@ -196,6 +261,10 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
      * Calculates the sorted p_max_result_points nearest points on the  border of this box.
      * p_point is assumed to be located in the interiour of this nox.
      * The funtion is only  imoplemented for p_max_result_points <= 2;
+     *
+     * @param p_point a {@link geometry.planar.IntPoint} object.
+     * @param p_max_result_points a int.
+     * @return an array of {@link geometry.planar.IntPoint} objects.
      */
     public IntPoint[] nearest_border_projections(IntPoint p_point, int p_max_result_points)
     {
@@ -272,6 +341,8 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Calculates distance of this box to p_from_point.
      */
     public double distance(FloatPoint p_from_point)
@@ -281,6 +352,11 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Computes the weighted distance to the box p_other.
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @param p_horizontal_weight a double.
+     * @param p_vertical_weight a double.
+     * @return a double.
      */
     public double weighted_distance(IntBox p_other, double p_horizontal_weight, double p_vertical_weight)
     {
@@ -310,36 +386,69 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         return this;
     }
     
+    /**
+     * <p>bounding_octagon.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon bounding_octagon()
     {
         return to_IntOctagon();
     }
     
+    /**
+     * <p>is_bounded.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_bounded()
     {
         return true;
     }
     
+    /**
+     * <p>bounding_tile.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_tile()
     {
         return this;
     }
     
+    /** {@inheritDoc} */
     public boolean corner_is_bounded(int p_no)
     {
         return true;
     }
     
+    /**
+     * <p>union.</p>
+     *
+     * @param p_other a {@link geometry.planar.RegularTileShape} object.
+     * @return a {@link geometry.planar.RegularTileShape} object.
+     */
     public RegularTileShape union(RegularTileShape p_other)
     {
         return p_other.union(this);
     }
     
+    /**
+     * <p>union.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox union(IntBox p_other)
     {
         int llx = Math.min(ll.x, p_other.ll.x);
@@ -351,6 +460,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns the intersection of this box with an IntBox.
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox intersection(IntBox p_other)
     {
@@ -379,6 +491,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * returns the intersection of this box with a ConvexShape
+     *
+     * @param p_other a {@link geometry.planar.TileShape} object.
+     * @return a {@link geometry.planar.TileShape} object.
      */
     public TileShape intersection(TileShape p_other)
     {
@@ -396,11 +511,23 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return p_other.intersection(this.to_Simplex());
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.Shape} object.
+     * @return a boolean.
+     */
     public boolean intersects(Shape p_other)
     {
         return p_other.intersects(this);
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a boolean.
+     */
     public boolean intersects(IntBox p_other)
     {
         if (p_other.ll.x > this.ur.x)
@@ -416,6 +543,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns true, if this box intersects with p_other and the intersection is 2-dimensional.
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a boolean.
      */
     public boolean overlaps(IntBox p_other)
     {
@@ -430,17 +560,21 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return true;
     }
     
+    /** {@inheritDoc} */
     public boolean contains(RegularTileShape p_other)
     {
         return p_other.is_contained_in(this);
     }
     
+    /** {@inheritDoc} */
     public RegularTileShape bounding_shape(ShapeBoundingDirections p_dirs)
     {
         return p_dirs.bounds(this);
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Enlarges the box by p_offset.
      * Contrary to the offset() method the result is an IntOctagon, not an IntBox.
      */
@@ -449,6 +583,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return bounding_octagon().offset(p_offset);
     }
     
+    /** {@inheritDoc} */
     public IntBox translate_by(Vector p_rel_coor)
     {
         // This function is at the moment only implemented for Vectors
@@ -464,6 +599,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return new IntBox(new_ll, new_ur);
     }
     
+    /** {@inheritDoc} */
     public IntBox turn_90_degree(int p_factor, IntPoint p_pole)
     {
         IntPoint p1 = (IntPoint) ll.turn_90_degree(p_factor, p_pole);
@@ -476,6 +612,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return new IntBox(llx,lly,urx,ury);
     }
     
+    /** {@inheritDoc} */
     public Line border_line(int p_no)
     {
         int a_x;
@@ -519,6 +656,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return new Line(a_x, a_y, b_x, b_y);
     }
     
+    /** {@inheritDoc} */
     public int border_line_index(Line p_line)
     {
         System.out.println("edge_index_of_line not yet implemented for IntBoxes");
@@ -526,6 +664,8 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Returns the box offseted by p_dist.
      * If p_dist > 0, the offset is to the outside,
      * else to the inside.
@@ -546,6 +686,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
      * Returns the box, where the horizontal boundary is offseted by p_dist.
      * If p_dist > 0, the offset is to the outside,
      * else to the inside.
+     *
+     * @param p_dist a double.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox horizontal_offset(double p_dist)
     {
@@ -563,6 +706,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
      * Returns the box, where the vertical boundary is offseted by p_dist.
      * If p_dist > 0, the offset is to the outside,
      * else to the inside.
+     *
+     * @param p_dist a double.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox vertical_offset(double p_dist)
     {
@@ -579,6 +725,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     /**
      * Shrinks the width and height of the box by the input width.
      * The box will not vanish completely.
+     *
+     * @param p_width a int.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox shrink(int p_width)
     {
@@ -609,12 +758,14 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return new IntBox(ll_x, ll_y, ur_x, ur_y);
     }
     
+    /** {@inheritDoc} */
     public Side compare(RegularTileShape p_other, int p_edge_no)
     {
         Side result = p_other.compare(this, p_edge_no);
         return result.negate();
     }
     
+    /** {@inheritDoc} */
     public Side compare(IntBox p_other, int p_edge_no)
     {
         Side result;
@@ -693,6 +844,8 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns an object of class IntOctagon defining the same shape
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
      */
     public IntOctagon to_IntOctagon()
     {
@@ -702,6 +855,8 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns an object of class Simplex defining the same shape
+     *
+     * @return a {@link geometry.planar.Simplex} object.
      */
     public Simplex to_Simplex()
     {
@@ -721,6 +876,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return new Simplex(line_arr);
     }
     
+    /** {@inheritDoc} */
     public boolean is_contained_in( IntBox p_other)
     {
         if (is_empty() || this == p_other)
@@ -737,6 +893,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Return true, if p_other is contained in the interiour of this box.
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a boolean.
      */
     public boolean contains_in_interiour(IntBox p_other)
     {
@@ -755,6 +914,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     /**
      * Calculates the part of p_from_box, which has minimal distance
      * to this box.
+     *
+     * @param p_from_box a {@link geometry.planar.IntBox} object.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox nearest_part(IntBox p_from_box)
     {
@@ -820,37 +982,60 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return new IntBox(ll_x, ll_y, ur_x, ur_y);
     }
     
+    /**
+     * <p>is_contained_in.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntOctagon} object.
+     * @return a boolean.
+     */
     public boolean is_contained_in( IntOctagon p_other)
     {
         return p_other.contains(to_IntOctagon());
     }
     
+    /** {@inheritDoc} */
     public boolean intersects( IntOctagon p_other)
     {
         return p_other.intersects(to_IntOctagon());
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.Simplex} object.
+     * @return a boolean.
+     */
     public boolean intersects( Simplex p_other)
     {
         return p_other.intersects(to_Simplex());
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.Circle} object.
+     * @return a boolean.
+     */
     public boolean intersects( Circle p_other)
     {
         return p_other.intersects(this);
     }
     
+    /** {@inheritDoc} */
     public IntOctagon union( IntOctagon p_other)
     {
         return p_other.union(to_IntOctagon());
     }
     
+    /** {@inheritDoc} */
     public Side compare(IntOctagon p_other, int p_edge_no)
     {
         return to_IntOctagon().compare(p_other, p_edge_no);
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Divides this box into sections with width and height at most p_max_section_width
      * of about equal size.
      */
@@ -899,6 +1084,12 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>cutout.</p>
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @return an array of {@link geometry.planar.TileShape} objects.
+     */
     public TileShape[] cutout(TileShape p_shape)
     {
         TileShape[] tmp_result = p_shape.cutout_from(this);

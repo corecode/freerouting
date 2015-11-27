@@ -27,8 +27,10 @@ import javax.help.HelpSetException;
 import java.net.URL;
 
 /**
+ * <p>BoardMenuHelp class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuHelp extends BoardMenuHelpReduced
 {
@@ -36,6 +38,8 @@ public class BoardMenuHelp extends BoardMenuHelpReduced
      * Creates a new instance of BoardMenuHelp
      * Separated from BoardMenuHelpReduced to avoid ClassNotFound exception when the library
      * jh.jar is not found, which is only used in this extended class.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
      */
     public BoardMenuHelp(BoardFrame p_board_frame)
     {

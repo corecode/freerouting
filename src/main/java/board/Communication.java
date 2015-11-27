@@ -27,11 +27,21 @@ import designformats.specctra.CoordinateTransform;
  * Communication information to host systems or host design formats.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Communication implements java.io.Serializable
 {
     
-    /** Creates a new instance of BoardCommunication */
+    /**
+     * Creates a new instance of BoardCommunication
+     *
+     * @param p_unit a {@link board.Unit} object.
+     * @param p_resolution a int.
+     * @param p_specctra_parser_info a {@link board.Communication.SpecctraParserInfo} object.
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @param p_id_no_generator a {@link datastructures.IdNoGenerator} object.
+     * @param p_observers a {@link board.BoardObservers} object.
+     */
     public Communication(Unit p_unit, int p_resolution,
             SpecctraParserInfo p_specctra_parser_info, CoordinateTransform p_coordinate_transform,
             IdNoGenerator p_id_no_generator, BoardObservers p_observers)
@@ -44,19 +54,31 @@ public class Communication implements java.io.Serializable
         observers = p_observers;
     }
     
-    /** Creates a new instance of BoardCommunication */
+    /**
+     * Creates a new instance of BoardCommunication
+     */
     public Communication()
     {
         this(Unit.MIL, 1, new SpecctraParserInfo("\"", null, null, null, null, false), 
                 new CoordinateTransform(1, 0, 0), new board.ItemIdNoGenerator(), new BoardObserverAdaptor());
     }
     
+    /**
+     * <p>host_cad_is_eagle.</p>
+     *
+     * @return a boolean.
+     */
     public boolean host_cad_is_eagle()
     {
         return specctra_parser_info != null && specctra_parser_info.host_cad != null 
                 && specctra_parser_info.host_cad.equalsIgnoreCase("CadSoft");
     }
     
+    /**
+     * <p>host_cad_exists.</p>
+     *
+     * @return a boolean.
+     */
     public boolean host_cad_exists()
     {
         return specctra_parser_info != null && specctra_parser_info.host_cad != null;
@@ -65,6 +87,9 @@ public class Communication implements java.io.Serializable
         
     /**
      *  Returns the resolution scaled to the input unit
+     *
+     * @param p_unit a {@link board.Unit} object.
+     * @return a double.
      */
     public double get_resolution (Unit p_unit)
     {

@@ -42,11 +42,19 @@ import boardgraphics.GraphicsContext;
  * Creates the Incompletes (Ratsnest) of one net to display them on the screen.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class NetIncompletes
 {
     
-    /** Creates a new instance of NetIncompletes */
+    /**
+     * Creates a new instance of NetIncompletes
+     *
+     * @param p_net_no a int.
+     * @param p_net_items a java$util$Collection object.
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public NetIncompletes(int p_net_no, Collection<Item> p_net_items, BasicBoard p_board, java.util.Locale p_locale)
     {
         this.draw_marker_radius = p_board.rules.get_min_trace_half_width() * 2;
@@ -101,6 +109,8 @@ public class NetIncompletes
     
     /**
      * Returns the number of incompletes of this net.
+     *
+     * @return a int.
      */
     public int count()
     {
@@ -147,6 +157,13 @@ public class NetIncompletes
         return this.length_violation;
     }
     
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_length_violations_only a boolean.
+     */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context, boolean p_length_violations_only)
     {
         if (!p_length_violations_only)

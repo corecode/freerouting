@@ -22,8 +22,8 @@ package geometry.planar;
  * multiples of 45 degree and defined with integer coordinates.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class IntOctagon extends RegularTileShape implements java.io.Serializable
 {
     /**
@@ -48,6 +48,15 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
      * with the x axis.
      * p_urx is the intersection of the upper right diagonal boundary line
      * with the x axis.
+     *
+     * @param p_lx a int.
+     * @param p_ly a int.
+     * @param p_rx a int.
+     * @param p_uy a int.
+     * @param p_ulx a int.
+     * @param p_lrx a int.
+     * @param p_llx a int.
+     * @param p_urx a int.
      */
     public IntOctagon(int p_lx, int p_ly, int p_rx, int p_uy,
             int p_ulx, int p_lrx, int p_llx, int p_urx)
@@ -62,41 +71,77 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         urx = p_urx;
     }
     
+    /**
+     * <p>is_empty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_empty()
     {
         return this == EMPTY;
     }
     
+    /**
+     * <p>is_IntOctagon.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_IntOctagon()
     {
         return true;
     }
     
+    /**
+     * <p>is_bounded.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_bounded()
     {
         return true;
     }
     
+    /** {@inheritDoc} */
     public boolean corner_is_bounded(int p_no)
     {
         return true;
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         return new IntBox(lx, ly, rx, uy);
     }
     
+    /**
+     * <p>bounding_octagon.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon bounding_octagon()
     {
         return this;
     }
     
+    /**
+     * <p>bounding_tile.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon bounding_tile()
     {
         return this;
     }
     
+    /**
+     * <p>dimension.</p>
+     *
+     * @return a int.
+     */
     public int dimension()
     {
         if (this == EMPTY)
@@ -120,6 +165,7 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /** {@inheritDoc} */
     public IntPoint corner(int p_no)
     {
         
@@ -168,6 +214,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * Additional to the function corner() for performance reasons to avoid allocation of an IntPoint.
+     *
+     * @param p_no a int.
+     * @return a int.
      */
     public int corner_y(int p_no)
     {
@@ -207,6 +256,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * Additional to the function corner() for performance reasons to avoid allocation of an IntPoint.
+     *
+     * @param p_no a int.
+     * @return a int.
      */
     public int corner_x(int p_no)
     {
@@ -245,6 +297,11 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return x;
     }
     
+    /**
+     * <p>area.</p>
+     *
+     * @return a double.
+     */
     public double area()
     {
         
@@ -265,11 +322,17 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return  0.5 * Math.abs(result);
     }
     
+    /**
+     * <p>border_line_count.</p>
+     *
+     * @return a int.
+     */
     public int border_line_count()
     {
         return 8;
     }
     
+    /** {@inheritDoc} */
     public Line border_line(int p_no)
     {
         int a_x;
@@ -341,6 +404,7 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return new Line(a_x, a_y, b_x, b_y);
     }
     
+    /** {@inheritDoc} */
     public IntOctagon translate_by(Vector p_rel_coor)
     {
         // This function is at the moment only implemented for Vectors
@@ -357,6 +421,11 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
                 llx + rel_coor.x + rel_coor.y, urx + rel_coor.x + rel_coor.y);
     }
     
+    /**
+     * <p>max_width.</p>
+     *
+     * @return a double.
+     */
     public double max_width()
     {
         double width_1 = Math.max(rx - lx, uy - ly);
@@ -365,6 +434,11 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>min_width.</p>
+     *
+     * @return a double.
+     */
     public double min_width()
     {
         double width_1 = Math.min(rx - lx, uy - ly);
@@ -373,6 +447,7 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /** {@inheritDoc} */
     public IntOctagon offset(double p_distance)
     {
         int width = (int) Math.round(p_distance);
@@ -388,26 +463,45 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result.normalize();
     }
     
+    /** {@inheritDoc} */
     public IntOctagon enlarge(double p_offset)
     {
         return offset(p_offset);
     }
     
+    /** {@inheritDoc} */
     public boolean contains(RegularTileShape p_other)
     {
         return p_other.is_contained_in(this);
     }
     
+    /**
+     * <p>union.</p>
+     *
+     * @param p_other a {@link geometry.planar.RegularTileShape} object.
+     * @return a {@link geometry.planar.RegularTileShape} object.
+     */
     public RegularTileShape union(RegularTileShape p_other)
     {
         return p_other.union(this);
     }
     
+    /**
+     * <p>intersection.</p>
+     *
+     * @param p_other a {@link geometry.planar.TileShape} object.
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape intersection(TileShape p_other)
     {
         return p_other.intersection(this);
     }
     
+    /**
+     * <p>normalize.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon normalize()
     {
         if (lx > rx || ly > uy || llx > urx || ulx > lrx)
@@ -573,6 +667,8 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * Checks, if this IntOctagon is normalized.
+     *
+     * @return a boolean.
      */
     public boolean is_normalized()
     {
@@ -584,6 +680,11 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     }
     
     
+    /**
+     * <p>to_Simplex.</p>
+     *
+     * @return a {@link geometry.planar.Simplex} object.
+     */
     public Simplex to_Simplex()
     {
         if (is_empty())
@@ -603,11 +704,18 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return precalculated_to_simplex;
     }
     
+    /** {@inheritDoc} */
     public RegularTileShape bounding_shape(ShapeBoundingDirections p_dirs)
     {
         return p_dirs.bounds(this);
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.Shape} object.
+     * @return a boolean.
+     */
     public boolean intersects(Shape p_other)
     {
         return p_other.intersects(this);
@@ -617,6 +725,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
      * Returns true, if p_point is contained in this octagon.
      * Because of the parameter type FloatPoint, the function may not
      * be exact close to the border.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a boolean.
      */
     public boolean contains(FloatPoint p_point)
     {
@@ -637,6 +748,11 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     /**
      * Calculates the side of the point (p_x, p_y)  of the border line with index p_border_line_no.
      * The border lines are located in counterclock sense around this octagon.
+     *
+     * @param p_x a int.
+     * @param p_y a int.
+     * @param p_border_line_no a int.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of_border_line(int p_x, int p_y, int p_border_line_no)
     {
@@ -701,6 +817,12 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     }
     
     
+    /**
+     * <p>intersection.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntOctagon} object.
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon intersection(IntOctagon p_other)
     {
         IntOctagon result =
@@ -717,6 +839,8 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * checkes if this (normalized) octagon is contained in p_box
      */
     public boolean is_contained_in(IntBox p_box)
@@ -725,6 +849,12 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
                 rx <= p_box.ur.x && uy <=p_box.ur.y);
     }
     
+    /**
+     * <p>is_contained_in.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntOctagon} object.
+     * @return a boolean.
+     */
     public boolean is_contained_in(IntOctagon p_other)
     {
         boolean result = lx >= p_other.lx && ly >= p_other.ly &&
@@ -735,6 +865,7 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /** {@inheritDoc} */
     public IntOctagon union(IntOctagon p_other)
     {
         IntOctagon result =
@@ -745,12 +876,20 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a boolean.
+     */
     public boolean intersects(IntBox p_other)
     {
         return intersects(p_other.to_IntOctagon());
     }
     
     /**
+     * {@inheritDoc}
+     *
      * checks, if two normalized Octagons intersect.
      */
     public boolean intersects(IntOctagon p_other)
@@ -851,6 +990,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns true, if this octagon intersects with p_other and the intersection is 2-dimensional.
+     *
+     * @param p_other a {@link geometry.planar.IntOctagon} object.
+     * @return a boolean.
      */
     public boolean overlaps(IntOctagon p_other)
     {
@@ -948,17 +1090,35 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return true;
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.Simplex} object.
+     * @return a boolean.
+     */
     public boolean intersects(Simplex p_other)
     {
         return p_other.intersects(this);
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_other a {@link geometry.planar.Circle} object.
+     * @return a boolean.
+     */
     public boolean intersects(Circle p_other)
     {
         return p_other.intersects(this);
     }
     
     
+    /**
+     * <p>union.</p>
+     *
+     * @param p_other a {@link geometry.planar.IntBox} object.
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon union(IntBox p_other)
     {
         return union(p_other.to_IntOctagon());
@@ -966,6 +1126,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * computes the x value of the left boundary of this Octagon at p_y
+     *
+     * @param p_y a int.
+     * @return a int.
      */
     public int left_x_value(int p_y)
     {
@@ -975,6 +1138,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * computes the x value of the right boundary of this Octagon at p_y
+     *
+     * @param p_y a int.
+     * @return a int.
      */
     public int right_x_value(int p_y)
     {
@@ -984,6 +1150,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * computes the y value of the lower boundary of this Octagon at p_x
+     *
+     * @param p_x a int.
+     * @return a int.
      */
     public int lower_y_value(int p_x)
     {
@@ -993,6 +1162,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * computes the y value of the upper boundary of this Octagon at p_x
+     *
+     * @param p_x a int.
+     * @return a int.
      */
     public int upper_y_value(int p_x)
     {
@@ -1000,12 +1172,14 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return Math.min(result, urx - p_x);
     }
     
+    /** {@inheritDoc} */
     public Side compare(RegularTileShape p_other, int p_edge_no)
     {
         Side result = p_other.compare(this, p_edge_no);
         return result.negate();
     }
     
+    /** {@inheritDoc} */
     public Side compare(IntOctagon p_other, int p_edge_no)
     {
         Side result;
@@ -1148,11 +1322,13 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
+    /** {@inheritDoc} */
     public Side compare(IntBox p_other, int p_edge_no)
     {
         return compare(p_other.to_IntOctagon(), p_edge_no);
     }
     
+    /** {@inheritDoc} */
     public int border_line_index(Line p_line)
     {
         System.out.println("edge_index_of_line not yet implemented for octagons");
@@ -1161,6 +1337,10 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     /**
      * Calculates the border point of this octagon from p_point into the 45 degree direction p_dir.
      * If this border point is not an IntPoint, the nearest outside IntPoint of the octagon is returned.
+     *
+     * @param p_point a {@link geometry.planar.IntPoint} object.
+     * @param p_dir a {@link geometry.planar.FortyfiveDegreeDirection} object.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint border_point(IntPoint p_point, FortyfiveDegreeDirection p_dir)
     {
@@ -1224,6 +1404,10 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
      * Calculates the sorted  p_max_result_points nearest points on the
      * border of this octagon in the 45-degree directions.
      * p_point is assumed to be located in the interiour of this octagon.
+     *
+     * @param p_point a {@link geometry.planar.IntPoint} object.
+     * @param p_max_result_points a int.
+     * @return an array of {@link geometry.planar.IntPoint} objects.
      */
     public IntPoint[] nearest_border_projections(IntPoint p_point, int p_max_result_points)
     {
@@ -1406,6 +1590,8 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     
     /**
      * Checks, if this octagon can be converted to an IntBox.
+     *
+     * @return a boolean.
      */
     public boolean is_IntBox()
     {
@@ -1421,6 +1607,11 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         
     }
     
+    /**
+     * <p>simplify.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape simplify()
     {
         if (this.is_IntBox())
@@ -1430,6 +1621,12 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return this;
     }
     
+    /**
+     * <p>cutout.</p>
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @return an array of {@link geometry.planar.TileShape} objects.
+     */
     public TileShape[] cutout(TileShape p_shape)
     {
         return p_shape.cutout_from(this);

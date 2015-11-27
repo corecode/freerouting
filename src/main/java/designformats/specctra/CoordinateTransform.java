@@ -30,6 +30,7 @@ import geometry.planar.PolylineShape;
  * Computes transformations between a specctra dsn-file coordinates and board coordinates.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CoordinateTransform implements java.io.Serializable
 {
@@ -38,6 +39,10 @@ public class CoordinateTransform implements java.io.Serializable
      * Creates a new instance of CoordinateTransform.
      * The base point of the dsn coordinate system will be translated to zero in the board
      * coordinate system.
+     *
+     * @param p_scale_factor a double.
+     * @param p_base_x a double.
+     * @param p_base_y a double.
      */
     public CoordinateTransform(double p_scale_factor, double p_base_x, double p_base_y)
     {
@@ -48,6 +53,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Scale a value from the board to the dsn coordinate system
+     *
+     * @param p_val a double.
+     * @return a double.
      */
     public double board_to_dsn(double p_val)
     {
@@ -56,6 +64,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Scale a value from the dsn to the board coordinate system
+     *
+     * @param p_val a double.
+     * @return a double.
      */
     public double dsn_to_board(double p_val)
     {
@@ -65,6 +76,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms a geometry.planar.FloatPoint to a tuple of doubles
      * in the dsn coordinate system.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return an array of double.
      */
     public double[]  board_to_dsn(FloatPoint p_point)
     {
@@ -77,6 +91,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms a geometry.planar.FloatPoint to a tuple of doubles
      * in the dsn coordinate system in relative (vector) coordinates.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return an array of double.
      */
     public double[]  board_to_dsn_rel(FloatPoint p_point)
     {
@@ -89,6 +106,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms an array of n geometry.planar.FloatPoints to
      * an array of 2*n  doubles in the dsn coordinate system.
+     *
+     * @param p_points an array of {@link geometry.planar.FloatPoint} objects.
+     * @return an array of double.
      */
     public double [] board_to_dsn(FloatPoint [] p_points)
     {
@@ -104,6 +124,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms an array of n geometry.planar.Lines to
      * an array of 4*n  doubles in the dsn coordinate system.
+     *
+     * @param p_lines an array of {@link geometry.planar.Line} objects.
+     * @return an array of double.
      */
     public double [] board_to_dsn(Line [] p_lines)
     {
@@ -123,6 +146,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms an array of n geometry.planar.FloatPoints to
      * an array of 2*n  doubles in the dsn coordinate system in relative (vector) coordinates.
+     *
+     * @param p_points an array of {@link geometry.planar.FloatPoint} objects.
+     * @return an array of double.
      */
     public double [] board_to_dsn_rel(FloatPoint [] p_points)
     {
@@ -138,6 +164,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms a geometry.planar.Vector to a tuple of doubles
      * in the dsn coordinate system.
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @return an array of double.
      */
     public double[]  board_to_dsn(Vector p_vector)
     {
@@ -150,6 +179,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms a dsn tuple to a geometry.planar.FloatPoint
+     *
+     * @param p_tuple an array of double.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint dsn_to_board(double [] p_tuple)
     {
@@ -160,6 +192,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms a dsn tuple to a geometry.planar.FloatPoint in relative (vector) coordinates.
+     *
+     * @param p_tuple an array of double.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint dsn_to_board_rel(double [] p_tuple)
     {
@@ -170,6 +205,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms a geometry.planar.Intbox to the coordinates of a Rectangle.
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @return an array of double.
      */
     public double [] board_to_dsn(IntBox p_box)
     {
@@ -183,6 +221,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms a geometry.planar.Intbox to a Rectangle in relative (vector) coordinates.
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @return an array of double.
      */
     public double [] board_to_dsn_rel(IntBox p_box)
     {
@@ -196,6 +237,10 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms a board shape to a dsn shape.
+     *
+     * @param p_board_shape a {@link geometry.planar.Shape} object.
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     * @return a {@link designformats.specctra.Shape} object.
      */
     public Shape board_to_dsn(geometry.planar.Shape p_board_shape, Layer p_layer)
     {
@@ -227,6 +272,10 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms the relative (vector) coordinates of a geometry.planar.Shape to a specctra dsn shape.
+     *
+     * @param p_board_shape a {@link geometry.planar.Shape} object.
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     * @return a {@link designformats.specctra.Shape} object.
      */
     public Shape board_to_dsn_rel(geometry.planar.Shape p_board_shape, Layer p_layer)
     {

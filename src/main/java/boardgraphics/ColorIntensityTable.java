@@ -25,6 +25,7 @@ package boardgraphics;
  * The values are between 0 (invisible) and 1 (full intensity).
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ColorIntensityTable implements java.io.Serializable
 {
@@ -51,6 +52,8 @@ public class ColorIntensityTable implements java.io.Serializable
     
     /**
      * Copy constructor.
+     *
+     * @param p_color_intesity_table a {@link boardgraphics.ColorIntensityTable} object.
      */
     public ColorIntensityTable(ColorIntensityTable p_color_intesity_table)
     {
@@ -61,6 +64,12 @@ public class ColorIntensityTable implements java.io.Serializable
         }
     }
     
+    /**
+     * <p>get_value.</p>
+     *
+     * @param p_no a int.
+     * @return a double.
+     */
     public double get_value(int p_no)
     {
         if (p_no < 0 || p_no >= ObjectNames.values().length)
@@ -71,6 +80,12 @@ public class ColorIntensityTable implements java.io.Serializable
         return arr[p_no];
     }
     
+    /**
+     * <p>set_value.</p>
+     *
+     * @param p_no a int.
+     * @param p_value a double.
+     */
     public void set_value(int p_no, double p_value)
     {
         if (p_no < 0 || p_no >= ObjectNames.values().length)

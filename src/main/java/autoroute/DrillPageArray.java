@@ -34,11 +34,17 @@ import board.RoutingBoard;
  * The pages are rectangles of about equal width and height covering covering the bounding box of the board area.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class DrillPageArray
 {
     
-    /** Creates a new instance of DrillPageArray */
+    /**
+     * Creates a new instance of DrillPageArray
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_max_page_width a int.
+     */
     public DrillPageArray(RoutingBoard p_board, int p_max_page_width)
     {
         this.bounds = p_board.bounding_box;
@@ -81,6 +87,8 @@ public class DrillPageArray
     /**
      * Invalidates all drill pages intersecting with p_shape, so the they must be recalculated at the next
      * call of get_ddrills()
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
      */
     public void  invalidate(TileShape p_shape)
     {
@@ -93,6 +101,9 @@ public class DrillPageArray
     
     /**
      * Collects all drill pages with a 2-dimensional overlap with p_shape.
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @return a java$util$Collection object.
      */
     public Collection<DrillPage> overlapping_pages(TileShape p_shape)
     {
@@ -139,6 +150,13 @@ public class DrillPageArray
    /*
     * Test draw of the all drills
     */
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_intensity a double.
+     */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity)
     {
         for (int j = 0; j < page_arr.length; ++j)

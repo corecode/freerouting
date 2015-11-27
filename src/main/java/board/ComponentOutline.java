@@ -31,13 +31,25 @@ import geometry.planar.FloatPoint;
 import boardgraphics.GraphicsContext;
 
 /**
+ * <p>ComponentOutline class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ComponentOutline extends Item implements java.io.Serializable
 {
 
-    /** Creates a new instance of ComponentOutline */
+    /**
+     * Creates a new instance of ComponentOutline
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_is_front a boolean.
+     * @param p_translation a {@link geometry.planar.Vector} object.
+     * @param p_rotation_in_degree a double.
+     * @param p_component_no a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @param p_board a {@link board.BasicBoard} object.
+     */
     public ComponentOutline(Area p_area, boolean p_is_front, Vector p_translation, double p_rotation_in_degree,
             int p_component_no, FixedState p_fixed_state, BasicBoard p_board)
     {
@@ -48,17 +60,24 @@ public class ComponentOutline extends Item implements java.io.Serializable
         this.rotation_in_degree = p_rotation_in_degree;
     }
 
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         return new ComponentOutline(this.relative_area, this.is_front, this.translation, this.rotation_in_degree,
                 this.get_component_no(), this.get_fixed_state(), this.board);
     }
 
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         return false;
     }
 
+    /**
+     * <p>get_layer.</p>
+     *
+     * @return a int.
+     */
     public int get_layer()
     {
         int result;
@@ -73,46 +92,72 @@ public class ComponentOutline extends Item implements java.io.Serializable
         return result;
     }
 
+    /**
+     * <p>first_layer.</p>
+     *
+     * @return a int.
+     */
     public int first_layer()
     {
         return get_layer();
     }
 
+    /**
+     * <p>last_layer.</p>
+     *
+     * @return a int.
+     */
     public int last_layer()
     {
         return get_layer();
     }
 
+    /** {@inheritDoc} */
     public boolean is_on_layer(int p_layer)
     {
         return get_layer() == p_layer;
     }
 
+    /**
+     * <p>is_obstacle.</p>
+     *
+     * @param p_item a {@link board.Item} object.
+     * @return a boolean.
+     */
     public boolean is_obstacle(Item p_item)
     {
         return false;
     }
 
+    /** {@inheritDoc} */
     public int shape_layer(int p_index)
     {
         return get_layer();
     }
 
+    /**
+     * <p>tile_shape_count.</p>
+     *
+     * @return a int.
+     */
     public int tile_shape_count()
     {
         return 0;
     }
 
+    /** {@inheritDoc} */
     protected geometry.planar.TileShape[] calculate_tree_shapes(ShapeSearchTree p_search_tree)
     {
         return new geometry.planar.TileShape[0];
     }
 
+    /** {@inheritDoc} */
     public double get_draw_intensity(GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_component_outline_color_intensity();
     }
 
+    /** {@inheritDoc} */
     public Color[] get_draw_colors(GraphicsContext p_graphics_context)
     {
         Color[] color_arr = new java.awt.Color[this.board.layer_structure.arr.length];
@@ -128,11 +173,17 @@ public class ComponentOutline extends Item implements java.io.Serializable
         return color_arr;
     }
 
+    /**
+     * <p>get_draw_priority.</p>
+     *
+     * @return a int.
+     */
     public int get_draw_priority()
     {
         return boardgraphics.Drawable.MIDDLE_DRAW_PRIORITY;
     }
 
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_g, GraphicsContext p_graphics_context, Color[] p_color_arr, double p_intensity)
     {
         if (p_graphics_context == null || p_intensity <= 0)
@@ -146,17 +197,24 @@ public class ComponentOutline extends Item implements java.io.Serializable
         p_graphics_context.draw_boundary(this.get_area(), draw_width, color, p_g, intensity);
     }
 
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public geometry.planar.IntBox bounding_box()
     {
         return get_area().bounding_box();
     }
 
+    /** {@inheritDoc} */
     public void translate_by(Vector p_vector)
     {
         this.translation = this.translation.add(p_vector);
         clear_derived_data();
     }
 
+    /** {@inheritDoc} */
     public void change_placement_side(IntPoint p_pole)
     {
         this.is_front = !this.is_front;
@@ -165,6 +223,7 @@ public class ComponentOutline extends Item implements java.io.Serializable
         clear_derived_data();
     }
 
+    /** {@inheritDoc} */
     public void rotate_approx(double p_angle_in_degree, FloatPoint p_pole)
     {
         double turn_angle = p_angle_in_degree;
@@ -186,6 +245,7 @@ public class ComponentOutline extends Item implements java.io.Serializable
         clear_derived_data();
     }
 
+    /** {@inheritDoc} */
     public void turn_90_degree(int p_factor, IntPoint p_pole)
     {
         this.rotation_in_degree += p_factor * 90;
@@ -202,6 +262,11 @@ public class ComponentOutline extends Item implements java.io.Serializable
         clear_derived_data();
     }
 
+    /**
+     * <p>get_area.</p>
+     *
+     * @return a {@link geometry.planar.Area} object.
+     */
     public Area get_area()
     {
         if (this.precalculated_absolute_area == null)
@@ -238,15 +303,20 @@ public class ComponentOutline extends Item implements java.io.Serializable
         return this.precalculated_absolute_area;
     }
 
+    /**
+     * <p>clear_derived_data.</p>
+     */
     public void clear_derived_data()
     {
         precalculated_absolute_area = null;
     }
 
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
     }
 
+    /** {@inheritDoc} */
     public boolean write(java.io.ObjectOutputStream p_stream)
     {
         try

@@ -24,6 +24,7 @@ package autoroute;
  * Describes the structure of a section of an ExpandebleObject.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MazeSearchElement
 {

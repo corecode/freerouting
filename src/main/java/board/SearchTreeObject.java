@@ -24,23 +24,33 @@ package board;
  * Common ShapeSearchTree functionality for board.Items and autoroute.ExpansionRooms
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public interface SearchTreeObject extends datastructures.ShapeTree.Storable
 {
     /**
      * Returns true if this object is an obstacle to objects containing
      *  the net number p_net_no
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     boolean is_obstacle(int p_net_no);
     
     /**
      * Returns true if this object is an obstacle to traces containing
      *  the net number p_net_no
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     boolean is_trace_obstacle(int p_net_no);
     
     /**
      * returns for this object the layer of the shape with index p_index.
+     *
+     * @param p_index a int.
+     * @return a int.
      */
     abstract int shape_layer(int p_index);
 }

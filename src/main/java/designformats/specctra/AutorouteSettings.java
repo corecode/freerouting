@@ -24,8 +24,10 @@ import datastructures.IndentFileWriter;
 import datastructures.IdentifierType;
 
 /**
+ * <p>AutorouteSettings class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class AutorouteSettings
 {

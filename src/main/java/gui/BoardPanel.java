@@ -40,11 +40,19 @@ import javax.swing.event.TableModelListener;
  * Panel containing the graphical representation of a routing board.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardPanel extends javax.swing.JPanel
 {
     
-    /** Creates a new BoardPanel in an Application */
+    /**
+     * Creates a new BoardPanel in an Application
+     *
+     * @param p_screen_messages a {@link interactive.ScreenMessages} object.
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_is_web_application a boolean.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public BoardPanel(ScreenMessages p_screen_messages, BoardFrame p_board_frame,
             boolean p_is_web_application, java.util.Locale p_locale)
     {
@@ -133,6 +141,12 @@ public class BoardPanel extends javax.swing.JPanel
     }
     
     
+    /**
+     * <p>zoom_with_mouse_wheel.</p>
+     *
+     * @param p_point a java$awt$geom$Point2D object.
+     * @param p_wheel_rotation a int.
+     */
     public void zoom_with_mouse_wheel(java.awt.geom.Point2D p_point, int p_wheel_rotation)
     {
         if (this.middle_drag_position != null || p_wheel_rotation == 0)
@@ -215,6 +229,8 @@ public class BoardPanel extends javax.swing.JPanel
     }
     
     /**
+     * {@inheritDoc}
+     *
      * overwrites the paintComponent method to draw the routing board
      */
     public void paintComponent(Graphics p_g)
@@ -232,6 +248,8 @@ public class BoardPanel extends javax.swing.JPanel
     
     /**
      * Returns the position of the viewport
+     *
+     * @return a {@link java.awt.Point} object.
      */
     public java.awt.Point get_viewport_position()
     {
@@ -250,6 +268,8 @@ public class BoardPanel extends javax.swing.JPanel
     
     /**
      * zooms in at p_position
+     *
+     * @param p_position a java$awt$geom$Point2D object.
      */
     public void zoom_in(java.awt.geom.Point2D p_position)
     {
@@ -258,6 +278,8 @@ public class BoardPanel extends javax.swing.JPanel
     
     /**
      * zooms out at p_position
+     *
+     * @param p_position a java$awt$geom$Point2D object.
      */
     public void zoom_out(java.awt.geom.Point2D p_position)
     {
@@ -267,6 +289,9 @@ public class BoardPanel extends javax.swing.JPanel
     
     /**
      * zooms to frame
+     *
+     * @param p_position1 a java$awt$geom$Point2D object.
+     * @param p_position2 a java$awt$geom$Point2D object.
      */
     public void zoom_frame(java.awt.geom.Point2D p_position1, java.awt.geom.Point2D p_position2)
     {
@@ -287,6 +312,11 @@ public class BoardPanel extends javax.swing.JPanel
         set_viewport_center(changed_location);
     }
     
+    /**
+     * <p>center_display.</p>
+     *
+     * @param p_new_center a java$awt$geom$Point2D object.
+     */
     public void center_display(Point2D p_new_center)
     {
         java.awt.Point delta = set_viewport_center(p_new_center);
@@ -301,6 +331,11 @@ public class BoardPanel extends javax.swing.JPanel
     }
     
     
+    /**
+     * <p>get_viewport_center.</p>
+     *
+     * @return a java$awt$geom$Point2D object.
+     */
     public java.awt.geom.Point2D get_viewport_center()
     {
         java.awt.Point pos = get_viewport_position();
@@ -312,6 +347,10 @@ public class BoardPanel extends javax.swing.JPanel
     /**
      * zooms the content of the board by p_factor
      * Returns the change of the cursor location
+     *
+     * @param p_factor a double.
+     * @param p_location a java$awt$geom$Point2D object.
+     * @return a java$awt$geom$Point2D object.
      */
     public java.awt.geom.Point2D zoom(double p_factor, java.awt.geom.Point2D p_location)
     {
@@ -373,6 +412,8 @@ public class BoardPanel extends javax.swing.JPanel
     
     /**
      * Selects the p_signal_layer_no-th layer in the select_parameter_window.
+     *
+     * @param p_signal_layer_no a int.
      */
     public void set_selected_signal_layer(int p_signal_layer_no)
     {
@@ -421,6 +462,11 @@ public class BoardPanel extends javax.swing.JPanel
         set_viewport_position(p) ;
     }
     
+    /**
+     * <p>move_mouse.</p>
+     *
+     * @param p_location a java$awt$geom$Point2D object.
+     */
     public void move_mouse(Point2D p_location)
     {
         if (robot == null)
@@ -438,6 +484,8 @@ public class BoardPanel extends javax.swing.JPanel
      * If p_value is true, the custom crosshair cursor will be used in display.
      * Otherwise the standard Cursor will be used.
      * Using the custom cursor may slow down the display performance a lot.
+     *
+     * @param p_value a boolean.
      */
     public void set_custom_crosshair_cursor(boolean p_value)
     {
@@ -457,6 +505,8 @@ public class BoardPanel extends javax.swing.JPanel
      * If the result is true, the custom crosshair cursor will be used in display.
      * Otherwise the standard Cursor will be used.
      * Using the custom cursor may slow down the display performance a lot.
+     *
+     * @return a boolean.
      */
     public boolean is_custom_cross_hair_cursor()
     {

@@ -54,6 +54,7 @@ import board.TestLevel;
  *  Class implementing actions on the currently selected items.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SelectedItemState extends InteractiveState
 {
@@ -61,6 +62,12 @@ public class SelectedItemState extends InteractiveState
     /**
      * Creates a new SelectedItemState  with with the items in p_item_list selected.
      * Returns null, if p_item_list is empty.
+     *
+     * @param p_item_list a {@link java.util.Set} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.SelectedItemState} object.
      */
     public static SelectedItemState get_instance(Set<Item> p_item_list, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
@@ -81,23 +88,29 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Gets the list of the currently selected items.
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Item> get_item_list()
     {
         return item_list;
     }
 
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         return toggle_select(p_location);
     }
 
+    /** {@inheritDoc} */
     public InteractiveState mouse_dragged(FloatPoint p_point)
     {
         return SelectItemsInRegionState.get_instance(hdlg.get_current_mouse_position(), this, hdlg, logfile);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Action to be taken when a key is pressed (Shortcut).
      */
     public InteractiveState key_typed(char p_key_char)
@@ -212,6 +225,8 @@ public class SelectedItemState extends InteractiveState
     /**
      * Makes all items in this selected_set connectable and assigns
      * them to a new net.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState assign_items_to_new_net()
     {
@@ -260,6 +275,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Assigns all items in this selected_set to a new group( new component for example)
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState assign_items_to_new_group()
     {
@@ -328,6 +345,8 @@ public class SelectedItemState extends InteractiveState
     /**
      * Deletes all unfixed items in this selected set and
      * pulls tight the neighour traces.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState delete_items()
     {
@@ -377,6 +396,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Deletes all unfixed items in this selected set inside a rectangle
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState cutout_items()
     {
@@ -386,6 +407,9 @@ public class SelectedItemState extends InteractiveState
     /**
      * Autoroutes the selected items.
      * If p_stoppable_thread != null, the algorithm can be requestet to terminate.
+     *
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState autoroute(Stoppable p_stoppable_thread)
     {
@@ -496,6 +520,9 @@ public class SelectedItemState extends InteractiveState
     /**
      * Fanouts the pins contained in the selected items.
      * If p_stoppable_thread != null, the algorithm can be requestet to terminate.
+     *
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState fanout(Stoppable p_stoppable_thread)
     {
@@ -583,6 +610,9 @@ public class SelectedItemState extends InteractiveState
     /**
      * Optimizes the selected items.
      * If p_stoppable_thread != null, the algorithm can be requestet to terminate.
+     *
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState pull_tight(Stoppable p_stoppable_thread)
     {
@@ -655,6 +685,9 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Assigns the input  clearance class to the selected items.
+     *
+     * @param p_cl_class_index a int.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState assign_clearance_class(int p_cl_class_index)
     {
@@ -683,6 +716,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Select also all items belonging to any net of the current selected items.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState extent_to_whole_nets()
     {
@@ -724,6 +759,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Select also all items belonging to any group of the current selected items.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState extent_to_whole_components()
     {
@@ -762,6 +799,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Select also all items belonging to any connected set of the current selected items.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState extent_to_whole_connected_sets()
     {
@@ -791,6 +830,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Select also all items belonging to any connection of the current selected items.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState extent_to_whole_connections()
     {
@@ -823,6 +864,9 @@ public class SelectedItemState extends InteractiveState
      * Removes it from the selected_items list, if it is already in there,
      * otherwise adds it to the list.
      * Returns true (to change to the return_state) if nothing was picked.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState toggle_select(FloatPoint p_point)
     {
@@ -883,6 +927,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Removes items not selected by the current interactive filter from the selected item list.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState filter()
     {
@@ -898,6 +944,8 @@ public class SelectedItemState extends InteractiveState
 
     /**
      * Prints information about the selected item into a graphical text window.
+     *
+     * @return a {@link interactive.SelectedItemState} object.
      */
     public SelectedItemState info()
     {
@@ -905,11 +953,17 @@ public class SelectedItemState extends InteractiveState
         return this;
     }
 
+    /**
+     * <p>get_help_id.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_help_id()
     {
         return "SelectedItemState";
     }
 
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         if (item_list == null)
@@ -928,16 +982,27 @@ public class SelectedItemState extends InteractiveState
         }
     }
 
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_select;
     }
 
+    /**
+     * <p>set_toolbar.</p>
+     */
     public void set_toolbar()
     {
         hdlg.get_panel().board_frame.set_select_toolbar();
     }
 
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(resources.getString("in_select_item_mode"));

@@ -27,11 +27,22 @@ import board.Item;
 import board.ItemSelectionFilter;
 
 /**
+ * <p>PinSwapState class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PinSwapState extends InteractiveState
 {
+    /**
+     * <p>get_instance.</p>
+     *
+     * @param p_pin_to_swap a {@link board.Pin} object.
+     * @param p_return_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public static InteractiveState get_instance(Pin p_pin_to_swap, InteractiveState p_return_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         PinSwapState new_state = new PinSwapState(p_pin_to_swap, p_return_state, p_board_handling, p_logfile);
@@ -52,6 +63,7 @@ public class PinSwapState extends InteractiveState
     }
     
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         ItemSelectionFilter selection_filter = new ItemSelectionFilter(ItemSelectionFilter.SelectableChoices.PINS);
@@ -76,6 +88,11 @@ public class PinSwapState extends InteractiveState
         return complete();
     }
     
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         if (this.from_pin == null || this.to_pin == null)
@@ -130,6 +147,7 @@ public class PinSwapState extends InteractiveState
         return this.return_state;
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         java.awt.Color highlight_color = hdlg.graphics_context.get_hilight_color();

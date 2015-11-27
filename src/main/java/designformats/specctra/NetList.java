@@ -31,12 +31,16 @@ import java.util.Set;
  * The net number is generated internally.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class NetList
 {
     
     /**
      * Returns true, if the netlist contains a net with the input name.
+     *
+     * @param p_net_id a {@link designformats.specctra.Net.Id} object.
+     * @return a boolean.
      */
     public boolean contains(Net.Id p_net_id)
     {
@@ -47,6 +51,9 @@ public class NetList
      * Adds a new net mit the input name to the net list.
      * Returns null, if a net with p_name already exists in the net list.
      * In this case no new net is added.
+     *
+     * @param p_net_id a {@link designformats.specctra.Net.Id} object.
+     * @return a {@link designformats.specctra.Net} object.
      */
     public Net add_net(Net.Id p_net_id)
     {
@@ -66,6 +73,9 @@ public class NetList
     /**
      * Returns the net with the input name, or null,
      * if the netlist does not contain a net with the input name.
+     *
+     * @param p_net_id a {@link designformats.specctra.Net.Id} object.
+     * @return a {@link designformats.specctra.Net} object.
      */
     public Net get_net(Net.Id p_net_id)
     {
@@ -75,6 +85,10 @@ public class NetList
     
     /**
      * Returns all nets in this net list containing the input pin.
+     *
+     * @param p_component_name a {@link java.lang.String} object.
+     * @param p_pin_name a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Net> get_nets(String p_component_name, String p_pin_name)
     {

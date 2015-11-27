@@ -39,14 +39,23 @@ import board.ClearanceViolation;
 import board.LayerStructure;
 
 /**
+ * <p>MoveItemState class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MoveItemState extends InteractiveState
 {
     /**
      * Returns a new instance of MoveComponentState, or null, if the items of p_itemlist do not belong
      * to a single component.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.MoveItemState} object.
      */
     public static MoveItemState get_instance(FloatPoint p_location, Collection<Item> p_item_list,
             InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
@@ -232,6 +241,11 @@ public class MoveItemState extends InteractiveState
         this.net_items_list.add(new_net_items);
     }
     
+    /**
+     * <p>mouse_moved.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState mouse_moved()
     {
         super.mouse_moved();
@@ -243,17 +257,24 @@ public class MoveItemState extends InteractiveState
         return this;
     }
     
+    /** {@inheritDoc} */
     public InteractiveState process_logfile_point(FloatPoint p_point)
     {
         move(p_point);
         return this;
     }
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         return this.complete();
     }
     
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         for (Item curr_item : this.item_list)
@@ -290,6 +311,11 @@ public class MoveItemState extends InteractiveState
         return this.return_state;
     }
     
+    /**
+     * <p>cancel.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState cancel()
     {
         hdlg.get_routing_board().undo(null);
@@ -304,6 +330,7 @@ public class MoveItemState extends InteractiveState
         return this.return_state;
     }
     
+    /** {@inheritDoc} */
     public InteractiveState mouse_wheel_moved(int p_rotation)
     {
         if (hdlg.settings.zoom_with_wheel)
@@ -365,6 +392,8 @@ public class MoveItemState extends InteractiveState
     
     /**
      *   Turns the items in the list by p_factor times 90 degree around the current position.
+     *
+     * @param p_factor a int.
      */
     public void turn_90_degree(int p_factor)
     {
@@ -395,6 +424,11 @@ public class MoveItemState extends InteractiveState
     }
     
     
+    /**
+     * <p>rotate.</p>
+     *
+     * @param p_angle_in_degree a double.
+     */
     public void rotate(double p_angle_in_degree)
     {
         if (p_angle_in_degree == 0)
@@ -427,6 +461,8 @@ public class MoveItemState extends InteractiveState
     
     /**
      *   Turns the items in the list by p_factor times 90 degree around the current position.
+     *
+     * @param p_factor a int.
      */
     public void turn_45_degree(int p_factor)
     {
@@ -502,6 +538,9 @@ public class MoveItemState extends InteractiveState
     
     
     
+    /**
+     * <p>reset_rotation.</p>
+     */
     public void reset_rotation()
     {
         Component component_to_reset = null;
@@ -531,6 +570,8 @@ public class MoveItemState extends InteractiveState
     
     
     /**
+     * {@inheritDoc}
+     *
      * Action to be taken when a key is pressed (Shortcut).
      */
     public InteractiveState key_typed(char p_key_char)
@@ -567,16 +608,27 @@ public class MoveItemState extends InteractiveState
         return curr_return_state;
     }
     
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_move;
     }
     
+    /**
+     * <p>get_help_id.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_help_id()
     {
         return "MoveItemState";
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         if (this.item_list == null)

@@ -57,6 +57,7 @@ import boardgraphics.GraphicsContext;
  * Functionality for interactive routing.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Route
 {
@@ -65,6 +66,24 @@ public class Route
      * Starts routing a connection.
      * p_pen_half_width_arr is provided because it may be different from
      * the half width array in p_board.rules.
+     *
+     * @param p_start_corner a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_pen_half_width_arr an array of int.
+     * @param p_layer_active_arr an array of boolean.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_via_rule a {@link rules.ViaRule} object.
+     * @param p_push_enabled a boolean.
+     * @param p_trace_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @param p_start_item a {@link board.Item} object.
+     * @param p_target_set a {@link java.util.Set} object.
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_is_stitch_mode a boolean.
+     * @param p_with_neckdown a boolean.
+     * @param p_via_snap_to_smd_center a boolean.
+     * @param p_hilight_shove_failing_obstacle a boolean.
      */
     public Route(Point p_start_corner, int p_layer, int[] p_pen_half_width_arr, boolean[] p_layer_active_arr, int[] p_net_no_arr,
             int p_clearance_class, ViaRule p_via_rule, boolean p_push_enabled,
@@ -116,6 +135,9 @@ public class Route
      * Append a line to the trace routed so far.
      * Return true, if the route is completed by connecting
      * to a target.
+     *
+     * @param p_corner a {@link geometry.planar.FloatPoint} object.
+     * @return a boolean.
      */
     public boolean next_corner(FloatPoint p_corner)
     {
@@ -247,6 +269,9 @@ public class Route
     /**
      * Changing the layer in interactive route and inserting a via.
      *  Returns false, if changing the layer was not possible.
+     *
+     * @param p_to_layer a int.
+     * @return a boolean.
      */
     public boolean change_layer(int p_to_layer)
     {
@@ -424,8 +449,11 @@ public class Route
         return connection_succeeded;
     }
 
-    /** Calculates the nearest layer of the nearest target item
+    /**
+     * Calculates the nearest layer of the nearest target item
      * to this.layer.
+     *
+     * @return a int.
      */
     public int nearest_target_layer()
     {
@@ -491,6 +519,9 @@ public class Route
 
     /**
      * Hilights the targets and draws the incomplete.
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)
     {
@@ -676,11 +707,22 @@ public class Route
         }
     }
 
+    /**
+     * <p>get_last_corner.</p>
+     *
+     * @return a {@link geometry.planar.Point} object.
+     */
     public Point get_last_corner()
     {
         return prev_corner;
     }
 
+    /**
+     * <p>is_layer_active.</p>
+     *
+     * @param p_layer a int.
+     * @return a boolean.
+     */
     public boolean is_layer_active(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active.length)

@@ -23,12 +23,18 @@ package gui;
 
 /**
  * Class for temporary subwindows of the boarrd frame
+ *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardTemporarySubWindow extends BoardSubWindow
 {
     
-    /** Creates a new instance of BoardTemporarySubWindow */
+    /**
+     * Creates a new instance of BoardTemporarySubWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public BoardTemporarySubWindow(BoardFrame p_board_frame)
     {
         this.board_frame = p_board_frame;
@@ -43,12 +49,17 @@ public class BoardTemporarySubWindow extends BoardSubWindow
         });
     }
     
-    /** Used,  when the board frame with all the subwindows is disposed. */
+    /**
+     * Used,  when the board frame with all the subwindows is disposed.
+     */
     public void board_frame_disposed()
     {
         super.dispose();
     }
     
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         this.board_frame.temporary_subwindows.remove(this);

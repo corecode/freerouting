@@ -52,12 +52,15 @@ import datastructures.IdentifierType;
 class Wiring extends ScopeKeyword
 {
     
-    /** Creates a new instance of Wiring */
+    /**
+     * Creates a new instance of Wiring
+     */
     public Wiring()
     {
         super("wiring");
     }
     
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         Object next_token = null;
@@ -112,6 +115,12 @@ class Wiring extends ScopeKeyword
         return true;
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par) throws java.io.IOException
     {
         p_par.file.start_scope();

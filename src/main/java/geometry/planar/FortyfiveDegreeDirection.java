@@ -26,6 +26,7 @@ package geometry.planar;
  * Enum for the eight 45-degree direction starting from right in counterclocksense to down45.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public enum FortyfiveDegreeDirection
 {

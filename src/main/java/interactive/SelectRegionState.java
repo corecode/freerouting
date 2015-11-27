@@ -26,22 +26,35 @@ import geometry.planar.FloatPoint;
  * Common base class for interactive selection of a rectangle.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SelectRegionState extends InteractiveState
 {
     
-    /** Creates a new instance of SelectRegionState */
+    /**
+     * Creates a new instance of SelectRegionState
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     protected SelectRegionState(InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_parent_state, p_board_handling, p_logfile);
     }
     
+    /**
+     * <p>button_released.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState button_released()
     {
         hdlg.screen_messages.set_status_message("");
         return complete();
     }
     
+    /** {@inheritDoc} */
     public InteractiveState mouse_dragged(FloatPoint p_point)
     {
         if (corner1 == null)
@@ -56,6 +69,7 @@ public class SelectRegionState extends InteractiveState
         return this;
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         this.return_state.draw(p_graphics);

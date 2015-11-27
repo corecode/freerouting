@@ -29,11 +29,16 @@ import library.Padstacks;
  * Window displaying the library padstacks.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowPadstacks extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of PadstacksWindow */
+    /**
+     * Creates a new instance of PadstacksWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowPadstacks(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -62,6 +67,9 @@ public class WindowPadstacks extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(padstacks.count(), DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_padstacks = list.getSelectedValues();

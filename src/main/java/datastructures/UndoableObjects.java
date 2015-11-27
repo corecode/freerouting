@@ -31,11 +31,14 @@ import java.util.Vector;
  * The algorithm works only for objects containing no references.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class UndoableObjects implements java.io.Serializable
 {
 
-    /** Creates a new instance of UndoableObjectsList */
+    /**
+     * Creates a new instance of UndoableObjectsList
+     */
     public UndoableObjects()
     {
         stack_level = 0;
@@ -46,6 +49,8 @@ public class UndoableObjects implements java.io.Serializable
     /**
      * Returns an iterator for sequential reading of the object list.
      * Use it together with this.read_object().
+     *
+     * @return a {@link java.util.Iterator} object.
      */
     public Iterator<UndoableObjectNode> start_read_object()
     {
@@ -57,6 +62,9 @@ public class UndoableObjects implements java.io.Serializable
      * Reads the next object in this list.
      * Returns null, if the list is exhausted.
      * p_it must be created by start_read_object.
+     *
+     * @param p_it a {@link java.util.Iterator} object.
+     * @return a {@link datastructures.UndoableObjects.Storable} object.
      */
     public UndoableObjects.Storable read_object(Iterator<UndoableObjectNode> p_it)
     {
@@ -74,6 +82,8 @@ public class UndoableObjects implements java.io.Serializable
 
     /**
      * Adds p_object to the UndoableObjectsList.
+     *
+     * @param p_object a {@link datastructures.UndoableObjects.Storable} object.
      */
     public void insert(UndoableObjects.Storable p_object)
     {
@@ -85,6 +95,9 @@ public class UndoableObjects implements java.io.Serializable
     /**
      * Removes p_object from the top level of the UndoableObjectsList.
      * Returns false, if p_object was not found in the list.
+     *
+     * @param p_object a {@link datastructures.UndoableObjects.Storable} object.
+     * @return a boolean.
      */
     public boolean delete(UndoableObjects.Storable p_object)
     {
@@ -145,6 +158,10 @@ public class UndoableObjects implements java.io.Serializable
      * Outputs the cancelled and the restored objects (if != null) to enable
      * the calling function to take additional actions needed for these objects.
      * Returns false, if no more undo is possible
+     *
+     * @param p_cancelled_objects a {@link java.util.Collection} object.
+     * @param p_restored_objects a {@link java.util.Collection} object.
+     * @return a boolean.
      */
     public boolean undo(Collection<UndoableObjects.Storable> p_cancelled_objects, Collection<UndoableObjects.Storable> p_restored_objects)
     {
@@ -196,6 +213,10 @@ public class UndoableObjects implements java.io.Serializable
      * Outputs the cancelled and the restored objects (if != null)  to enable
      * the calling function to take additional actions needed for these objects.
      * Returns false, if no more redo is possible.
+     *
+     * @param p_cancelled_objects a {@link java.util.Collection} object.
+     * @param p_restored_objects a {@link java.util.Collection} object.
+     * @return a boolean.
      */
     public boolean redo(Collection<UndoableObjects.Storable> p_cancelled_objects, Collection<UndoableObjects.Storable> p_restored_objects)
     {
@@ -260,6 +281,8 @@ public class UndoableObjects implements java.io.Serializable
      *  Removes the top snapshot from the undo stack, so that its situation cannot be
      *  restored any more.
      *  Returns false, if no more snapshot could be popped.
+     *
+     * @return a boolean.
      */
     public boolean pop_snapshot()
     {
@@ -316,6 +339,8 @@ public class UndoableObjects implements java.io.Serializable
     /**
      * Must be callel before p_object will be modified after a snapshot
      * for the first time, if it may have existed before that snapshot.
+     *
+     * @param p_object a {@link datastructures.UndoableObjects.Storable} object.
      */
     public void save_for_undo(UndoableObjects.Storable p_object)
     {

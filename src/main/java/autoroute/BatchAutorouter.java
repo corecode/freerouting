@@ -37,8 +37,9 @@ import interactive.InteractiveActionThread;
 
 /**
  * Handles the sequencing of the batch autoroute passes.
- * 
+ *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BatchAutorouter
 {
@@ -48,6 +49,12 @@ public class BatchAutorouter
      *  or if p_max_pass_count is exceeded. Is currently used in the optimize via batch pass.
      *  Returns the number of oasses to complete the board or p_max_pass_count + 1,
      *  if the board is not completed.
+     *
+     * @param p_thread a {@link interactive.InteractiveActionThread} object.
+     * @param p_max_pass_count a int.
+     * @param p_ripup_costs a int.
+     * @param p_with_prefered_directions a boolean.
+     * @return a int.
      */
     public static int autoroute_passes_for_optimizing_item(InteractiveActionThread p_thread,
             int p_max_pass_count, int p_ripup_costs, boolean p_with_prefered_directions)
@@ -78,6 +85,11 @@ public class BatchAutorouter
 
     /**
      * Creates a new batch autorouter.
+     *
+     * @param p_thread a {@link interactive.InteractiveActionThread} object.
+     * @param p_remove_unconnected_vias a boolean.
+     * @param p_with_preferred_directions a boolean.
+     * @param p_start_ripup_costs a int.
      */
     public BatchAutorouter(InteractiveActionThread p_thread, boolean p_remove_unconnected_vias, boolean p_with_preferred_directions,
             int p_start_ripup_costs)
@@ -108,6 +120,8 @@ public class BatchAutorouter
     /**
      *  Autoroutes ripup passes until the board is completed or the autorouter is stopped by the user.
      *  Returns true if the board is completed.
+     *
+     * @return a boolean.
      */
     public boolean autoroute_passes()
     {
@@ -338,6 +352,8 @@ public class BatchAutorouter
     /**
      *  Returns the airline of the current autorouted connnection or null,
      *  if no such airline exists
+     *
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine get_air_line()
     {

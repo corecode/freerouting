@@ -28,11 +28,16 @@ import rules.BoardRules;
  * Edit window for the table of available vias.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowEditVias extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of ViaTablePanel */
+    /**
+     * Creates a new instance of ViaTablePanel
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowEditVias(BoardFrame p_board_frame)
     {
         this.resources = java.util.ResourceBundle.getBundle("gui.resources.WindowEditVias", p_board_frame.get_locale());

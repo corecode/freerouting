@@ -26,6 +26,7 @@ package board;
  * Also warnings for debugging may be printed depending on the test_level.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public enum TestLevel
 {

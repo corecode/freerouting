@@ -31,24 +31,37 @@ import datastructures.IdentifierType;
  * Describes a shape in a Specctra dsn file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public abstract class Shape
 {
 
     /**
      * Writes a shape scope to a Specctra dsn file.
+     *
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
      */
     public abstract void write_scope(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException;
 
     /**
      * Writes a shape scope to a Specctra session file.
      * In a session file all coordinates must be integer.
+     *
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
      */
     public abstract void write_scope_int(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException;
 
     /**
      * Reads shape scope from a Specctra dsn file.
      * If p_layer_structure == null, only Layer.PCB and Layer.Signal are expected, no induvidual layers.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.Shape} object.
      */
     public static final Shape read_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
@@ -98,6 +111,10 @@ public abstract class Shape
 
     /**
      * Reads an object of type PolylinePath from the dsn-file.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.PolylinePath} object.
      */
     public static PolylinePath read_polyline_path_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
@@ -201,6 +218,11 @@ public abstract class Shape
      * Reads a shape , which may contain holes from a specctra dsn-file.
      * The first shape in the shape_list of the result is the border of the area.
      * The other shapes in the shape_list are holes (windows).
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @param p_skip_window_scopes a boolean.
+     * @return a {@link designformats.specctra.Shape.ReadAreaScopeResult} object.
      */
     public static final ReadAreaScopeResult read_area_scope(Scanner p_scanner,
                                                             LayerStructure p_layer_structure, boolean p_skip_window_scopes)
@@ -302,6 +324,10 @@ public abstract class Shape
     /**
      * Reads a rectangle scope from a Specctra dsn file.
      * If p_layer_structure == null, only Layer.PCB and Layer.Signal are expected, no induvidual layers.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.Rectangle} object.
      */
     public static Rectangle read_rectangle_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
@@ -385,6 +411,10 @@ public abstract class Shape
     /**
      * Reads a closed polygon scope from a Specctra dsn file.
      * If p_layer_structure == null, only Layer.PCB and Layer.Signal are expected, no induvidual layers.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.Polygon} object.
      */
     public static Polygon read_polygon_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
@@ -489,6 +519,10 @@ public abstract class Shape
 
     /**
      * Reads a circle scope from a Specctra dsn file.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.Circle} object.
      */
     public static Circle read_circle_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
@@ -577,6 +611,10 @@ public abstract class Shape
 
     /**
      * Reads an object of type Path from the dsn-file.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @param p_layer_structure a {@link designformats.specctra.LayerStructure} object.
+     * @return a {@link designformats.specctra.PolygonPath} object.
      */
     public static PolygonPath read_polygon_path_scope(Scanner p_scanner, LayerStructure p_layer_structure)
     {
@@ -694,6 +732,10 @@ public abstract class Shape
      * Transforms a shape with holes to the board coordinate system.
      * The first shape in the Collection p_area is the border,
      * the other shapes are holes of the area.
+     *
+     * @param p_area a java$util$Collection object.
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @return a {@link geometry.planar.Area} object.
      */
     public static geometry.planar.Area transform_area_to_board(Collection<Shape> p_area, CoordinateTransform p_coordinate_transform)
     {
@@ -740,6 +782,10 @@ public abstract class Shape
      * Transforms the relative coordinates of a shape with holes to the board coordinate system.
      * The first shape in the Collection p_area is the border,
      * the other shapes are holes of the area.
+     *
+     * @param p_area a java$util$Collection object.
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @return a {@link geometry.planar.Area} object.
      */
     public static geometry.planar.Area transform_area_to_board_rel(Collection<Shape> p_area, CoordinateTransform p_coordinate_transform)
     {
@@ -782,6 +828,13 @@ public abstract class Shape
         return result;
     }
 
+    /**
+     * <p>write_hole_scope.</p>
+     *
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
+     */
     public void write_hole_scope(IndentFileWriter p_file, IdentifierType p_identifier_type) throws java.io.IOException
     {
         p_file.start_scope();
@@ -792,19 +845,32 @@ public abstract class Shape
 
     /**
      * Transforms a specctra dsn shape to a geometry.planar.Shape.
+     *
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @return a {@link geometry.planar.Shape} object.
      */
     public abstract geometry.planar.Shape transform_to_board(CoordinateTransform p_coordinate_transform);
 
     /**
      * Returns the smallest axis parallel rectangle containing this shape.
+     *
+     * @return a {@link designformats.specctra.Rectangle} object.
      */
     public abstract Rectangle bounding_box();
 
     /**
      * Transforms the relative (vector) coordinates of a specctra dsn shape to a geometry.planar.Shape.
+     *
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @return a {@link geometry.planar.Shape} object.
      */
     public abstract geometry.planar.Shape transform_to_board_rel(CoordinateTransform p_coordinate_transform);
 
+    /**
+     * <p>Constructor for Shape.</p>
+     *
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     */
     protected Shape(Layer p_layer)
     {
         layer = p_layer;

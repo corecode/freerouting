@@ -25,11 +25,14 @@ package rules;
  * Contains the array of net classes for interactive routing.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class NetClasses implements java.io.Serializable
 {
     /**
      * Returns the number of classes  in this array.
+     *
+     * @return a int.
      */
     public int count()
     {
@@ -38,6 +41,9 @@ public class NetClasses implements java.io.Serializable
     
     /**
      * Returns the net class with index p_index.
+     *
+     * @param p_index a int.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass get(int p_index)
     {
@@ -47,6 +53,9 @@ public class NetClasses implements java.io.Serializable
     
     /**
      * Returns the net class with name p_name, or null, if no such class exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass get(String p_name)
     {
@@ -96,6 +105,11 @@ public class NetClasses implements java.io.Serializable
      * Looks, if the list contains a net class with trace half widths all equal to p_trace_half_width,
      * trace clearance class equal to p_trace_clearance_class and via rule equal to p_cia_rule.
      * Returns null, if no such net class was found.
+     *
+     * @param p_trace_half_width a int.
+     * @param p_trace_clearance_class a int.
+     * @param p_via_rule a {@link rules.ViaRule} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass find(int p_trace_half_width, int p_trace_clearance_class,  ViaRule p_via_rule)
     {
@@ -125,6 +139,11 @@ public class NetClasses implements java.io.Serializable
      * Looks, if the list contains a net class with trace half width[i] all equal to p_trace_half_width_arr[i]
      * for 0 <= i < layer_count, trace clearance class equal to p_trace_clearance_class
      * and via rule equal to p_via_rule. Returns null, if no such net class was found.
+     *
+     * @param p_trace_half_width_arr an array of int.
+     * @param p_trace_clearance_class a int.
+     * @param p_via_rule a {@link rules.ViaRule} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass find(int[] p_trace_half_width_arr, int p_trace_clearance_class,  ViaRule p_via_rule)
     {
@@ -154,6 +173,9 @@ public class NetClasses implements java.io.Serializable
     /**
      * Removes p_net_class from this list.
      * Returns false, if p_net_class was not contained in the list.
+     *
+     * @param p_net_class a {@link rules.NetClass} object.
+     * @return a boolean.
      */
     public boolean remove(NetClass p_net_class)
     {

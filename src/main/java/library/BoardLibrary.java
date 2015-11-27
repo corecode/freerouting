@@ -27,11 +27,17 @@ import java.util.Vector;
  * Describes a board library of packages and padstacks.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class BoardLibrary implements java.io.Serializable
 {
     
-    /** Creates a new instance of BoardLibrary */
+    /**
+     * Creates a new instance of BoardLibrary
+     *
+     * @param p_padstacks a {@link library.Padstacks} object.
+     * @param p_packages a {@link library.Packages} object.
+     */
     public BoardLibrary(Padstacks p_padstacks, Packages p_packages)
     {
         padstacks = p_padstacks;
@@ -39,13 +45,19 @@ public class BoardLibrary implements java.io.Serializable
         logical_parts = new LogicalParts();
     }
     
-    /** Creates a new instance of BoardLibrary */
+    /**
+     * Creates a new instance of BoardLibrary
+     */
     public BoardLibrary()
     {
         
     }
     
-    /** Sets the subset of padstacks from this.padstacks, which can be used in routing for inserting vias. */
+    /**
+     * Sets the subset of padstacks from this.padstacks, which can be used in routing for inserting vias.
+     *
+     * @param p_padstacks an array of {@link library.Padstack} objects.
+     */
     public void set_via_padstacks(Padstack[] p_padstacks)
     {
         
@@ -56,7 +68,11 @@ public class BoardLibrary implements java.io.Serializable
         }
     }
     
-    /** The count of padstacks from this.padstacks, which can be used in routing */
+    /**
+     * The count of padstacks from this.padstacks, which can be used in routing
+     *
+     * @return a int.
+     */
     public int via_padstack_count()
     {
         if (this.via_padstacks == null)
@@ -66,7 +82,12 @@ public class BoardLibrary implements java.io.Serializable
         return this.via_padstacks.size();
     }
     
-    /** Gets the via padstack for routing with index p_no */
+    /**
+     * Gets the via padstack for routing with index p_no
+     *
+     * @param p_no a int.
+     * @return a {@link library.Padstack} object.
+     */
     public Padstack get_via_padstack(int p_no)
     {
         if (this.via_padstacks == null || p_no < 0 || p_no >= this.via_padstacks.size())
@@ -76,7 +97,12 @@ public class BoardLibrary implements java.io.Serializable
         return this.via_padstacks.get(p_no);
     }
     
-    /** Gets the via padstack with name p_name, or null, if no such padstack exists. */
+    /**
+     * Gets the via padstack with name p_name, or null, if no such padstack exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link library.Padstack} object.
+     */
     public Padstack get_via_padstack(String p_name)
     {
         if (this.via_padstacks == null)
@@ -95,6 +121,8 @@ public class BoardLibrary implements java.io.Serializable
     
     /**
      * Returns the via padstacks, which can be used for routing.
+     *
+     * @return an array of {@link library.Padstack} objects.
      */
     public Padstack[] get_via_padstacks()
     {
@@ -113,6 +141,9 @@ public class BoardLibrary implements java.io.Serializable
     /**
      * Apppends p_padstack to the list of via padstacks.
      * Returns false, if the list  contains already a  padstack  with p_padstack.name.
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     * @return a boolean.
      */
     public boolean add_via_padstack(Padstack p_padstack)
     {
@@ -124,10 +155,14 @@ public class BoardLibrary implements java.io.Serializable
        return true;
     }
     
-    /** 
-     * Removes p_padstack from the via padstack list. 
+    /**
+     * Removes p_padstack from the via padstack list.
      * Returns false, if p_padstack was not found in the list.
-     * If the padstack is no more used on the board, it will also be removed from the board padstacks. 
+     * If the padstack is no more used on the board, it will also be removed from the board padstacks.
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     * @param p_board a {@link board.BasicBoard} object.
+     * @return a boolean.
      */
     public boolean remove_via_padstack(Padstack p_padstack, board.BasicBoard p_board)
     {
@@ -139,6 +174,9 @@ public class BoardLibrary implements java.io.Serializable
     /**
      * Gets the via padstack mirrored to the back side of the board.
      * Returns null, if no such via padstack exists.
+     *
+     * @param p_via_padstack a {@link library.Padstack} object.
+     * @return a {@link library.Padstack} object.
      */
     public Padstack get_mirrored_via_padstack(Padstack p_via_padstack)
     {
@@ -161,6 +199,10 @@ public class BoardLibrary implements java.io.Serializable
     
     /**
      * Looks, if the input padstack is used on p_board in a Package or in drill.
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     * @param p_board a {@link board.BasicBoard} object.
+     * @return a boolean.
      */
     public boolean is_used (Padstack p_padstack, board.BasicBoard p_board)
     {

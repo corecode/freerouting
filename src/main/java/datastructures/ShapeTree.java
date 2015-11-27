@@ -31,11 +31,16 @@ import geometry.planar.TileShape;
  * Objects to be stored in the tree must implement the interface ShapeTree.Storable.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class ShapeTree
 {
     
-    /** Creates a new instance of ShapeTree */
+    /**
+     * Creates a new instance of ShapeTree
+     *
+     * @param p_directions a {@link geometry.planar.ShapeBoundingDirections} object.
+     */
     public ShapeTree(ShapeBoundingDirections p_directions)
     {
         bounding_directions = p_directions ;
@@ -46,6 +51,8 @@ public abstract class ShapeTree
     
     /**
      * Inserts all shapes of p_obj into the tree
+     *
+     * @param p_obj a {@link datastructures.ShapeTree.Storable} object.
      */
     public void insert(ShapeTree.Storable p_obj)
     {
@@ -64,6 +71,10 @@ public abstract class ShapeTree
     
     /**
      * Insert a shape - creates a new node with a bounding shape
+     *
+     * @param p_object a {@link datastructures.ShapeTree.Storable} object.
+     * @param p_index a int.
+     * @return a {@link datastructures.ShapeTree.Leaf} object.
      */
     protected Leaf insert(ShapeTree.Storable p_object, int p_index)
     {
@@ -86,7 +97,11 @@ public abstract class ShapeTree
     }
     
     
-    /** Inserts the leaves of this tree into an array. */
+    /**
+     * Inserts the leaves of this tree into an array.
+     *
+     * @return an array of {@link datastructures.ShapeTree.Leaf} objects.
+     */
     public Leaf[] to_array()
     {
         Leaf [] result = new Leaf[this.leaf_count];
@@ -130,6 +145,8 @@ public abstract class ShapeTree
     
     /**
      * removes all entries of p_obj in the tree.
+     *
+     * @param p_entries an array of {@link datastructures.ShapeTree.Leaf} objects.
      */
     public void remove(Leaf []  p_entries)
     {
@@ -143,14 +160,22 @@ public abstract class ShapeTree
         }
     }
     
-    /** Returns the number of entries stored in the tree. */
+    /**
+     * Returns the number of entries stored in the tree.
+     *
+     * @return a int.
+     */
     public int size()
     {
         return leaf_count;
     }
     
     
-    /** Outputs some statistic information about the tree. */
+    /**
+     * Outputs some statistic information about the tree.
+     *
+     * @param p_message a {@link java.lang.String} object.
+     */
     public void statistics(String p_message)
     {
         Leaf[] leaf_arr = this.to_array();

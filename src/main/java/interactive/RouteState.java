@@ -39,6 +39,7 @@ import board.ItemSelectionFilter;
  * Interactive routing state.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class RouteState extends InteractiveState
 {
@@ -48,7 +49,13 @@ public class RouteState extends InteractiveState
      * if starting a new route was not possible at p_location.
      * If p_logfile != null, the creation of the route is stored
      * in the logfile.
-     **/
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.RouteState} object.
+     */
     public static RouteState get_instance(FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         if (!(p_parent_state instanceof MenuState))
@@ -198,6 +205,10 @@ public class RouteState extends InteractiveState
      * Creates a new instance of RouteState
      * If p_logfile != null, the creation of the route is stored
      * in the logfile.
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
      */
     protected RouteState(InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
@@ -208,6 +219,10 @@ public class RouteState extends InteractiveState
      * Checks starting an interactive route at p_location.
      * Returns the picked start item of the routing at p_location,
      * or null, if no such item was found.
+     *
+     * @param p_location a {@link geometry.planar.IntPoint} object.
+     * @param p_hdlg a {@link interactive.BoardHandling} object.
+     * @return a {@link board.Item} object.
      */
     static protected Item start_ok(IntPoint p_location, BoardHandling p_hdlg)
     {
@@ -276,12 +291,15 @@ public class RouteState extends InteractiveState
         return picked_item;
     }
 
+    /** {@inheritDoc} */
     public InteractiveState process_logfile_point(FloatPoint p_point)
     {
         return add_corner(p_point);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Action to be taken when a key is pressed (Shortcut).
      */
     public InteractiveState key_typed(char p_key_char)
@@ -351,6 +369,9 @@ public class RouteState extends InteractiveState
      * Append a line to p_location to the trace routed so far.
      * Returns from state, if the route is completed by connecting
      * to a target.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState add_corner(FloatPoint p_location)
     {
@@ -388,6 +409,11 @@ public class RouteState extends InteractiveState
         return result;
     }
 
+    /**
+     * <p>cancel.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState cancel()
     {
         Trace tail = hdlg.get_routing_board().get_trace_tail(route.get_last_corner(), hdlg.settings.layer, route.net_no_arr);
@@ -421,6 +447,7 @@ public class RouteState extends InteractiveState
         return this.return_state;
     }
 
+    /** {@inheritDoc} */
     public boolean change_layer_action(int p_new_layer)
     {
         boolean result = true;
@@ -549,6 +576,7 @@ public class RouteState extends InteractiveState
         return result;
     }
 
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         if (route != null)
@@ -557,6 +585,9 @@ public class RouteState extends InteractiveState
         }
     }
 
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         if (route != null)

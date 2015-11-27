@@ -35,6 +35,7 @@ import java.util.TreeSet;
  *  A ObstacleArea, which can be electrically conected to other items.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ConductionArea extends ObstacleArea implements Connectable
 {
@@ -49,6 +50,7 @@ public class ConductionArea extends ObstacleArea implements Connectable
         is_obstacle = p_is_obstacle;
     }
     
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         if (this.net_count() != 1)
@@ -61,6 +63,11 @@ public class ConductionArea extends ObstacleArea implements Connectable
                 this.name, is_obstacle, get_fixed_state(), board);
     }
     
+    /**
+     * <p>get_normal_contacts.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     public Set<Item> get_normal_contacts()
     {
         Set<Item> result = new TreeSet<Item>();
@@ -102,6 +109,7 @@ public class ConductionArea extends ObstacleArea implements Connectable
         return result;
     }
     
+    /** {@inheritDoc} */
     public TileShape get_trace_connection_shape(ShapeSearchTree p_search_tree, int p_index)
     {
         if (p_index < 0 || p_index >= this.tree_shape_count(p_search_tree))
@@ -112,6 +120,11 @@ public class ConductionArea extends ObstacleArea implements Connectable
         return this.get_tree_shape(p_search_tree, p_index);
     }
     
+    /**
+     * <p>get_ratsnest_corners.</p>
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
+     */
     public Point[] get_ratsnest_corners()
     {
         Point [] result;
@@ -125,6 +138,7 @@ public class ConductionArea extends ObstacleArea implements Connectable
         return result;
     }
     
+    /** {@inheritDoc} */
     public boolean is_obstacle(Item p_other)
     {
         if (this.is_obstacle)
@@ -136,6 +150,8 @@ public class ConductionArea extends ObstacleArea implements Connectable
     
     /**
      * Returns if this conduction area is regarded as obstacle to traces of foreign nets.
+     *
+     * @return a boolean.
      */
     public boolean get_is_obstacle()
     {
@@ -145,22 +161,27 @@ public class ConductionArea extends ObstacleArea implements Connectable
     
     /**
      * Sets, if this conduction area is regarded as obstacle to traces and vias of foreign nets.
+     *
+     * @param p_value a boolean.
      */
     public void set_is_obstacle(boolean p_value)
     {
         this.is_obstacle = p_value;
     }
     
+    /** {@inheritDoc} */
     public boolean is_trace_obstacle(int p_net_no)
     {
         return this.is_obstacle && !this.contains_net(p_net_no);
     }
     
+    /** {@inheritDoc} */
     public boolean is_drillable(int p_net_no)
     {
         return !this.is_obstacle || this.contains_net(p_net_no);
     }
     
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -170,16 +191,19 @@ public class ConductionArea extends ObstacleArea implements Connectable
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.CONDUCTION);
     }
     
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_conduction_colors();
     }
     
+    /** {@inheritDoc} */
     public double get_draw_intensity(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_conduction_color_intensity();
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

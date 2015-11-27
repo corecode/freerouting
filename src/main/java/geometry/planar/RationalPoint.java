@@ -39,13 +39,15 @@ import datastructures.BigIntAux;
  * all projective points (x, y, z) with z = 0.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class RationalPoint extends Point implements java.io.Serializable
 {
     
     /**
      * approximates the coordinates of this point by float coordinates
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint to_float()
     {
@@ -67,6 +69,8 @@ public class RationalPoint extends Point implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * returns true, if this RationalPoint is equal to p_ob
      */
     public final boolean equals( Object p_ob )
@@ -94,11 +98,21 @@ public class RationalPoint extends Point implements java.io.Serializable
         return (det.signum() == 0);
     }
     
+    /**
+     * <p>is_infinite.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_infinite()
     {
         return z.signum() == 0;
     }
     
+    /**
+     * <p>surrounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox surrounding_box()
     {
         FloatPoint fp = to_float();
@@ -109,6 +123,11 @@ public class RationalPoint extends Point implements java.io.Serializable
         return new IntBox(llx, lly, urx, ury);
     }
     
+    /**
+     * <p>surrounding_octagon.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon surrounding_octagon()
     {
         FloatPoint fp = to_float();
@@ -127,6 +146,7 @@ public class RationalPoint extends Point implements java.io.Serializable
         return new IntOctagon(lx, ly, rx, uy, ulx, lrx, llx, urx);
     }
     
+    /** {@inheritDoc} */
     public boolean is_contained_in(IntBox p_box)
     {
         BigInteger tmp = BigInteger.valueOf(p_box.ll.x).multiply(z);
@@ -153,6 +173,8 @@ public class RationalPoint extends Point implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * returns the translation of this point by p_vector
      */
     public Point translate_by(Vector p_vector)
@@ -187,6 +209,9 @@ public class RationalPoint extends Point implements java.io.Serializable
     
     /**
      * returns the difference vector of this point and p_other
+     *
+     * @param p_other a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Vector} object.
      */
     public Vector difference_by(Point p_other)
     {
@@ -216,6 +241,8 @@ public class RationalPoint extends Point implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * The function returns
      *         Side.ON_THE_LEFT, if this Point is on the left
      *                            of the line from p_1 to p_2;
@@ -230,11 +257,13 @@ public class RationalPoint extends Point implements java.io.Serializable
         return v1.side_of(v2);
     }
     
+    /** {@inheritDoc} */
     public Side side_of(Line p_line)
     {
         return side_of(p_line.a, p_line.b);
     }
     
+    /** {@inheritDoc} */
     public Point perpendicular_projection(Line p_line)
     {
         // this function is at the moment only implemented for lines
@@ -287,12 +316,24 @@ public class RationalPoint extends Point implements java.io.Serializable
         return new RationalPoint(proj_x, proj_y, denominator);
     }
     
+    /**
+     * <p>compare_x.</p>
+     *
+     * @param p_other a {@link geometry.planar.Point} object.
+     * @return a int.
+     */
     public int compare_x(Point p_other)
     {
         return -p_other.compare_x(this);
     }
     
     
+    /**
+     * <p>compare_y.</p>
+     *
+     * @param p_other a {@link geometry.planar.Point} object.
+     * @return a int.
+     */
     public int compare_y(Point p_other)
     {
         return -p_other.compare_y(this);

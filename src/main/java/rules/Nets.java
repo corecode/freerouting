@@ -26,11 +26,14 @@ import java.util.Collection;
  * Describes the electrical Nets on a board.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Nets implements java.io.Serializable
 {
 
-    /** Creates a new empty net list */
+    /**
+     * Creates a new empty net list
+     */
     public Nets()
     {
         net_arr = new Vector<Net>();
@@ -38,13 +41,21 @@ public class Nets implements java.io.Serializable
 
     /**
      * Returns the biggest net number on the board.
+     *
+     * @return a int.
      */
     public int max_net_no()
     {
         return net_arr.size();
     }
 
-    /** Returns the net with the input name and subnet_number , or null, if no such net exists. */
+    /**
+     * Returns the net with the input name and subnet_number , or null, if no such net exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_subnet_number a int.
+     * @return a {@link rules.Net} object.
+     */
     public Net get(String p_name, int p_subnet_number)
     {
         for (Net curr_net : net_arr)
@@ -62,6 +73,9 @@ public class Nets implements java.io.Serializable
 
     /**
      *  Returns all subnets with the input name.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Net> get(String p_name)
     {
@@ -78,6 +92,9 @@ public class Nets implements java.io.Serializable
 
     /**
      * Returns the net with the input net number or null, if no such net exists.
+     *
+     * @param p_net_no a int.
+     * @return a {@link rules.Net} object.
      */
     public Net get(int p_net_no)
     {
@@ -95,6 +112,9 @@ public class Nets implements java.io.Serializable
 
     /**
      * Generates a new net number.
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link rules.Net} object.
      */
     public Net new_net(java.util.Locale p_locale)
     {
@@ -107,6 +127,11 @@ public class Nets implements java.io.Serializable
      * Adds a new net with default properties with the input name.
      * p_subnet_number is used only if a net is divided internally because of fromto rules for example.
      * For normal nets it is always 1.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_subnet_number a int.
+     * @param p_contains_plane a boolean.
+     * @return a {@link rules.Net} object.
      */
     public Net add(String p_name, int p_subnet_number, boolean p_contains_plane)
     {
@@ -123,6 +148,9 @@ public class Nets implements java.io.Serializable
     /**
      * Returns false, if p_net_no belongs to a net internally used
      * for special purposes.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public static boolean is_normal_net_no(int p_net_no)
     {
@@ -132,6 +160,8 @@ public class Nets implements java.io.Serializable
     /**
      * Sets the Board of this net list.
      * Used for example to get access to the Items of the net.
+     *
+     * @param p_board a {@link board.BasicBoard} object.
      */
     public void set_board(board.BasicBoard p_board)
     {
@@ -141,6 +171,8 @@ public class Nets implements java.io.Serializable
     /**
      * Gets the Board of this net list.
      * Used for example to get access to the Items of the net.
+     *
+     * @return a {@link board.BasicBoard} object.
      */
     public board.BasicBoard get_board()
     {

@@ -22,8 +22,10 @@
 package gui;
 
 /**
+ * <p>BoardMenuHelpReduced class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuHelpReduced extends javax.swing.JMenu
 {
@@ -31,6 +33,8 @@ public class BoardMenuHelpReduced extends javax.swing.JMenu
      * Creates a new instance of BoardMenuHelpReduced
      * Separated from BoardMenuHelp to avoid ClassNotFound exception when the library
      * jh.jar is not found, which is only used in the  extended help menu.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
      */
     public BoardMenuHelpReduced(BoardFrame p_board_frame)
     {

@@ -27,11 +27,19 @@ import geometry.planar.ConvexShape;
  * Information of a clearance violation between 2 items.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ClearanceViolation implements ObjectInfoPanel.Printable
 {
     
-    /** Creates a new instance of ClearanceViolation */
+    /**
+     * Creates a new instance of ClearanceViolation
+     *
+     * @param p_first_item a {@link board.Item} object.
+     * @param p_second_item a {@link board.Item} object.
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     */
     public ClearanceViolation(Item p_first_item, Item p_second_item, ConvexShape p_shape, int p_layer)
     {
         first_item = p_first_item;
@@ -40,6 +48,7 @@ public class ClearanceViolation implements ObjectInfoPanel.Printable
         layer = p_layer;
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

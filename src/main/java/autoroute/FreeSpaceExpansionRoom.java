@@ -35,6 +35,7 @@ import java.util.List;
  * Expansion Areas used by the maze search algorithm.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
 {
@@ -45,6 +46,9 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
      * The final (completed) shape will be a subshape of the start shape, which
      * does not overlap with any obstacle, and is as big as possible.
      * p_contained_points will remain contained in the shape, after it is completed.
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_layer a int.
      */
     public FreeSpaceExpansionRoom(TileShape p_shape, int p_layer)
     {
@@ -54,6 +58,8 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Adds p_door to the list of doors of this room.
      */
     public void add_door(ExpansionDoor p_door)
@@ -63,6 +69,8 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
     
     /**
      * Returns the list of doors of this room to neighbour expansion rooms
+     *
+     * @return a {@link java.util.List} object.
      */
     public List<ExpansionDoor> get_doors()
     {
@@ -77,6 +85,9 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
         this.doors = new LinkedList<ExpansionDoor>();
     }
     
+    /**
+     * <p>reset_doors.</p>
+     */
     public void reset_doors()
     {
         for (ExpandableObject curr_door : this.doors)
@@ -85,6 +96,7 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
         }
     }
     
+    /** {@inheritDoc} */
     public boolean remove_door(ExpandableObject p_door)
     {
         return this.doors.remove(p_door);
@@ -92,6 +104,8 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
     
     /**
      * Gets the shape of this room
+     *
+     * @return a {@link geometry.planar.TileShape} object.
      */
     public TileShape get_shape()
     {
@@ -100,18 +114,27 @@ public abstract class FreeSpaceExpansionRoom implements ExpansionRoom
     
     /**
      * sets the shape of this room
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
      */
     public void set_shape(TileShape p_shape)
     {
         this.shape = p_shape;
     }
     
+    /**
+     * <p>get_layer.</p>
+     *
+     * @return a int.
+     */
     public int get_layer()
     {
         return this.layer;
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Checks, if this room has already a door to p_other
      */
     public boolean door_exists(ExpansionRoom p_other)

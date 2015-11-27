@@ -27,12 +27,16 @@ import java.util.LinkedList;
  * Contains the lists of different ViaInfo's, which can be used in interactive and automatic routing.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Printable
 {
     /**
      * Adds a via info consisting of padstack, clearance class and drill_to_smd_allowed.
      * Return false, if the insertion failed, for example if the name existed already.
+     *
+     * @param p_via_info a {@link rules.ViaInfo} object.
+     * @return a boolean.
      */
     public boolean add(ViaInfo p_via_info)
     {
@@ -46,6 +50,8 @@ public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Pri
     
     /**
      * Returns the number of different vias, which can be used for routing.
+     *
+     * @return a int.
      */
     public int count()
     {
@@ -54,6 +60,9 @@ public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Pri
     
     /**
      * Returns the p_no-th via af the via types, which can be used for routing.
+     *
+     * @param p_no a int.
+     * @return a {@link rules.ViaInfo} object.
      */
     public ViaInfo get(int p_no)
     {
@@ -63,6 +72,9 @@ public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Pri
     
     /**
      * Returns the via info with name p_name, or null, if no such via exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link rules.ViaInfo} object.
      */
     public ViaInfo get(String p_name)
     {
@@ -78,6 +90,9 @@ public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Pri
     
     /**
      * Returns true, if a via info with name p_name is already wyisting in the list.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public boolean name_exists(String p_name)
     {
@@ -94,12 +109,16 @@ public class ViaInfos implements java.io.Serializable, board.ObjectInfoPanel.Pri
     /**
      * Removes p_via_info from this list.
      * Returns false, if p_via_info was not contained in the list.
+     *
+     * @param p_via_info a {@link rules.ViaInfo} object.
+     * @return a boolean.
      */
     public boolean remove(ViaInfo p_via_info)
     {
         return this.list.remove(p_via_info);
     }
     
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

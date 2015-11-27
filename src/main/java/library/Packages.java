@@ -29,6 +29,7 @@ import geometry.planar.Shape;
  * Describes a library of component packages.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Packages implements java.io.Serializable
 {
@@ -36,6 +37,8 @@ public class Packages implements java.io.Serializable
      * Creates a new instance of Packages.
      * p_padstack_list is the list of padstacks used for the pins
      * of the packages in this data structure.
+     *
+     * @param p_padstack_list a {@link library.Padstacks} object.
      */
     public Packages(Padstacks p_padstack_list)
     {
@@ -45,6 +48,10 @@ public class Packages implements java.io.Serializable
     /**
      * Returns the package with the input name and the input side or null,
      * if no such package exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_is_front a boolean.
+     * @return a {@link library.Package} object.
      */
     public Package get(String p_name, boolean p_is_front)
     {
@@ -68,6 +75,9 @@ public class Packages implements java.io.Serializable
     /**
      * Returns the package with index p_package_no.
      * Packages numbers are from 1 to package count.
+     *
+     * @param p_package_no a int.
+     * @return a {@link library.Package} object.
      */
     public Package get(int p_package_no)
     {
@@ -81,6 +91,8 @@ public class Packages implements java.io.Serializable
     
     /**
      * Returns the count of packages in this object.
+     *
+     * @return a int.
      */
     public int count()
     {
@@ -89,6 +101,15 @@ public class Packages implements java.io.Serializable
     
     /**
      * Appends a new package with the input data to this object.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_pin_arr an array of {@link library.Package.Pin} objects.
+     * @param p_outline an array of {@link geometry.planar.Shape} objects.
+     * @param p_keepout_arr an array of {@link library.Package.Keepout} objects.
+     * @param p_via_keepout_arr an array of {@link library.Package.Keepout} objects.
+     * @param p_place_keepout_arr an array of {@link library.Package.Keepout} objects.
+     * @param p_is_front a boolean.
+     * @return a {@link library.Package} object.
      */
     public Package add(String p_name, Package.Pin [] p_pin_arr, Shape[] p_outline,
             Package.Keepout [] p_keepout_arr, Package.Keepout [] p_via_keepout_arr, 
@@ -103,6 +124,9 @@ public class Packages implements java.io.Serializable
     /**
      * Appends a new package with pins p_pin_arr to this object.
      * The package name is generated internally.
+     *
+     * @param p_pin_arr an array of {@link library.Package.Pin} objects.
+     * @return a {@link library.Package} object.
      */
     public Package add(Package.Pin [] p_pin_arr)
     {

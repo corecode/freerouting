@@ -608,6 +608,7 @@ class PullTightAlgoAnyAngle extends PullTightAlgo
         return result;
     }
     
+    /** {@inheritDoc} */
     protected Line reposition_line(Line[] p_line_arr, int p_start_no)
     {
         if ( p_line_arr.length - p_start_no < 5)

@@ -27,6 +27,7 @@ import java.util.TreeSet;
  * Filter for selecting items on the board.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ItemSelectionFilter implements java.io.Serializable
 {
@@ -54,6 +55,8 @@ public class ItemSelectionFilter implements java.io.Serializable
     
     /**
      * Creates a new filter with only p_item_type selected.
+     *
+     * @param p_item_type a {@link board.ItemSelectionFilter.SelectableChoices} object.
      */
     public ItemSelectionFilter(SelectableChoices p_item_type)
     {
@@ -66,6 +69,8 @@ public class ItemSelectionFilter implements java.io.Serializable
     
     /**
      * Creates a new filter with only p_item_types selected.
+     *
+     * @param p_item_types an array of {@link board.ItemSelectionFilter.SelectableChoices} objects.
      */
     public ItemSelectionFilter(SelectableChoices[] p_item_types)
     {
@@ -81,6 +86,8 @@ public class ItemSelectionFilter implements java.io.Serializable
     
     /**
      * Copy constructor
+     *
+     * @param p_item_selection_filter a {@link board.ItemSelectionFilter} object.
      */
     public ItemSelectionFilter(ItemSelectionFilter p_item_selection_filter)
     {
@@ -93,6 +100,9 @@ public class ItemSelectionFilter implements java.io.Serializable
     
     /**
      * Selects or deselects an item type
+     *
+     * @param p_choice a {@link board.ItemSelectionFilter.SelectableChoices} object.
+     * @param p_value a boolean.
      */
     public void set_selected(SelectableChoices p_choice, boolean p_value)
     {
@@ -117,6 +127,9 @@ public class ItemSelectionFilter implements java.io.Serializable
     
     /**
      * Filters a collection of items with this filter.
+     *
+     * @param p_items a java$util$Set object.
+     * @return a java$util$Set object.
      */
     public Set<Item> filter(java.util.Set<board.Item> p_items)
     {
@@ -133,6 +146,9 @@ public class ItemSelectionFilter implements java.io.Serializable
     
     /**
      * Looks, if the input item type is selected.
+     *
+     * @param p_choice a {@link board.ItemSelectionFilter.SelectableChoices} object.
+     * @return a boolean.
      */
     public boolean is_selected(SelectableChoices p_choice)
     {

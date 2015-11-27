@@ -25,11 +25,14 @@ package board;
  * Empty adaptor implementing the BoardObservers interface.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardObserverAdaptor implements BoardObservers
 {
     /**
      * Tell the observers the deletion p_object.
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void notify_deleted(Item p_item)
     {
@@ -38,6 +41,8 @@ public class BoardObserverAdaptor implements BoardObservers
     
     /**
      * Notify the observers, that they can syncronize the changes on p_object.
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void notify_changed(Item p_item)
     {
@@ -46,6 +51,8 @@ public class BoardObserverAdaptor implements BoardObservers
     
     /**
      * Enable the observers to syncronize the new created item.
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void notify_new(Item p_item)
     {
@@ -53,6 +60,8 @@ public class BoardObserverAdaptor implements BoardObservers
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Enable the observers to syncronize the moved component.
      */
     public void notify_moved(Component p_component)
@@ -70,7 +79,7 @@ public class BoardObserverAdaptor implements BoardObservers
     
     /**
      * Deactivate the observers.
-     **/
+     */
     public void deactivate()
     {
         active = false;
@@ -78,6 +87,8 @@ public class BoardObserverAdaptor implements BoardObservers
     
     /**
      * Returns, if the observer is activated.
+     *
+     * @return a boolean.
      */
     public boolean is_active()
     {

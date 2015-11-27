@@ -42,6 +42,7 @@ import autoroute.AutorouteControl.ExpansionCostFactor;
  * Class with functionality for optimising traces and vias.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class PullTightAlgo
 {
@@ -187,6 +188,8 @@ public abstract class PullTightAlgo
 
     /**
      * Termitates the pull tight algorithm, if the user has made a stop request.
+     *
+     * @return a boolean.
      */
     protected boolean is_stop_requested()
     {
@@ -233,6 +236,10 @@ public abstract class PullTightAlgo
     /**
      * Tries to reposition the line with index p_no to make the polyline consisting
      * of p_line_arr shorter.
+     *
+     * @param p_line_arr an array of {@link geometry.planar.Line} objects.
+     * @param p_no a int.
+     * @return a {@link geometry.planar.Line} object.
      */
     protected Line reposition_line(Line[] p_line_arr, int p_no)
     {
@@ -546,6 +553,9 @@ public abstract class PullTightAlgo
 
     /**
      * Wraps around pins of the own net to avoid acid traps.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @return a {@link geometry.planar.Polyline} object.
      */
     protected Polyline avoid_acid_traps(Polyline p_polyline)
     {
@@ -583,9 +593,11 @@ public abstract class PullTightAlgo
     protected IntOctagon curr_clip_shape;
     protected Set<Pin> contact_pins;
     protected int min_translate_dist;
+    /** Constant <code>c_max_cos_angle=0.999</code> */
     protected static final double c_max_cos_angle = 0.999;
     // with angles to close to 180 degree the algorithm becomes numerically
     // unstable
+    /** Constant <code>c_min_corner_dist_square=0.9</code> */
     protected static final double c_min_corner_dist_square = 0.9;
     /**
      * If stoppable_thread != null, the agorithm can be requested to be stopped.

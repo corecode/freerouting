@@ -26,27 +26,45 @@ import geometry.planar.FloatPoint;
  * Class implementing the different functionality in the drag menu
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class DragMenuState extends MenuState
 {
-    /** Returns a new instance of DragMenuState */
+    /**
+     * Returns a new instance of DragMenuState
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.DragMenuState} object.
+     */
     public static DragMenuState get_instance(BoardHandling p_board_handling, Logfile p_logfile)
     {
         DragMenuState new_state = new DragMenuState(p_board_handling, p_logfile);
         return new_state;
     }
     
-    /** Creates a new instance of DragMenuState */
+    /**
+     * Creates a new instance of DragMenuState
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     public DragMenuState(BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_board_handling, p_logfile);
     }
     
+    /** {@inheritDoc} */
     public InteractiveState mouse_pressed(FloatPoint p_point)
     {
         return DragState.get_instance(p_point, this, hdlg, logfile);
     }
     
+    /**
+     * <p>get_help_id.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_help_id()
     {
         return "MenuState_DragMenuState";

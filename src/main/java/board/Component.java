@@ -35,6 +35,7 @@ import library.Package;
  * und other stuff like component keepouts.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Printable, java.io.Serializable
 {
@@ -65,6 +66,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Returns the location of this component.
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point get_location()
     {
@@ -73,12 +76,19 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Returns the rotation of this component in degree.
+     *
+     * @return a double.
      */
     public double get_rotation_in_degree()
     {
         return rotation_in_degree;
     }
     
+    /**
+     * <p>is_placed.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_placed()
     {
         return location != null;
@@ -86,6 +96,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * If false, the component will be placed on the back side of the board.
+     *
+     * @return a boolean.
      */
     public boolean placed_on_front()
     {
@@ -95,6 +107,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     /**
      * Translates the location of this Component by p_p_vector.
      * The Pins in the board must be moved seperately.
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
      */
     public void translate_by(Vector p_vector)
     {
@@ -106,6 +120,9 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Turns this component by p_factor times 90 degree around p_pole.
+     *
+     * @param p_factor a int.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public void turn_90_degree(int p_factor, IntPoint p_pole)
     {
@@ -129,6 +146,10 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     }
     /**
      * Rotates this component by p_angle_in_degree around p_pole.
+     *
+     * @param p_angle_in_degree a double.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
+     * @param p_flip_style_rotate_first a boolean.
      */
     public void rotate(double p_angle_in_degree, IntPoint p_pole, boolean p_flip_style_rotate_first)
     {
@@ -160,6 +181,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     /**
      * Changes the placement side of this component and mirrors it  at the
      * vertical line through p_pole.
+     *
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public void change_side(IntPoint p_pole)
     {
@@ -168,6 +191,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Compares 2 components by name.
      * Useful for example to display components in alphabetic order.
      */
@@ -182,6 +207,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Creates a copy of this component.
+     *
+     * @return a {@link board.Component} object.
      */
     public Component clone()
     {
@@ -191,6 +218,11 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
         return result;
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
@@ -198,6 +230,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Returns information for pin swap and gate swap, if != null.
+     *
+     * @return a {@link library.LogicalPart} object.
      */
     public library.LogicalPart get_logical_part()
     {
@@ -206,12 +240,15 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Sets the infomation for pin swap and gate swap.
+     *
+     * @param p_logical_part a {@link library.LogicalPart} object.
      */
     public void set_logical_part(library.LogicalPart p_logical_part)
     {
         this.logical_part = p_logical_part;
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 
@@ -252,6 +289,8 @@ public class Component implements UndoableObjects.Storable, ObjectInfoPanel.Prin
     
     /**
      * Returns the library package of this component.
+     *
+     * @return a {@link library.Package} object.
      */
     public Package get_package()
     {

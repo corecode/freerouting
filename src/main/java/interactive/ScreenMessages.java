@@ -26,11 +26,20 @@ import javax.swing.JLabel;
  * Text fields to display messages on the screen.
  *
  * @author  arbeit
+ * @version $Id: $Id
  */
 public class ScreenMessages
 {
     
-    /** Creates a new instance of ScreenMessageFields */
+    /**
+     * Creates a new instance of ScreenMessageFields
+     *
+     * @param p_status_field a {@link javax.swing.JLabel} object.
+     * @param p_add_field a {@link javax.swing.JLabel} object.
+     * @param p_layer_field a {@link javax.swing.JLabel} object.
+     * @param p_mouse_position a {@link javax.swing.JLabel} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public ScreenMessages(JLabel p_status_field, JLabel p_add_field,
             JLabel p_layer_field, JLabel p_mouse_position, java.util.Locale p_locale)
     {
@@ -50,6 +59,8 @@ public class ScreenMessages
     
     /**
      * Sets the message in the status field.
+     *
+     * @param p_message a {@link java.lang.String} object.
      */
     public void set_status_message(String p_message)
     {
@@ -61,6 +72,8 @@ public class ScreenMessages
     
     /**
      * Sets the displayed layer number on the screen.
+     *
+     * @param p_layer_name a {@link java.lang.String} object.
      */
     public void set_layer(String p_layer_name)
     {
@@ -70,6 +83,13 @@ public class ScreenMessages
         }
     }
     
+    /**
+     * <p>set_interactive_autoroute_info.</p>
+     *
+     * @param p_found a int.
+     * @param p_not_found a int.
+     * @param p_items_to_go a int.
+     */
     public void set_interactive_autoroute_info(int p_found, int p_not_found, int p_items_to_go)
     {
         Integer found = p_found;
@@ -80,6 +100,14 @@ public class ScreenMessages
                 + resources.getString("failed") + " " + failed.toString());
     }
 
+    /**
+     * <p>set_batch_autoroute_info.</p>
+     *
+     * @param p_items_to_go a int.
+     * @param p_routed a int.
+     * @param p_ripped a int.
+     * @param p_failed a int.
+     */
     public void set_batch_autoroute_info(int p_items_to_go, int p_routed, int p_ripped, int p_failed)
     {
         Integer ripped = p_ripped;
@@ -92,6 +120,12 @@ public class ScreenMessages
                 + resources.getString("failed") + " " + failed.toString());
     }
     
+    /**
+     * <p>set_batch_fanout_info.</p>
+     *
+     * @param p_pass_no a int.
+     * @param p_components_to_go a int.
+     */
     public void set_batch_fanout_info(int p_pass_no, int p_components_to_go)
     {
         Integer components_to_go = p_components_to_go;
@@ -101,6 +135,12 @@ public class ScreenMessages
                 + components_to_go.toString() + " " + resources.getString("components"));
     }
     
+    /**
+     * <p>set_post_route_info.</p>
+     *
+     * @param p_via_count a int.
+     * @param p_trace_length a double.
+     */
     public void set_post_route_info( int p_via_count, double p_trace_length)
     {
         Integer via_count = p_via_count;
@@ -111,6 +151,8 @@ public class ScreenMessages
     /**
      * Sets the displayed layer of the nearest target item
      * in interactive routing.
+     *
+     * @param p_layer_name a {@link java.lang.String} object.
      */
     public void set_target_layer(String p_layer_name)
     {
@@ -121,6 +163,11 @@ public class ScreenMessages
         }
     }
     
+    /**
+     * <p>set_mouse_position.</p>
+     *
+     * @param p_pos a {@link geometry.planar.FloatPoint} object.
+     */
     public void set_mouse_position(geometry.planar.FloatPoint p_pos)
     {
         if (p_pos == null || this.mouse_position == null || this.write_protected)
@@ -158,6 +205,8 @@ public class ScreenMessages
     
     /**
      * As long as write_protected is set to true, the set functions in this class will do nothing.
+     *
+     * @param p_value a boolean.
      */
     public void set_write_protected(boolean p_value)
     {

@@ -24,16 +24,25 @@ package designformats.specctra;
  * Class for writing placement scopes from dsn-files.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Placement extends ScopeKeyword
 {
     
-    /** Creates a new instance of Placemet */
+    /**
+     * Creates a new instance of Placemet
+     */
     public Placement()
     {
         super("placement");
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par) throws java.io.IOException
     {
         p_par.file.start_scope();

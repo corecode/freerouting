@@ -28,6 +28,7 @@ import board.ItemSelectionFilter;
  * Description of a text file,  where the board independent interactive settings are stored.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class GUIDefaultsFile
 {
@@ -54,6 +55,11 @@ public class GUIDefaultsFile
     /**
      * Writes the GUI setting of p_board_frame as default to p_file.
      * Returns false, if an error occured.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @return a boolean.
      */
     public static boolean write(gui.BoardFrame p_board_frame,
             interactive.BoardHandling p_board_handling, java.io.OutputStream p_output_stream)
@@ -91,6 +97,11 @@ public class GUIDefaultsFile
     /**
      * Reads the GUI setting of p_board_frame from file.
      * Returns false, if an error occured while reading the file.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_input_stream a {@link java.io.InputStream} object.
+     * @return a boolean.
      */
     public static boolean read(gui.BoardFrame p_board_frame,
             interactive.BoardHandling p_board_handling, java.io.InputStream p_input_stream)

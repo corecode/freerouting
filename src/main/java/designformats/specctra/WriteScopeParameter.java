@@ -28,6 +28,7 @@ import datastructures.IdentifierType;
  * Default parameter type used while writing a Specctra dsn-file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class WriteScopeParameter
 {

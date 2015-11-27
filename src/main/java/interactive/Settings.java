@@ -27,10 +27,16 @@ import board.RoutingBoard;
  * Contains the values of the interactive settings of the board handling.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Settings implements java.io.Serializable
 {
-    /** Creates a new interactive settings variable. */
+    /**
+     * Creates a new interactive settings variable.
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     public Settings(RoutingBoard p_board,  Logfile p_logfile)
     {
         this.logfile = p_logfile;
@@ -63,6 +69,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Copy constructor
+     *
+     * @param p_settings a {@link interactive.Settings} object.
      */
     public Settings(Settings p_settings)
     {
@@ -91,35 +99,60 @@ public class Settings implements java.io.Serializable
         this.snapshot_attributes = new SnapShot.Attributes(p_settings.snapshot_attributes);
     }
     
+    /**
+     * <p>get_layer.</p>
+     *
+     * @return a int.
+     */
     public  int get_layer()
     {
         return this.layer;
     }
     
-    /** allows pushing obstacles aside */
+    /**
+     * allows pushing obstacles aside
+     *
+     * @return a boolean.
+     */
     public  boolean get_push_enabled()
     {
         return this.push_enabled;
     }
     
-    /** Route mode: stitching or dynamic */
+    /**
+     * Route mode: stitching or dynamic
+     *
+     * @return a boolean.
+     */
     public  boolean get_is_stitch_route()
     {
         return this.is_stitch_route;
     }
-    /** allows dragging components with the route */
+    /**
+     * allows dragging components with the route
+     *
+     * @return a boolean.
+     */
     public  boolean get_drag_components_enabled()
     {
         return this.drag_components_enabled;
     }
     
-    /** indicates if interactive selections are made on all visible layers or only on the current layer.*/
+    /**
+     * indicates if interactive selections are made on all visible layers or only on the current layer.
+     *
+     * @return a boolean.
+     */
     public  boolean get_select_on_all_visible_layers()
     {
         return this.select_on_all_visible_layers;
     }
     
-    /** Indicates if the routing rule selection is manual by the user or automatic by the net rules. */
+    /**
+     * Indicates if the routing rule selection is manual by the user or automatic by the net rules.
+     *
+     * @return a boolean.
+     */
     public  boolean get_manual_rule_selection()
     {
         return this.manual_rule_selection;
@@ -127,13 +160,19 @@ public class Settings implements java.io.Serializable
     
     /**
      * Via snaps to smd center, if attach smd is alllowed.
+     *
+     * @return a boolean.
      */
     public  boolean get_via_snap_to_smd_center()
     {
         return this.via_snap_to_smd_center;
     }
     
-    /** If true, the current routing obstacle is hilightet in dynamic routing. */
+    /**
+     * If true, the current routing obstacle is hilightet in dynamic routing.
+     *
+     * @return a boolean.
+     */
     public  boolean get_hilight_routing_obstacle()
     {
         return this.hilight_routing_obstacle;
@@ -142,25 +181,39 @@ public class Settings implements java.io.Serializable
     /**
      * If true, the trace width at static pins smaller the the trace width will be lowered
      * automatically to the pin with, if necessary.
+     *
+     * @return a boolean.
      */
     public  boolean get_automatic_neckdown()
     {
         return this.automatic_neckdown;
     }
     
-    /** If true, the mouse wheel is used for zooming. */
+    /**
+     * If true, the mouse wheel is used for zooming.
+     *
+     * @return a boolean.
+     */
     public  boolean get_zoom_with_wheel()
     {
         return this.zoom_with_wheel;
     }
     
-    /** The filter used in interactive selection of board items. */
+    /**
+     * The filter used in interactive selection of board items.
+     *
+     * @return a {@link board.ItemSelectionFilter} object.
+     */
     public ItemSelectionFilter get_item_selection_filter()
     {
         return this.item_selection_filter;
     }
     
-    /** The width of the pull tight region of traces around the cursor */
+    /**
+     * The width of the pull tight region of traces around the cursor
+     *
+     * @return a int.
+     */
     public  int get_trace_pull_tight_region_width()
     {
         return this.trace_pull_tight_region_width;
@@ -168,6 +221,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * The horizontal placement grid when moving components, if > 0.
+     *
+     * @return a int.
      */
     public  int get_horizontal_component_grid()
     {
@@ -176,6 +231,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * The vertical placement grid when moving components, if > 0.
+     *
+     * @return a int.
      */
     public  int get_vertical_component_grid()
     {
@@ -185,6 +242,8 @@ public class Settings implements java.io.Serializable
     /**
      * The index of the clearance class used for traces in interactive routing in the clearance matrix,
      * if manual_route_selection is on.
+     *
+     * @return a int.
      */
     public  int get_manual_trace_clearance_class()
     {
@@ -193,25 +252,40 @@ public class Settings implements java.io.Serializable
     
     /**
      * The index of the via rule used in routing in the board via rules if manual_route_selection is on.
+     *
+     * @return a int.
      */
     public  int get_manual_via_rule_index()
     {
         return this.manual_via_rule_index;
     }
     
-    /** The accuracy of the pull tight algorithm. */
+    /**
+     * The accuracy of the pull tight algorithm.
+     *
+     * @return a int.
+     */
     public  int get_trace_pull_tight_accuracy()
     {
         return this.trace_pull_tight_accuracy;
     }
     
-    /** Defines the data of the snapshot selected for restoring. */
+    /**
+     * Defines the data of the snapshot selected for restoring.
+     *
+     * @return a {@link interactive.SnapShot.Attributes} object.
+     */
     public SnapShot.Attributes get_snapshot_attributes()
     {
         return this.snapshot_attributes;
     }
     
-    /** Get the trace half width in manual routing mode on layer p_layer_no  */
+    /**
+     * Get the trace half width in manual routing mode on layer p_layer_no
+     *
+     * @param p_layer_no a int.
+     * @return a int.
+     */
     public int get_manual_trace_half_width( int p_layer_no)
     {
         if (p_layer_no < 0 || p_layer_no >= this.manual_trace_half_width_arr.length)
@@ -224,6 +298,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * The index of the via rule used in routing in the board via rules if manual_route_selection is on.
+     *
+     * @param p_value a int.
      */
     public  void set_manual_via_rule_index(int p_value)
     {
@@ -236,6 +312,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * The horizontal placement grid when moving components, if > 0.
+     *
+     * @param p_value a int.
      */
     public  void set_horizontal_component_grid(int p_value)
     {
@@ -248,6 +326,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * The vertical placement grid when moving components, if > 0.
+     *
+     * @param p_value a int.
      */
     public  void set_vertical_component_grid(int p_value)
     {
@@ -258,7 +338,11 @@ public class Settings implements java.io.Serializable
         this.vertical_component_grid = p_value;
     }
     
-    /** If true, the current routing obstacle is hilightet in dynamic routing. */
+    /**
+     * If true, the current routing obstacle is hilightet in dynamic routing.
+     *
+     * @param p_value a boolean.
+     */
     public  void set_hilight_routing_obstacle(boolean p_value)
     {
         if (read_only)
@@ -271,6 +355,8 @@ public class Settings implements java.io.Serializable
     /**
      * If true, the trace width at static pins smaller the the trace width will be lowered
      * automatically to the pin with, if necessary.
+     *
+     * @param p_value a boolean.
      */
     public  void set_automatic_neckdown(boolean p_value)
     {
@@ -281,7 +367,11 @@ public class Settings implements java.io.Serializable
         this.automatic_neckdown = p_value;
     }
     
-    /** The filter used in interactive selection of board items. */
+    /**
+     * The filter used in interactive selection of board items.
+     *
+     * @param p_value a {@link board.ItemSelectionFilter} object.
+     */
     public  void set_item_selection_filter(ItemSelectionFilter p_value)
     {
         if (read_only)
@@ -293,6 +383,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Enables or disables pushing obstacles in interactive routing
+     *
+     * @param p_value a boolean.
      */
     public void set_push_enabled(boolean p_value)
     {
@@ -306,6 +398,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Enables or disables dragging components
+     *
+     * @param p_value a boolean.
      */
     public void set_drag_components_enabled(boolean p_value)
     {
@@ -321,6 +415,8 @@ public class Settings implements java.io.Serializable
     /**
      * Sets, if item selection is on all board layers or only
      * on the current layer.
+     *
+     * @param p_value a boolean.
      */
     public void set_select_on_all_visible_layers(boolean p_value)
     {
@@ -332,7 +428,11 @@ public class Settings implements java.io.Serializable
         logfile.start_scope(LogfileScope.SET_SELECT_ON_ALL_LAYER, p_value);
     }
     
-    /** Route mode: stitching or dynamic */
+    /**
+     * Route mode: stitching or dynamic
+     *
+     * @param p_value a boolean.
+     */
     public void set_stitch_route(boolean p_value)
     {
         if (read_only)
@@ -346,6 +446,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Changes the current width of the tidy region for traces.
+     *
+     * @param p_value a int.
      */
     public void set_current_pull_tight_region_width(int p_value)
     {
@@ -359,6 +461,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Changes the current width of the pull tight accuracy for traces.
+     *
+     * @param p_value a int.
      */
     public void set_current_pull_tight_accuracy(int p_value)
     {
@@ -372,6 +476,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Changes, if vias snap to smd center, if attach smd is allowed.
+     *
+     * @param p_value a boolean.
      */
     public void set_via_snap_to_smd_center(boolean p_value)
     {
@@ -385,6 +491,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Sets the current trace width selection to manual or automatic.
+     *
+     * @param p_value a boolean.
      */
     public void set_manual_tracewidth_selection(boolean p_value)
     {
@@ -398,6 +506,9 @@ public class Settings implements java.io.Serializable
     
     /**
      * Sets the manual trace half width used in interactive routing.
+     *
+     * @param p_layer_no a int.
+     * @param p_value a int.
      */
     public void set_manual_trace_half_width( int p_layer_no, int p_value)
     {
@@ -414,6 +525,8 @@ public class Settings implements java.io.Serializable
     /**
      * The index of the clearance class used for traces in interactive routing in the clearance matrix,
      * if manual_route_selection is on.
+     *
+     * @param p_index a int.
      */
     public void set_manual_trace_clearance_class(int p_index)
     {
@@ -427,6 +540,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * If true, the wheel is used for zooming.
+     *
+     * @param p_value a boolean.
      */
     public void  set_zoom_with_wheel(boolean p_value)
     {
@@ -446,6 +561,9 @@ public class Settings implements java.io.Serializable
     
     /**
      * Changes the interactive selectability of p_item_type.
+     *
+     * @param p_item_type a {@link board.ItemSelectionFilter.SelectableChoices} object.
+     * @param p_value a boolean.
      */
     public void set_selectable(ItemSelectionFilter.SelectableChoices p_item_type, boolean p_value)
     {
@@ -470,6 +588,8 @@ public class Settings implements java.io.Serializable
     
     /**
      * Defines, if the setting attributes are allowed to be changed interactively or not.
+     *
+     * @param p_value a {@link java.lang.Boolean} object.
      */
     public void set_read_only(Boolean p_value)
     {

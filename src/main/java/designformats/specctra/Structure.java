@@ -48,12 +48,15 @@ import board.TestLevel;
 class Structure extends ScopeKeyword
 {
 
-    /** Creates a new instance of Structure */
+    /**
+     * Creates a new instance of Structure
+     */
     public Structure()
     {
         super("structure");
     }
 
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         BoardConstructionInfo board_construction_info = new BoardConstructionInfo();
@@ -291,6 +294,12 @@ class Structure extends ScopeKeyword
         return result;
     }
 
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par) throws java.io.IOException
     {
         p_par.file.start_scope();

@@ -28,11 +28,15 @@ import java.util.LinkedList;
  * Class for reading and writing rule scopes from dsn-files.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class Rule
 {
     /**
      * Returns a collection of objects of class Rule.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link java.util.Collection} object.
      */
     public static Collection<Rule> read_scope( Scanner p_scanner)
     {
@@ -88,6 +92,9 @@ public abstract class Rule
     
     /**
      * Reads a LayerRule from dsn-file.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.Rule.LayerRule} object.
      */
     public static LayerRule read_layer_rule_scope( Scanner p_scanner)
     {
@@ -135,6 +142,12 @@ public abstract class Rule
         }
     }
     
+    /**
+     * <p>read_width_rule.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.Rule.WidthRule} object.
+     */
     public static WidthRule read_width_rule(Scanner p_scanner)
     {
         try
@@ -169,6 +182,13 @@ public abstract class Rule
         }
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_net_class a {@link rules.NetClass} object.
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(rules.NetClass p_net_class, WriteScopeParameter p_par) throws java.io.IOException
     {
         p_par.file.start_scope();
@@ -216,6 +236,10 @@ public abstract class Rule
     
     /**
      * Writes the default rule as a scope to an output dsn-file.
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_layer a int.
+     * @throws java.io.IOException if any.
      */
     public static void write_default_rule(WriteScopeParameter p_par, int p_layer) throws java.io.IOException
     {
@@ -275,6 +299,12 @@ public abstract class Rule
         }
     }
     
+    /**
+     * <p>read_clearance_rule.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.Rule.ClearanceRule} object.
+     */
     public static ClearanceRule read_clearance_rule(Scanner p_scanner)
     {
         try
@@ -341,6 +371,14 @@ public abstract class Rule
         
     }
     
+    /**
+     * <p>write_item_clearance_class.</p>
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
+     */
     static public void write_item_clearance_class( String p_name, datastructures.IndentFileWriter p_file,
             datastructures.IdentifierType p_identifier_type) throws java.io.IOException
     {

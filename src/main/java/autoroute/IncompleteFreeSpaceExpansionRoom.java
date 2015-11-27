@@ -29,6 +29,7 @@ import geometry.planar.TileShape;
  * An expansion room, whose shape is not yet completely calculated.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class IncompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom
 {
@@ -36,6 +37,10 @@ public class IncompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom
     /**
      * Creates a new instance of IncompleteFreeSpaceExpansionRoom.
      * If p_shape == null means p_shape is the whole plane.
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_layer a int.
+     * @param p_contained_shape a {@link geometry.planar.TileShape} object.
      */
     public IncompleteFreeSpaceExpansionRoom(TileShape p_shape, int p_layer, TileShape p_contained_shape)
     {
@@ -43,16 +48,31 @@ public class IncompleteFreeSpaceExpansionRoom extends FreeSpaceExpansionRoom
         contained_shape = p_contained_shape;
     }
     
+    /**
+     * <p>get_contained_shape.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_contained_shape()
     {
         return this.contained_shape;
     }
     
+    /**
+     * <p>set_contained_shape.</p>
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     */
     public void set_contained_shape(TileShape p_shape)
     {
         this.contained_shape = p_shape;
     }
     
+    /**
+     * <p>get_target_doors.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<TargetItemExpansionDoor> get_target_doors()
     {
         return new java.util.LinkedList<TargetItemExpansionDoor>();

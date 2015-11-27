@@ -22,13 +22,19 @@
 package gui;
 
 /**
+ * <p>PopupMenuStitchRoute class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PopupMenuStitchRoute extends PopupMenuDisplay
 {
     
-    /** Creates a new instance of PopupMenuStitchRoute */
+    /**
+     * Creates a new instance of PopupMenuStitchRoute
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public PopupMenuStitchRoute(BoardFrame p_board_frame)
     {
         super(p_board_frame);

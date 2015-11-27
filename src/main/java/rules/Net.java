@@ -28,6 +28,7 @@ import datastructures.UndoableObjects;
  * Describes properties for an individual electrical net.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, java.io.Serializable
 {
@@ -35,6 +36,12 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
     /**
      * Creates a new instance of Net.
      * p_net_list is the net list, where this net belongs to.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_subnet_number a int.
+     * @param p_no a int.
+     * @param p_net_list a {@link rules.Nets} object.
+     * @param p_contains_plane a boolean.
      */
     public Net(String p_name, int p_subnet_number, int p_no, Nets p_net_list, boolean p_contains_plane)
     {
@@ -46,6 +53,11 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
         net_class = p_net_list.get_board().rules.get_default_net_class();
     }
 
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
@@ -54,19 +66,30 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
     /**
      * Compares 2 nets by name.
      * Useful for example to display nets in alphabetic order.
+     *
+     * @param p_other a {@link rules.Net} object.
+     * @return a int.
      */
     public int compareTo(Net p_other)
     {
         return this.name.compareToIgnoreCase(p_other.name);
     }
 
-    /** Returns the class of this net. */
+    /**
+     * Returns the class of this net.
+     *
+     * @return a {@link rules.NetClass} object.
+     */
     public NetClass get_class()
     {
         return this.net_class;
     }
 
-    /** Sets the class of this net */
+    /**
+     * Sets the class of this net
+     *
+     * @param p_rule a {@link rules.NetClass} object.
+     */
     public void set_class(NetClass p_rule)
     {
         this.net_class = p_rule;
@@ -74,6 +97,8 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
 
     /**
      * Returns the pins and conduction areas of this net.
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public java.util.Collection<Item> get_terminal_items()
     {
@@ -100,6 +125,8 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
 
     /**
      * Returns the pins of this net.
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public java.util.Collection<board.Pin> get_pins()
     {
@@ -126,6 +153,8 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
 
     /**
      * Returns all items of this net.
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public java.util.Collection<board.Item> get_items()
     {
@@ -149,6 +178,8 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
 
     /**
      * Returns the cumulative trace length of all traces on the board belonging to this net.
+     *
+     * @return a double.
      */
     public double get_trace_length()
     {
@@ -167,6 +198,8 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
 
     /**
      * Returns the count of vias on the board belonging to this net.
+     *
+     * @return a int.
      */
     public int get_via_count()
     {
@@ -182,22 +215,30 @@ public class Net implements Comparable<Net>, board.ObjectInfoPanel.Printable, ja
         return result;
     }
 
+    /**
+     * <p>set_contains_plane.</p>
+     *
+     * @param p_value a boolean.
+     */
     public void set_contains_plane(boolean p_value)
     {
         contains_plane = p_value;
     }
 
-    /** 
+    /**
      * Indicates, if this net contains a power plane.
      * Used by the autorouter for setting the via costs to the cheap plane via costs.
      * May also be true, if a layer covered with a conduction_area of this net is
      * is a signal layer.
+     *
+     * @return a boolean.
      */
     public boolean contains_plane()
     {
         return contains_plane;
     }
 
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         Integer via_count = this.get_via_count();

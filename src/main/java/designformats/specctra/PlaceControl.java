@@ -24,17 +24,24 @@ package designformats.specctra;
  * Class for reading place_control scopes from dsn-files.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PlaceControl extends ScopeKeyword
 {
     
-    /** Creates a new instance of PlaceControl */
+    /**
+     * Creates a new instance of PlaceControl
+     */
     public PlaceControl()
     {
         super("place_control");
     }
     
-    /** Reads the flip_style */
+    /**
+     * {@inheritDoc}
+     *
+     * Reads the flip_style
+     */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         boolean flip_style_rotate_first = false;

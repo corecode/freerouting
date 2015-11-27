@@ -27,6 +27,7 @@ import java.util.LinkedList;
  * Default parameter type used while reading a Specctra dsn-file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ReadScopeParameter
 {

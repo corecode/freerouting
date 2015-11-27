@@ -37,11 +37,17 @@ import datastructures.IdentifierType;
  * Methods to handle a Specctra session file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class SessionFile
 {
     /**
      * Creates a Specctra session file to update the host system from the RoutingBooard
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @param p_design_name a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public static boolean write( BasicBoard p_board, java.io.OutputStream p_output_stream,  String p_design_name)
     {
@@ -101,6 +107,15 @@ public class SessionFile
         p_file.end_scope();
     }
     
+    /**
+     * <p>write_placement.</p>
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_placement(BasicBoard p_board, IdentifierType p_identifier_type,
             CoordinateTransform p_coordinate_transform, IndentFileWriter p_file) throws java.io.IOException
     {
@@ -117,6 +132,13 @@ public class SessionFile
     
     /**
      * Writes all components with the package p_package to the session file.
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_package a {@link library.Package} object.
+     * @throws java.io.IOException if any.
      */
     public static void write_components(BasicBoard p_board, IdentifierType p_identifier_type, CoordinateTransform p_coordinate_transform,
             IndentFileWriter p_file, library.Package p_package) throws java.io.IOException
@@ -160,6 +182,16 @@ public class SessionFile
         }
     }
     
+    /**
+     * <p>write_component.</p>
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @param p_coordinate_transform a {@link designformats.specctra.CoordinateTransform} object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_component a {@link board.Component} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_component(BasicBoard p_board, IdentifierType p_identifier_type, CoordinateTransform p_coordinate_transform,
             IndentFileWriter p_file, board.Component p_component) throws java.io.IOException
     {
@@ -191,6 +223,14 @@ public class SessionFile
         p_file.write(")");
     }
     
+    /**
+     * <p>write_was_is.</p>
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_was_is(BasicBoard p_board, IdentifierType p_identifier_type,
             IndentFileWriter p_file) throws java.io.IOException
     {

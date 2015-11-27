@@ -29,6 +29,7 @@ import datastructures.IdentifierType;
  * Describes a rectangle in a Specctra dsn file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Rectangle extends Shape
 {
@@ -36,6 +37,9 @@ public class Rectangle extends Shape
      * Creates a new instance of Rectangle
      * p_coor is an array of dimension 4 and contains the rectangle coordinates
      * in the following order: lower left x, lower left y, upper right x, uppper right y.
+     *
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     * @param p_coor an array of double.
      */
     public Rectangle(Layer p_layer, double[] p_coor)
     {
@@ -43,6 +47,11 @@ public class Rectangle extends Shape
         coor = p_coor;
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link designformats.specctra.Rectangle} object.
+     */
     public Rectangle bounding_box()
     {
         return this;
@@ -50,6 +59,9 @@ public class Rectangle extends Shape
     
     /**
      *  Creates the smallest rectangle containing this rectangle and p_other
+     *
+     * @param p_other a {@link designformats.specctra.Rectangle} object.
+     * @return a {@link designformats.specctra.Rectangle} object.
      */
     public Rectangle union (Rectangle p_other)
     {
@@ -61,6 +73,7 @@ public class Rectangle extends Shape
              return new Rectangle(this.layer, result_coor);
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board_rel(CoordinateTransform p_coordinate_transform)
     {
         int box_coor[] = new int[4];
@@ -83,6 +96,7 @@ public class Rectangle extends Shape
         return result;
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board(CoordinateTransform p_coordinate_transform)
     {
         double [] curr_point = new double [2];
@@ -96,6 +110,8 @@ public class Rectangle extends Shape
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Writes this rectangle as a scope to an output dsn-file.
      */
     public void write_scope(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException
@@ -111,6 +127,7 @@ public class Rectangle extends Shape
         p_file.write(")");
     }
     
+    /** {@inheritDoc} */
     public void write_scope_int(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException
     {
         p_file.new_line();

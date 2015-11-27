@@ -36,11 +36,16 @@ import board.ClearanceViolation;
  * To display the clearance violations between items on the screen.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ClearanceViolations
 {
     
-    /** Creates a new instance of ClearanceViolations */
+    /**
+     * Creates a new instance of ClearanceViolations
+     *
+     * @param p_item_list a java$util$Collection object.
+     */
     public ClearanceViolations(Collection<Item> p_item_list)
     {
         this.list = new LinkedList<ClearanceViolation>();
@@ -52,6 +57,12 @@ public class ClearanceViolations
         }
     }
     
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)
     {
          java.awt.Color draw_color = p_graphics_context.get_violations_color();

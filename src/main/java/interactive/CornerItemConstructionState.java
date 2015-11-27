@@ -28,11 +28,18 @@ import board.AngleRestriction;
  * Common class for constructing an obstacle with a polygonal shape.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CornerItemConstructionState extends InteractiveState
 {
     
-    /** Creates a new instance of CornerItemConstructionState */
+    /**
+     * Creates a new instance of CornerItemConstructionState
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     protected CornerItemConstructionState(InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_parent_state, p_board_handling, p_logfile);
@@ -40,6 +47,8 @@ public class CornerItemConstructionState extends InteractiveState
     }
     
     /**
+     * {@inheritDoc}
+     *
      * adds a corner to the polygon of the item under construction
      */
     public InteractiveState left_button_clicked(FloatPoint p_location)
@@ -49,6 +58,9 @@ public class CornerItemConstructionState extends InteractiveState
     
     /**
      * adds a corner to the polygon of the item under construction
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState add_corner(FloatPoint p_location)
     {
@@ -63,6 +75,7 @@ public class CornerItemConstructionState extends InteractiveState
         return this;
     }
     
+    /** {@inheritDoc} */
     public InteractiveState process_logfile_point(FloatPoint p_point)
     {
         return add_corner(p_point);
@@ -70,6 +83,8 @@ public class CornerItemConstructionState extends InteractiveState
     
     /**
      * stores the location of the mouse pointer after snapping it to the snap_angle
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState mouse_moved()
     {
@@ -81,12 +96,19 @@ public class CornerItemConstructionState extends InteractiveState
     }
     
     
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_corneritem_construction;
     }
     
     /**
+     * {@inheritDoc}
+     *
      * draws the polygon constructed so far as a visual aid
      */
     public void draw(java.awt.Graphics p_graphics)

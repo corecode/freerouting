@@ -35,11 +35,24 @@ import library.Padstack;
  * padstack.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Via extends DrillItem implements java.io.Serializable
 {
 
-    /** Creates a new instance of Via with the input parameters*/
+    /**
+     * Creates a new instance of Via with the input parameters
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     * @param p_center a {@link geometry.planar.Point} object.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_type a int.
+     * @param p_id_no a int.
+     * @param p_group_no a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @param p_attach_allowed a boolean.
+     * @param p_board a {@link board.BasicBoard} object.
+     */
     public Via(Padstack p_padstack, Point p_center, int[] p_net_no_arr, int p_clearance_type, int p_id_no,
             int p_group_no, FixedState p_fixed_state, boolean p_attach_allowed, BasicBoard p_board)
     {
@@ -48,12 +61,14 @@ public class Via extends DrillItem implements java.io.Serializable
         this.attach_allowed = p_attach_allowed;
     }
 
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         return new Via(padstack, get_center(), net_no_arr, clearance_class_no(), p_id_no, get_component_no(),
                 get_fixed_state(), attach_allowed, board);
     }
 
+    /** {@inheritDoc} */
     public Shape get_shape(int p_index)
     {
         if (padstack == null)
@@ -83,21 +98,42 @@ public class Via extends DrillItem implements java.io.Serializable
         return this.precalculated_shapes[p_index];
     }
 
+    /**
+     * <p>get_padstack.</p>
+     *
+     * @return a {@link library.Padstack} object.
+     */
     public Padstack get_padstack()
     {
         return padstack;
     }
 
+    /**
+     * <p>set_padstack.</p>
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     */
     public void set_padstack(Padstack p_padstack)
     {
         padstack = p_padstack;
     }
 
+    /**
+     * <p>is_route.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_route()
     {
         return !is_user_fixed() && this.net_count() > 0;
     }
 
+    /**
+     * <p>is_obstacle.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
+     */
     public boolean is_obstacle(Item p_other)
     {
         if (p_other == this || p_other instanceof ComponentObstacleArea)
@@ -125,6 +161,8 @@ public class Via extends DrillItem implements java.io.Serializable
 
     /**
      * Checks, if the Via has contacts on at most 1 layer.
+     *
+     * @return a boolean.
      */
     public boolean is_tail()
     {
@@ -148,6 +186,7 @@ public class Via extends DrillItem implements java.io.Serializable
         return true;
     }
 
+    /** {@inheritDoc} */
     public void change_placement_side(IntPoint p_pole)
     {
         if (this.board == null)
@@ -164,6 +203,12 @@ public class Via extends DrillItem implements java.io.Serializable
         clear_derived_data();
     }
 
+    /**
+     * <p>get_autoroute_drill_info.</p>
+     *
+     * @param p_autoroute_tree a {@link board.ShapeSearchTree} object.
+     * @return a {@link autoroute.ExpansionDrill} object.
+     */
     public autoroute.ExpansionDrill get_autoroute_drill_info(ShapeSearchTree p_autoroute_tree)
     {
         if (this.autoroute_drill_info == null)
@@ -181,6 +226,9 @@ public class Via extends DrillItem implements java.io.Serializable
         return this.autoroute_drill_info;
     }
 
+    /**
+     * <p>clear_derived_data.</p>
+     */
     public void clear_derived_data()
     {
         super.clear_derived_data();
@@ -188,12 +236,16 @@ public class Via extends DrillItem implements java.io.Serializable
         this.autoroute_drill_info = null;
     }
     
+    /**
+     * <p>clear_autoroute_info.</p>
+     */
     public void clear_autoroute_info()
     {
         super.clear_autoroute_info();
         this.autoroute_drill_info = null;
     }
 
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -203,6 +255,7 @@ public class Via extends DrillItem implements java.io.Serializable
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.VIAS);
     }
 
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(boardgraphics.GraphicsContext p_graphics_context)
     {
         java.awt.Color[] result;
@@ -224,6 +277,7 @@ public class Via extends DrillItem implements java.io.Serializable
         return result;
     }
 
+    /** {@inheritDoc} */
     public double get_draw_intensity(boardgraphics.GraphicsContext p_graphics_context)
     {
         double result;
@@ -245,6 +299,7 @@ public class Via extends DrillItem implements java.io.Serializable
         return result;
     }
 
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =
@@ -258,6 +313,7 @@ public class Via extends DrillItem implements java.io.Serializable
         p_window.newline();
     }
 
+    /** {@inheritDoc} */
     public boolean write(java.io.ObjectOutputStream p_stream)
     {
         try

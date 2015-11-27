@@ -39,14 +39,23 @@ import board.Item;
 import board.TestLevel;
 
 /**
+ * <p>LocateFoundConnectionAlgo45Degree class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class LocateFoundConnectionAlgo45Degree extends LocateFoundConnectionAlgo
 {
     
     /**
      * Creates a new instance of LocateFoundConnectionAlgo45Degree
+     *
+     * @param p_maze_search_result a {@link autoroute.MazeSearchAlgo.Result} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     * @param p_angle_restriction a {@link board.AngleRestriction} object.
+     * @param p_ripped_item_list a {@link java.util.SortedSet} object.
+     * @param p_test_level a {@link board.TestLevel} object.
      */
     public LocateFoundConnectionAlgo45Degree(MazeSearchAlgo.Result p_maze_search_result,
             AutorouteControl p_ctrl, ShapeSearchTree p_search_tree, AngleRestriction p_angle_restriction,
@@ -55,6 +64,11 @@ public class LocateFoundConnectionAlgo45Degree extends LocateFoundConnectionAlgo
         super(p_maze_search_result, p_ctrl, p_search_tree, p_angle_restriction, p_ripped_item_list, p_test_level);
     }
     
+    /**
+     * <p>calculate_next_trace_corners.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     protected Collection<FloatPoint> calculate_next_trace_corners()
     {
         Collection<FloatPoint> result =  new LinkedList<FloatPoint>();

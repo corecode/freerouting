@@ -26,11 +26,16 @@ import board.BoardOutline;
  *  Window handling detail parameters of the interactive routing.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowRouteDetail extends BoardSavableSubWindow
 {
 
-    /** Creates a new instance of RouteDetailWindow */
+    /**
+     * Creates a new instance of RouteDetailWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowRouteDetail(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;

@@ -23,11 +23,16 @@ package gui;
  * Used for manual choice of trace widths in interactive routing.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowManualRules extends BoardSavableSubWindow
 {
 
-    /** Creates a new instance of TraceWidthWindow */
+    /**
+     * Creates a new instance of TraceWidthWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowManualRules(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;
@@ -134,6 +139,11 @@ public class WindowManualRules extends BoardSavableSubWindow
         this.repaint();
     }
 
+    /**
+     * <p>set_trace_width_field.</p>
+     *
+     * @param p_half_width a int.
+     */
     public void set_trace_width_field(int p_half_width)
     {
         if (p_half_width < 0)

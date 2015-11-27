@@ -37,7 +37,9 @@ import geometry.planar.TileShape;
 class ItemSearchTreesInfo
 {
     
-    /** Creates a new instance of ItemSearchTreeEntries */
+    /**
+     * Creates a new instance of ItemSearchTreeEntries
+     */
     public ItemSearchTreesInfo()
     {
         this.tree_list = new LinkedList<SearchTreeInfo>();
@@ -46,6 +48,9 @@ class ItemSearchTreesInfo
     /**
      * Returns the tree entries for the tree with identification number p_tree_no,
      * or null, if for this tree no entries of this item are inserted.
+     *
+     * @param p_tree a {@link datastructures.ShapeTree} object.
+     * @return an array of {@link datastructures.ShapeTree.Leaf} objects.
      */
     public ShapeTree.Leaf[] get_tree_entries(ShapeTree p_tree)
     {
@@ -61,6 +66,9 @@ class ItemSearchTreesInfo
     
     /**
      * Sets the item tree entries for the  tree with identification number p_tree_no.
+     *
+     * @param p_tree_entries an array of {@link datastructures.ShapeTree.Leaf} objects.
+     * @param p_tree a {@link datastructures.ShapeTree} object.
      */
     public void set_tree_entries(ShapeTree.Leaf[] p_tree_entries, ShapeTree p_tree)
     {
@@ -80,6 +88,9 @@ class ItemSearchTreesInfo
     /**
      * Returns the precalculated tiles hapes  for the tree with identification number p_tree_no,
      * or null, if the tile shapes of this tree are nnot yet precalculated.
+     *
+     * @param p_tree a {@link datastructures.ShapeTree} object.
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[] get_precalculated_tree_shapes(ShapeTree p_tree)
     {
@@ -95,6 +106,9 @@ class ItemSearchTreesInfo
     
     /**
      * Sets the item tree entries for the  tree with identification number p_tree_no.
+     *
+     * @param p_tile_shapes an array of {@link geometry.planar.TileShape} objects.
+     * @param p_tree a {@link datastructures.ShapeTree} object.
      */
     public void set_precalculated_tree_shapes(TileShape[] p_tile_shapes, ShapeTree p_tree)
     {

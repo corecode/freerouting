@@ -34,16 +34,20 @@ import java.util.LinkedList;
  * Class for reading and writing library scopes from dsn-files.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Library extends ScopeKeyword
 {
     
-    /** Creates a new instance of Library */
+    /**
+     * Creates a new instance of Library
+     */
     public Library()
     {
         super("library");
     }
     
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         board.RoutingBoard board = p_par.board_handling.get_routing_board();
@@ -203,6 +207,12 @@ public class Library extends ScopeKeyword
         return true;
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par) throws java.io.IOException
     {
         p_par.file.start_scope();
@@ -218,6 +228,13 @@ public class Library extends ScopeKeyword
         p_par.file.end_scope();
     }
     
+    /**
+     * <p>write_padstack_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_padstack a {@link library.Padstack} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_padstack_scope(WriteScopeParameter p_par, library.Padstack p_padstack) throws java.io.IOException
     {
         // search the layer range of the padstack

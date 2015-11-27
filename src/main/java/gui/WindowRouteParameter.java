@@ -26,11 +26,16 @@ import java.util.Collection;
  *  Window handling parameters of the interactive routing.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowRouteParameter extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of RouteParameterWindow */
+    /**
+     * Creates a new instance of RouteParameterWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowRouteParameter(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;
@@ -276,6 +281,9 @@ public class WindowRouteParameter extends BoardSavableSubWindow
         this.setResizable(false);
     }
     
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         detail_window.dispose();
@@ -284,6 +292,8 @@ public class WindowRouteParameter extends BoardSavableSubWindow
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Reads the data of this frame from disk.
      * Returns false, if the reading failed.
      */
@@ -313,6 +323,8 @@ public class WindowRouteParameter extends BoardSavableSubWindow
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Saves this frame to disk.
      */
     public void save(java.io.ObjectOutputStream p_object_stream)
@@ -391,6 +403,9 @@ public class WindowRouteParameter extends BoardSavableSubWindow
         }
     }
     
+    /**
+     * <p>parent_iconified.</p>
+     */
     public void parent_iconified()
     {
         manual_rule_window.parent_iconified();
@@ -398,6 +413,9 @@ public class WindowRouteParameter extends BoardSavableSubWindow
         super.parent_iconified();
     }
     
+    /**
+     * <p>parent_deiconified.</p>
+     */
     public void parent_deiconified()
     {
         manual_rule_window.parent_deiconified();

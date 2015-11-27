@@ -25,9 +25,19 @@ package designformats.specctra;
  * @author  alfons
  */
 
-/** Keywords defining a scope object*/
+/**
+ * Keywords defining a scope object
+ *
+ * @author harry
+ * @version $Id: $Id
+ */
 public class ScopeKeyword extends Keyword
 {
+    /**
+     * <p>Constructor for ScopeKeyword.</p>
+     *
+     * @param p_name a {@link java.lang.String} object.
+     */
     public ScopeKeyword(String p_name)
     {
         super(p_name);
@@ -36,6 +46,9 @@ public class ScopeKeyword extends Keyword
     /**
      * Scips the current scope while reading a dsn file.
      * Returns false, if no legal scope was found.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a boolean.
      */
     public static boolean skip_scope(Scanner p_scanner)
     {
@@ -72,6 +85,9 @@ public class ScopeKeyword extends Keyword
     
     /**
      * Reads the next scope of this keyword from dsn file.
+     *
+     * @param p_par a {@link designformats.specctra.ReadScopeParameter} object.
+     * @return a boolean.
      */
     public boolean read_scope(ReadScopeParameter p_par)
     {

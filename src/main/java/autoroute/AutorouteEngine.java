@@ -46,6 +46,7 @@ import board.TestLevel;
  * Temporary autoroute data stored on the RoutingBoard.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class AutorouteEngine
 {
@@ -54,6 +55,10 @@ public class AutorouteEngine
      * Creates a new instance of BoardAoutorouteEngine
      * If p_maintain_database, the autorouter database is maintained after a  connection is
      * completed for performance reasons.
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_trace_clearance_class_no a int.
+     * @param p_maintain_database a boolean.
      */
     public AutorouteEngine(RoutingBoard p_board, int p_trace_clearance_class_no, boolean p_maintain_database)
     {
@@ -67,6 +72,13 @@ public class AutorouteEngine
         this.stoppable_thread = null;
     }
 
+    /**
+     * <p>init_connection.</p>
+     *
+     * @param p_net_no a int.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     */
     public void init_connection(int p_net_no, Stoppable p_stoppable_thread, TimeLimit p_time_limit)
     {
         if (this.maintain_database)
@@ -107,6 +119,15 @@ public class AutorouteEngine
 
     /* Autoroutes a connection between p_start_set and p_dest_set.
      * Returns ALREADY_CONNECTED, ROUTED, NOT_ROUTED, or INSERT_ERROR.
+     */
+    /**
+     * <p>autoroute_connection.</p>
+     *
+     * @param p_start_set a {@link java.util.Set} object.
+     * @param p_dest_set a {@link java.util.Set} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @param p_ripped_item_list a {@link java.util.SortedSet} object.
+     * @return a {@link autoroute.AutorouteEngine.AutorouteResult} object.
      */
     public AutorouteResult autoroute_connection(Set<Item> p_start_set, Set<Item> p_dest_set,
             AutorouteControl p_ctrl, SortedSet<Item> p_ripped_item_list)
@@ -215,6 +236,8 @@ public class AutorouteEngine
 
     /**
      * Returns the net number of the current connection to route.
+     *
+     * @return a int.
      */
     public int get_net_no()
     {
@@ -223,6 +246,8 @@ public class AutorouteEngine
 
     /**
      * Returns if the user has stopped the autorouter.
+     *
+     * @return a boolean.
      */
     public boolean is_stop_requested()
     {
@@ -260,6 +285,10 @@ public class AutorouteEngine
 
     /**
      * Draws the shapes of the expansion rooms created so far.
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_intensity a double.
      */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity)
     {
@@ -289,6 +318,11 @@ public class AutorouteEngine
      * The final (completed) shape will be a subshape of the start shape, which
      * does not overlap with any obstacle, and it is as big as possible.
      * p_contained_points will remain contained in the shape, after it is completed.
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_layer a int.
+     * @param p_contained_shape a {@link geometry.planar.TileShape} object.
+     * @return a {@link autoroute.IncompleteFreeSpaceExpansionRoom} object.
      */
     public IncompleteFreeSpaceExpansionRoom add_incomplete_expansion_room(TileShape p_shape, int p_layer, TileShape p_contained_shape)
     {
@@ -303,6 +337,8 @@ public class AutorouteEngine
 
     /**
      * Returns the first elemment in the list of incomplete expansion rooms or null, if the list is empty.
+     *
+     * @return a {@link autoroute.IncompleteFreeSpaceExpansionRoom} object.
      */
     public IncompleteFreeSpaceExpansionRoom get_first_incomplete_expansion_room()
     {
@@ -320,6 +356,8 @@ public class AutorouteEngine
 
     /**
      * Removes an incomplete room from the database.
+     *
+     * @param p_room a {@link autoroute.IncompleteFreeSpaceExpansionRoom} object.
      */
     public void remove_incomplete_expansion_room(IncompleteFreeSpaceExpansionRoom p_room)
     {
@@ -330,6 +368,8 @@ public class AutorouteEngine
     /**
      * Removes a complete expansion room from the database and creates
      * new incomplete expansion rooms for the neighbours.
+     *
+     * @param p_room a {@link autoroute.CompleteFreeSpaceExpansionRoom} object.
      */
     public void remove_complete_expansion_room(CompleteFreeSpaceExpansionRoom p_room)
     {
@@ -377,6 +417,9 @@ public class AutorouteEngine
      * Completes the shape of p_room.
      * Returns the resulting rooms after completing the shape.
      * p_room will no more exist after this function.
+     *
+     * @param p_room a {@link autoroute.IncompleteFreeSpaceExpansionRoom} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<CompleteFreeSpaceExpansionRoom> complete_expansion_room(IncompleteFreeSpaceExpansionRoom p_room)
     {
@@ -495,8 +538,11 @@ public class AutorouteEngine
         return result;
     }
 
-    /** Completes the shapes of the neigbour rooms of p_room, so that the
+    /**
+     * Completes the shapes of the neigbour rooms of p_room, so that the
      * doors of p_room will not change later on.
+     *
+     * @param p_room a {@link autoroute.CompleteExpansionRoom} object.
      */
     public void complete_neigbour_rooms(CompleteExpansionRoom p_room)
     {
@@ -535,6 +581,8 @@ public class AutorouteEngine
     /**
      * Invalidates all drill pages intersecting with p_shape, so the they must be recalculated at the next
      * call of get_ddrills()
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
      */
     public void invalidate_drill_pages(TileShape p_shape)
     {
@@ -590,6 +638,8 @@ public class AutorouteEngine
 
     /**
      * Checks, if the internal datastructure is valid.
+     *
+     * @return a boolean.
      */
     public boolean validate()
     {
@@ -633,6 +683,11 @@ public class AutorouteEngine
         this.drill_page_array.reset();
     }
 
+    /**
+     * <p>generate_room_id_no.</p>
+     *
+     * @return a int.
+     */
     protected int generate_room_id_no()
     {
         ++expansion_room_instance_count;

@@ -25,16 +25,20 @@ import board.Communication.SpecctraParserInfo;
  * Class for reading and writing parser scopes from dsn-files.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Parser extends ScopeKeyword
 {
 
-    /** Creates a new instance of Parser */
+    /**
+     * Creates a new instance of Parser
+     */
     public Parser()
     {
         super("parser");
     }
 
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         Object next_token = null;
@@ -182,6 +186,12 @@ public class Parser extends ScopeKeyword
 
     /**
      * p_reduced is true if the scope is written to a session file.
+     *
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_parser_info a {@link board.Communication.SpecctraParserInfo} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @param p_reduced a boolean.
+     * @throws java.io.IOException if any.
      */
     public static void write_scope(datastructures.IndentFileWriter p_file, SpecctraParserInfo p_parser_info,
             datastructures.IdentifierType p_identifier_type, boolean p_reduced) throws java.io.IOException

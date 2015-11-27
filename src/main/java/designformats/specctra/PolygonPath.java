@@ -31,11 +31,18 @@ import datastructures.IdentifierType;
  * Class for reading and writing path scopes consisting of a polygon from dsn-files.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PolygonPath extends Path
 {
     
-    /** Creates a new instance of PolygonPath */
+    /**
+     * Creates a new instance of PolygonPath
+     *
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     * @param p_width a double.
+     * @param p_coordinate_arr an array of double.
+     */
     public PolygonPath(Layer p_layer, double p_width, double[] p_coordinate_arr)
     {
         super(p_layer, p_width, p_coordinate_arr);
@@ -43,6 +50,8 @@ public class PolygonPath extends Path
     
     
     /**
+     * {@inheritDoc}
+     *
      * Writes this path as a scope to an output dsn-file.
      */
     public void write_scope(IndentFileWriter p_file, IdentifierType p_identifier_type) throws java.io.IOException
@@ -63,6 +72,7 @@ public class PolygonPath extends Path
         p_file.end_scope();
     }
     
+    /** {@inheritDoc} */
     public void write_scope_int(IndentFileWriter p_file, IdentifierType p_identifier_type) throws java.io.IOException
     {
         p_file.start_scope();
@@ -83,6 +93,7 @@ public class PolygonPath extends Path
         p_file.end_scope();
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board(CoordinateTransform p_coordinate_transform)
     {
         FloatPoint [] corner_arr = new FloatPoint[this.coordinate_arr.length / 2];
@@ -112,6 +123,7 @@ public class PolygonPath extends Path
         return result;
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board_rel(CoordinateTransform p_coordinate_transform)
     {
         FloatPoint [] corner_arr = new FloatPoint[this.coordinate_arr.length / 2];
@@ -141,6 +153,11 @@ public class PolygonPath extends Path
         return result;
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link designformats.specctra.Rectangle} object.
+     */
     public Rectangle bounding_box()
     {
         double offset = this.width/2;

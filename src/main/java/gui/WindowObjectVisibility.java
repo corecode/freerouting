@@ -26,10 +26,16 @@ import boardgraphics.ColorIntensityTable.ObjectNames;
  * Interactive Frame to adjust the visibility of the individual board items
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class WindowObjectVisibility extends WindowVisibility
 {
-    /** Returns a new instance of ItemVisibilityFrame */
+    /**
+     * Returns a new instance of ItemVisibilityFrame
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a {@link gui.WindowObjectVisibility} object.
+     */
     public static WindowObjectVisibility get_instance(BoardFrame p_board_frame)
     {
         java.util.ResourceBundle resources = 
@@ -66,6 +72,7 @@ public class WindowObjectVisibility extends WindowVisibility
         }
     }
     
+    /** {@inheritDoc} */
     protected void set_changed_value(int p_index, double p_value)
     {
         

@@ -24,11 +24,16 @@ package board;
  * Describes the layer structure of the board.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class LayerStructure implements java.io.Serializable
 {
     
-    /** Creates a new instance of LayerStructure */
+    /**
+     * Creates a new instance of LayerStructure
+     *
+     * @param p_layer_arr an array of {@link board.Layer} objects.
+     */
     public LayerStructure(Layer [] p_layer_arr)
     {
         arr = p_layer_arr;
@@ -37,6 +42,9 @@ public class LayerStructure implements java.io.Serializable
     /**
      * Returns the index of the layer with the name p_name in the array arr,
      * -1, if  arr contains no layer with name p_name.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a int.
      */
     public int get_no(String p_name)
     {
@@ -53,6 +61,9 @@ public class LayerStructure implements java.io.Serializable
     /**
      * Returns the index of p_layer  in the array arr,
      * or -1, if  arr does not contain p_layer.
+     *
+     * @param p_layer a {@link board.Layer} object.
+     * @return a int.
      */
     public int get_no(Layer p_layer)
     {
@@ -68,6 +79,8 @@ public class LayerStructure implements java.io.Serializable
     
     /**
      * Returns the count of signal layers of this layer_structure.
+     *
+     * @return a int.
      */
     public int signal_layer_count()
     {
@@ -84,6 +97,9 @@ public class LayerStructure implements java.io.Serializable
     
     /**
      * Gets the p_no-th signal layer of this layer structure.
+     *
+     * @param p_no a int.
+     * @return a {@link board.Layer} object.
      */
     public Layer get_signal_layer(int p_no)
     {
@@ -104,6 +120,9 @@ public class LayerStructure implements java.io.Serializable
     
     /**
      * Returns the count of signal layers with a smaller number than p_layer
+     *
+     * @param p_layer a {@link board.Layer} object.
+     * @return a int.
      */
     public int get_signal_layer_no(Layer p_layer)
     {
@@ -124,6 +143,9 @@ public class LayerStructure implements java.io.Serializable
     
     /**
      * Gets the layer number of the p_signal_layer_no-th signal layer in this layer structure
+     *
+     * @param p_signal_layer_no a int.
+     * @return a int.
      */
     public int get_layer_no (int p_signal_layer_no)
     {

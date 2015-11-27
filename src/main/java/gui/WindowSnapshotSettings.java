@@ -25,11 +25,16 @@ package gui;
  * Window for the settinngs of interactive snapshots.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowSnapshotSettings extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of WindowSnapshotSettings */
+    /**
+     * Creates a new instance of WindowSnapshotSettings
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowSnapshotSettings(BoardFrame p_board_frame)
     {
         this.board_handling = p_board_frame.board_panel.board_handling;

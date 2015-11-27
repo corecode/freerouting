@@ -32,8 +32,8 @@ import java.util.TreeSet;
  * Class describing functionality required for traces in the plane.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public abstract class Trace extends Item implements Connectable, java.io.Serializable
 {
     
@@ -52,34 +52,63 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     
     /**
      * returns the first corner of the trace
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public abstract Point first_corner();
     
     /**
      * returns the last corner of the trace
+     *
+     * @return a {@link geometry.planar.Point} object.
      */
     public abstract Point last_corner();
     
+    /**
+     * <p>first_layer.</p>
+     *
+     * @return a int.
+     */
     public int first_layer()
     {
         return this.layer;
     }
     
+    /**
+     * <p>last_layer.</p>
+     *
+     * @return a int.
+     */
     public int last_layer()
     {
         return this.layer;
     }
     
+    /**
+     * <p>get_layer.</p>
+     *
+     * @return a int.
+     */
     public int get_layer()
     {
         return this.layer;
     }
     
+    /**
+     * <p>set_layer.</p>
+     *
+     * @param p_layer a int.
+     */
     public void set_layer(int p_layer)
     {
         this.layer = p_layer;
     }
     
+    /**
+     * <p>get_half_width.</p>
+     *
+     * @return a int.
+     */
     public int get_half_width()
     {
         return half_width;
@@ -87,6 +116,8 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     
     /**
      * Returns the length of this trace.
+     *
+     * @return a double.
      */
     public abstract double get_length();
     
@@ -94,6 +125,9 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
      * Returns the half with enlarged by the clearance compensation value for the tree
      * with id number p_ttree_id_no
      * Equals get_half_width(), if no clearance compensation is used in this tree.
+     *
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     * @return a int.
      */
     public int get_compensated_half_width(ShapeSearchTree p_search_tree)
     {
@@ -101,6 +135,12 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
         return result;
     }
     
+    /**
+     * <p>is_obstacle.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
+     */
     public boolean is_obstacle(Item p_other)
     {
         if (p_other == this || p_other instanceof ViaObstacleArea || p_other instanceof ComponentObstacleArea)
@@ -121,6 +161,8 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     /**
      * Get a list of all items with a connection point on the layer
      * of this trace equal to its first corner.
+     *
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> get_start_contacts()
     {
@@ -130,17 +172,30 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     /**
      * Get a list of all items with a connection point on the layer
      * of this trace equal to its last corner.
+     *
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> get_end_contacts()
     {
         return get_normal_contacts(last_corner(), false);
     }
     
+    /**
+     * <p>normal_contact_point.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a {@link geometry.planar.Point} object.
+     */
     public Point normal_contact_point(Item p_other)
     {
         return p_other.normal_contact_point(this);
     }
     
+    /**
+     * <p>get_normal_contacts.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     public Set<Item> get_normal_contacts()
     {
         Set<Item> result = new TreeSet<Item>();
@@ -157,6 +212,11 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
         return result;
     }
     
+    /**
+     * <p>is_route.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_route()
     {
         return !is_user_fixed() && this.net_count() > 0;
@@ -164,6 +224,8 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     
     /**
      * Returns true, if this trace is not contacted at its first or at its last point.
+     *
+     * @return a boolean.
      */
     public boolean is_tail()
     {
@@ -177,16 +239,23 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     }
     
     
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_trace_colors(this.is_user_fixed());
     }
     
+    /**
+     * <p>get_draw_priority.</p>
+     *
+     * @return a int.
+     */
     public int get_draw_priority()
     {
         return boardgraphics.Drawable.MAX_DRAW_PRIORITY;
     }
     
+    /** {@inheritDoc} */
     public double get_draw_intensity(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_trace_color_intensity();
@@ -197,6 +266,10 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
      * on the layer of this trace.
      * If p_ignore_net is false, only contacts to items sharing a net with this trace
      * are calculated. This is the normal case.
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @param p_ignore_net a boolean.
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> get_normal_contacts(Point p_point, boolean p_ignore_net)
     {
@@ -281,6 +354,7 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
         return result;
     }
     
+    /** {@inheritDoc} */
     public boolean is_drillable(int p_net_no)
     {
         return this.contains_net(p_net_no);
@@ -289,6 +363,8 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     /**
      * looks, if this trace is connectet to the same object
      * at its start and its end point
+     *
+     * @return a boolean.
      */
     public boolean is_overlap()
     {
@@ -307,6 +383,8 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     
     /**
      * Returns true, if it is not allowed to change the location of this item by the push algorithm.
+     *
+     * @return a boolean.
      */
     public boolean is_shove_fixed()
     {
@@ -333,6 +411,9 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     /**
      * returns the endpoint of this trace with the shortest distance
      * to p_from_point
+     *
+     * @param p_from_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point nearest_end_point(Point p_from_point)
     {
@@ -355,6 +436,8 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
     
     /**
      * Checks, if this trace can be reached by other items via more than one path
+     *
+     * @return a boolean.
      */
     public boolean is_cycle()
     {
@@ -392,11 +475,17 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
         return false;
     }
     
+    /** {@inheritDoc} */
     public int shape_layer(int p_index)
     {
         return layer;
     }
     
+    /**
+     * <p>get_ratsnest_corners.</p>
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
+     */
     public Point[] get_ratsnest_corners()
     {
         // Use only uncontacted enpoints of the trace.
@@ -441,9 +530,13 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
      * are satisfied. If p_at_start, the start of this trace is checked,
      * else the end. Returns false, if a pin is at that end, where
      * the connection is checked and the connection is not ok.
+     *
+     * @param p_at_start a boolean.
+     * @return a boolean.
      */
     public abstract  boolean check_connection_to_pin(boolean p_at_start);
     
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -483,6 +576,7 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
         return result;
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =
@@ -502,6 +596,11 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
         p_window.newline();
     }
     
+    /**
+     * <p>validate.</p>
+     *
+     * @return a boolean.
+     */
     public boolean validate()
     {
         boolean result = super.validate();
@@ -527,19 +626,28 @@ public abstract class Trace extends Item implements Connectable, java.io.Seriali
      * Returns the pieces resulting from splitting.
      * If nothing is split, the result will contain just this Trace.
      * If p_clip_shape != null, the split may be resticted to p_clip_shape.
+     *
+     * @param p_clip_shape a {@link geometry.planar.IntOctagon} object.
+     * @return a {@link java.util.Collection} object.
      */
     public abstract Collection<PolylineTrace> split(IntOctagon p_clip_shape);
     
     /**
      * Splits this trace into two at p_point.
-     * Returns the 2 pieces of the splitted trace, or null if nothing was splitted because for example 
+     * Returns the 2 pieces of the splitted trace, or null if nothing was splitted because for example
      * p_point is not located on this trace.
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return an array of {@link board.Trace} objects.
      */
     public abstract Trace[] split(Point p_point);
     
     /**
      * Tries to make this trace shorter according to its rules.
      * Returns true if the geometry of the trace was changed.
+     *
+     * @param p_pull_tight_algo a {@link board.PullTightAlgo} object.
+     * @return a boolean.
      */
     public abstract boolean pull_tight(PullTightAlgo p_pull_tight_algo);
     

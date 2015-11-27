@@ -26,11 +26,19 @@ import geometry.planar.FloatPoint;
  * Class for transforming objects between user coordinate space and board coordinate space.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CoordinateTransform implements java.io.Serializable
 {
     
-    /** Creates a new instance of CoordinateTransform */
+    /**
+     * Creates a new instance of CoordinateTransform
+     *
+     * @param p_user_unit_factor a double.
+     * @param p_user_unit a {@link board.Unit} object.
+     * @param p_board_unit_factor a double.
+     * @param p_board_unit a {@link board.Unit} object.
+     */
     public CoordinateTransform(double p_user_unit_factor, Unit p_user_unit,
             double p_board_unit_factor, Unit p_board_unit)
     {
@@ -43,6 +51,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Scale a value from the board to the user coordinate system.
+     *
+     * @param p_value a double.
+     * @return a double.
      */
     public double board_to_user(double p_value)
     {
@@ -51,6 +62,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Scale a value from the user to the board coordinate system.
+     *
+     * @param p_value a double.
+     * @return a double.
      */
     public double user_to_board(double p_value)
     {
@@ -61,6 +75,9 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms a geometry.planar.FloatPoint from the board coordinate space
      * to the user coordinate space.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint board_to_user(FloatPoint p_point)
     {
@@ -70,12 +87,22 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Transforms a geometry.planar.FloatPoint from the user coordinate space.
      * to the board coordinate space.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint user_to_board(FloatPoint p_point)
     {
         return  new FloatPoint(user_to_board(p_point.x), user_to_board(p_point.y));
     }
     
+    /**
+     * <p>board_to_user.</p>
+     *
+     * @param p_shape a {@link geometry.planar.Shape} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link board.PrintableShape} object.
+     */
     public PrintableShape board_to_user(geometry.planar.Shape p_shape, java.util.Locale p_locale)
     {
         PrintableShape result;
@@ -99,18 +126,39 @@ public class CoordinateTransform implements java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>board_to_user.</p>
+     *
+     * @param p_circle a {@link geometry.planar.Circle} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link board.PrintableShape.Circle} object.
+     */
     public PrintableShape.Circle board_to_user(geometry.planar.Circle p_circle, java.util.Locale p_locale)
     {
         return new PrintableShape.Circle(board_to_user(p_circle.center.to_float()),
                 board_to_user(p_circle.radius), p_locale);
     }
     
+    /**
+     * <p>board_to_user.</p>
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link board.PrintableShape.Rectangle} object.
+     */
     public PrintableShape.Rectangle board_to_user(geometry.planar.IntBox p_box, java.util.Locale p_locale)
     {
         return new PrintableShape.Rectangle(board_to_user(p_box.ll.to_float()),
                 board_to_user(p_box.ur.to_float()), p_locale);
     }
     
+    /**
+     * <p>board_to_user.</p>
+     *
+     * @param p_shape a {@link geometry.planar.PolylineShape} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link board.PrintableShape.Polygon} object.
+     */
     public PrintableShape.Polygon board_to_user(geometry.planar.PolylineShape p_shape, java.util.Locale p_locale)
     {
         FloatPoint[] corners = p_shape.corner_approx_arr();

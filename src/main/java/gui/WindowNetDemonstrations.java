@@ -27,11 +27,16 @@ import java.util.zip.ZipInputStream;
  * Window with a list for selecting router demonstrations in the net.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowNetDemonstrations extends WindowNetSamples
 {
     
-    /** Creates a new instance of WindowNetDemonstration */
+    /**
+     * Creates a new instance of WindowNetDemonstration
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public WindowNetDemonstrations(java.util.Locale p_locale)
     {
         super(p_locale, "router_demonstrations", "replay_example", 7);
@@ -51,6 +56,9 @@ public class WindowNetDemonstrations extends WindowNetSamples
         add("sharp_empty.dsn", "autorouter_example_3", AdditionalAction.AUTOROUTE);
     }
     
+    /**
+     * <p>button_pushed.</p>
+     */
     protected void button_pushed()
     {
         int index = list.getSelectedIndex();

@@ -57,12 +57,16 @@ import designformats.specctra.DsnFile;
  * the board database.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardHandling
 {
 
     /**
      * Creates a new BoardHandling
+     *
+     * @param p_panel a {@link gui.BoardPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     public BoardHandling(gui.BoardPanel p_panel, java.util.Locale p_locale)
     {
@@ -77,6 +81,8 @@ public class BoardHandling
     /**
      * Sets the board to read only for example when running a seperate action thread
      * to avoid unsynchronized change of the board.
+     *
+     * @param p_value a boolean.
      */
     public void set_board_read_only(boolean p_value)
     {
@@ -86,6 +92,8 @@ public class BoardHandling
 
     /**
      * Return true, if the board is set to read only.
+     *
+     * @return a boolean.
      */
     public boolean is_board_read_only()
     {
@@ -94,6 +102,8 @@ public class BoardHandling
 
     /**
      * Return the current language for the GUI messages.
+     *
+     * @return a {@link java.util.Locale} object.
      */
     public java.util.Locale get_locale()
     {
@@ -102,6 +112,8 @@ public class BoardHandling
 
     /**
      * returns the number of layers of the board design.
+     *
+     * @return a int.
      */
     public int get_layer_count()
     {
@@ -114,6 +126,8 @@ public class BoardHandling
 
     /**
      * Gets the routing board of this board handling.
+     *
+     * @return a {@link board.RoutingBoard} object.
      */
     public RoutingBoard get_routing_board()
     {
@@ -122,6 +136,8 @@ public class BoardHandling
 
     /**
      * Returns the current position of the mouse pointer.
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint get_current_mouse_position()
     {
@@ -139,6 +155,8 @@ public class BoardHandling
 
     /**
      * * Tells the router, if conduction areas should be ignored..
+     *
+     * @param p_value a boolean.
      */
     public void set_ignore_conduction(boolean p_value)
     {
@@ -151,6 +169,11 @@ public class BoardHandling
         logfile.start_scope(LogfileScope.SET_IGNORE_CONDUCTION, p_value);
     }
 
+    /**
+     * <p>set_pin_edge_to_turn_dist.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_pin_edge_to_turn_dist(double p_value)
     {
         if (board_is_read_only)
@@ -186,6 +209,9 @@ public class BoardHandling
     /**
      * Changes the visibility of the input layer to the input value.
      * p_value is expected between 0 and 1
+     *
+     * @param p_layer a int.
+     * @param p_value a double.
      */
     public void set_layer_visibility(int p_layer, double p_value)
     {
@@ -212,6 +238,10 @@ public class BoardHandling
 
     /**
      * Gets the trace half width used in interactive routing for the input net on the input layer.
+     *
+     * @param p_net_no a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int get_trace_halfwidth(int p_net_no, int p_layer)
     {
@@ -229,6 +259,10 @@ public class BoardHandling
 
     /**
      *  Returns if p_layer is active for interactive routing of traces.
+     *
+     * @param p_net_no a int.
+     * @param p_layer a int.
+     * @return a boolean.
      */
     public boolean is_active_routing_layer(int p_net_no, int p_layer)
     {
@@ -249,7 +283,12 @@ public class BoardHandling
         return curr_net_class.is_active_routing_layer(p_layer);
     }
 
-    /** Gets the trace clearance class used in interactive routing. */
+    /**
+     * Gets the trace clearance class used in interactive routing.
+     *
+     * @param p_net_no a int.
+     * @return a int.
+     */
     public int get_trace_clearance_class(int p_net_no)
     {
         int result;
@@ -264,7 +303,12 @@ public class BoardHandling
         return result;
     }
 
-    /** Gets the via rule used in interactive routing. */
+    /**
+     * Gets the via rule used in interactive routing.
+     *
+     * @param p_net_no a int.
+     * @return a {@link rules.ViaRule} object.
+     */
     public rules.ViaRule get_via_rule(int p_net_no)
     {
         rules.ViaRule result = null;
@@ -281,6 +325,9 @@ public class BoardHandling
 
     /**
      * Changes the default trace halfwidth currently used in interactive routing on the input layer.
+     *
+     * @param p_layer a int.
+     * @param p_value a int.
      */
     public void set_default_trace_halfwidth(int p_layer, int p_value)
     {
@@ -298,6 +345,8 @@ public class BoardHandling
 
     /**
      * Switches clearance compansation on or off.
+     *
+     * @param p_value a boolean.
      */
     public void set_clearance_compensation(boolean p_value)
     {
@@ -311,6 +360,8 @@ public class BoardHandling
 
     /**
      * Changes the current snap angle in the interactive board handling.
+     *
+     * @param p_snap_angle a {@link board.AngleRestriction} object.
      */
     public void set_current_snap_angle(board.AngleRestriction p_snap_angle)
     {
@@ -324,6 +375,8 @@ public class BoardHandling
 
     /**
      * Changes the current layer in the interactive board handling.
+     *
+     * @param p_layer a int.
      */
     public void set_current_layer(int p_layer)
     {
@@ -389,6 +442,9 @@ public class BoardHandling
     /**
      * Sets the manual trace half width used in interactive routing.
      * If p_layer_no < 0, the manual trace half width is changed on all layers.
+     *
+     * @param p_layer_no a int.
+     * @param p_value a int.
      */
     public void set_manual_trace_half_width(int p_layer_no, int p_value)
     {
@@ -414,6 +470,9 @@ public class BoardHandling
 
     /**
      * Changes the interactive selectability of p_item_type.
+     *
+     * @param p_item_type a {@link board.ItemSelectionFilter.SelectableChoices} object.
+     * @param p_value a boolean.
      */
     public void set_selectable(ItemSelectionFilter.SelectableChoices p_item_type, boolean p_value)
     {
@@ -441,6 +500,9 @@ public class BoardHandling
         repaint();
     }
 
+    /**
+     * <p>toggle_clearance_violations.</p>
+     */
     public void toggle_clearance_violations()
     {
         if (clearance_violations == null)
@@ -545,6 +607,8 @@ public class BoardHandling
 
     /**
      * Returns the ratsnest with the information about the incomplete connections.
+     *
+     * @return a {@link interactive.RatsNest} object.
      */
     public RatsNest get_ratsnest()
     {
@@ -555,6 +619,9 @@ public class BoardHandling
         return this.ratsnest;
     }
 
+    /**
+     * <p>recalculate_length_violations.</p>
+     */
     public void recalculate_length_violations()
     {
         if (this.ratsnest != null)
@@ -571,6 +638,9 @@ public class BoardHandling
 
     /**
      * Sets the visibility filter for the incompletes of the input net.
+     *
+     * @param p_net_no a int.
+     * @param p_value a boolean.
      */
     public void set_incompletes_filter(int p_net_no, boolean p_value)
     {
@@ -582,6 +652,14 @@ public class BoardHandling
 
     /**
      * Creates the Routingboard, the graphic context and the interactive settings.
+     *
+     * @param p_bounding_box a {@link geometry.planar.IntBox} object.
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_outline_shapes an array of {@link geometry.planar.PolylineShape} objects.
+     * @param p_outline_clearance_class_name a {@link java.lang.String} object.
+     * @param p_rules a rules$BoardRules object.
+     * @param p_board_communication a {@link board.Communication} object.
+     * @param p_test_level a {@link board.TestLevel} object.
      */
     public void create_board(IntBox p_bounding_box, LayerStructure p_layer_structure,
                              PolylineShape[] p_outline_shapes, String p_outline_clearance_class_name,
@@ -622,6 +700,8 @@ public class BoardHandling
 
     /**
      * Changes the factor of the user unit.
+     *
+     * @param p_new_factor a double.
      */
     public void change_user_unit_factor(double p_new_factor)
     {
@@ -633,6 +713,8 @@ public class BoardHandling
 
     /**
      * Changes the user unit.
+     *
+     * @param p_unit a {@link board.Unit} object.
      */
     public void change_user_unit(Unit p_unit)
     {
@@ -644,6 +726,8 @@ public class BoardHandling
 
     /**
      * From here on the interactive actions are written to a logfile.
+     *
+     * @param p_filename a {@link java.io.File} object.
      */
     public void start_logfile(File p_filename)
     {
@@ -672,6 +756,8 @@ public class BoardHandling
 
     /**
      * Repaints a rectangle of board panel on the screen.
+     *
+     * @param p_rect a {@link java.awt.Rectangle} object.
      */
     public void repaint(Rectangle p_rect)
     {
@@ -696,6 +782,8 @@ public class BoardHandling
     /**
      * Gets the popup menu used in the current interactive state.
      * Returns null, if the current state uses no popup menu.
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
      */
     public javax.swing.JPopupMenu get_current_popup_menu()
     {
@@ -714,6 +802,8 @@ public class BoardHandling
     /**
      * Draws the board and all temporary construction graphics in the
      * current interactive state.
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
      */
     public void draw(Graphics p_graphics)
     {
@@ -741,6 +831,9 @@ public class BoardHandling
         }
     }
 
+    /**
+     * <p>generate_snapshot.</p>
+     */
     public void generate_snapshot()
     {
         if (board_is_read_only)
@@ -812,6 +905,8 @@ public class BoardHandling
     /**
      * Actions to be taken in the current interactive state
      * when the left mouse butten is clicked.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void left_button_clicked(Point2D p_point)
     {
@@ -841,6 +936,8 @@ public class BoardHandling
     /**
      * Actions to be taken in the current interactive state
      * when the mouse pointer has moved.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void mouse_moved(Point2D p_point)
     {
@@ -868,6 +965,8 @@ public class BoardHandling
 
     /**
      * Actions to be taken when the mouse button is pressed.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void mouse_pressed(Point2D p_point)
     {
@@ -882,6 +981,8 @@ public class BoardHandling
     /**
      * Actions to be taken in the current interactive state
      * when the mouse is dragged.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void mouse_dragged(Point2D p_point)
     {
@@ -919,6 +1020,8 @@ public class BoardHandling
     /**
      * Actions to be taken in the current interactive state
      * when the mouse wheel is moved
+     *
+     * @param p_rotation a int.
      */
     public void mouse_wheel_moved(int p_rotation)
     {
@@ -936,6 +1039,8 @@ public class BoardHandling
     /**
      * Action to be taken in the current interactive state
      * when a key on the keyboard is typed.
+     *
+     * @param p_key_char a char.
      */
     public void key_typed_action(char p_key_char)
     {
@@ -1001,6 +1106,9 @@ public class BoardHandling
      * Actions to be taken in the current interactive state when
      * the current board layer is changed.
      * Returns false, if the layer change failed.
+     *
+     * @param p_new_layer a int.
+     * @return a boolean.
      */
     public boolean change_layer_action(int p_new_layer)
     {
@@ -1042,6 +1150,10 @@ public class BoardHandling
     /**
      * Reads an existing board design from the input stream.
      * Returns false,  if the input stream does not contains a legal board design.
+     *
+     * @param p_design a {@link java.io.ObjectInputStream} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     * @return a boolean.
      */
     public boolean read_design(java.io.ObjectInputStream p_design, TestLevel p_test_level)
     {
@@ -1067,6 +1179,12 @@ public class BoardHandling
      * The parameters p_item_observers and p_item_id_no_generator are used,
      * in case the board is embedded into a host system.
      * Returns false, if the dsn-file is currupted.
+     *
+     * @param p_design a java$io$InputStream object.
+     * @param p_observers a {@link board.BoardObservers} object.
+     * @param p_item_id_no_generator a {@link datastructures.IdNoGenerator} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     * @return a {@link designformats.specctra.DsnFile.ReadResult} object.
      */
     public DsnFile.ReadResult import_design(java.io.InputStream p_design,
                                             board.BoardObservers p_observers,
@@ -1115,6 +1233,11 @@ public class BoardHandling
      * Writes the currently edited board design to a text file in the Specctra dsn format.
      * If p_compat_mode is true, only standard speecctra dsn scopes are written, so that any
      * host system with an specctra interface can read them.
+     *
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @param p_design_name a {@link java.lang.String} object.
+     * @param p_compat_mode a boolean.
+     * @return a boolean.
      */
     public boolean export_to_dsn_file(OutputStream p_output_stream, String p_design_name, boolean p_compat_mode)
     {
@@ -1127,6 +1250,10 @@ public class BoardHandling
 
     /**
      * Writes a session file ins the Eaglea scr format.
+     *
+     * @param p_input_stream a java$io$InputStream object.
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @return a boolean.
      */
     public boolean export_eagle_session_file(java.io.InputStream p_input_stream, OutputStream p_output_stream)
     {
@@ -1139,6 +1266,10 @@ public class BoardHandling
 
     /**
      * Writes a session file ins the Specctra ses-format.
+     *
+     * @param p_design_name a {@link java.lang.String} object.
+     * @param p_output_stream a {@link java.io.OutputStream} object.
+     * @return a boolean.
      */
     public boolean export_specctra_session_file(String p_design_name, OutputStream p_output_stream)
     {
@@ -1151,6 +1282,9 @@ public class BoardHandling
 
     /**
      * Saves the currently edited board design to p_design_file.
+     *
+     * @param p_object_stream a {@link java.io.ObjectOutputStream} object.
+     * @return a boolean.
      */
     public boolean save_design_file(java.io.ObjectOutputStream p_object_stream)
     {
@@ -1172,6 +1306,8 @@ public class BoardHandling
 
     /**
      * Processes the actions stored in the input logfile.
+     *
+     * @param p_input_stream a java$io$InputStream object.
      */
     public void read_logfile(InputStream p_input_stream)
     {
@@ -1196,6 +1332,8 @@ public class BoardHandling
 
     /**
      * Starts interactive routing at the input location.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void start_route(Point2D p_point)
     {
@@ -1212,6 +1350,8 @@ public class BoardHandling
 
     /**
      * Selects board items at the input location.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void select_items(Point2D p_point)
     {
@@ -1240,6 +1380,8 @@ public class BoardHandling
 
     /**
      * Selects all items in the input collection.
+     *
+     * @param p_items a {@link java.util.Set} object.
      */
     public void select_items(Set<Item> p_items)
     {
@@ -1263,6 +1405,8 @@ public class BoardHandling
     /**
      * Looks for a swappable pin at p_location.
      * Prepares for pin swap if a swappable pin was found.
+     *
+     * @param p_location a java$awt$geom$Point2D object.
      */
     public void swap_pin(Point2D p_location)
     {
@@ -1296,6 +1440,8 @@ public class BoardHandling
      * Removes it from the selected_items list, if it is already in there,
      * otherwise adds it to the list.
      * Changes to the selected items state, if something was selected.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void toggle_select_action(Point2D p_point)
     {
@@ -1406,6 +1552,8 @@ public class BoardHandling
 
     /**
      * Assigns the input clearance class to the selected items
+     *
+     * @param p_cl_class_index a int.
      */
     public void assign_clearance_classs_to_selected_items(int p_cl_class_index)
     {
@@ -1419,6 +1567,8 @@ public class BoardHandling
 
     /**
      * Moves or rotates the selected items
+     *
+     * @param p_from_location a java$awt$geom$Point2D object.
      */
     public void move_selected_items(Point2D p_from_location)
     {
@@ -1437,6 +1587,8 @@ public class BoardHandling
 
     /**
      * Copies all selected items.
+     *
+     * @param p_from_location a java$awt$geom$Point2D object.
      */
     public void copy_selected_items(Point2D p_from_location)
     {
@@ -1569,6 +1721,11 @@ public class BoardHandling
         ((SelectedItemState) interactive_state).toggle_clearance_violations();
     }
 
+    /**
+     * <p>turn_45_degree.</p>
+     *
+     * @param p_factor a int.
+     */
     public void turn_45_degree(int p_factor)
     {
         if (board_is_read_only || !(interactive_state instanceof MoveItemState))
@@ -1579,6 +1736,9 @@ public class BoardHandling
         ((MoveItemState) interactive_state).turn_45_degree(p_factor);
     }
 
+    /**
+     * <p>change_placement_side.</p>
+     */
     public void change_placement_side()
     {
         if (board_is_read_only || !(interactive_state instanceof MoveItemState))
@@ -1599,6 +1759,8 @@ public class BoardHandling
 
     /**
      * Start interactively creating a circle obstacle.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void start_circle(Point2D p_point)
     {
@@ -1613,6 +1775,8 @@ public class BoardHandling
 
     /**
      * Start interactively creating a tile shaped  obstacle.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void start_tile(Point2D p_point)
     {
@@ -1627,6 +1791,8 @@ public class BoardHandling
 
     /**
      * Start interactively creating a polygon shaped obstacle.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void start_polygonshape_item(Point2D p_point)
     {
@@ -1643,6 +1809,8 @@ public class BoardHandling
     /**
      * Actions to be taken, when adding a hole to an existing obstacle shape
      * on the board is started.
+     *
+     * @param p_point a java$awt$geom$Point2D object.
      */
     public void start_adding_hole(Point2D p_point)
     {
@@ -1723,12 +1891,19 @@ public class BoardHandling
 
     /**
      * Gets the current interactive state.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState get_interactive_state()
     {
         return this.interactive_state;
     }
 
+    /**
+     * <p>set_interactive_state.</p>
+     *
+     * @param p_state a {@link interactive.InteractiveState} object.
+     */
     public void set_interactive_state(InteractiveState p_state)
     {
         if (p_state != null && p_state != interactive_state)

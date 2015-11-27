@@ -25,16 +25,30 @@ import javax.swing.table.AbstractTableModel;
  * Abstract class to store colors used for drawing the board.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class ColorTableModel extends AbstractTableModel
 {
 
+    /**
+     * <p>Constructor for ColorTableModel.</p>
+     *
+     * @param p_row_count a int.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     protected ColorTableModel(int p_row_count, java.util.Locale p_locale)
     {
         this.data = new Object[p_row_count] [];
         this.locale = p_locale;
     }
     
+    /**
+     * <p>Constructor for ColorTableModel.</p>
+     *
+     * @param p_stream a {@link java.io.ObjectInputStream} object.
+     * @throws java.io.IOException if any.
+     * @throws java.lang.ClassNotFoundException if any.
+     */
     protected ColorTableModel(java.io.ObjectInputStream p_stream)
             throws java.io.IOException, java.lang.ClassNotFoundException
     {
@@ -42,16 +56,23 @@ public abstract class ColorTableModel extends AbstractTableModel
         this.locale = (java.util.Locale) p_stream.readObject();
     }
 
+    /**
+     * <p>getRowCount.</p>
+     *
+     * @return a int.
+     */
     public int getRowCount()
     {
         return data.length;
     }
 
+    /** {@inheritDoc} */
     public Object getValueAt(int p_row, int p_col)
     {
         return data[p_row][p_col];
     }
 
+    /** {@inheritDoc} */
     public void setValueAt(Object p_value, int p_row, int p_col)
     {
         data[p_row][p_col] = p_value;
@@ -59,6 +80,8 @@ public abstract class ColorTableModel extends AbstractTableModel
     }
 
     /**
+     * {@inheritDoc}
+     *
      * JTable uses this method to determine the default renderer/
      * editor for each cell.  If we didn't implement this method,
      * then the last column would contain text ("true"/"false"),
@@ -70,6 +93,12 @@ public abstract class ColorTableModel extends AbstractTableModel
     }
 
     
+    /**
+     * <p>write_object.</p>
+     *
+     * @param p_stream a {@link java.io.ObjectOutputStream} object.
+     * @throws java.io.IOException if any.
+     */
     protected void write_object(java.io.ObjectOutputStream p_stream)
             throws java.io.IOException
     {

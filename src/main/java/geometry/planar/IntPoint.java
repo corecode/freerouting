@@ -26,15 +26,17 @@ import java.math.BigInteger;
  * Implementation of the abstract class Point
  * as a tuple of integers.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class IntPoint extends Point implements java.io.Serializable
 {
     
     /**
      * create an  IntPoint from two integer coordinates
+     *
+     * @param p_x a int.
+     * @param p_y a int.
      */
     public IntPoint(int p_x, int p_y)
     {
@@ -47,6 +49,8 @@ public class IntPoint extends Point implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Returns true, if this IntPoint is equal to p_ob
      */
     public final boolean equals( Object p_ob )
@@ -67,16 +71,31 @@ public class IntPoint extends Point implements java.io.Serializable
         return ( x == other.x && y == other.y ) ;
     }
     
+    /**
+     * <p>is_infinite.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_infinite()
     {
         return false;
     }
     
+    /**
+     * <p>surrounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox surrounding_box()
     {
         return new IntBox(this, this);
     }
     
+    /**
+     * <p>surrounding_octagon.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon surrounding_octagon()
     {
         int tmp_1 = x - y;
@@ -85,6 +104,7 @@ public class IntPoint extends Point implements java.io.Serializable
         return new IntOctagon(x, y, x, y, tmp_1, tmp_1, tmp_2, tmp_2);
     }
     
+    /** {@inheritDoc} */
     public boolean is_contained_in(IntBox p_box)
     {
         return x >= p_box.ll.x && y >= p_box.ll.y
@@ -92,6 +112,8 @@ public class IntPoint extends Point implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * returns the translation of this point by p_vector
      */
     public final Point translate_by( Vector p_vector )
@@ -116,6 +138,9 @@ public class IntPoint extends Point implements java.io.Serializable
     
     /**
      * returns the difference vector of this point and p_other
+     *
+     * @param p_other a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Vector} object.
      */
     public Vector difference_by(Point p_other)
     {
@@ -134,6 +159,7 @@ public class IntPoint extends Point implements java.io.Serializable
         return new IntVector(x - p_other.x, y - p_other.y);
     }
     
+    /** {@inheritDoc} */
     public Side side_of(Line p_line)
     {
         Vector v1 = difference_by(p_line.a);
@@ -143,6 +169,8 @@ public class IntPoint extends Point implements java.io.Serializable
     
     /**
      * converts this point to a FloatPoint.
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint to_float()
     {
@@ -151,6 +179,9 @@ public class IntPoint extends Point implements java.io.Serializable
     
     /**
      * returns the determinant of the vectors (x, y) and (p_other.x, p_other.y)
+     *
+     * @param p_other a {@link geometry.planar.IntPoint} object.
+     * @return a long.
      */
     public final long determinant(IntPoint p_other)
     {
@@ -158,6 +189,7 @@ public class IntPoint extends Point implements java.io.Serializable
     }
     
     
+    /** {@inheritDoc} */
     public Point perpendicular_projection(Line p_line)
     {
         // this function is at the moment only implemented for lines
@@ -208,6 +240,10 @@ public class IntPoint extends Point implements java.io.Serializable
     /**
      * Returns the signed area of the parallelogramm spanned by the vectors
      * p_2 - p_1 and this - p_1
+     *
+     * @param p_1 a {@link geometry.planar.IntPoint} object.
+     * @param p_2 a {@link geometry.planar.IntPoint} object.
+     * @return a double.
      */
     public double signed_area( IntPoint p_1, IntPoint p_2 )
     {
@@ -218,6 +254,9 @@ public class IntPoint extends Point implements java.io.Serializable
     
     /**
      * calculates the square of the distance between this point and p_to_point
+     *
+     * @param p_to_point a {@link geometry.planar.IntPoint} object.
+     * @return a double.
      */
     public double distance_square(IntPoint p_to_point)
     {
@@ -228,6 +267,9 @@ public class IntPoint extends Point implements java.io.Serializable
     
     /**
      * calculates the distance between this point and p_to_point
+     *
+     * @param p_to_point a {@link geometry.planar.IntPoint} object.
+     * @return a double.
      */
     public double distance(IntPoint p_to_point)
     {
@@ -238,6 +280,9 @@ public class IntPoint extends Point implements java.io.Serializable
      * Calculates the nearest point to this point on the horizontal or
      * vertical line through p_other (Snaps this point to on ortogonal line
      * through p_other).
+     *
+     * @param p_other a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint orthogonal_projection(IntPoint p_other)
     {
@@ -261,6 +306,9 @@ public class IntPoint extends Point implements java.io.Serializable
      * Calculates the nearest point to this point on an orthogonal or
      * diagonal line through p_other (Snaps this point to on 45 degree line
      * through p_other).
+     *
+     * @param p_other a {@link geometry.planar.IntPoint} object.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint fortyfive_degree_projection(IntPoint p_other)
     {
@@ -314,6 +362,10 @@ public class IntPoint extends Point implements java.io.Serializable
      * from this point to p, else on the right.
      * Returns null, if the line from this point to p_to_point is already a multiple
      * of 45 degree.
+     *
+     * @param p_to_point a {@link geometry.planar.IntPoint} object.
+     * @param p_left_turn a boolean.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint fortyfive_degree_corner( IntPoint p_to_point, boolean p_left_turn)
     {
@@ -425,6 +477,10 @@ public class IntPoint extends Point implements java.io.Serializable
      * 90 degree. If p_left_turn, p_to_point will be on the left of the line
      * from this point to p, else on the right.
      * Returns null, if the line from this point to p_to_point is already orthogonal.
+     *
+     * @param p_to_point a {@link geometry.planar.IntPoint} object.
+     * @param p_left_turn a boolean.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint ninety_degree_corner( IntPoint p_to_point, boolean p_left_turn)
     {
@@ -464,11 +520,23 @@ public class IntPoint extends Point implements java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>compare_x.</p>
+     *
+     * @param p_other a {@link geometry.planar.Point} object.
+     * @return a int.
+     */
     public int compare_x(Point p_other)
     {
         return -p_other.compare_x(this);
     }
     
+    /**
+     * <p>compare_y.</p>
+     *
+     * @param p_other a {@link geometry.planar.Point} object.
+     * @return a int.
+     */
     public int compare_y(Point p_other)
     {
         return -p_other.compare_y(this);

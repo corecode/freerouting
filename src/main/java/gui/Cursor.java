@@ -34,19 +34,36 @@ import java.awt.geom.Line2D;
 
 
 /**
+ * <p>Abstract Cursor class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class Cursor
 {
     
+    /**
+     * <p>get_45_degree_cross_hair_cursor.</p>
+     *
+     * @return a {@link gui.Cursor} object.
+     */
     public static Cursor get_45_degree_cross_hair_cursor()
     {
         return new FortyfiveDegreeCrossHairCursor();
     }
     
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     */
     public abstract void draw(Graphics p_graphics);
     
+    /**
+     * <p>set_location.</p>
+     *
+     * @param p_location a java$awt$geom$Point2D object.
+     */
     public void set_location(Point2D p_location)
     {
         this.x_coor = p_location.getX();
@@ -54,6 +71,11 @@ public abstract class Cursor
         location_initialized = true;
     }
     
+    /**
+     * <p>init_graphics.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics2D} object.
+     */
     protected static void init_graphics(Graphics2D p_graphics)
     {
         BasicStroke bs = new BasicStroke(0, BasicStroke.CAP_ROUND, BasicStroke.JOIN_ROUND);

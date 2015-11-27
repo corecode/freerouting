@@ -27,6 +27,7 @@ import datastructures.IdentifierType;
  * Describes a polygon in a Specctra dsn file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Polygon extends Shape
 {
@@ -34,6 +35,9 @@ public class Polygon extends Shape
      * Creates a new instance of Polygon
      * p_coor is an array of dimension of dimension 2 * point_count and contains x0, y0, x1, y1, ...
      * If the polygon is used as rectangle,
+     *
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     * @param p_coor an array of double.
      */
     public Polygon(Layer p_layer, double[] p_coor)
     {
@@ -41,6 +45,7 @@ public class Polygon extends Shape
         coor = p_coor;
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board(CoordinateTransform p_coordinate_transform)
     {
         IntPoint [] corner_arr = new IntPoint[coor.length / 2];
@@ -54,6 +59,7 @@ public class Polygon extends Shape
         return new geometry.planar.PolygonShape(corner_arr);
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board_rel(CoordinateTransform p_coordinate_transform)
     {
         if (coor.length < 2)
@@ -70,6 +76,11 @@ public class Polygon extends Shape
         return new geometry.planar.PolygonShape(corner_arr);
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link designformats.specctra.Rectangle} object.
+     */
     public Rectangle bounding_box()
     {
         double[]  bounds = new double[4];
@@ -96,6 +107,8 @@ public class Polygon extends Shape
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Writes this polygon as a scope to an output dsn-file.
      */
     public void write_scope(IndentFileWriter p_file, IdentifierType p_identifier_type) throws java.io.IOException
@@ -116,6 +129,7 @@ public class Polygon extends Shape
         p_file.end_scope();
     }
     
+    /** {@inheritDoc} */
     public void write_scope_int(IndentFileWriter p_file, IdentifierType p_identifier_type) throws java.io.IOException
     {
         p_file.start_scope();

@@ -28,12 +28,18 @@ import interactive.InteractiveActionThread;
 
 /**
  * Handles the sequencing of the fanout inside the batch autorouter.
- * 
+ *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BatchFanout
 {
 
+    /**
+     * <p>fanout_board.</p>
+     *
+     * @param p_thread a {@link interactive.InteractiveActionThread} object.
+     */
     public static void fanout_board(InteractiveActionThread p_thread)
     {
         BatchFanout fanout_instance = new BatchFanout(p_thread);

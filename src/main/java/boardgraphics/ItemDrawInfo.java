@@ -26,11 +26,17 @@ import java.awt.Color;
  * Information for drawing an item on the screen.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ItemDrawInfo
 {
     
-    /** Creates a new instance of ItemDrawInfo */
+    /**
+     * Creates a new instance of ItemDrawInfo
+     *
+     * @param p_layer_color an array of {@link java.awt.Color} objects.
+     * @param p_intensity a double.
+     */
     public ItemDrawInfo(Color[] p_layer_color, double p_intensity)
     {
         layer_color = p_layer_color;

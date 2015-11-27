@@ -29,11 +29,16 @@ import board.Layer;
  * Window for interactive editing of via rules.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowVia extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of ViaWindow */
+    /**
+     * Creates a new instance of ViaWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowVia(BoardFrame p_board_frame)
     {
         this.resources = java.util.ResourceBundle.getBundle("gui.resources.WindowVia", p_board_frame.get_locale());
@@ -163,6 +168,9 @@ public class WindowVia extends BoardSavableSubWindow
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE );
     }
     
+    /**
+     * <p>refresh.</p>
+     */
     public void refresh()
     {
         // reinsert the elements in the rule list
@@ -187,6 +195,9 @@ public class WindowVia extends BoardSavableSubWindow
         }
     }
     
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         for (javax.swing.JFrame curr_subwindow : this.subwindows)

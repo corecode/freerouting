@@ -23,11 +23,18 @@ package rules;
  * Describes routing rules for individual nets.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Printable
 {
 
-    /** Creates a new instance of NetClass */
+    /**
+     * Creates a new instance of NetClass
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_clearance_matrix a {@link rules.ClearanceMatrix} object.
+     */
     public NetClass(String p_name, board.LayerStructure p_layer_structure, ClearanceMatrix p_clearance_matrix)
     {
         this.name = p_name;
@@ -42,6 +49,11 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     }
 
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
@@ -49,6 +61,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Changes the name of this net class.
+     *
+     * @param p_name a {@link java.lang.String} object.
      */
     public void set_name(String p_name)
     {
@@ -57,6 +71,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Gets the name of this net class.
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String get_name()
     {
@@ -65,6 +81,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the trace half width used for routing to p_value on all layers.
+     *
+     * @param p_value a int.
      */
     public void set_trace_half_width(int p_value)
     {
@@ -73,6 +91,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the trace half width used for routing to p_value on all inner layers.
+     *
+     * @param p_value a int.
      */
     public void set_trace_half_width_on_inner(int p_value)
     {
@@ -84,12 +104,20 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the trace half width used for routing to p_value on the input layer.
+     *
+     * @param p_layer a int.
+     * @param p_value a int.
      */
     public void set_trace_half_width(int p_layer, int p_value)
     {
         trace_half_width_arr[p_layer] = p_value;
     }
 
+    /**
+     * <p>layer_count.</p>
+     *
+     * @return a int.
+     */
     public int layer_count()
     {
         return trace_half_width_arr.length;
@@ -97,6 +125,9 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Gets the trace half width used for routing on the input layer.
+     *
+     * @param p_layer a int.
+     * @return a int.
      */
     public int get_trace_half_width(int p_layer)
     {
@@ -110,6 +141,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the clearance class used for routing traces with this net rclass.
+     *
+     * @param p_clearance_class_no a int.
      */
     public void set_trace_clearance_class(int p_clearance_class_no)
     {
@@ -118,6 +151,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Gets the clearance class used for routing traces with this net class.
+     *
+     * @return a int.
      */
     public int get_trace_clearance_class()
     {
@@ -126,6 +161,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the via rule of this net class.
+     *
+     * @param p_via_rule a {@link rules.ViaRule} object.
      */
     public void set_via_rule(ViaRule p_via_rule)
     {
@@ -134,6 +171,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Gets the via rule of this net rule.
+     *
+     * @return a {@link rules.ViaRule} object.
      */
     public ViaRule get_via_rule()
     {
@@ -142,6 +181,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets, if traces and vias of this net class can be pushed.
+     *
+     * @param p_value a boolean.
      */
     public void set_shove_fixed(boolean p_value)
     {
@@ -150,6 +191,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Returns, if traces and vias of this net class can be pushed.
+     *
+     * @return a boolean.
      */
     public boolean is_shove_fixed()
     {
@@ -158,6 +201,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets, if traces of this nets class are pulled tight.
+     *
+     * @param p_value a boolean.
      */
     public void set_pull_tight(boolean p_value)
     {
@@ -166,6 +211,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Returns, if traces of this nets class are pulled tight.
+     *
+     * @return a boolean.
      */
     public boolean get_pull_tight()
     {
@@ -174,6 +221,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets, if the cycle remove algorithm ignores cycles, where conduction areas are involved
+     *
+     * @param p_value a boolean.
      */
     public void set_ignore_cycles_with_areas(boolean p_value)
     {
@@ -182,6 +231,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Returns, if the cycle remove algorithm ignores cycles, where conduction areas are involved
+     *
+     * @return a boolean.
      */
     public boolean get_ignore_cycles_with_areas()
     {
@@ -191,6 +242,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
     /**
      * Returns the minimum trace length of this net class.
      * If the result is <= 0, there is no minimal trace length restriction.
+     *
+     * @return a double.
      */
     public double get_minimum_trace_length()
     {
@@ -200,6 +253,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
     /**
      * Sets the minimum trace length of this net class to p_value.
      * If p_value is <= 0, there is no minimal trace length restriction.
+     *
+     * @param p_value a double.
      */
     public void set_minimum_trace_length(double p_value)
     {
@@ -209,6 +264,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
     /**
      * Returns the maximum trace length of this net class.
      * If the result is <= 0, there is no maximal trace length restriction.
+     *
+     * @return a double.
      */
     public double get_maximum_trace_length()
     {
@@ -218,6 +275,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
     /**
      * Sets the maximum trace length of this net class to p_value.
      * If p_value is <= 0, there is no maximal trace length restriction.
+     *
+     * @param p_value a double.
      */
     public void set_maximum_trace_length(double p_value)
     {
@@ -226,6 +285,9 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      *  Returns if the layer with index p_layer_no is active for routing
+     *
+     * @param p_layer_no a int.
+     * @return a boolean.
      */
     public boolean is_active_routing_layer(int p_layer_no)
     {
@@ -238,6 +300,9 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      *  Sets the layer with index p_layer_no to p_active.
+     *
+     * @param p_layer_no a int.
+     * @param p_active a boolean.
      */
     public void set_active_routing_layer(int p_layer_no, boolean p_active)
     {
@@ -250,6 +315,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      *  Activates or deactivates all layers for routing
+     *
+     * @param p_value a boolean.
      */
     public void set_all_layers_active(boolean p_value)
     {
@@ -258,6 +325,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      *  Activates or deactivates all inner layers for routing
+     *
+     * @param p_value a boolean.
      */
     public void set_all_inner_layers_active(boolean p_value)
     {
@@ -267,6 +336,7 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
         }
     }
 
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =
@@ -304,7 +374,10 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
     }
 
     /**
-     * Returns true, if the trace width of this class is not equal on all layers. */
+     * Returns true, if the trace width of this class is not equal on all layers.
+     *
+     * @return a boolean.
+     */
     public boolean trace_width_is_layer_dependent()
     {
         int compare_value = trace_half_width_arr[0];
@@ -323,6 +396,8 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Returns true, if the trace width of this class is not equal on all inner layers.
+     *
+     * @return a boolean.
      */
     public boolean trace_width_is_inner_layer_dependent()
     {

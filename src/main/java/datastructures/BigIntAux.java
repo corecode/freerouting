@@ -16,15 +16,21 @@ import java.math.BigInteger;
 /**
  *
  * Auxiliary functions with BigInteger Parameters
-
+ *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class BigIntAux
 {
     /**
      * calculates the determinant of the vectors
      * (p_x_1, p_y_1) and (p_x_2, p_y_2)
+     *
+     * @param p_x_1 a {@link java.math.BigInteger} object.
+     * @param p_y_1 a {@link java.math.BigInteger} object.
+     * @param p_x_2 a {@link java.math.BigInteger} object.
+     * @param p_y_2 a {@link java.math.BigInteger} object.
+     * @return a {@link java.math.BigInteger} object.
      */
     public static final BigInteger determinant (BigInteger p_x_1, BigInteger p_y_1,
                               BigInteger p_x_2, BigInteger p_y_2)
@@ -38,6 +44,10 @@ public class BigIntAux
     /**
      * auxiliary function to implement addition and translation in the
      * classes RationalVector and RationalPoint
+     *
+     * @param p_first an array of {@link java.math.BigInteger} objects.
+     * @param p_second an array of {@link java.math.BigInteger} objects.
+     * @return an array of {@link java.math.BigInteger} objects.
      */
     public static final BigInteger[] add_rational_coordinates(BigInteger[] p_first,
                                               BigInteger [] p_second)
@@ -93,6 +103,10 @@ public class BigIntAux
 
     /**
      * Calculate GCD of a and b interpreted as unsigned integers.
+     *
+     * @param a a int.
+     * @param b a int.
+     * @return a int.
      */
     public static final int binaryGcd(int a, int b) {
         if (b==0)

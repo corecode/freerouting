@@ -29,11 +29,14 @@ import geometry.planar.TileShape;
 import geometry.planar.Side;
 
 /**
+ * <p>CalcFromSide class.</p>
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CalcFromSide
 {
+    /** Constant <code>NOT_CALCULATED</code> */
     public static final CalcFromSide NOT_CALCULATED = new CalcFromSide(-1, null);
     
     /**

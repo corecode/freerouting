@@ -28,11 +28,18 @@ import rules.ViaInfos;
  * Window for editing a single via rule.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowViaRule extends javax.swing.JFrame
 {
     
-    /** Creates a new instance of ViaRuleWindow */
+    /**
+     * Creates a new instance of ViaRuleWindow
+     *
+     * @param p_via_rule a {@link rules.ViaRule} object.
+     * @param p_via_list a {@link rules.ViaInfos} object.
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowViaRule(ViaRule p_via_rule, ViaInfos p_via_list, BoardFrame p_board_frame)
     {
         this.via_rule = p_via_rule;

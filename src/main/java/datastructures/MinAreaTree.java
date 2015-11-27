@@ -37,6 +37,7 @@ import geometry.planar.RegularTileShape;
  * The algorithm would of course also work for higher dimensions.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MinAreaTree extends ShapeTree
 {
@@ -44,6 +45,8 @@ public class MinAreaTree extends ShapeTree
     /**
      * Constructor with a fixed set of directions defining the keys and and
      * the surrounding shapes
+     *
+     * @param p_directions a {@link geometry.planar.ShapeBoundingDirections} object.
      */
     public MinAreaTree(ShapeBoundingDirections p_directions)
     {
@@ -52,6 +55,9 @@ public class MinAreaTree extends ShapeTree
     
     /**
      * Calculates the objects in this tree, which overlap with p_shape
+     *
+     * @param p_shape a {@link geometry.planar.RegularTileShape} object.
+     * @return a {@link java.util.Set} object.
      */
     public Set<Leaf> overlaps(RegularTileShape p_shape)
     {
@@ -166,6 +172,8 @@ public class MinAreaTree extends ShapeTree
     
     /**
      * removes an entry from this tree
+     *
+     * @param p_leaf a Leaf object.
      */
     public void remove_leaf(Leaf p_leaf)
     {

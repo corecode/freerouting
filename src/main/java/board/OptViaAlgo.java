@@ -38,6 +38,7 @@ import autoroute.AutorouteControl.ExpansionCostFactor;
  * Contains functions for optimizing and improving via locations.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class OptViaAlgo
 {
@@ -47,6 +48,13 @@ public class OptViaAlgo
      * according to the trace costs on the layers of the connected traces
      * If p_trace_cost_arr == null, the horizontal and vertical trace costs will be set to 1.
      * Returns false, if the via was not changed.
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_via a {@link board.Via} object.
+     * @param p_trace_cost_arr an array of {@link autoroute.AutorouteControl.ExpansionCostFactor} objects.
+     * @param p_trace_pull_tight_accuracy a int.
+     * @param p_max_recursion_depth a int.
+     * @return a boolean.
      */
     public static boolean opt_via_location(RoutingBoard p_board, Via p_via,
             ExpansionCostFactor[] p_trace_cost_arr, int p_trace_pull_tight_accuracy, int p_max_recursion_depth)

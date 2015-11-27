@@ -51,6 +51,7 @@ import datastructures.UndoableObjects;
  * A board may have 1 or several layers.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BasicBoard implements java.io.Serializable
 {
@@ -64,6 +65,14 @@ public class BasicBoard implements java.io.Serializable
      * by a host database. Otherwise it is null.
      * If p_test_level  != RELEASE_VERSION,, some features may be used, which are still in experimental state.
      * Also warnings  for debugging may be printed depending on the size of p_test_level.
+     *
+     * @param p_bounding_box a {@link geometry.planar.IntBox} object.
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_outline_shapes an array of {@link geometry.planar.PolylineShape} objects.
+     * @param p_outline_cl_class_no a int.
+     * @param p_rules a rules$BoardRules object.
+     * @param p_communication a {@link board.Communication} object.
+     * @param p_test_level a {@link board.TestLevel} object.
      */
     public BasicBoard(IntBox p_bounding_box, LayerStructure p_layer_structure, PolylineShape[] p_outline_shapes,
                       int p_outline_cl_class_no, BoardRules p_rules, Communication p_communication, TestLevel p_test_level)
@@ -87,6 +96,14 @@ public class BasicBoard implements java.io.Serializable
      * which describes the required clearance restrictions to other items.
      * Because no internal cleaning of items is done, the new inserted
      * item can be returned.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_layer a int.
+     * @param p_half_width a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.PolylineTrace} object.
      */
     public PolylineTrace insert_trace_without_cleaning(Polyline p_polyline, int p_layer,
                                                        int p_half_width, int[] p_net_no_arr, int p_clearance_class, FixedState p_fixed_state)
@@ -117,6 +134,13 @@ public class BasicBoard implements java.io.Serializable
      * Inserts a trace into the board, whose geometry is described by
      * a Polyline. p_clearance_class is the index in the clearance_matix,
      * which describes the required clearance restrictions to other items.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_layer a int.
+     * @param p_half_width a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
      */
     public void insert_trace(Polyline p_polyline, int p_layer,
                              int p_half_width, int[] p_net_no_arr, int p_clearance_class, FixedState p_fixed_state)
@@ -143,6 +167,13 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts a trace into the board, whose geometry is described by
      * an array of points, and cleans up the net.
+     *
+     * @param p_points an array of {@link geometry.planar.Point} objects.
+     * @param p_layer a int.
+     * @param p_half_width a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
      */
     public void insert_trace(Point[] p_points, int p_layer,
                              int p_half_width, int[] p_net_no_arr, int p_clearance_class, FixedState p_fixed_state)
@@ -161,6 +192,14 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts a via into the board. p_attach_allowed indicates, if the via may overlap with smd pins
      * of the same net.
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     * @param p_center a {@link geometry.planar.Point} object.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @param p_attach_allowed a boolean.
+     * @return a {@link board.Via} object.
      */
     public Via insert_via(Padstack p_padstack, Point p_center, int[] p_net_no_arr, int p_clearance_class,
                           FixedState p_fixed_state, boolean p_attach_allowed)
@@ -183,6 +222,13 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts a pin into the board.
      *  p_pin_no is the number of this pin in the library package of its component (starting with 0).
+     *
+     * @param p_component_no a int.
+     * @param p_pin_no a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.Pin} object.
      */
     public Pin insert_pin(int p_component_no, int p_pin_no, int[] p_net_no_arr, int p_clearance_class, FixedState p_fixed_state)
     {
@@ -195,6 +241,12 @@ public class BasicBoard implements java.io.Serializable
      * Inserts an obstacle into the board , whose geometry is described
      * by a polygonyal shape, which may have holes.
      * If p_component_no != 0, the obstacle belongs to a component.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ObstacleArea} object.
      */
     public ObstacleArea insert_obstacle(Area p_area, int p_layer, int p_clearance_class, FixedState p_fixed_state)
     {
@@ -211,6 +263,17 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts an obstacle belonging to a component into the board
      * p_name is to identify the corresponding ObstacstacleArea in the component package.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_translation a {@link geometry.planar.Vector} object.
+     * @param p_rotation_in_degree a double.
+     * @param p_side_changed a boolean.
+     * @param p_clearance_class a int.
+     * @param p_component_no a int.
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ObstacleArea} object.
      */
     public ObstacleArea insert_obstacle(Area p_area, int p_layer, Vector p_translation, double p_rotation_in_degree,
                                         boolean p_side_changed, int p_clearance_class, int p_component_no, String p_name, FixedState p_fixed_state)
@@ -229,6 +292,12 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts an via obstacle area into the board , whose geometry is described
      * by a polygonyal shape, which may have holes.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ViaObstacleArea} object.
      */
     public ViaObstacleArea insert_via_obstacle(Area p_area, int p_layer, int p_clearance_class,
                                                FixedState p_fixed_state)
@@ -247,6 +316,17 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts an via obstacle belonging to a component into the board
      * p_name is to identify the corresponding ObstacstacleArea in the component package.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_translation a {@link geometry.planar.Vector} object.
+     * @param p_rotation_in_degree a double.
+     * @param p_side_changed a boolean.
+     * @param p_clearance_class a int.
+     * @param p_component_no a int.
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ViaObstacleArea} object.
      */
     public ViaObstacleArea insert_via_obstacle(Area p_area, int p_layer, Vector p_translation, double p_rotation_in_degree,
                                                boolean p_side_changed, int p_clearance_class, int p_component_no, String p_name,
@@ -266,6 +346,12 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts a component obstacle area into the board , whose geometry is described
      * by a polygonyal shape, which may have holes.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_clearance_class a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ComponentObstacleArea} object.
      */
     public ComponentObstacleArea insert_component_obstacle(Area p_area, int p_layer,
                                                            int p_clearance_class, FixedState p_fixed_state)
@@ -284,6 +370,17 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Inserts a component obstacle belonging to a component into the board.
      * p_name is to identify the corresponding ObstacstacleArea in the component package.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_translation a {@link geometry.planar.Vector} object.
+     * @param p_rotation_in_degree a double.
+     * @param p_side_changed a boolean.
+     * @param p_clearance_class a int.
+     * @param p_component_no a int.
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ComponentObstacleArea} object.
      */
     public ComponentObstacleArea insert_component_obstacle(Area p_area, int p_layer, Vector p_translation, double p_rotation_in_degree,
                                                            boolean p_side_changed, int p_clearance_class, int p_component_no, String p_name, FixedState p_fixed_state)
@@ -301,6 +398,14 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Inserts a component ouline into the board.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_is_front a boolean.
+     * @param p_translation a {@link geometry.planar.Vector} object.
+     * @param p_rotation_in_degree a double.
+     * @param p_component_no a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ComponentOutline} object.
      */
     public ComponentOutline insert_component_outline(Area p_area, boolean p_is_front, Vector p_translation, double p_rotation_in_degree,
                                                      int p_component_no, FixedState p_fixed_state)
@@ -326,6 +431,14 @@ public class BasicBoard implements java.io.Serializable
      * by a polygonyal shape, which may have holes.
      * If p_is_obstacle is false, it is possible to route through the conduction area
      * with traces and vias of foreign nets.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @param p_is_obstacle a boolean.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @return a {@link board.ConductionArea} object.
      */
     public ConductionArea insert_conduction_area(Area p_area, int p_layer,
                                                  int[] p_net_no_arr, int p_clearance_class, boolean p_is_obstacle, FixedState p_fixed_state)
@@ -343,6 +456,10 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Inserts an Outline into the board.
+     *
+     * @param p_outline_shapes an array of {@link geometry.planar.PolylineShape} objects.
+     * @param p_clearance_class_no a int.
+     * @return a {@link board.BoardOutline} object.
      */
     public BoardOutline insert_outline(PolylineShape[] p_outline_shapes, int p_clearance_class_no)
     {
@@ -353,6 +470,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the outline of the board.
+     *
+     * @return a {@link board.BoardOutline} object.
      */
     public BoardOutline get_outline()
     {
@@ -374,6 +493,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Removes an item from the board
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void remove_item(Item p_item)
     {
@@ -392,6 +513,9 @@ public class BasicBoard implements java.io.Serializable
     /**
      * looks, if an item with id_no p_id_no is on the board.
      * Returns the found item or null, if no such item is found.
+     *
+     * @param p_id_no a int.
+     * @return a {@link board.Item} object.
      */
     public Item get_item(int p_id_no)
     {
@@ -413,6 +537,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of all items on the board
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Item> get_items()
     {
@@ -432,6 +558,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns all connectable items on the board containing p_net_no
+     *
+     * @param p_net_no a int.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Item> get_connectable_items(int p_net_no)
     {
@@ -454,6 +583,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the count of connectable items of the net with number p_net_no
+     *
+     * @param p_net_no a int.
+     * @return a int.
      */
     public int connectable_item_count(int p_net_no)
     {
@@ -476,6 +608,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns all items with the input component number
+     *
+     * @param p_component_no a int.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Item> get_component_items(int p_component_no)
     {
@@ -498,6 +633,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns all pins with the input component number
+     *
+     * @param p_component_no a int.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Pin> get_component_pins(int p_component_no)
     {
@@ -520,6 +658,10 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the pin with the input component number and pin number, or null, if no such pinn exists.
+     *
+     * @param p_component_no a int.
+     * @param p_pin_no a int.
+     * @return a {@link board.Pin} object.
      */
     public Pin get_pin(int p_component_no, int p_pin_no)
     {
@@ -546,6 +688,10 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Removes the items in p_item_list.
      * Returns false, if some items could not be removed, bcause they are fixed.
+     *
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_with_delete_fixed a boolean.
+     * @return a boolean.
      */
     public boolean remove_items(Collection<Item> p_item_list, boolean p_with_delete_fixed)
     {
@@ -568,6 +714,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of all conduction areas on the board
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<ConductionArea> get_conduction_areas()
     {
@@ -590,6 +738,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of all pins on the board
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Pin> get_pins()
     {
@@ -612,6 +762,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of all pins on the board with only 1 layer
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Pin> get_smd_pins()
     {
@@ -638,6 +790,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of all vias on the board
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Via> get_vias()
     {
@@ -660,6 +814,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of all traces on the board
+     *
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Trace> get_traces()
     {
@@ -682,6 +838,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the cumulative length of all traces on the board
+     *
+     * @return a double.
      */
     public double cumulative_trace_length()
     {
@@ -706,6 +864,9 @@ public class BasicBoard implements java.io.Serializable
      * Combines the connected traces of this net, which have only 1 contact
      * at the connection point.
      * if p_net_no < 0 traces of all nets are combined.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean combine_traces(int p_net_no)
     {
@@ -738,6 +899,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Normalizes the traces of this net
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean normalize_traces(int p_net_no)
     {
@@ -785,6 +949,11 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Looks for traces of the input net on the input layer, so that p_location is on the trace polygon,
      * and splits these traces. Returns false, if no trace was split.
+     *
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean split_traces(Point p_location, int p_layer, int p_net_no)
     {
@@ -809,6 +978,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returs a Collection of Collections of items forming a connected set.
+     *
+     * @param p_net_no a int.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<Collection<Item>> get_connected_sets(int p_net_no)
     {
@@ -846,6 +1018,10 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Returns all SearchTreeObjects on layer p_layer, which overlap with p_shape.
      * If p_layer < 0, the layer is ignored
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @return a {@link java.util.Set} object.
      */
     public Set<SearchTreeObject> overlapping_objects(ConvexShape p_shape, int p_layer)
     {
@@ -860,6 +1036,12 @@ public class BasicBoard implements java.io.Serializable
      * The function may also return items, which are nearly overlapping,
      * but do not overlap with exact calculation.
      * If p_layer < 0, the layer is ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_ignore_net_nos an array of int.
+     * @param p_clearance_class a int.
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> overlapping_items_with_clearance(ConvexShape p_shape, int p_layer, int[] p_ignore_net_nos,
                                                       int p_clearance_class)
@@ -871,6 +1053,10 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Returns all items on layer p_layer, which overlap with p_area.
      * If p_layer < 0, the layer is ignored
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> overlapping_items(Area p_area, int p_layer)
     {
@@ -894,6 +1080,12 @@ public class BasicBoard implements java.io.Serializable
      * Checks, if the an object with shape p_shape and net nos p_net_no_arr
      * and clearance class p_cl_class can be inserted on layer p_layer
      * without clearance violation.
+     *
+     * @param p_shape a {@link geometry.planar.Area} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_cl_class a int.
+     * @return a boolean.
      */
     public boolean check_shape(Area p_shape, int p_layer, int[] p_net_no_arr, int p_cl_class)
     {
@@ -934,6 +1126,13 @@ public class BasicBoard implements java.io.Serializable
      * without clearance violation.
      * If p_contact_pins != null, all pins not contained in p_contact_pins are
      * regarded as obstacles, even if they are of the own net.
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_cl_class a int.
+     * @param p_contact_pins a {@link java.util.Set} object.
+     * @return a boolean.
      */
     public boolean check_trace_shape(TileShape p_shape, int p_layer, int[] p_net_no_arr,
                                      int p_cl_class, Set<Pin> p_contact_pins)
@@ -1015,6 +1214,13 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Checks, if a polyline trace with the input parameters can be inserted
      * without clearance violations
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_layer a int.
+     * @param p_pen_half_width a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_class a int.
+     * @return a boolean.
      */
     public boolean check_polyline_trace(Polyline p_polyline, int p_layer, int p_pen_half_width,
                                         int[] p_net_no_arr, int p_clearance_class)
@@ -1035,6 +1241,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the layer count of this board.
+     *
+     * @return a int.
      */
     public int get_layer_count()
     {
@@ -1045,6 +1253,9 @@ public class BasicBoard implements java.io.Serializable
      * Draws all items of the board on their visible layers. Called in the overwritten
      * paintComponent method of a class derived from JPanel.
      * The value of p_layer_visibility is expected between 0 and 1 for each layer.
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)
     {
@@ -1084,6 +1295,11 @@ public class BasicBoard implements java.io.Serializable
      * Returns the list of items on the board, whose shape on layer p_layer contains the point at p_location.
      * If p_layer < 0, the layer is ignored.
      * If p_item_selection_filter != null, only items of types selected by the filter are picked.
+     *
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_filter a {@link board.ItemSelectionFilter} object.
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> pick_items(Point p_location, int p_layer, ItemSelectionFilter p_filter)
     {
@@ -1106,6 +1322,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * checks, if p_point is contained in the bounding box of this board.
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return a boolean.
      */
     public boolean contains(Point p_point)
     {
@@ -1116,6 +1335,11 @@ public class BasicBoard implements java.io.Serializable
      * Returns the minimum clearance requested between items of
      * clearance class p_class_1 and p_class_2.
      * p_class_1 and p_class_2 are indices in the clearance matrix.
+     *
+     * @param p_class_1 a int.
+     * @param p_class_2 a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int clearance_value(int p_class_1, int p_class_2, int p_layer)
     {
@@ -1128,6 +1352,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * returns the biggest half width of all traces on the board.
+     *
+     * @return a int.
      */
     public int get_max_trace_half_width()
     {
@@ -1136,6 +1362,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * returns the smallest half width of all traces on the board.
+     *
+     * @return a int.
      */
     public int get_min_trace_half_width()
     {
@@ -1144,6 +1372,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns a surrounding box of the geometry of this board
+     *
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox get_bounding_box()
     {
@@ -1152,6 +1382,9 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns a box containing all items in p_item_list.
+     *
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox get_bounding_box(Collection<Item> p_item_list)
     {
@@ -1173,6 +1406,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Gets the rectancle, where a graphics update is needed on the screen.
+     *
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox get_graphics_update_box()
     {
@@ -1181,6 +1416,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * enlarges the graphics update box, so that it contains p_box
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
      */
     public void join_graphics_update_box(IntBox p_box)
     {
@@ -1215,6 +1452,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns, if the observer of the board items is activated.
+     *
+     * @return a boolean.
      */
     public boolean observers_active()
     {
@@ -1234,6 +1473,10 @@ public class BasicBoard implements java.io.Serializable
      * Turns an obstacle area into a conduction area with net number p_net_no
      * If it is convex and has no holes, it is turned into a Pin,
      * alse into a conduction area.
+     *
+     * @param p_area a {@link board.ObstacleArea} object.
+     * @param p_net_no a int.
+     * @return a {@link board.Connectable} object.
      */
     public Connectable make_conductive(ObstacleArea p_area, int p_net_no)
     {
@@ -1255,6 +1498,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Inserts an item into the board data base
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void insert_item(Item p_item)
     {
@@ -1278,6 +1523,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Stub function overwritten in class RoutingBoard to maintain the autorouter database if necessesary.
+     *
+     * @param p_item a {@link board.Item} object.
      */
     public void additional_update_after_change(Item p_item)
     {
@@ -1287,6 +1534,9 @@ public class BasicBoard implements java.io.Serializable
      * Restores the sitiation at the previous snapshot.
      * Returns false, if no more undo is possible.
      * Puts the numbers of the changed nets into the set p_changed_nets, if p_changed_nets != null
+     *
+     * @param p_changed_nets a {@link java.util.Set} object.
+     * @return a boolean.
      */
     public boolean undo(Set<Integer> p_changed_nets)
     {
@@ -1335,6 +1585,9 @@ public class BasicBoard implements java.io.Serializable
      * Restores the sitiation before the last undo.
      * Returns false, if no more redo is possible.
      * Puts the numbers of the changed nets into the set p_changed_nets, if p_changed_nets != null
+     *
+     * @param p_changed_nets a {@link java.util.Set} object.
+     * @return a boolean.
      */
     public boolean redo(Set<Integer> p_changed_nets)
     {
@@ -1391,6 +1644,8 @@ public class BasicBoard implements java.io.Serializable
      *  Removes the top snapshot from the undo stack, so that its situation cannot be
      *  restored any more.
      *  Returns false, if no more snapshot could be popped.
+     *
+     * @return a boolean.
      */
     public boolean pop_snapshot()
     {
@@ -1401,6 +1656,11 @@ public class BasicBoard implements java.io.Serializable
      * Looks if at the input position ends a trace with the input net number,
      * which has no normal contact at that position.
      * Returns null, if no tail is found.
+     *
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @return a {@link board.Trace} object.
      */
     public Trace get_trace_tail(Point p_location, int p_layer, int[] p_net_no_arr)
     {
@@ -1441,6 +1701,9 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Checks, if p_item item is part of a cycle and remuve it
      * together with its connection in this case.
+     *
+     * @param p_trace a {@link board.Trace} object.
+     * @return a boolean.
      */
     public boolean remove_if_cycle(Trace p_trace)
     {
@@ -1487,6 +1750,8 @@ public class BasicBoard implements java.io.Serializable
     /**
      * If != RELEASE_VERSION,, some features may be used, which are still in experimental state.
      * Also warnings for debugging may be printed depending on the test_level.
+     *
+     * @return a {@link board.TestLevel} object.
      */
     public TestLevel get_test_level()
     {
@@ -1495,6 +1760,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Only to be used in BoardHandling.read_design.
+     *
+     * @param p_value a {@link board.TestLevel} object.
      */
     public void set_test_level(TestLevel p_value)
     {

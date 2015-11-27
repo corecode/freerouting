@@ -24,6 +24,7 @@ package gui;
  * Popup menu used in the interactive copy item state.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PopupMenuCopy extends PopupMenuDisplay
 {

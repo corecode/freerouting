@@ -27,10 +27,17 @@ import java.util.LinkedList;
  * Contains the information of a Specctra Class scope.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public class NetClass
 {
     
+    /**
+     * <p>read_scope.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.NetClass} object.
+     */
     public static NetClass read_scope(Scanner p_scanner)
     {
         
@@ -153,6 +160,12 @@ public class NetClass
         }
     }
     
+    /**
+     * <p>read_class_class_scope.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.NetClass.ClassClass} object.
+     */
     public static ClassClass read_class_class_scope(Scanner p_scanner)
     {
         try
@@ -200,7 +213,22 @@ public class NetClass
         }
     }
     
-    /** Creates a new instance of NetClass */
+    /**
+     * Creates a new instance of NetClass
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_trace_clearance_class a {@link java.lang.String} object.
+     * @param p_net_list a {@link java.util.Collection} object.
+     * @param p_rules a {@link java.util.Collection} object.
+     * @param p_layer_rules a {@link java.util.Collection} object.
+     * @param p_use_via a {@link java.util.Collection} object.
+     * @param p_use_layer a {@link java.util.Collection} object.
+     * @param p_via_rule a {@link java.lang.String} object.
+     * @param p_shove_fixed a boolean.
+     * @param p_pull_tight a boolean.
+     * @param p_min_trace_length a double.
+     * @param p_max_trace_length a double.
+     */
     public NetClass(String p_name, String p_trace_clearance_class, Collection<String> p_net_list,
             Collection<Rule> p_rules, Collection<Rule.LayerRule> p_layer_rules, Collection<String> p_use_via,
             Collection<String> p_use_layer, String p_via_rule, boolean p_shove_fixed, boolean p_pull_tight, 

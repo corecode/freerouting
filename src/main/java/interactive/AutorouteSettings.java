@@ -27,11 +27,16 @@ import autoroute.AutorouteControl.ExpansionCostFactor;
  * Contains the interactive settings for the autorouter.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class AutorouteSettings implements java.io.Serializable
 {
 
-    /** Creates a new instance of AutorouteSettings */
+    /**
+     * Creates a new instance of AutorouteSettings
+     *
+     * @param p_layer_count a int.
+     */
     public AutorouteSettings(int p_layer_count)
     {
         layer_active_arr = new boolean[p_layer_count];
@@ -40,7 +45,11 @@ public class AutorouteSettings implements java.io.Serializable
         against_preferred_direction_trace_cost_arr = new double[p_layer_count];
     }
 
-    /** Creates a new instance of AutorouteSettings */
+    /**
+     * Creates a new instance of AutorouteSettings
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     */
     public AutorouteSettings(RoutingBoard p_board)
     {
         this(p_board.get_layer_count());
@@ -102,6 +111,8 @@ public class AutorouteSettings implements java.io.Serializable
 
     /**
      * Copy constructor
+     *
+     * @param p_settings a {@link interactive.AutorouteSettings} object.
      */
     public AutorouteSettings(AutorouteSettings p_settings)
     {
@@ -122,92 +133,181 @@ public class AutorouteSettings implements java.io.Serializable
                 against_preferred_direction_trace_cost_arr.length);
     }
 
+    /**
+     * <p>set_start_ripup_costs.</p>
+     *
+     * @param p_value a int.
+     */
     public void set_start_ripup_costs(int p_value)
     {
         start_ripup_costs = Math.max(p_value, 1);
     }
 
+    /**
+     * <p>get_start_ripup_costs.</p>
+     *
+     * @return a int.
+     */
     public int get_start_ripup_costs()
     {
         return start_ripup_costs;
     }
 
+    /**
+     * <p>set_pass_no.</p>
+     *
+     * @param p_value a int.
+     */
     public void set_pass_no(int p_value)
     {
         start_pass_no = Math.max(p_value, 1);
         start_pass_no = Math.min(start_pass_no, 99);
     }
 
+    /**
+     * <p>get_pass_no.</p>
+     *
+     * @return a int.
+     */
     public int get_pass_no()
     {
         return start_pass_no;
     }
 
+    /**
+     * <p>increment_pass_no.</p>
+     */
     public void increment_pass_no()
     {
         ++start_pass_no;
     }
 
+    /**
+     * <p>set_with_fanout.</p>
+     *
+     * @param p_value a boolean.
+     */
     public void set_with_fanout(boolean p_value)
     {
         with_fanout = p_value;
     }
 
+    /**
+     * <p>get_with_fanout.</p>
+     *
+     * @return a boolean.
+     */
     public boolean get_with_fanout()
     {
         return with_fanout;
     }
 
+    /**
+     * <p>set_with_autoroute.</p>
+     *
+     * @param p_value a boolean.
+     */
     public void set_with_autoroute(boolean p_value)
     {
         with_autoroute = p_value;
     }
 
+    /**
+     * <p>get_with_autoroute.</p>
+     *
+     * @return a boolean.
+     */
     public boolean get_with_autoroute()
     {
         return with_autoroute;
     }
 
+    /**
+     * <p>set_with_postroute.</p>
+     *
+     * @param p_value a boolean.
+     */
     public void set_with_postroute(boolean p_value)
     {
         with_postroute = p_value;
     }
 
+    /**
+     * <p>get_with_postroute.</p>
+     *
+     * @return a boolean.
+     */
     public boolean get_with_postroute()
     {
         return with_postroute;
     }
 
+    /**
+     * <p>set_vias_allowed.</p>
+     *
+     * @param p_value a boolean.
+     */
     public void set_vias_allowed(boolean p_value)
     {
         vias_allowed = p_value;
     }
 
+    /**
+     * <p>get_vias_allowed.</p>
+     *
+     * @return a boolean.
+     */
     public boolean get_vias_allowed()
     {
         return vias_allowed;
     }
 
+    /**
+     * <p>set_via_costs.</p>
+     *
+     * @param p_value a int.
+     */
     public void set_via_costs(int p_value)
     {
         via_costs = Math.max(p_value, 1);
     }
 
+    /**
+     * <p>get_via_costs.</p>
+     *
+     * @return a int.
+     */
     public int get_via_costs()
     {
         return via_costs;
     }
 
+    /**
+     * <p>set_plane_via_costs.</p>
+     *
+     * @param p_value a int.
+     */
     public void set_plane_via_costs(int p_value)
     {
         plane_via_costs = Math.max(p_value, 1);
     }
 
+    /**
+     * <p>get_plane_via_costs.</p>
+     *
+     * @return a int.
+     */
     public int get_plane_via_costs()
     {
         return plane_via_costs;
     }
 
+    /**
+     * <p>set_layer_active.</p>
+     *
+     * @param p_layer a int.
+     * @param p_value a boolean.
+     */
     public void set_layer_active(int p_layer, boolean p_value)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -218,6 +318,12 @@ public class AutorouteSettings implements java.io.Serializable
         layer_active_arr[p_layer] = p_value;
     }
 
+    /**
+     * <p>get_layer_active.</p>
+     *
+     * @param p_layer a int.
+     * @return a boolean.
+     */
     public boolean get_layer_active(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -228,6 +334,12 @@ public class AutorouteSettings implements java.io.Serializable
         return layer_active_arr[p_layer];
     }
 
+    /**
+     * <p>set_preferred_direction_is_horizontal.</p>
+     *
+     * @param p_layer a int.
+     * @param p_value a boolean.
+     */
     public void set_preferred_direction_is_horizontal(int p_layer, boolean p_value)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -238,6 +350,12 @@ public class AutorouteSettings implements java.io.Serializable
         preferred_direction_is_horizontal_arr[p_layer] = p_value;
     }
 
+    /**
+     * <p>get_preferred_direction_is_horizontal.</p>
+     *
+     * @param p_layer a int.
+     * @return a boolean.
+     */
     public boolean get_preferred_direction_is_horizontal(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -248,6 +366,12 @@ public class AutorouteSettings implements java.io.Serializable
         return preferred_direction_is_horizontal_arr[p_layer];
     }
 
+    /**
+     * <p>set_preferred_direction_trace_costs.</p>
+     *
+     * @param p_layer a int.
+     * @param p_value a double.
+     */
     public void set_preferred_direction_trace_costs(int p_layer, double p_value)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -258,6 +382,12 @@ public class AutorouteSettings implements java.io.Serializable
         preferred_direction_trace_cost_arr[p_layer] = Math.max(p_value, 0.1);
     }
 
+    /**
+     * <p>get_preferred_direction_trace_costs.</p>
+     *
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double get_preferred_direction_trace_costs(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -268,6 +398,12 @@ public class AutorouteSettings implements java.io.Serializable
         return preferred_direction_trace_cost_arr[p_layer];
     }
 
+    /**
+     * <p>get_against_preferred_direction_trace_costs.</p>
+     *
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double get_against_preferred_direction_trace_costs(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -278,6 +414,12 @@ public class AutorouteSettings implements java.io.Serializable
         return against_preferred_direction_trace_cost_arr[p_layer];
     }
 
+    /**
+     * <p>get_horizontal_trace_costs.</p>
+     *
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double get_horizontal_trace_costs(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -297,6 +439,12 @@ public class AutorouteSettings implements java.io.Serializable
         return result;
     }
 
+    /**
+     * <p>set_against_preferred_direction_trace_costs.</p>
+     *
+     * @param p_layer a int.
+     * @param p_value a double.
+     */
     public void set_against_preferred_direction_trace_costs(int p_layer, double p_value)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -307,6 +455,12 @@ public class AutorouteSettings implements java.io.Serializable
         against_preferred_direction_trace_cost_arr[p_layer] = Math.max(p_value, 0.1);
     }
 
+    /**
+     * <p>get_vertical_trace_costs.</p>
+     *
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double get_vertical_trace_costs(int p_layer)
     {
         if (p_layer < 0 || p_layer >= layer_active_arr.length)
@@ -326,6 +480,11 @@ public class AutorouteSettings implements java.io.Serializable
         return result;
     }
 
+    /**
+     * <p>get_trace_cost_arr.</p>
+     *
+     * @return an array of {@link autoroute.AutorouteControl.ExpansionCostFactor} objects.
+     */
     public ExpansionCostFactor[] get_trace_cost_arr()
     {
         ExpansionCostFactor[] result = new ExpansionCostFactor[preferred_direction_trace_cost_arr.length];

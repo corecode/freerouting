@@ -40,11 +40,16 @@ import java.util.Collection;
  * shoving aside obstacle traces.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ForcedPadAlgo
 {
     
-    /** Creates a new instance of ForcedPadAlgo */
+    /**
+     * Creates a new instance of ForcedPadAlgo
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     */
     public ForcedPadAlgo(RoutingBoard p_board)
     {
         board = p_board;
@@ -57,6 +62,19 @@ public class ForcedPadAlgo
      * If p_ignore_items != null, items in this list are not checked,
      * If p_check_only_front only trace obstacles in the direction from p_from_side are checked
      * for performance reasons. This is the cave when moving drill_items
+     *
+     * @param p_pad_shape a {@link geometry.planar.TileShape} object.
+     * @param p_from_side a {@link board.CalcFromSide} object.
+     * @param p_layer a int.
+     * @param p_net_no_arr an array of int.
+     * @param p_cl_type a int.
+     * @param p_copper_sharing_allowed a boolean.
+     * @param p_ignore_items a {@link java.util.Collection} object.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     * @param p_check_only_front a boolean.
+     * @param p_time_limit a {@link datastructures.TimeLimit} object.
+     * @return a {@link board.ForcedPadAlgo.CheckDrillResult} object.
      */
     public CheckDrillResult check_forced_pad(TileShape p_pad_shape, CalcFromSide p_from_side, int p_layer, int[] p_net_no_arr,
             int p_cl_type, boolean p_copper_sharing_allowed, Collection<Item> p_ignore_items, int p_max_recursion_depth, int p_max_via_recursion_depth,

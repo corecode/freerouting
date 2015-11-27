@@ -29,16 +29,22 @@ import java.util.LinkedList;
  * ob straight lines.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class PolylineShape implements Shape, java.io.Serializable
 {
     /**
      * returns true, if the the shape has no infinite part at this corner
+     *
+     * @param p_no a int.
+     * @return a boolean.
      */
     public abstract boolean corner_is_bounded(int p_no);
     
     /**
      * Returns the number of border lines of the shape
+     *
+     * @return a int.
      */
     public abstract int border_line_count();
     
@@ -50,38 +56,53 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
      * If there are several corners with the smallest y-coordinate,
      * the corner with the smallest x-coordinate comes first.
      * Consecutive corners may be equal.
+     *
+     * @param p_no a int.
+     * @return a {@link geometry.planar.Point} object.
      */
     public abstract Point corner(int p_no);
     
     /**
+     * {@inheritDoc}
+     *
      * Turns this shape by p_factor times 90 degree around p_pole.
      */
     public abstract PolylineShape turn_90_degree(int p_factor, IntPoint p_pole);
     
     /**
+     * {@inheritDoc}
+     *
      * Rotates this shape around p_pole by p_angle.
      * The result may be not exact.
      */
     public abstract PolylineShape rotate_approx(double p_angle, FloatPoint p_pole);
     
     /**
+     * {@inheritDoc}
+     *
      * Mirrors this shape at the horizontal line through p_pole.
      */
     public abstract PolylineShape mirror_horizontal(IntPoint p_pole);
     
     
     /**
+     * {@inheritDoc}
+     *
      * Mirrors this shape at the vertical line through p_pole.
      */
     public abstract PolylineShape mirror_vertical(IntPoint p_pole);
     
     /**
+     * {@inheritDoc}
+     *
      * Returns the affine translation of the area by p_vector
      */
     public abstract PolylineShape translate_by(Vector p_vector);
     
     /**
      * Return all unbounded cornersw of this shape.
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
      */
     public Point [] bounded_corners()
     {
@@ -108,6 +129,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
      * for p_no between 0 and border_line_count() - 1.
      * If the shape is not bounded at this corner, the
      * coordinates of the result will be set to Integer.MAX_VALUE.
+     *
+     * @param p_no a int.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint corner_approx(int p_no)
     {
@@ -119,6 +143,8 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
      * Returns an approximation of the all corners of this shape.
      * If the shape is not bounded at a corner, the
      * coordinates will be set to Integer.MAX_VALUE.
+     *
+     * @return an array of {@link geometry.planar.FloatPoint} objects.
      */
     public FloatPoint [] corner_approx_arr()
     {
@@ -134,6 +160,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     /**
      * If p_point is equal to a corner of this shape, the number
      * of that corner is returned; -1 otherwise.
+     *
+     * @param p_point a {@link geometry.planar.Point} object.
+     * @return a int.
      */
     public int equals_corner(Point p_point)
     {
@@ -150,6 +179,8 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     /**
      * Returns the cumulative border line length of the shape.
      * If the shape is unbounded, Integer.MAX_VALUE is returned.
+     *
+     * @return a double.
      */
     public double circumference()
     {
@@ -171,6 +202,8 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     
     /**
      * Returns the arithmetic middle of the corners of this shape
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint centre_of_gravity()
     {
@@ -189,6 +222,8 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * checks, if this shape is completely contained in p_box.
      */
     public boolean is_contained_in(IntBox p_box)
@@ -200,6 +235,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
      * Returns the index of the corner of the shape, so that all
      * other points of the shape are to the right of the line
      * from p_from_point to this corner
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a int.
      */
     public int index_of_left_most_corner(FloatPoint p_from_point)
     {
@@ -222,6 +260,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
      * Returns the index of the corner of the shape, so that all
      * other points of the shape are to the left of the line
      * from p_from_point to this corner
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a int.
      */
     public int index_of_right_most_corner(FloatPoint p_from_point)
     {
@@ -244,6 +285,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
      * Returns a FloatLine result, so that result.a is an approximation of
      * the left most corner of this shape when viewed from p_from_point,
      * and result.b is an approximation of the right most corner.
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine polar_line_segment(FloatPoint p_from_point)
     {
@@ -272,11 +316,17 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     
     /**
      * Returns the p_no-th border line of this shape.
+     *
+     * @param p_no a int.
+     * @return a {@link geometry.planar.Line} object.
      */
     public abstract Line border_line(int p_no);
     
     /**
      * Returns the previos border line or corner number of this shape.
+     *
+     * @param p_no a int.
+     * @return a int.
      */
     public int prev_no(int p_no)
     {
@@ -294,6 +344,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     
     /**
      * Returns the next border line or corner number of this shape.
+     *
+     * @param p_no a int.
+     * @return a int.
      */
     public int next_no(int p_no)
     {
@@ -309,11 +362,21 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
         return result;
     }
     
+    /**
+     * <p>get_border.</p>
+     *
+     * @return a {@link geometry.planar.PolylineShape} object.
+     */
     public PolylineShape get_border()
     {
         return this;
     }
     
+    /**
+     * <p>get_holes.</p>
+     *
+     * @return an array of {@link geometry.planar.Shape} objects.
+     */
     public Shape[] get_holes()
     {
         return new Shape[0];
@@ -322,6 +385,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     
     /**
      * Checks, if this shape and p_line have a common point.
+     *
+     * @param p_line a {@link geometry.planar.Line} object.
+     * @return a boolean.
      */
     public boolean intersects(Line p_line)
     {
@@ -342,6 +408,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     
     /**
      * Calculates the left most corner of this shape, when looked at from p_from_point.
+     *
+     * @param p_from_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point left_most_corner(Point p_from_point)
     {
@@ -364,6 +433,9 @@ public abstract class PolylineShape implements Shape, java.io.Serializable
     
     /**
      * Calculates the left most corner of this shape, when looked at from p_from_point.
+     *
+     * @param p_from_point a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point right_most_corner(Point p_from_point)
     {

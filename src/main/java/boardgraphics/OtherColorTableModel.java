@@ -26,10 +26,16 @@ import java.awt.Color;
  * Stores the colors used for the background and highlighting.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class OtherColorTableModel extends ColorTableModel implements java.io.Serializable
 {
     
+    /**
+     * <p>Constructor for OtherColorTableModel.</p>
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public OtherColorTableModel(java.util.Locale p_locale)
     {
         super(1, p_locale);
@@ -45,6 +51,13 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
         curr_row[ColumnNames.LENGTH_MATCHING_AREA.ordinal()] = Color.green;
     }
     
+    /**
+     * <p>Constructor for OtherColorTableModel.</p>
+     *
+     * @param p_stream a {@link java.io.ObjectInputStream} object.
+     * @throws java.io.IOException if any.
+     * @throws java.lang.ClassNotFoundException if any.
+     */
     public OtherColorTableModel(java.io.ObjectInputStream p_stream)
             throws java.io.IOException, java.lang.ClassNotFoundException
     {
@@ -53,6 +66,8 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
     
     /**
      * Copy construcror.
+     *
+     * @param p_item_color_model a {@link boardgraphics.OtherColorTableModel} object.
      */
     public OtherColorTableModel(OtherColorTableModel p_item_color_model)
     {
@@ -65,11 +80,17 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
     }
     
     
+    /**
+     * <p>getColumnCount.</p>
+     *
+     * @return a int.
+     */
     public int getColumnCount()
     {
         return ColumnNames.values().length;
     }
     
+    /** {@inheritDoc} */
     public String getColumnName(int p_col)
     {
         java.util.ResourceBundle resources = 
@@ -77,36 +98,68 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
         return resources.getString(ColumnNames.values()[p_col].toString());
     }
     
+    /** {@inheritDoc} */
     public boolean isCellEditable(int p_row, int p_col)
     {
         return true;
     }
     
+    /**
+     * <p>get_background_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_background_color()
     {
         return (Color)(data[0][ColumnNames.BACKGROUND.ordinal()]);
     }
     
+    /**
+     * <p>get_hilight_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_hilight_color()
     {
         return (Color) (data[0][ColumnNames.HIGHLIGHT.ordinal()]);
     }
     
+    /**
+     * <p>get_incomplete_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_incomplete_color()
     {
         return (Color) (data[0][ColumnNames.INCOMPLETES.ordinal()]);
     }
     
+    /**
+     * <p>get_outline_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_outline_color()
     {
         return (Color) (data[0][ColumnNames.OUTLINE.ordinal()]);
     }
     
+    /**
+     * <p>get_violations_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_violations_color()
     {
         return (Color) (data[0][ColumnNames.VIOLATIONS.ordinal()]);
     }
     
+    /**
+     * <p>get_component_color.</p>
+     *
+     * @param p_front a boolean.
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_component_color(boolean p_front)
     {
         Color result;
@@ -121,36 +174,72 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
         return result;
     }
     
+    /**
+     * <p>get_length_matching_area_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_length_matching_area_color()
     {
         return (Color) (data[0][ColumnNames.LENGTH_MATCHING_AREA.ordinal()]);
     }
     
+    /**
+     * <p>set_background_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     */
     public void set_background_color(Color p_color)
     {
         data[0][ColumnNames.BACKGROUND.ordinal()] = p_color;
     }
     
+    /**
+     * <p>set_hilight_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     */
     public void set_hilight_color(Color p_color)
     {
         data[0][ColumnNames.HIGHLIGHT.ordinal()] = p_color;
     }
     
+    /**
+     * <p>set_incomplete_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     */
     public void set_incomplete_color(Color p_color)
     {
         data[0][ColumnNames.INCOMPLETES.ordinal()] = p_color;
     }
     
+    /**
+     * <p>set_violations_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     */
     public void set_violations_color(Color p_color)
     {
         data[0][ColumnNames.VIOLATIONS.ordinal()] = p_color;
     }
     
+    /**
+     * <p>set_outline_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     */
     public void set_outline_color(Color p_color)
     {
         data[0][ColumnNames.OUTLINE.ordinal()] = p_color;
     }
     
+    /**
+     * <p>set_component_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_front a boolean.
+     */
     public void set_component_color(Color p_color, boolean p_front)
     {
         if (p_front)
@@ -163,6 +252,11 @@ public class OtherColorTableModel extends ColorTableModel implements java.io.Ser
         }
     }
     
+    /**
+     * <p>set_length_matching_area_color.</p>
+     *
+     * @param p_color a {@link java.awt.Color} object.
+     */
     public void set_length_matching_area_color(Color p_color)
     {
         data[0][ColumnNames.LENGTH_MATCHING_AREA.ordinal()] = p_color;

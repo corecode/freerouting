@@ -26,11 +26,16 @@ import java.util.Iterator;
  * Describes a layer structure read from a dsn file.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class LayerStructure
 {
 
-    /** Creates a new instance of LayerStructure  from a list of layers*/
+    /**
+     * Creates a new instance of LayerStructure  from a list of layers
+     *
+     * @param p_layer_list a {@link java.util.Collection} object.
+     */
     public LayerStructure(Collection<Layer> p_layer_list)
     {
         arr = new Layer[p_layer_list.size()];
@@ -43,6 +48,8 @@ public class LayerStructure
 
     /**
      * Creates a dsn-LayerStructure from a board LayerStructure.
+     *
+     * @param p_board_layer_structure a {@link board.LayerStructure} object.
      */
     public LayerStructure(board.LayerStructure p_board_layer_structure)
     {
@@ -57,6 +64,9 @@ public class LayerStructure
     /**
      * returns the number of the layer with the name p_name,
      * -1, if no layer with name p_name exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a int.
      */
     public int get_no(String p_name)
     {
@@ -79,6 +89,11 @@ public class LayerStructure
         return -1;
     }
 
+    /**
+     * <p>signal_layer_count.</p>
+     *
+     * @return a int.
+     */
     public int signal_layer_count()
     {
         int result = 0;
@@ -94,6 +109,9 @@ public class LayerStructure
 
     /**
      * Returns, if the net with name p_net_name contains a powwer plane.
+     *
+     * @param p_net_name a {@link java.lang.String} object.
+     * @return a boolean.
      */
     public boolean contains_plane(String p_net_name)
     {

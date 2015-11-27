@@ -33,12 +33,18 @@ import board.Item;
  * Interactive state for selecting all items in a rectangle.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SelectItemsInRegionState extends SelectRegionState
 {
 
     /**
      * Returns a new instance of this class.
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.SelectItemsInRegionState} object.
      */
     public static SelectItemsInRegionState get_instance(InteractiveState p_parent_state,
             BoardHandling p_board_handling, Logfile p_logfile)
@@ -48,6 +54,12 @@ public class SelectItemsInRegionState extends SelectRegionState
 
     /**
      * Returns a new instance of this class with first point p_location.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.SelectItemsInRegionState} object.
      */
     public static SelectItemsInRegionState get_instance(FloatPoint p_location, InteractiveState p_parent_state,
             BoardHandling p_board_handling, Logfile p_logfile)
@@ -75,6 +87,11 @@ public class SelectItemsInRegionState extends SelectRegionState
         }
     }
 
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         if (!hdlg.is_board_read_only())

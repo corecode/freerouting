@@ -24,10 +24,16 @@ package gui;
  * Creates the parameter menu of a board frame.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuParameter extends javax.swing.JMenu
 {
-    /** Returns a new windows menu for the board frame. */
+    /**
+     * Returns a new windows menu for the board frame.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a {@link gui.BoardMenuParameter} object.
+     */
     public static BoardMenuParameter get_instance(BoardFrame p_board_frame)
     {
         final BoardMenuParameter parameter_menu = new BoardMenuParameter(p_board_frame);

@@ -33,11 +33,16 @@ import autoroute.BatchOptRoute;
  * Thread for the batch autorouter.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BatchAutorouterThread extends InteractiveActionThread
 {
 
-    /** Creates a new instance of BatchAutorouterThread */
+    /**
+     * Creates a new instance of BatchAutorouterThread
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     */
     protected BatchAutorouterThread(BoardHandling p_board_handling)
     {
         super(p_board_handling);
@@ -47,6 +52,9 @@ public class BatchAutorouterThread extends InteractiveActionThread
 
     }
 
+    /**
+     * <p>thread_action.</p>
+     */
     protected void thread_action()
     {
         try
@@ -127,6 +135,7 @@ public class BatchAutorouterThread extends InteractiveActionThread
         }
     }
 
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         FloatLine curr_air_line = batch_autorouter.get_air_line();

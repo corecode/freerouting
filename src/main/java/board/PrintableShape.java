@@ -26,9 +26,15 @@ import geometry.planar.FloatPoint;
  * Shape class used for printing a geometry.planar.Shape after transforming it to user coordinates.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class PrintableShape
 {
+    /**
+     * <p>Constructor for PrintableShape.</p>
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     protected PrintableShape(java.util.Locale p_locale)
     {
         this.locale = p_locale;
@@ -36,6 +42,8 @@ public abstract class PrintableShape
     
     /**
      * Returns text information about the PrintableShape.
+     *
+     * @return a {@link java.lang.String} object.
      */
     public abstract String toString();
     

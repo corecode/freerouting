@@ -27,6 +27,7 @@ import datastructures.IdentifierType;
  * Class for  writing path scopes from dsn-files.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public abstract class Path extends Shape
 {
@@ -40,6 +41,8 @@ public abstract class Path extends Shape
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Writes this path as a scope to an output dsn-file.
      */
     public abstract void write_scope(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException;

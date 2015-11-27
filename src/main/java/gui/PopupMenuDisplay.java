@@ -25,13 +25,19 @@
 package gui;
 
 /**
+ * <p>PopupMenuDisplay class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PopupMenuDisplay extends javax.swing.JPopupMenu
 {
     
-    /** Creates a new instance of PopupMenuDisplay */
+    /**
+     * Creates a new instance of PopupMenuDisplay
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public PopupMenuDisplay(BoardFrame p_board_frame)
     {
         this.board_panel = p_board_frame.board_panel;

@@ -24,6 +24,7 @@ package board;
  * Creates unique Item identication nunbers.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ItemIdNoGenerator implements datastructures.IdNoGenerator, java.io.Serializable
 {
@@ -39,6 +40,8 @@ public class ItemIdNoGenerator implements datastructures.IdNoGenerator, java.io.
      * Create a new unique identification number.
      * Use eventually the id_no generater from the host system
      * for syncronisation
+     *
+     * @return a int.
      */
     public int new_no()
     {
@@ -52,6 +55,8 @@ public class ItemIdNoGenerator implements datastructures.IdNoGenerator, java.io.
     
     /**
      * Return the maximum generated id number so far.
+     *
+     * @return a int.
      */
     public int max_generated_no()
     {

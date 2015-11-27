@@ -28,13 +28,19 @@ import rules.NetClass;
 import interactive.RatsNest;
 
 /**
+ * <p>WindowLengthViolations class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowLengthViolations  extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of WindowLengthViolations */
+    /**
+     * Creates a new instance of WindowLengthViolations
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowLengthViolations(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -44,6 +50,9 @@ public class WindowLengthViolations  extends WindowObjectListWithFilter
         p_board_frame.set_context_sensitive_help(this, "WindowObjectList_LengthViolations");
     }
     
+    /**
+     * <p>fill_list.</p>
+     */
     protected void fill_list()
     {
         RatsNest ratsnest = this.board_frame.board_panel.board_handling.get_ratsnest();
@@ -66,6 +75,9 @@ public class WindowLengthViolations  extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(length_violations.size(), DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_violations = list.getSelectedValues();

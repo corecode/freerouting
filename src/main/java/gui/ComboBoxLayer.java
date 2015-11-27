@@ -25,11 +25,17 @@ import board.LayerStructure;
  * A Combo Box with items for individuell board layers plus an additional item for all layers.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ComboBoxLayer extends javax.swing.JComboBox
 {
     
-    /** Creates a new instance of LayerComboBox */
+    /**
+     * Creates a new instance of LayerComboBox
+     *
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public ComboBoxLayer(LayerStructure p_layer_structure, java.util.Locale p_locale)
     {     
         java.util.ResourceBundle resources = 
@@ -59,6 +65,11 @@ public class ComboBoxLayer extends javax.swing.JComboBox
         this.setSelectedIndex(0);
     }
     
+    /**
+     * <p>get_selected_layer.</p>
+     *
+     * @return a {@link gui.ComboBoxLayer.Layer} object.
+     */
     public Layer get_selected_layer()
     {
         return (Layer) this.getSelectedItem();

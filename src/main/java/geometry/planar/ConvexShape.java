@@ -25,6 +25,7 @@ package geometry.planar;
  * contained in the shape the whole segment is contained completely in the shape.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public interface ConvexShape extends Shape
 {
@@ -33,22 +34,32 @@ public interface ConvexShape extends Shape
      * Calculates the offset shape by p_distance.
      * If p_distance > 0, the shape will be enlarged, else the result
      * shape will be smaller.
+     *
+     * @param p_distance a double.
+     * @return a {@link geometry.planar.ConvexShape} object.
      */
     ConvexShape offset(double p_distance);
     
     /**
      * Shrinks the shape by p_offset.
      * The result shape will not be empty.
+     *
+     * @param p_offset a double.
+     * @return a {@link geometry.planar.ConvexShape} object.
      */
     ConvexShape shrink(double p_offset);
     
     /**
      * Returns the maximum diameter of the shape.
+     *
+     * @return a double.
      */
     double max_width();
     
     /**
      * Returns the minimum diameter of the shape.
+     *
+     * @return a double.
      */
     double min_width();
 }

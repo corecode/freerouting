@@ -44,11 +44,14 @@ import datastructures.ShapeTree.TreeEntry;
  * Basic class of the items on a board.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPanel.Printable, UndoableObjects.Storable, Serializable
 {
 
     /**
+     * {@inheritDoc}
+     *
      * Implements the comparable interface.
      */
     public int compareTo(Object p_other)
@@ -67,6 +70,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * returns the unique idcentification number of this item
+     *
+     * @return a int.
      */
     public int get_id_no()
     {
@@ -75,6 +80,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns true if the net number array of this item contains p_net_no.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean contains_net(int p_net_no)
     {
@@ -92,11 +100,13 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
         return false;
     }
 
+    /** {@inheritDoc} */
     public boolean is_obstacle(int p_net_no)
     {
         return !contains_net(p_net_no);
     }
 
+    /** {@inheritDoc} */
     public boolean is_trace_obstacle(int p_net_no)
     {
         return !contains_net(p_net_no);
@@ -104,12 +114,18 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns, if this item in not allowed to overlap with p_other.
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
      */
     public abstract boolean is_obstacle(Item p_other);
 
     /**
      *  Returns true if the net number arrays of this and p_other have a common
      *  number.
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
      */
     public boolean shares_net(Item p_other)
     {
@@ -119,6 +135,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      *  Returns true if the net number array of this and p_net_no_arr have a common
      *  number.
+     *
+     * @param p_net_no_arr an array of int.
+     * @return a boolean.
      */
     public boolean shares_net_no(int[] p_net_no_arr)
     {
@@ -137,11 +156,16 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns the number of shapes of this item after decomposition into convex polygonal shapes
+     *
+     * @return a int.
      */
     public abstract int tile_shape_count();
 
     /**
      * Returns the p_index-throws  shape of this item after decomposition into convex polygonal shapes
+     *
+     * @param p_index a int.
+     * @return a {@link geometry.planar.TileShape} object.
      */
     public TileShape get_tile_shape(int p_index)
     {
@@ -153,6 +177,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
         return get_tree_shape(this.board.search_tree_manager.get_default_tree(), p_index);
     }
 
+    /** {@inheritDoc} */
     public int tree_shape_count(ShapeTree p_tree)
     {
         if (this.board == null)
@@ -163,6 +188,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
         return precalculated_tree_shapes.length;
     }
 
+    /** {@inheritDoc} */
     public TileShape get_tree_shape(ShapeTree p_tree, int p_index)
     {
         if (this.board == null)
@@ -190,12 +216,17 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Caculates the tree shapes for this item for p_search_tree.
+     *
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     protected abstract TileShape[] calculate_tree_shapes(ShapeSearchTree p_search_tree);
 
     /**
      * Returns false, if this item is deleted oor not inserted into
      * the board.
+     *
+     * @return a boolean.
      */
     public boolean is_on_the_board()
     {
@@ -210,9 +241,17 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Creates a copy of this item with id number p_id_no.
      * If p_id_no <= 0, the id_no of the new item is generated internally
+     *
+     * @param p_id_no a int.
+     * @return a {@link board.Item} object.
      */
     public abstract Item copy(int p_id_no);
 
+    /**
+     * <p>clone.</p>
+     *
+     * @return a {@link java.lang.Object} object.
+     */
     public Object clone()
     {
         return copy(this.get_id_no());
@@ -220,55 +259,79 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * returns true, if the layer range of this item contains p_layer
+     *
+     * @param p_layer a int.
+     * @return a boolean.
      */
     public abstract boolean is_on_layer(int p_layer);
 
     /**
      * Returns the number of the first layer containing geometry of this item.
+     *
+     * @return a int.
      */
     public abstract int first_layer();
 
     /**
      * Returns the number of the last layer containing geometry of this item.
+     *
+     * @return a int.
      */
     public abstract int last_layer();
 
     /**
      * write this item to an output stream
+     *
+     * @param p_stream a {@link java.io.ObjectOutputStream} object.
+     * @return a boolean.
      */
     public abstract boolean write(java.io.ObjectOutputStream p_stream);
 
     /**
      * Translates the shapes of this item by p_vector.
      * Does not move the item in the board.
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
      */
     public abstract void translate_by(Vector p_vector);
 
     /**
      * Turns this Item by p_factor times 90 degree around p_pole.
      * Does not update the item in the board.
+     *
+     * @param p_factor a int.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public abstract void turn_90_degree(int p_factor, IntPoint p_pole);
 
     /**
      * Rotates this Item by p_angle_in_degree around p_pole.
      * Does not update the item in the board.
+     *
+     * @param p_angle_in_degree a double.
+     * @param p_pole a {@link geometry.planar.FloatPoint} object.
      */
     public abstract void rotate_approx(double p_angle_in_degree, FloatPoint p_pole);
 
     /**
      * Changes the placement side of this Item and mirrors it at the vertical line through p_pole.
      * Does not update the item in the board.
+     *
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public abstract void change_placement_side(IntPoint p_pole);
 
     /**
      * Returns a box containing the geometry of this item.
+     *
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public abstract IntBox bounding_box();
 
     /**
      *  Translates this item by p_vector in the board.
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
      */
     public void move_by(Vector p_vector)
     {
@@ -283,6 +346,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns true, if some shapes of this item and p_other are
      * on the same layer.
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
      */
     public boolean shares_layer(Item p_other)
     {
@@ -294,6 +360,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the first layer, where both this item and p_other have a shape.
      * Returns -1, if such a layer does not exisr.
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a int.
      */
     public int first_common_layer(Item p_other)
     {
@@ -309,6 +378,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the last layer, where both this item and p_other have a shape.
      * Returns -1, if such a layer does not exisr.
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a int.
      */
     public int last_common_layer(Item p_other)
     {
@@ -323,6 +395,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Return the name of the component of this item or null, if this item does not belong to a component.
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String component_name()
     {
@@ -336,6 +410,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the count of clearance violations of this item with
      * other items.
+     *
+     * @return a int.
      */
     public int clearance_violation_count()
     {
@@ -347,6 +423,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * Returns a list of all clearance violations of this item with other items.
      * The objects in the list are of type ClearanceViolations.
      * The first_item in such an object is always this item.
+     *
+     * @return a java$util$Collection object.
      */
     public Collection<ClearanceViolation> clearance_violations()
     {
@@ -445,6 +523,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns all connectable Items with a direct contacts to this item.
      * The result will be empty, if this item is not connectable.
+     *
+     * @return a java$util$Set object.
      */
     public Set<Item> get_all_contacts()
     {
@@ -477,6 +557,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns all connectable Items with a direct contacts to this item on the input layer.
      * The result will be empty, if this item is not connectable.
+     *
+     * @param p_layer a int.
+     * @return a java$util$Set object.
      */
     public Set<Item> get_all_contacts(int p_layer)
     {
@@ -513,6 +596,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Checks, if this item is electrically connected to another connectable
      * item. Returns false for items, which are not connectable.
+     *
+     * @return a boolean.
      */
     public boolean is_connected()
     {
@@ -523,6 +608,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Checks, if this item is electrically connected to another connectable
      * item on the input layer. Returns false for items, which are not connectable.
+     *
+     * @param p_layer a int.
+     * @return a boolean.
      */
     public boolean is_connected_on_layer(int p_layer)
     {
@@ -532,6 +620,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * default implementation to be overwritten in the Connectable subclasses
+     *
+     * @return a java$util$Set object.
      */
     public Set<Item> get_normal_contacts()
     {
@@ -542,6 +632,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * Returns the contact point, if this item and p_other are Connectable
      * and have a unique normal contact.
      * Returns null otherwise
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point normal_contact_point(Item p_other)
     {
@@ -568,6 +661,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * Returns the set of all Connectable items of the net with number p_net_no which can be reached recursively
      * via normal contacts from this item.
      * If p_net_no <= 0, the net number is ignored.
+     *
+     * @param p_net_no a int.
+     * @return a java$util$Set object.
      */
     public Set<Item> get_connected_set(int p_net_no)
     {
@@ -580,6 +676,10 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * If p_net_no <= 0, the net number is ignored.
      * If p_stop_at_plane, the recursive algorithm stops, when a conduction area is reached,
      * which does not belong to a component.
+     *
+     * @param p_net_no a int.
+     * @param p_stop_at_plane a boolean.
+     * @return a java$util$Set object.
      */
     public Set<Item> get_connected_set(int p_net_no, boolean p_stop_at_plane)
     {
@@ -622,6 +722,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns true, if this item contains some overlap to be cleaned.
+     *
+     * @return a boolean.
      */
     public boolean is_overlap()
     {
@@ -671,6 +773,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * Returns the set of all Connectable items belonging to the net with number p_net_no,
      * which are not in the connected set of this item.
      * If p_net_no <= 0, the net numbers contained in this items are used  instead of p_net_no.
+     *
+     * @param p_net_no a int.
+     * @return a java$util$Set object.
      */
     public Set<Item> get_unconnected_set(int p_net_no)
     {
@@ -695,7 +800,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     }
 
     /**
-     * Returns all traces and vias from this item until the next fork or terminal item. 
+     * Returns all traces and vias from this item until the next fork or terminal item.
+     *
+     * @return a java$util$Set object.
      */
     public Set<Item> get_connection_items()
     {
@@ -703,9 +810,12 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     }
 
     /**
-     * Returns all traces and vias from this item until the next fork or terminal item. 
+     * Returns all traces and vias from this item until the next fork or terminal item.
      * If p_stop_option == StopConnectionOption.FANOUT_VIA, the algorithm will stop at the next fanout via,
      * If p_stop_option == StopConnectionOption.VIA, the algorithm will stop at any via.
+     *
+     * @param p_stop_option a {@link board.Item.StopConnectionOption} object.
+     * @return a java$util$Set object.
      */
     public Set<Item> get_connection_items(StopConnectionOption p_stop_option)
     {
@@ -814,6 +924,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Function o be overwritten by classes Trace ans Via
+     *
+     * @return a boolean.
      */
     public boolean is_tail()
     {
@@ -823,12 +935,15 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns all corners of this item, which are used for displaying the ratsnest.
      * To be overwritten in derived classes implementing the Connectable interface.
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
      */
     public Point[] get_ratsnest_corners()
     {
         return new Point[0];
     }
 
+    /** {@inheritDoc} */
     public void draw(Graphics p_g, GraphicsContext p_graphics_context, Color p_color, double p_intensity)
     {
         Color[] color_arr = new Color[board.get_layer_count()];
@@ -842,6 +957,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Draws this item whith its draw colors from p_graphics_context.
      * p_layer_visibility[i] is expected between 0 and 1 for each layer i.
+     *
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_g, GraphicsContext p_graphics_context)
     {
@@ -851,6 +969,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Test function checking the item for inconsitencies.
+     *
+     * @return a boolean.
      */
     public boolean validate()
     {
@@ -872,6 +992,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Returns for this item the layer of the shape with index p_index.
      * If p_id_no <= 0, it w2ill be generated internally.
      */
@@ -905,6 +1027,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns true, if it is not allowed to change this item except evtl. shoving the item
+     *
+     * @return a boolean.
      */
     public boolean is_user_fixed()
     {
@@ -934,6 +1058,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns true, if it is not allowed to change the location of this item by the push algorithm.
+     *
+     * @return a boolean.
      */
     public boolean is_shove_fixed()
     {
@@ -942,6 +1068,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns the fixed state of this Item.
+     *
+     * @return a {@link board.FixedState} object.
      */
     public FixedState get_fixed_state()
     {
@@ -950,6 +1078,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns false, if this item is an obstacle for vias with the input net number.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean is_drillable(int p_net_no)
     {
@@ -958,6 +1089,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Fixes the item.
+     *
+     * @param p_fixed_state a {@link board.FixedState} object.
      */
     public void set_fixed_state(FixedState p_fixed_state)
     {
@@ -978,6 +1111,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * returns true, if this item is an unfixed trace or via
+     *
+     * @return a boolean.
      */
     public boolean is_route()
     {
@@ -986,6 +1121,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns, if this item can be routed to.
+     *
+     * @return a boolean.
      */
     public boolean is_connectable()
     {
@@ -994,6 +1131,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns the count of nets this item belongs to.
+     *
+     * @return a int.
      */
     public int net_count()
     {
@@ -1002,6 +1141,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * gets the p_no-th net number of this item for 0 <= p_no < this.net_count().
+     *
+     * @param p_no a int.
+     * @return a int.
      */
     public int get_net_no(int p_no)
     {
@@ -1010,6 +1152,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Return the component number of this item or 0, if it does not belong to a component.
+     *
+     * @return a int.
      */
     public int get_component_no()
     {
@@ -1019,6 +1163,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Removes p_net_no from the net number array.
      * Returns false, if p_net_no was not contained in this array.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean remove_from_net(int p_net_no)
     {
@@ -1050,6 +1197,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the index in the clearance matrix describing the required spacing
      * of this item to other items
+     *
+     * @return a int.
      */
     public int clearance_class_no()
     {
@@ -1059,6 +1208,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Sets  the index in the clearance matrix describing the required spacing
      * of this item to other items.
+     *
+     * @param p_index a int.
      */
     public void set_clearance_class_no(int p_index)
     {
@@ -1072,6 +1223,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Changes the clearance class of this item and updates the search tree.
+     *
+     * @param p_index a int.
      */
     public void change_clearance_class(int p_index)
     {
@@ -1092,6 +1245,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Assigns this item to the component with the input component number.
+     *
+     * @param p_no a int.
      */
     public void assign_component_no(int p_no)
     {
@@ -1101,6 +1256,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Makes this item connectable and assigns it to the input net.
      * If p_net_no < 0, the net items net number will be removed and the item will no longer be connectable.
+     *
+     * @param p_net_no a int.
      */
     public void assign_net_no(int p_net_no)
     {
@@ -1134,11 +1291,17 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Returns true, if p_item is contained in the input filter.
+     *
+     * @param p_filter a {@link board.ItemSelectionFilter} object.
+     * @return a boolean.
      */
     public abstract boolean is_selected_by_filter(ItemSelectionFilter p_filter);
 
     /**
      * Internally used for implementing the function is_selectrd_by_filter
+     *
+     * @param p_filter a {@link board.ItemSelectionFilter} object.
+     * @return a boolean.
      */
     protected boolean is_selected_by_fixed_filter(ItemSelectionFilter p_filter)
     {
@@ -1155,6 +1318,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Sets the item tree entries for the  tree with identification number p_tree_no.
      */
     public void set_search_tree_entries(ShapeTree.Leaf[] p_tree_entries, ShapeTree p_tree)
@@ -1173,6 +1338,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the tree entries for the tree with identification number p_tree_no,
      * or null, if for this tree no entries of this item are inserted.
+     *
+     * @param p_tree a {@link board.ShapeSearchTree} object.
+     * @return an array of {@link datastructures.ShapeTree.Leaf} objects.
      */
     public ShapeTree.Leaf[] get_search_tree_entries(ShapeSearchTree p_tree)
     {
@@ -1185,6 +1353,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Sets the precalculated tree shapes tree entries for the  tree with identification number p_tree_no.
+     *
+     * @param p_shapes an array of {@link geometry.planar.TileShape} objects.
+     * @param p_tree a {@link board.ShapeSearchTree} object.
      */
     protected void set_precalculated_tree_shapes(TileShape[] p_shapes, ShapeSearchTree p_tree)
     {
@@ -1211,6 +1382,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Gets the information for the autoroute algorithm.
      * Creates it, if it does not yet exist.
+     *
+     * @return a {@link autoroute.ItemAutorouteInfo} object.
      */
     public autoroute.ItemAutorouteInfo get_autoroute_info()
     {
@@ -1223,6 +1396,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Gets the information for the autoroute algorithm.
+     *
+     * @return a {@link autoroute.ItemAutorouteInfo} object.
      */
     public autoroute.ItemAutorouteInfo get_autoroute_info_pur()
     {
@@ -1252,6 +1427,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_net_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1267,6 +1445,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_clearance_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1282,6 +1463,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_fixed_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1296,6 +1480,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_contact_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1312,6 +1499,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_clearance_violation_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1338,6 +1528,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_connectable_item_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1350,6 +1543,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Internal funktion used in the implementation of print_info
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected void print_item_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -1360,6 +1556,8 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Checks, if all nets of this items are normal.
+     *
+     * @return a boolean.
      */
     public boolean nets_normal()
     {
@@ -1375,6 +1573,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Checks, if this item and p_other contain exactly the same net numbers.
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
      */
     public boolean nets_equal(Item p_other)
     {
@@ -1383,6 +1584,9 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Checks, if this item contains exacly the nets in p_net_no_arr
+     *
+     * @param p_net_no_arr an array of int.
+     * @return a boolean.
      */
     public boolean nets_equal(int[] p_net_no_arr)
     {

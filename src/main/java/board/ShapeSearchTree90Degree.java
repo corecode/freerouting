@@ -38,17 +38,25 @@ import autoroute.CompleteFreeSpaceExpansionRoom;
  * It is used in the 90-degree autorouter algorithm.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ShapeSearchTree90Degree extends ShapeSearchTree
 {
     
-    /** Creates a new instance of ShapeSearchTree90Degree */
+    /**
+     * Creates a new instance of ShapeSearchTree90Degree
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_compensated_clearance_class_no a int.
+     */
     public ShapeSearchTree90Degree(BasicBoard p_board, int p_compensated_clearance_class_no)
     {
         super(OrthogonalBoundingDirections.INSTANCE, p_board, p_compensated_clearance_class_no);
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Calculates a new incomplete room with a maximal TileShape contained in the shape of p_room,
      * which may overlap only with items of the input net on the input layer.
      * p_room.get_contained_shape() will be contained in the shape of the result room.
@@ -341,6 +349,8 @@ public class ShapeSearchTree90Degree extends ShapeSearchTree
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Used for creating the shapes of a polyline_trace for this tree.
      */
     public TileShape[] offset_shapes(Polyline p_polyline, int p_half_width,

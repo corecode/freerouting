@@ -32,12 +32,19 @@ import rules.BoardRules;
  * Interactive state for constructing an obstacle with a polygon shape.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PolygonShapeConstructionState extends CornerItemConstructionState
 {
     /**
      * Returns a new instance of this class
      * If p_logfile != null; the creation of this item is stored in a logfile
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.PolygonShapeConstructionState} object.
      */
     public static PolygonShapeConstructionState get_instance(FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
@@ -58,6 +65,8 @@ public class PolygonShapeConstructionState extends CornerItemConstructionState
     /**
      * Inserts the polygon shape item into the board, if possible
      * and returns to the main state
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState complete()
     {
@@ -116,6 +125,9 @@ public class PolygonShapeConstructionState extends CornerItemConstructionState
         return this.return_state;
     }
     
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(resources.getString("creating_polygonshape"));

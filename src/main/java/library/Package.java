@@ -30,6 +30,7 @@ import geometry.planar.Area;
  * and optional other stuff like an outline package keepouts.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Package implements Comparable<Package>, board.ObjectInfoPanel.Printable, java.io.Serializable
 {
@@ -37,6 +38,16 @@ public class Package implements Comparable<Package>, board.ObjectInfoPanel.Print
     /**
      * Creates a new instance of Package.
      * p_package_list is the list of packages containing this package.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_no a int.
+     * @param p_pin_arr an array of {@link library.Package.Pin} objects.
+     * @param p_outline an array of {@link geometry.planar.Shape} objects.
+     * @param p_keepout_arr an array of {@link library.Package.Keepout} objects.
+     * @param p_via_keepout_arr an array of {@link library.Package.Keepout} objects.
+     * @param p_place_keepout_arr an array of {@link library.Package.Keepout} objects.
+     * @param p_is_front a boolean.
+     * @param p_package_list a {@link library.Packages} object.
      */
     public Package(String p_name, int p_no, Pin[] p_pin_arr, Shape[] p_outline, Keepout[] p_keepout_arr,
             Keepout[] p_via_keepout_arr, Keepout[] p_place_keepout_arr, boolean p_is_front, Packages p_package_list)
@@ -55,6 +66,9 @@ public class Package implements Comparable<Package>, board.ObjectInfoPanel.Print
     /**
      * Compares 2 packages by name.
      * Useful for example to display packages in alphabetic order.
+     *
+     * @param p_other a {@link library.Package} object.
+     * @return a int.
      */
     public int compareTo(Package p_other)
     {
@@ -63,6 +77,9 @@ public class Package implements Comparable<Package>, board.ObjectInfoPanel.Print
     
     /**
      * Returns the pin with the input number from this package.
+     *
+     * @param p_no a int.
+     * @return a {@link library.Package.Pin} object.
      */
     public Pin get_pin(int p_no)
     {
@@ -77,6 +94,9 @@ public class Package implements Comparable<Package>, board.ObjectInfoPanel.Print
     /**
      * Returns the pin number of the pin with the input name from this package, or -1, if no such pin exists
      * Pin numbers are from 0 to pin_count - 1.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a int.
      */
     public int get_pin_no(String p_name)
     {
@@ -92,17 +112,25 @@ public class Package implements Comparable<Package>, board.ObjectInfoPanel.Print
     
     /**
      * Returns the pin count of this package.
+     *
+     * @return a int.
      */
     public int pin_count()
     {
         return pin_arr.length;
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
     }
     
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

@@ -26,18 +26,20 @@ package geometry.planar;
  * Because arithmetic calculations with double's are in general not
  * exact, FloatPoint is not derived from the abstract class Point.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
-
 public class FloatPoint implements java.io.Serializable
 {
     
+    /** Constant <code>ZERO</code> */
     public static final FloatPoint ZERO = new FloatPoint(0,0);
     
     /**
      * creates an instance of class FloatPoint from two double's,
+     *
+     * @param p_x a double.
+     * @param p_y a double.
      */
     public FloatPoint(double p_x, double p_y)
     {
@@ -45,6 +47,11 @@ public class FloatPoint implements java.io.Serializable
         y = p_y;
     }
     
+    /**
+     * <p>Constructor for FloatPoint.</p>
+     *
+     * @param p_pt a {@link geometry.planar.IntPoint} object.
+     */
     public FloatPoint(IntPoint p_pt)
     {
         x = p_pt.x ;
@@ -53,6 +60,8 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * returns the square of the distance from this point to the zero point
+     *
+     * @return a double.
      */
     public final double size_square()
     {
@@ -61,6 +70,8 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * returns the distance from this point to the zero point
+     *
+     * @return a double.
      */
     public final double size()
     {
@@ -69,6 +80,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * returns the square of the distance from this Point to the Point p_other
+     *
+     * @param p_other a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public final double distance_square(FloatPoint p_other)
     {
@@ -79,6 +93,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * returns the distance from this point to the point p_other
+     *
+     * @param p_other a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public final double distance(FloatPoint p_other)
     {
@@ -87,6 +104,11 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Computes the weighted distance to p_other.
+     *
+     * @param p_other a {@link geometry.planar.FloatPoint} object.
+     * @param p_horizontal_weight a double.
+     * @param p_vertical_weight a double.
+     * @return a double.
      */
     public double weighted_distance(FloatPoint p_other, double p_horizontal_weight, double p_vertical_weight)
     {
@@ -101,6 +123,8 @@ public class FloatPoint implements java.io.Serializable
     /**
      * rounds the coordinates from an object of class Point_double to
      * an object of class IntPoint
+     *
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint round()
     {
@@ -111,6 +135,9 @@ public class FloatPoint implements java.io.Serializable
      * Rounds this point, so that if this point is on the right side
      * of any directed line with direction p_dir, the result
      * point will also be on the right side.
+     *
+     * @param p_dir a {@link geometry.planar.Direction} object.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint round_to_the_right(Direction p_dir)
     {
@@ -150,6 +177,10 @@ public class FloatPoint implements java.io.Serializable
     /**
      * Round this Point so the x coordinate of the result will be a multiple of p_horizontal_grid
      * and the y coordinate a multiple of p_vertical_grid.
+     *
+     * @param p_horizontal_grid a int.
+     * @param p_vertical_grid a int.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint round_to_grid(int p_horizontal_grid, int p_vertical_grid)
     {
@@ -178,6 +209,9 @@ public class FloatPoint implements java.io.Serializable
      * Rounds this point, so that if this point is on the left side
      * of any directed line with direction p_dir, the result
      * point will also be on the left side.
+     *
+     * @param p_dir a {@link geometry.planar.Direction} object.
+     * @return a {@link geometry.planar.IntPoint} object.
      */
     public IntPoint round_to_the_left(Direction p_dir)
     {
@@ -216,6 +250,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Adds the coordinates of this FloatPoint and p_other.
+     *
+     * @param p_other a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint add(FloatPoint p_other)
     {
@@ -224,6 +261,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Substracts the coordinates of p_other from this FloatPoint.
+     *
+     * @param p_other a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint substract(FloatPoint p_other)
     {
@@ -233,6 +273,9 @@ public class FloatPoint implements java.io.Serializable
     /**
      * Returns an approximation of the perpendicular projection
      * of this point onto p_line
+     *
+     * @param p_line a {@link geometry.planar.Line} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint projection_approx(Line p_line)
     {
@@ -242,6 +285,10 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Calculates the scalar prodct of (p_1 - this). with (p_2 - this).
+     *
+     * @param p_1 a {@link geometry.planar.FloatPoint} object.
+     * @param p_2 a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public double scalar_product(FloatPoint p_1, FloatPoint p_2)
     {
@@ -260,6 +307,9 @@ public class FloatPoint implements java.io.Serializable
     /**
      * Approximates a FloatPoint on the line from zero to this point
      * with distance p_new_length from zero.
+     *
+     * @param p_new_size a double.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint change_size(double p_new_size)
     {
@@ -277,6 +327,10 @@ public class FloatPoint implements java.io.Serializable
     /**
      * Approximates a FloatPoint on the line from this point to p_to_point
      * with distance p_new_length from this point.
+     *
+     * @param p_to_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_new_length a double.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint change_length(FloatPoint p_to_point, double p_new_length)
     {
@@ -295,6 +349,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Returns the middle point between this point and p_to_point.
+     *
+     * @param p_to_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint middle_point(FloatPoint p_to_point)
     {
@@ -312,6 +369,10 @@ public class FloatPoint implements java.io.Serializable
      * Side.ON_THE_LEFT, if this Point is on the left of the line from p_1 to p_2;
      * and Side.ON_THE_RIGHT, if this Point is on the right of the line from p_1 to p_2.
      * Collinearity is not defined, becouse numerical calculations ar not exact for FloatPoints.
+     *
+     * @param p_1 a {@link geometry.planar.FloatPoint} object.
+     * @param p_2 a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(FloatPoint p_1, FloatPoint p_2)
     {
@@ -325,6 +386,10 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      *  Rotates this FloatPoints by p_angle ( in radian ) around the p_pole.
+     *
+     * @param p_angle a double.
+     * @param p_pole a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint rotate(double p_angle, FloatPoint p_pole)
     {
@@ -343,6 +408,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Turns this FloatPoint by p_factor times 90 degree around ZERO.
+     *
+     * @param p_factor a int.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint turn_90_degree(int p_factor)
     {
@@ -384,6 +452,10 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Turns this FloatPoint by p_factor times 90 degree around p_pole.
+     *
+     * @param p_factor a int.
+     * @param p_pole a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint turn_90_degree(int p_factor, FloatPoint p_pole)
     {
@@ -393,6 +465,11 @@ public class FloatPoint implements java.io.Serializable
     }
     /**
      * Checks, if this point is contained in the box spanned by p_1 and p_2 with the input tolerance.
+     *
+     * @param p_1 a {@link geometry.planar.FloatPoint} object.
+     * @param p_2 a {@link geometry.planar.FloatPoint} object.
+     * @param p_tolerance a double.
+     * @return a boolean.
      */
     public boolean is_contained_in_box(FloatPoint p_1, FloatPoint p_2, double p_tolerance)
     {
@@ -429,6 +506,8 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Creates the smallest IntBox containing this point.
+     *
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox bounding_box()
     {
@@ -448,6 +527,10 @@ public class FloatPoint implements java.io.Serializable
      * has the equation
      *  (this.x - p_to_point.x) * (x - p_to_point.x)
      *   + (this.y - p_to_point.y) * (y - p_to_point.y) = p_distance **2
+     *
+     * @param p_to_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_distance a double.
+     * @return an array of {@link geometry.planar.FloatPoint} objects.
      */
     public FloatPoint[] tangential_points(FloatPoint p_to_point, double p_distance)
     {
@@ -516,6 +599,10 @@ public class FloatPoint implements java.io.Serializable
      * Calculates the left tangential point of the line from this point
      * to a circle around p_to_point with radius p_distance.
      * Returns null, if this point is inside this circle.
+     *
+     * @param p_to_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_distance a double.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint left_tangential_point(FloatPoint p_to_point, double p_distance)
     {
@@ -544,6 +631,10 @@ public class FloatPoint implements java.io.Serializable
      * Calculates the right tangential point of the line from this point
      * to a circle around p_to_point with radius p_distance.
      * Returns null, if this point is inside this circle.
+     *
+     * @param p_to_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_distance a double.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint right_tangential_point(FloatPoint p_to_point, double p_distance)
     {
@@ -572,6 +663,10 @@ public class FloatPoint implements java.io.Serializable
      * Calculates the center of the circle through this point, p_1 and p_2
      * by calculating the intersection of the two lines perpendicular to and passing through
      * the midpoints of the lines (this, p_1) and (p_1, p_2).
+     *
+     * @param p_1 a {@link geometry.planar.FloatPoint} object.
+     * @param p_2 a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint circle_center(FloatPoint p_1, FloatPoint p_2)
     {
@@ -586,6 +681,11 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Returns true, if this point is contained in the circle through p_1, p_2 and p_3.
+     *
+     * @param p_1 a {@link geometry.planar.FloatPoint} object.
+     * @param p_2 a {@link geometry.planar.FloatPoint} object.
+     * @param p_3 a {@link geometry.planar.FloatPoint} object.
+     * @return a boolean.
      */
     public boolean inside_circle(FloatPoint p_1, FloatPoint p_2, FloatPoint p_3)
     {
@@ -594,6 +694,12 @@ public class FloatPoint implements java.io.Serializable
         return (this.distance_square(center) < radius_square - 1); // - 1 is a tolerance for numerical stability.
     }
     
+    /**
+     * <p>to_string.</p>
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link java.lang.String} object.
+     */
     public String to_string(java.util.Locale p_locale)
     {
         java.text.NumberFormat nf =  java.text.NumberFormat.getInstance(p_locale);
@@ -601,6 +707,11 @@ public class FloatPoint implements java.io.Serializable
         return (" (" + nf.format(x) + " , " + nf.format(y) + ") ");
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return to_string(java.util.Locale.ENGLISH);
@@ -608,6 +719,9 @@ public class FloatPoint implements java.io.Serializable
     
     /**
      * Calculates the smallest IntOctagon containing all the input points
+     *
+     * @param p_point_arr an array of {@link geometry.planar.FloatPoint} objects.
+     * @return a {@link geometry.planar.IntOctagon} object.
      */
     public static IntOctagon bounding_octagon(FloatPoint [] p_point_arr)
     {

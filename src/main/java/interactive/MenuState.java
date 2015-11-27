@@ -32,6 +32,7 @@ import board.TestLevel;
  * Common base class for the main menus, which can be selected in the tool bar.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MenuState extends InteractiveState
 {
@@ -43,6 +44,11 @@ public class MenuState extends InteractiveState
         this.return_state = this;
     }
     
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_main;
@@ -52,6 +58,9 @@ public class MenuState extends InteractiveState
      * Selects items at p_location.
      * Returns a new instance of SelectedItemState with the selected items,
      * if somthing was selected.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState select_items(FloatPoint p_location)
     {
@@ -76,6 +85,12 @@ public class MenuState extends InteractiveState
         return result;
     }
     
+    /**
+     * <p>swap_pin.</p>
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState swap_pin(FloatPoint p_location)
     {
         ItemSelectionFilter selection_filter = new ItemSelectionFilter(ItemSelectionFilter.SelectableChoices.PINS);
@@ -101,6 +116,8 @@ public class MenuState extends InteractiveState
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Action to be taken when a key shortcut is pressed.
      */
     public InteractiveState key_typed(char p_key_char)
@@ -204,6 +221,8 @@ public class MenuState extends InteractiveState
     
     /**
      * Do nothing on complete.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState complete()
     {
@@ -212,12 +231,17 @@ public class MenuState extends InteractiveState
     
     /**
      * Do nothing on cancel.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState cancel()
     {
         return this;
     }
     
+    /**
+     * <p>set_toolbar.</p>
+     */
     public void set_toolbar()
     {
         hdlg.get_panel().board_frame.set_menu_toolbar();

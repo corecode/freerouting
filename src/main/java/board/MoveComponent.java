@@ -34,12 +34,21 @@ import datastructures.Signum;
 
 /**
  * Class for moving a group of items on the board
+ *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MoveComponent
 {
 
-    /** Creates a new instance of MoveItemGroup */
+    /**
+     * Creates a new instance of MoveItemGroup
+     *
+     * @param p_item a {@link board.Item} object.
+     * @param p_translate_vector a {@link geometry.planar.Vector} object.
+     * @param p_max_recursion_depth a int.
+     * @param p_max_via_recursion_depth a int.
+     */
     public MoveComponent(Item p_item, Vector p_translate_vector, int p_max_recursion_depth, int p_max_via_recursion_depth)
     {
         translate_vector = p_translate_vector;
@@ -119,6 +128,8 @@ public class MoveComponent
     /**
      * Checks, if all items in the group can be moved by shoving obstacle trace aside
      * without creating clearance violations.
+     *
+     * @return a boolean.
      */
     public boolean check()
     {
@@ -162,6 +173,10 @@ public class MoveComponent
      * Moves all items in the group by this.translate_vector and shoves aside
      * obstacle traces. Returns false, if that was not possible without
      * creating clearance violations. In this case an undo may be necessary.
+     *
+     * @param p_tidy_width a int.
+     * @param p_pull_tight_accuracy a int.
+     * @return a boolean.
      */
     public boolean insert(int p_tidy_width, int p_pull_tight_accuracy)
     {

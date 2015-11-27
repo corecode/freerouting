@@ -25,6 +25,7 @@ package datastructures;
  * Interface for stoppable threads.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public interface Stoppable
 {
@@ -35,6 +36,8 @@ public interface Stoppable
     
     /**
      * Returns true, if this thread is requested to be stopped.
+     *
+     * @return a boolean.
      */
     boolean is_stop_requested();
 }

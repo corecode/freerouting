@@ -27,21 +27,30 @@ import geometry.planar.FloatPoint;
  * State for interactive routing by adding corners with the left mouse button.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class StitchRouteState extends RouteState
 {
     
-    /** Creates a new instance of StichRouteState */
+    /**
+     * Creates a new instance of StichRouteState
+     *
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     protected StitchRouteState(InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_parent_state, p_board_handling, p_logfile);
     }
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         return add_corner(p_location);
     }
     
+    /** {@inheritDoc} */
     public InteractiveState add_corner(FloatPoint p_location)
     {
         // make the current situation restorable by undo
@@ -49,6 +58,11 @@ public class StitchRouteState extends RouteState
         return super.add_corner(p_location);
     }
     
+    /**
+     * <p>mouse_moved.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState mouse_moved()
     {
         super.mouse_moved();
@@ -57,16 +71,27 @@ public class StitchRouteState extends RouteState
         return this;
     }
     
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_stitch_route;
     }
     
+    /**
+     * <p>get_help_id.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_help_id()
     {
         return "RouteState_StitchingRouteState";
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         super.draw(p_graphics);

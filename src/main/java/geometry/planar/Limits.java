@@ -21,10 +21,9 @@ import java.math.BigInteger;
  *
  * Some numerical limits and values are stored here.
  *
-
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class Limits
 {
 
@@ -41,8 +40,10 @@ public class Limits
      */
     public static final double CRIT_DOUBLE = 9007199254740992.0;
 
+    /** Constant <code>CRIT_INT_BIG</code> */
     public static final BigInteger CRIT_INT_BIG = BigInteger.valueOf(CRIT_INT);
 
+    /** Constant <code>sqrt2=Math.sqrt(2)</code> */
     public static final double sqrt2 = Math.sqrt(2);
 
     private Limits() // disallow instantiation

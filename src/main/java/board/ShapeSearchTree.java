@@ -52,8 +52,8 @@ import autoroute.CompleteFreeSpaceExpansionRoom;
  * Elementary geometric search functions making direct use
  * of the MinAreaTree in the package datastructures.
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ShapeSearchTree extends datastructures.MinAreaTree
 {
@@ -73,6 +73,8 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Returns, if for the shapes  stored in this tree
      * clearance compensatiion is used.
+     *
+     * @return a boolean.
      */
     public boolean is_clearance_compensation_used()
     {
@@ -83,6 +85,10 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * Return the clearance compensation value of p_clearance_class_no to the clearance compensation class
      * of this search tree with on layer p_layer.
      * Returns 0, if no clearance compensation is used for this tree.
+     *
+     * @param p_clearance_class_no a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int clearance_compensation_value(int p_clearance_class_no, int p_layer)
     {
@@ -345,6 +351,11 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * Puts all items in the tree overlapping with p_shape
      * on layer p_layer into p_obstacles.
      * If p_layer < 0, the layer is ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_ignore_net_nos an array of int.
+     * @param p_obstacles a {@link java.util.Set} object.
      */
     public void overlapping_objects(ConvexShape p_shape, int p_layer, int[] p_ignore_net_nos,
             Set<SearchTreeObject> p_obstacles)
@@ -365,6 +376,10 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Returns all SearchTreeObjects on layer p_layer, which overlap with p_shape.
      * If p_layer < 0, the layer is ignored
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @return a {@link java.util.Set} object.
      */
     public Set<SearchTreeObject> overlapping_objects(ConvexShape p_shape, int p_layer)
     {
@@ -377,6 +392,10 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * Puts all tree entries overlapping with p_shape
      * on layer p_layer into the list p_obstacles.
      * If p_layer < 0, the layer is ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_tree_entries a {@link java.util.Collection} object.
      */
     public void overlapping_tree_entries(ConvexShape p_shape, int p_layer, Collection<TreeEntry> p_tree_entries)
     {
@@ -388,6 +407,11 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * on layer p_layer into the list p_obstacles.
      * If p_layer < 0, the layer is ignored.
      * tree_entries with object containing a net number of p_ignore_net_nos are ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_ignore_net_nos an array of int.
+     * @param p_tree_entries a {@link java.util.Collection} object.
      */
     public void overlapping_tree_entries(ConvexShape p_shape, int p_layer, int[] p_ignore_net_nos,
             Collection<TreeEntry> p_tree_entries)
@@ -551,6 +575,12 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * Puts all items in the tree overlapping with p_shape
      * on layer p_layer into p_obstacles, if p_obstacles != null.
      * If p_layer < 0, the layer is ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_ignore_net_nos an array of int.
+     * @param p_cl_type a int.
+     * @param p_obstacles a {@link java.util.Set} object.
      */
     public void overlapping_objects_with_clearance(ConvexShape p_shape, int p_layer, int[] p_ignore_net_nos,
             int p_cl_type, Set<SearchTreeObject> p_obstacles)
@@ -583,6 +613,12 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * The function may also return items, which are nearly overlapping,
      * but do not overlap with exact calculation.
      * If p_layer < 0, the layer is ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_ignore_net_nos an array of int.
+     * @param p_clearance_class a int.
+     * @return a {@link java.util.Set} object.
      */
     public Set<Item> overlapping_items_with_clearance(ConvexShape p_shape, int p_layer, int[] p_ignore_net_nos,
             int p_clearance_class)
@@ -608,6 +644,12 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * p_clearance_class is the index in the clearance matrix,
      * which describes the required clearance restrictions to other items.
      * If p_layer < 0, the layer is ignored.
+     *
+     * @param p_shape a {@link geometry.planar.ConvexShape} object.
+     * @param p_layer a int.
+     * @param p_ignore_net_nos an array of int.
+     * @param p_clearance_class a int.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<TreeEntry> overlapping_tree_entries_with_clearance(ConvexShape p_shape, int p_layer,
             int[] p_ignore_net_nos, int p_clearance_class)
@@ -635,6 +677,12 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * If p_ignore_shape != null, objects of type CompleteFreeSpaceExpansionRoom,
      * whose intersection with the shape of p_room is containes in p_ignore_shape,
      * are ignored.
+     *
+     * @param p_room a {@link autoroute.IncompleteFreeSpaceExpansionRoom} object.
+     * @param p_net_no a int.
+     * @param p_ignore_object a {@link board.SearchTreeObject} object.
+     * @param p_ignore_shape a {@link geometry.planar.TileShape} object.
+     * @return a {@link java.util.Collection} object.
      */
     public Collection<IncompleteFreeSpaceExpansionRoom> complete_shape(IncompleteFreeSpaceExpansionRoom p_room, int p_net_no,
             SearchTreeObject p_ignore_object, TileShape p_ignore_shape)
@@ -863,6 +911,9 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Reduces the first or last shape of p_trace at a tie pin, so that the autorouter algorithm
      * can find a connection for a different net.
+     *
+     * @param p_tie_pin a {@link board.Pin} object.
+     * @param p_trace a {@link board.PolylineTrace} object.
      */
     public void reduce_trace_shape_at_tie_pin(Pin p_tie_pin, PolylineTrace p_trace)
     {
@@ -1092,6 +1143,12 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Used for creating the shapes of a polyline_trace for this tree.
      * Overwritten in derived classes.
+     *
+     * @param p_polyline a {@link geometry.planar.Polyline} object.
+     * @param p_half_width a int.
+     * @param p_from_no a int.
+     * @param p_to_no a int.
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[] offset_shapes(Polyline p_polyline, int p_half_width,
             int p_from_no, int p_to_no)
@@ -1119,6 +1176,10 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * Makes shure that on each layer there will be more than 1 IncompleteFreeSpaceExpansionRoom,
      * even if there are no objects on the layer. Otherwise the maze search algprithm gets problems
      * with vias.
+     *
+     * @param p_room_list a {@link java.util.Collection} object.
+     * @param p_board_bounding_box a {@link geometry.planar.IntBox} object.
+     * @return a {@link java.util.Collection} object.
      */
     protected Collection<IncompleteFreeSpaceExpansionRoom> divide_large_room(
             Collection<IncompleteFreeSpaceExpansionRoom> p_room_list, IntBox p_board_bounding_box)

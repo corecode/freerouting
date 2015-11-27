@@ -27,11 +27,15 @@ import geometry.planar.ConvexShape;
  * to be inserted into a routing board
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardRules implements java.io.Serializable
 {
     /**
      * Creates a new instance of this class.
+     *
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_clearance_matrix a {@link rules.ClearanceMatrix} object.
      */
     public BoardRules(board.LayerStructure p_layer_structure, ClearanceMatrix p_clearance_matrix)
     {
@@ -46,6 +50,10 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns the trace halfwidth used for routing with the input net on the input layer.
+     *
+     * @param p_net_no a int.
+     * @param p_layer a int.
+     * @return a int.
      */
     public int get_trace_half_width( int p_net_no, int p_layer)
     {
@@ -56,6 +64,9 @@ public class BoardRules implements java.io.Serializable
     /**
      * Returns true, if the trace widths used for routing for the input net are equal on all layers.
      * If p_net_no < 0, the default trace widths for all nets are checked.
+     *
+     * @param p_net_no a int.
+     * @return a boolean.
      */
     public boolean trace_widths_are_layer_dependent(int p_net_no)
     {
@@ -70,13 +81,21 @@ public class BoardRules implements java.io.Serializable
         return false;
     }
     
-    /** Returns he smallest of all default trace half widths*/
+    /**
+     * Returns he smallest of all default trace half widths
+     *
+     * @return a int.
+     */
     public int get_min_trace_half_width()
     {
         return min_trace_half_width;
     }
     
-    /** Returns he biggest of all default trace half widths*/
+    /**
+     * Returns he biggest of all default trace half widths
+     *
+     * @return a int.
+     */
     public int get_max_trace_half_width()
     {
         return max_trace_half_width;
@@ -84,6 +103,9 @@ public class BoardRules implements java.io.Serializable
     
     /**
      *  Changes the default trace halfwidth used for routing on the input layer.
+     *
+     * @param p_layer a int.
+     * @param p_value a int.
      */
     public void set_default_trace_half_width(int p_layer, int p_value)
     {
@@ -92,6 +114,12 @@ public class BoardRules implements java.io.Serializable
         max_trace_half_width = Math.max(max_trace_half_width, p_value);
     }
     
+    /**
+     * <p>get_default_trace_half_width.</p>
+     *
+     * @param p_layer a int.
+     * @return a int.
+     */
     public int get_default_trace_half_width (int p_layer)
     {
         return this.get_default_net_class().get_trace_half_width(p_layer);
@@ -100,6 +128,8 @@ public class BoardRules implements java.io.Serializable
     /**
      *  Changes the default trace halfwidth used for routing on all layers
      * to the input value.
+     *
+     * @param p_value a int.
      */
     public void set_default_trace_half_widths(int p_value)
     {
@@ -115,6 +145,8 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns the net rule used for all nets, for whichh no special  rrule was set.
+     *
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass get_default_net_class()
     {
@@ -126,13 +158,21 @@ public class BoardRules implements java.io.Serializable
         return this.net_classes.get(0);
     }
     
-    /** Gets the default item clearance class */
+    /**
+     * Gets the default item clearance class
+     *
+     * @return a int.
+     */
     public static int default_clearance_class()
     {
         return 1;
     }
     
-    /** For items with no clearances */
+    /**
+     * For items with no clearances
+     *
+     * @return a int.
+     */
     public static int clearance_class_none()
     {
         return 0;
@@ -140,6 +180,9 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns an empty new net rule with an internally created name.
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass get_new_net_class(java.util.Locale p_locale)
     {
@@ -152,6 +195,9 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns an empty new net rule with an internally created name.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass get_new_net_class(String p_name)
     {
@@ -166,6 +212,9 @@ public class BoardRules implements java.io.Serializable
      * Create a default via rule for p_net_class with name p_name.
      * If more than one via infos with the same layer range are found,
      * only the via info with the smmallest pad size  is inserted.
+     *
+     * @param p_net_class a {@link rules.NetClass} object.
+     * @param p_name a {@link java.lang.String} object.
      */
     public void create_default_via_rule(NetClass p_net_class, String p_name)
     {
@@ -206,6 +255,9 @@ public class BoardRules implements java.io.Serializable
         p_net_class.set_via_rule(default_rule);
     }
     
+    /**
+     * <p>create_default_net_class.</p>
+     */
     public void create_default_net_class()
     {
         // add the default net rule
@@ -217,6 +269,9 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Appends a new net class initialized with default data and a default name.
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass append_net_class(java.util.Locale p_locale)
     {
@@ -231,6 +286,9 @@ public class BoardRules implements java.io.Serializable
     /**
      * Appends a new net class initialized with default data and returns that  class.
      * If a class with p_name exists, this class is returned withoout appending a new class.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link rules.NetClass} object.
      */
     public NetClass append_net_class(String p_name)
     {
@@ -250,6 +308,8 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns the default via rule for routing or null, if no via rule exists.
+     *
+     * @return a {@link rules.ViaRule} object.
      */
     public ViaRule get_default_via_rule()
     {
@@ -262,6 +322,9 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns the via rule wit name p_name, or null, if no such rule exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link rules.ViaRule} object.
      */
     public ViaRule get_via_rule(String p_name)
     {
@@ -278,6 +341,10 @@ public class BoardRules implements java.io.Serializable
     /**
      * Changes the clearance class index of all objects on the board with index p_from_no
      * to p_to_no.
+     *
+     * @param p_from_no a int.
+     * @param p_to_no a int.
+     * @param p_board_items a {@link java.util.Collection} object.
      */
     public void change_clearance_class_no(int p_from_no, int p_to_no, java.util.Collection<board.Item> p_board_items)
     {
@@ -319,6 +386,10 @@ public class BoardRules implements java.io.Serializable
     /**
      * Removes the clearance class with number p_index.
      * Returns false, if that was not possible, because there were still items assigned to this class.
+     *
+     * @param p_index a int.
+     * @param p_board_items a {@link java.util.Collection} object.
+     * @return a boolean.
      */
     public boolean remove_clearance_class(int p_index, java.util.Collection<board.Item> p_board_items)
     {
@@ -395,6 +466,8 @@ public class BoardRules implements java.io.Serializable
      * Returns the minimum distance between the pin border and the next corner
      * of a connected trace por a pin with connection restrictions.
      * If the result is <= 0, there are no exit restrictions.
+     *
+     * @return a double.
      */
     public double get_pin_edge_to_turn_dist()
     {
@@ -405,6 +478,8 @@ public class BoardRules implements java.io.Serializable
      * Sets he minimum distance between the pin border and the next corner
      * of a connected trace por a pin with connection restrictions.
      * if p_value is <= 0, there are no exit restrictions.
+     *
+     * @param p_value a double.
      */
     public void set_pin_edge_to_turn_dist(double p_value)
     {
@@ -414,6 +489,8 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Tells the router, if conduction areas should be ignored..
+     *
+     * @param p_value a boolean.
      */
     public void set_ignore_conduction(boolean p_value)
     {
@@ -422,19 +499,29 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * If true, the router ignores conduction areas.
+     *
+     * @return a boolean.
      */
     public boolean get_ignore_conduction()
     {
         return this.ignore_conduction;
     }
     
-    /** The angle restriction for tracese: 90 degree, 45 degree or none. */
+    /**
+     * The angle restriction for tracese: 90 degree, 45 degree or none.
+     *
+     * @return a {@link board.AngleRestriction} object.
+     */
     public board.AngleRestriction get_trace_angle_restriction()
     {
         return this.trace_angle_restriction;
     }
     
-    /** Sets the angle restriction for tracese: 90 degree, 45 degree or none. */
+    /**
+     * Sets the angle restriction for tracese: 90 degree, 45 degree or none.
+     *
+     * @param p_angle_restriction a {@link board.AngleRestriction} object.
+     */
     public void set_trace_angle_restriction(board.AngleRestriction p_angle_restriction)
     {
         this.trace_angle_restriction = p_angle_restriction;
@@ -445,6 +532,8 @@ public class BoardRules implements java.io.Serializable
      * If true, shapes of type Simplex are always used in the autorouter algorithm.
      * If false, shapes of type IntBox are used in 90 degree autorouting
      * and shapes of type IntOctagon are used in 45 degree autorouting.
+     *
+     * @param p_value a boolean.
      */
     public void set_slow_autoroute_algorithm(boolean p_value)
     {
@@ -455,6 +544,8 @@ public class BoardRules implements java.io.Serializable
      * If true, shapes of type Simplex are always used in the autorouter algorithm.
      * If false, shapes of type IntBox are used in 90 degree autorouting
      * and shapes of type IntOctagon are used in 45 degree autorouting.
+     *
+     * @return a boolean.
      */
     public boolean get_slow_autoroute_algorithm()
     {
@@ -463,6 +554,8 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns the Maximum of the diameter of the default via on its first and last layer.
+     *
+     * @return a double.
      */
     public double get_default_via_diameter()
     {

@@ -28,17 +28,26 @@ import datastructures.IdentifierType;
  * Describes a path defined by a sequence of lines (instead of a sequence of corners.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class PolylinePath extends Path
 {
     
-    /** Creates a new instance of PolylinePath */
+    /**
+     * Creates a new instance of PolylinePath
+     *
+     * @param p_layer a {@link designformats.specctra.Layer} object.
+     * @param p_width a double.
+     * @param p_corner_arr an array of double.
+     */
     public PolylinePath(Layer p_layer, double p_width, double[] p_corner_arr)
     {
         super(p_layer, p_width, p_corner_arr);
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Writes this path as a scope to an output dsn-file.
      */
     public void write_scope(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException
@@ -61,6 +70,7 @@ public class PolylinePath extends Path
         p_file.end_scope();
     }
     
+    /** {@inheritDoc} */
     public void write_scope_int(IndentFileWriter p_file, IdentifierType p_identifier) throws java.io.IOException
     {
         p_file.start_scope();
@@ -82,12 +92,14 @@ public class PolylinePath extends Path
         p_file.end_scope();
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board_rel(CoordinateTransform p_coordinate_transform)
     {
         System.out.println("PolylinePath.transform_to_board_rel not implemented");
         return null;
     }
     
+    /** {@inheritDoc} */
     public geometry.planar.Shape transform_to_board(CoordinateTransform p_coordinate_transform)
     {
         System.out.println("PolylinePath.transform_to_board_rel not implemented");
@@ -95,6 +107,11 @@ public class PolylinePath extends Path
     }
     
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link designformats.specctra.Rectangle} object.
+     */
     public Rectangle bounding_box()
     {
         System.out.println("PolylinePath.boundingbox not implemented");

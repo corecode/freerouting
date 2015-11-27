@@ -27,11 +27,26 @@ import geometry.planar.FloatLine;
  * while the maze expanding algorithm is in progress.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MazeListElement implements Comparable<MazeListElement>
 {
     
-    /** Creates a new instance of ExpansionInfo */
+    /**
+     * Creates a new instance of ExpansionInfo
+     *
+     * @param p_door a {@link autoroute.ExpandableObject} object.
+     * @param p_section_no_of_door a int.
+     * @param p_backtrack_door a {@link autoroute.ExpandableObject} object.
+     * @param p_section_no_of_backtrack_door a int.
+     * @param p_expansion_value a double.
+     * @param p_sorting_value a double.
+     * @param p_next_room a {@link autoroute.CompleteExpansionRoom} object.
+     * @param p_shape_entry a {@link geometry.planar.FloatLine} object.
+     * @param p_room_ripped a boolean.
+     * @param p_adjustment a {@link autoroute.MazeSearchElement.Adjustment} object.
+     * @param p_already_checked a boolean.
+     */
     public MazeListElement(ExpandableObject p_door, int p_section_no_of_door,
             ExpandableObject p_backtrack_door, int p_section_no_of_backtrack_door,
             double p_expansion_value, double p_sorting_value,
@@ -51,6 +66,12 @@ public class MazeListElement implements Comparable<MazeListElement>
         already_checked = p_already_checked;
     }
     
+    /**
+     * <p>compareTo.</p>
+     *
+     * @param p_other a {@link autoroute.MazeListElement} object.
+     * @return a int.
+     */
     public int compareTo(MazeListElement p_other)
     {
         double compare_value = (this.sorting_value - p_other.sorting_value);

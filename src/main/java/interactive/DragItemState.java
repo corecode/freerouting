@@ -36,11 +36,20 @@ import board.MoveComponent;
  * Class for interactive dragging items with the mouse on a routing board
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class DragItemState extends DragState
 {
     
-    /** Creates a new instance of MoveItemState */
+    /**
+     * Creates a new instance of MoveItemState
+     *
+     * @param p_item_to_move a {@link board.Item} object.
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     protected DragItemState(Item p_item_to_move, FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         super(p_location, p_parent_state, p_board_handling, p_logfile);
@@ -48,12 +57,17 @@ public class DragItemState extends DragState
     }
     
     
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(resources.getString("dragging_item"));
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Moves the items of the group to p_to_location.
      * Return this.return_state, if an error eccured  while moving,
      * so that an undo may be necessary.
@@ -136,6 +150,11 @@ public class DragItemState extends DragState
         return this;
     }
     
+    /**
+     * <p>button_released.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState button_released()
     {
         if (this.observers_activated)

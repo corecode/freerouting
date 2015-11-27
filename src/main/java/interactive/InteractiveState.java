@@ -28,11 +28,17 @@ import java.awt.Graphics;
  * Common base class of all interaction states with the graphical interface
  *
  * @author  Alfons Wirtz
- *
+ * @version $Id: $Id
  */
 public class InteractiveState
 {
-    /** Creates a new instance of InteractiveState */
+    /**
+     * Creates a new instance of InteractiveState
+     *
+     * @param p_return_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     */
     protected InteractiveState(InteractiveState p_return_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
         this.return_state = p_return_state;
@@ -44,6 +50,8 @@ public class InteractiveState
     
     /**
      * default draw function to be overwritten in derived classes
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
      */
     public void draw(Graphics p_graphics)
     {
@@ -53,6 +61,9 @@ public class InteractiveState
      * Default function to be overwritten in derived classes.
      * Returns the return_state of this state, if the state is left
      * after the method, or else this state.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
@@ -65,6 +76,11 @@ public class InteractiveState
      * Returns the return_state of this state, if the state is left
      * after the method, or else this state.
      */
+    /**
+     * <p>button_released.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState button_released()
     {
         return this;
@@ -75,6 +91,8 @@ public class InteractiveState
      * Default function to be overwritten in derived classes.
      * Returns the return_state of this state, if the state ends
      * after the method, or else this state.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState mouse_moved()
     {
@@ -89,6 +107,9 @@ public class InteractiveState
      * Default function to be overwritten in derived classes.
      * Returns the return_state of this state, if the state is left
      * after the method, or else this state.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState mouse_dragged(FloatPoint p_point)
     {
@@ -100,6 +121,9 @@ public class InteractiveState
      * Default function to be overwritten in derived classes.
      * Returns the return_state of this state, if the state is left
      * after the method, or else this state.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState mouse_pressed(FloatPoint p_point)
     {
@@ -108,6 +132,9 @@ public class InteractiveState
     
     /**
      * Action to be taken, when the mouse wheel was turned..
+     *
+     * @param p_rotation a int.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState mouse_wheel_moved(int p_rotation)
     {
@@ -120,6 +147,9 @@ public class InteractiveState
     /**
      * Default actions when a key shortcut is pressed.
      * Overwritten in derived classes for other key shortcut actions.
+     *
+     * @param p_key_char a char.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState key_typed(char p_key_char)
     {
@@ -189,6 +219,8 @@ public class InteractiveState
      * Action to be taken, when this state is completed and exited.
      * Default function to be overwritten in derived classes.
      * Returns the return_state of this state.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState complete()
     {
@@ -203,6 +235,8 @@ public class InteractiveState
      * Actions to be taken, when this state gets cancelled.
      * Default function to be overwritten in derived classes.
      * Returns the parent state of this state.
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState cancel()
     {
@@ -217,6 +251,9 @@ public class InteractiveState
      * Action to be taken, when the current layer is changed.
      * returns false, if the layer could not be changed,
      * Default function to be overwritten in derived classes.
+     *
+     * @param p_new_layer a int.
+     * @return a boolean.
      */
     public boolean change_layer_action(int p_new_layer)
     {
@@ -227,6 +264,9 @@ public class InteractiveState
     /**
      * Used when reading the next point from a logfile.
      * Default function to be overwritten in derived classes.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState process_logfile_point(FloatPoint p_point)
     {
@@ -242,6 +282,8 @@ public class InteractiveState
     
     /**
      * Gets the identifier for displaying help for the user about this state.
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String get_help_id()
     {
@@ -252,6 +294,8 @@ public class InteractiveState
     /**
      * Returns the popup menu from board_panel, which is used in this interactive state.
      * Default function to be overwritten in derived classes.
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
      */
     public javax.swing.JPopupMenu get_popup_menu()
     {

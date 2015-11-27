@@ -43,10 +43,19 @@ import board.RoutingBoard;
  * State for testing the expanding algorithm of the autorouter.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ExpandTestState extends InteractiveState
 {
 
+    /**
+     * <p>get_instance.</p>
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_return_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.ExpandTestState} object.
+     */
     public static ExpandTestState get_instance(FloatPoint p_location, InteractiveState p_return_state, BoardHandling p_board_handling)
     {
         ExpandTestState result = new ExpandTestState(p_location, p_return_state, p_board_handling);
@@ -61,6 +70,7 @@ public class ExpandTestState extends InteractiveState
 
     }
 
+    /** {@inheritDoc} */
     public InteractiveState key_typed(char p_key_char)
     {
         InteractiveState result;
@@ -151,22 +161,34 @@ public class ExpandTestState extends InteractiveState
         return result;
     }
 
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         return cancel();
     }
 
+    /**
+     * <p>cancel.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState cancel()
     {
         autoroute_engine.clear();
         return this.return_state;
     }
 
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         return cancel();
     }
 
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         autoroute_engine.draw(p_graphics, hdlg.graphics_context, 0.1);

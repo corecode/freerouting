@@ -26,13 +26,19 @@ import board.ClearanceViolation;
 import interactive.ClearanceViolations;
 
 /**
+ * <p>WindowClearanceViolations class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowClearanceViolations extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of IncompletesWindow */
+    /**
+     * Creates a new instance of IncompletesWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowClearanceViolations(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -43,6 +49,9 @@ public class WindowClearanceViolations extends WindowObjectListWithFilter
     }
     
     
+    /**
+     * <p>fill_list.</p>
+     */
     protected void fill_list()
     {
         interactive.BoardHandling board_handling = this.board_frame.board_panel.board_handling;
@@ -61,6 +70,9 @@ public class WindowClearanceViolations extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(sorted_set.size(), DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_violations = list.getSelectedValues();

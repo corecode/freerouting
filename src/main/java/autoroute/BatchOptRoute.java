@@ -34,14 +34,17 @@ import interactive.InteractiveActionThread;
 
 /**
  * To optimize the vias and traces after the batch autorouter has completed the board.
- * 
+ *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BatchOptRoute
 {
 
     /**
      *  To optimize the route on the board after the autoroute task is finished.
+     *
+     * @param p_thread a {@link interactive.InteractiveActionThread} object.
      */
     public BatchOptRoute(InteractiveActionThread p_thread)
     {
@@ -249,6 +252,8 @@ public class BatchOptRoute
 
     /**
      *  Returns the current position of the item, which will be rerouted or null, if the optimizer is not active.
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint get_current_position()
     {

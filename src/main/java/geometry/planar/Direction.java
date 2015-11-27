@@ -32,10 +32,11 @@ import datastructures.Signum;
  * general not exact.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public abstract class  Direction implements Comparable<Direction>, java.io.Serializable
 {
+    /** Constant <code>NULL</code> */
     public static final IntDirection NULL = new IntDirection(0,0);
     
     /**
@@ -73,6 +74,9 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     
     /**
      * creates a Direction from the input Vector
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Direction} object.
      */
     public static Direction get_instance( Vector p_vector )
     {
@@ -82,6 +86,10 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     /**
      * Calculates the direction from p_from to p_to.
      * If p_from and p_to are equal, null is returned.
+     *
+     * @param p_from a {@link geometry.planar.Point} object.
+     * @param p_to a {@link geometry.planar.Point} object.
+     * @return a {@link geometry.planar.Direction} object.
      */
     public static Direction get_instance( Point p_from, Point p_to )
     {
@@ -94,6 +102,9 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     
     /**
      * Creates a Direction whose angle with the x-axis is nearly equal to p_angle
+     *
+     * @param p_angle a double.
+     * @return a {@link geometry.planar.Direction} object.
      */
     public static Direction get_instance_approx( double p_angle )
     {
@@ -105,21 +116,29 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     
     /**
      * return any Vector pointing into this direction
+     *
+     * @return a {@link geometry.planar.Vector} object.
      */
     public abstract Vector get_vector();
     
     /**
      * returns true, if the direction is horizontal or vertical
+     *
+     * @return a boolean.
      */
     public abstract boolean is_orthogonal();
     
     /**
      * returns true, if the direction is diagonal
+     *
+     * @return a boolean.
      */
     public abstract boolean is_diagonal();
     
     /**
      * returns true, if the direction is orthogonal or diagonal
+     *
+     * @return a boolean.
      */
     public boolean is_multiple_of_45_degree()
     {
@@ -128,17 +147,25 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     
     /**
      * turns the direction by p_factor times 45 degree
+     *
+     * @param p_factor a int.
+     * @return a {@link geometry.planar.Direction} object.
      */
     public abstract Direction turn_45_degree(int p_factor);
     
     /**
      * returns the opposite direction of this direction
+     *
+     * @return a {@link geometry.planar.Direction} object.
      */
     public abstract Direction opposite();
     
     /**
      * Returns true, if p_ob is a Direction and
      * this Direction and p_ob point into the same direction
+     *
+     * @param p_other a {@link geometry.planar.Direction} object.
+     * @return a boolean.
      */
     public final boolean equals( Direction p_other )
     {
@@ -167,6 +194,9 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
      *         Side.ON_THE_LEFT, if this.get_vector() is on the left of L
      *         Side.ON_THE_RIGHT, if this.get_vector() is on the right of L
      *     and Side.COLLINEAR, if this.get_vector() is collinear with L.
+     *
+     * @param p_other a {@link geometry.planar.Direction} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(Direction p_other)
     {
@@ -179,6 +209,9 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
      *                    this direction and a vector representing p_other is > 0,
      *   Signum.NEGATIVE, if the scalar product is < 0,
      *   and Signum.ZERO, if the scalar product is equal 0.
+     *
+     * @param p_other a {@link geometry.planar.Direction} object.
+     * @return a {@link datastructures.Signum} object.
      */
     public Signum projection(Direction p_other)
     {
@@ -188,6 +221,9 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     /**
      * calculates an approximation of the direction in the middle of
      * this direction and p_other
+     *
+     * @param p_other a {@link geometry.planar.Direction} object.
+     * @return a {@link geometry.planar.Direction} object.
      */
     public Direction middle_approx(Direction p_other)
     {
@@ -208,6 +244,10 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
      * Returns 1, if the angle between p_1 and this direction is bigger
      * the angle between p_2 and this direction,
      * 0, if p_1 is equal to p_2, * and -1 otherwise.
+     *
+     * @param p_1 a {@link geometry.planar.Direction} object.
+     * @param p_2 a {@link geometry.planar.Direction} object.
+     * @return a int.
      */
     public int compare_from(Direction p_1, Direction p_2)
     {
@@ -239,6 +279,8 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     
     /**
      * Returns an approximation of the signed angle corresponding to this dierection.
+     *
+     * @return a double.
      */
     public double angle_approx()
     {

@@ -38,6 +38,7 @@ import board.ItemSelectionFilter;
  * Interactive cutting a hole into an obstacle shape
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class HoleConstructionState extends CornerItemConstructionState
 {
@@ -45,6 +46,12 @@ public class HoleConstructionState extends CornerItemConstructionState
      * Returns a new instance of this class or null,
      * if that was not possible with the input parameters.
      * If p_logfile != null, the construction of this hole is stored in a logfile.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.HoleConstructionState} object.
      */
     public static HoleConstructionState get_instance(FloatPoint p_location, InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
     {
@@ -103,6 +110,8 @@ public class HoleConstructionState extends CornerItemConstructionState
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Adds a corner to the polygon of the the hole under construction.
      */
     public InteractiveState left_button_clicked(FloatPoint p_next_corner)
@@ -122,6 +131,8 @@ public class HoleConstructionState extends CornerItemConstructionState
     /**
      * adds the just constructed hole to the item under modification,
      * if that is possible without clearance violations
+     *
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState complete()
     {
@@ -206,6 +217,9 @@ public class HoleConstructionState extends CornerItemConstructionState
         return this.return_state;
     }
     
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(resources.getString("adding_hole_to_obstacle_area"));

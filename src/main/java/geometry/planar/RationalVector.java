@@ -30,14 +30,18 @@ import datastructures.Signum;
  * of a Vector instead of the functionality of a Point.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class RationalVector extends Vector implements java.io.Serializable
 {
     /**
      *  creates a RetionalVector from 3 BigIntegers p_x, p_y and p_z.
      *  They represent the 2-dimensional Vector with the
      *  rational number Tuple ( p_x / p_z , p_y / p_z).
+     *
+     * @param p_x a {@link java.math.BigInteger} object.
+     * @param p_y a {@link java.math.BigInteger} object.
+     * @param p_z a {@link java.math.BigInteger} object.
      */
     public RationalVector(BigInteger p_x, BigInteger p_y, BigInteger p_z)
     {
@@ -68,6 +72,8 @@ public class RationalVector extends Vector implements java.io.Serializable
     
     /**
      * returns true, if the x and y coordinates of this vector are 0
+     *
+     * @return a boolean.
      */
     public final boolean is_zero()
     {
@@ -75,6 +81,8 @@ public class RationalVector extends Vector implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * returns true, if this RationalVector is equal to p_ob
      */
     public final boolean equals( Object p_ob )
@@ -104,6 +112,8 @@ public class RationalVector extends Vector implements java.io.Serializable
     
     /**
      * returns the Vector such that this plus this.minus() is zero
+     *
+     * @return a {@link geometry.planar.Vector} object.
      */
     public Vector negate()
     {
@@ -112,6 +122,9 @@ public class RationalVector extends Vector implements java.io.Serializable
     
     /**
      * adds p_other to this vector
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Vector} object.
      */
     public final Vector add( Vector p_other)
     {
@@ -124,6 +137,9 @@ public class RationalVector extends Vector implements java.io.Serializable
      *         Side.ON_THE_LEFT, if this Vector is on the left of L
      *         Side.ON_THE_RIGHT, if this Vector is on the right of L
      *     and Side.COLLINEAR, if this Vector is collinear with L.
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Side} object.
      */
     public Side side_of(Vector p_other)
     {
@@ -131,11 +147,21 @@ public class RationalVector extends Vector implements java.io.Serializable
         return tmp.negate();
     }
     
+    /**
+     * <p>is_orthogonal.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_orthogonal()
     {
         return (x.signum() == 0 || y.signum() == 0);
     }
     
+    /**
+     * <p>is_diagonal.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_diagonal()
     {
         return x.abs().equals(y.abs());
@@ -147,6 +173,9 @@ public class RationalVector extends Vector implements java.io.Serializable
      *   Signum.POSITIVE, if the scalar product of this vector and p_other > 0,
      *   Signum.NEGATIVE, if the scalar product is < 0,
      *   and Signum.ZERO, if the scalar product is equal 0.
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a {@link datastructures.Signum} object.
      */
     public Signum projection(Vector p_other)
     {
@@ -154,6 +183,8 @@ public class RationalVector extends Vector implements java.io.Serializable
     }
     
     /**
+     * {@inheritDoc}
+     *
      * calculates  the scalar product of this vector and p_other
      */
     public double scalar_product(Vector p_other)
@@ -163,6 +194,8 @@ public class RationalVector extends Vector implements java.io.Serializable
     
     /**
      * approximates the coordinates of this vector by float coordinates
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint to_float()
     {
@@ -172,12 +205,14 @@ public class RationalVector extends Vector implements java.io.Serializable
         return new FloatPoint( xd / zd, yd / zd);
     }
     
+    /** {@inheritDoc} */
     public Vector change_length_approx(double p_lenght)
     {
         System.out.println("RationalVector: change_length_approx not yet implemented");
         return this;
     }
     
+    /** {@inheritDoc} */
     public Vector turn_90_degree(int p_factor)
     {
         int n = p_factor;
@@ -215,11 +250,21 @@ public class RationalVector extends Vector implements java.io.Serializable
         return new RationalVector(new_x, new_y, this.z);
     }
     
+    /**
+     * <p>mirror_at_y_axis.</p>
+     *
+     * @return a {@link geometry.planar.Vector} object.
+     */
     public Vector mirror_at_y_axis()
     {
         return new RationalVector(this.x.negate(), this.y, this.z);
     }
     
+    /**
+     * <p>mirror_at_x_axis.</p>
+     *
+     * @return a {@link geometry.planar.Vector} object.
+     */
     public Vector mirror_at_x_axis()
     {
         return new RationalVector(this.x, this.y.negate(), this.z);

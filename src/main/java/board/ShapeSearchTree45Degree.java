@@ -39,17 +39,25 @@ import autoroute.CompleteFreeSpaceExpansionRoom;
  * It is used in the 45-degree autorouter algorithm.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ShapeSearchTree45Degree extends ShapeSearchTree
 {
 
-    /** Creates a new instance of ShapeSearchTree45Degree */
+    /**
+     * Creates a new instance of ShapeSearchTree45Degree
+     *
+     * @param p_board a {@link board.BasicBoard} object.
+     * @param p_compensated_clearance_class_no a int.
+     */
     public ShapeSearchTree45Degree(BasicBoard p_board, int p_compensated_clearance_class_no)
     {
         super(FortyfiveDegreeBoundingDirections.INSTANCE, p_board, p_compensated_clearance_class_no);
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Calculates a new incomplete room with a maximal TileShape contained in the shape of p_room,
      * which may overlap only with items of the input net on the input layer.
      * p_room.get_contained_shape() will be contained in the shape of the result room.
@@ -172,6 +180,8 @@ public class ShapeSearchTree45Degree extends ShapeSearchTree
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Makes shure that on each layer there will be more than 1 IncompleteFreeSpaceExpansionRoom,
      * even if there are no objects on the layer. Otherwise the maze search algprithm gets problems
      * with vias.

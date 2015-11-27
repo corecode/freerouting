@@ -29,10 +29,15 @@ import board.Item;
  * Temporary data stored in board Items used in the autoroute algorithm
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class ItemAutorouteInfo
 {
+    /**
+     * <p>Constructor for ItemAutorouteInfo.</p>
+     *
+     * @param p_item a {@link board.Item} object.
+     */
     public ItemAutorouteInfo(Item p_item)
     {
         this.item = p_item;
@@ -40,6 +45,8 @@ public class ItemAutorouteInfo
     /**
      * Looks, if the corresponding item belongs to the start or destination set of the autoroute algorithm.
      * Only used, if the item belongs to the net, which will be currently routed.
+     *
+     * @return a boolean.
      */
     public boolean is_start_info()
     {
@@ -49,6 +56,8 @@ public class ItemAutorouteInfo
     /**
      * Sets, if the corresponding item belongs to the start or destination set of the autoroute algorithm.
      * Only used, if the item belongs to the net, which will be currently routed.
+     *
+     * @param p_value a boolean.
      */
     public void set_start_info(boolean p_value)
     {
@@ -58,6 +67,8 @@ public class ItemAutorouteInfo
     /**
      *  Returns the precalculated connection of this item
      *  or null, if it is not yet precalculated.
+     *
+     * @return a {@link autoroute.Connection} object.
      */
     public Connection get_precalculated_connection()
     {
@@ -66,6 +77,8 @@ public class ItemAutorouteInfo
     
     /**
      *  Sets the precalculated connnection of this item.
+     *
+     * @param p_connection a {@link autoroute.Connection} object.
      */
     public void set_precalculated_connection(Connection p_connection)
     {
@@ -75,6 +88,10 @@ public class ItemAutorouteInfo
     /**
      * Gets the ExpansionRoom of of index p_index.
      * Creates it, if it is not yet existing.
+     *
+     * @param p_index a int.
+     * @param p_autoroute_tree a {@link board.ShapeSearchTree} object.
+     * @return a {@link autoroute.ObstacleExpansionRoom} object.
      */
     public ObstacleExpansionRoom get_expansion_room(int p_index, ShapeSearchTree p_autoroute_tree)
     {
@@ -113,6 +130,10 @@ public class ItemAutorouteInfo
     
     /**
      * Draws the shapes of the expansion rooms of this info for testing purposes.
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_intensity a double.
      */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity)
     {

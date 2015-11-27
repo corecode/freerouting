@@ -32,11 +32,9 @@ import boardgraphics.GraphicsContext;
  *
  * An item on the board with an relative_area shape, for example keepout, conduction relative_area
  *
- *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class ObstacleArea extends Item implements java.io.Serializable
 {
     /**
@@ -65,6 +63,7 @@ public class ObstacleArea extends Item implements java.io.Serializable
         this(p_area, p_layer, p_translation, p_rotation_in_degree, p_side_changed, new int[0], p_clearance_type, p_id_no, p_group_no, p_name, p_fixed_state, p_board);
     }
     
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         int [] copied_net_nos = new int[net_no_arr.length];
@@ -72,6 +71,11 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return new ObstacleArea(relative_area, layer, translation, rotation_in_degree, side_changed, copied_net_nos, clearance_class_no(), p_id_no, get_component_no(), name, get_fixed_state(), board);
     }
     
+    /**
+     * <p>get_area.</p>
+     *
+     * @return a {@link geometry.planar.Area} object.
+     */
     public Area get_area()
     {
         if (this.precalculated_absolute_area == null)
@@ -108,36 +112,68 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return this.precalculated_absolute_area;
     }
     
+    /**
+     * <p>get_relative_area.</p>
+     *
+     * @return a {@link geometry.planar.Area} object.
+     */
     protected Area get_relative_area()
     {
         return this.relative_area;
     }
     
+    /** {@inheritDoc} */
     public boolean is_on_layer(int p_layer)
     {
         return layer == p_layer;
     }
     
+    /**
+     * <p>first_layer.</p>
+     *
+     * @return a int.
+     */
     public int first_layer()
     {
         return this.layer;
     }
     
+    /**
+     * <p>last_layer.</p>
+     *
+     * @return a int.
+     */
     public int last_layer()
     {
         return this.layer;
     }
     
+    /**
+     * <p>get_layer.</p>
+     *
+     * @return a int.
+     */
     public int get_layer()
     {
         return this.layer;
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         return this.get_area().bounding_box();
     }
     
+    /**
+     * <p>is_obstacle.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a boolean.
+     */
     public boolean is_obstacle(Item p_other)
     {
         if (p_other.shares_net(this))
@@ -147,11 +183,17 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return p_other instanceof Trace || p_other instanceof Via;
     }
     
+    /** {@inheritDoc} */
     protected TileShape[] calculate_tree_shapes(ShapeSearchTree p_search_tree)
     {
         return p_search_tree.calculate_tree_shapes(this);
     }
     
+    /**
+     * <p>tile_shape_count.</p>
+     *
+     * @return a int.
+     */
     public int tile_shape_count()
     {
         TileShape[] tile_shapes = this.split_to_convex();
@@ -163,6 +205,7 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return tile_shapes.length;
     }
     
+    /** {@inheritDoc} */
     public TileShape get_tile_shape(int p_no)
     {
         TileShape[] tile_shapes = this.split_to_convex();
@@ -174,12 +217,14 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return tile_shapes[p_no];
     }
     
+    /** {@inheritDoc} */
     public void translate_by(Vector p_vector)
     {
         this.translation = this.translation.add(p_vector);
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void turn_90_degree(int p_factor, IntPoint p_pole)
     {
         this.rotation_in_degree += p_factor * 90;
@@ -196,6 +241,7 @@ public class ObstacleArea extends Item implements java.io.Serializable
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void rotate_approx(double p_angle_in_degree, FloatPoint p_pole)
     {
         double turn_angle = p_angle_in_degree;
@@ -217,6 +263,7 @@ public class ObstacleArea extends Item implements java.io.Serializable
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void change_placement_side(IntPoint p_pole)
     {
         this.side_changed = !this.side_changed;
@@ -229,6 +276,7 @@ public class ObstacleArea extends Item implements java.io.Serializable
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -238,21 +286,29 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.KEEPOUT);
     }
     
+    /** {@inheritDoc} */
     public Color[] get_draw_colors(GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_obstacle_colors();
     }
     
+    /** {@inheritDoc} */
     public double get_draw_intensity(GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_obstacle_color_intensity();
     }
     
+    /**
+     * <p>get_draw_priority.</p>
+     *
+     * @return a int.
+     */
     public int get_draw_priority()
     {
         return boardgraphics.Drawable.MIN_DRAW_PRIORITY;
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_g, GraphicsContext p_graphics_context, Color[] p_color_arr, double p_intensity)
     {
         if (p_graphics_context == null || p_intensity <= 0)
@@ -272,26 +328,43 @@ public class ObstacleArea extends Item implements java.io.Serializable
         }
     }
     
+    /** {@inheritDoc} */
     public int shape_layer(int p_index)
     {
         return layer;
     }
     
+    /**
+     * <p>get_translation.</p>
+     *
+     * @return a {@link geometry.planar.Vector} object.
+     */
     protected Vector get_translation()
     {
         return translation;
     }
     
+    /**
+     * <p>get_rotation_in_degree.</p>
+     *
+     * @return a double.
+     */
     protected double get_rotation_in_degree()
     {
         return rotation_in_degree;
     }
     
+    /**
+     * <p>get_side_changed.</p>
+     *
+     * @return a boolean.
+     */
     protected boolean get_side_changed()
     {
         return side_changed;
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources =
@@ -311,6 +384,9 @@ public class ObstacleArea extends Item implements java.io.Serializable
     
     /**
      * Used in the implementation of print_info for this class and derived classes.
+     *
+     * @param p_window a {@link board.ObjectInfoPanel} object.
+     * @param p_locale a {@link java.util.Locale} object.
      */
     protected final void print_shape_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
@@ -348,6 +424,9 @@ public class ObstacleArea extends Item implements java.io.Serializable
         return this.get_area().split_to_convex();
     }
     
+    /**
+     * <p>clear_derived_data.</p>
+     */
     public void clear_derived_data()
     {
         super.clear_derived_data();
@@ -355,6 +434,7 @@ public class ObstacleArea extends Item implements java.io.Serializable
     }
     
     
+    /** {@inheritDoc} */
     public boolean write(java.io.ObjectOutputStream p_stream)
     {
         try

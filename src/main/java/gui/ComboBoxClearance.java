@@ -25,11 +25,16 @@ import rules.ClearanceMatrix;
  * A Combo Box with an item for each clearance class of the board..
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public class ComboBoxClearance extends javax.swing.JComboBox
 {
     
-    /** Creates a new instance of ClearanceComboBox */
+    /**
+     * Creates a new instance of ClearanceComboBox
+     *
+     * @param p_clearance_matrix a {@link rules.ClearanceMatrix} object.
+     */
     public ComboBoxClearance(ClearanceMatrix p_clearance_matrix)
     {
         this.class_arr = new ClearanceClass [p_clearance_matrix.get_class_count()];
@@ -43,6 +48,8 @@ public class ComboBoxClearance extends javax.swing.JComboBox
     
     /**
      * Adjusts this combo box to p_new_clearance_matrix.
+     *
+     * @param p_new_clearance_matrix a {@link rules.ClearanceMatrix} object.
      */
     public void adjust(ClearanceMatrix p_new_clearance_matrix)
     {
@@ -58,6 +65,8 @@ public class ComboBoxClearance extends javax.swing.JComboBox
     
     /**
      * Returns the index of the selected clearance class in the clearance matrix.
+     *
+     * @return a int.
      */
     public int get_selected_class_index()
     {
@@ -66,6 +75,8 @@ public class ComboBoxClearance extends javax.swing.JComboBox
     
     /**
      * Returns the number of clearance classes in this combo box.
+     *
+     * @return a int.
      */
     public int get_class_count()
     {

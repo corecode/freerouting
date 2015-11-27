@@ -36,6 +36,7 @@ import board.Item;
  * Expansion Room used for pushing and ripping obstacles in the autoroute algorithm.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ObstacleExpansionRoom implements CompleteExpansionRoom
 {
@@ -49,22 +50,39 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
         this.doors = new java.util.LinkedList<ExpansionDoor>();
     }
     
+    /**
+     * <p>get_index_in_item.</p>
+     *
+     * @return a int.
+     */
     public int get_index_in_item()
     {
         return this.index_in_item;
     }
     
+    /**
+     * <p>get_layer.</p>
+     *
+     * @return a int.
+     */
     public int get_layer()
     {
         return this.item.shape_layer(this.index_in_item);
     }
     
+    /**
+     * <p>get_shape.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_shape()
     {
         return this.shape;
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Checks, if this room has already a 1-dimensional door to p_other
      */
     public boolean door_exists(ExpansionRoom p_other)
@@ -83,6 +101,8 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Adds a door to the door list of this room.
      */
     public void add_door(ExpansionDoor p_door)
@@ -94,6 +114,9 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
      * Creates a 2-dim door with the other obstacle room, if that is useful for the autoroute algorithm.
      * It is assumed that this room and p_other have a 2-dimensional overlap.
      * Returns false, if no door was created.
+     *
+     * @param p_other a {@link autoroute.ObstacleExpansionRoom} object.
+     * @return a boolean.
      */
     public boolean create_overlap_door(ObstacleExpansionRoom p_other)
     {
@@ -129,6 +152,8 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
     
     /**
      * Returns the list of doors of this room to neighbour expansion rooms
+     *
+     * @return a {@link java.util.List} object.
      */
     public List<ExpansionDoor> get_doors()
     {
@@ -143,6 +168,9 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
         this.doors = new java.util.LinkedList<ExpansionDoor>();
     }
     
+    /**
+     * <p>reset_doors.</p>
+     */
     public void reset_doors()
     {
         for (ExpandableObject curr_door : this.doors)
@@ -151,21 +179,37 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
         }
     }
     
+    /**
+     * <p>get_target_doors.</p>
+     *
+     * @return a {@link java.util.Collection} object.
+     */
     public Collection<TargetItemExpansionDoor> get_target_doors()
     {
         return new java.util.LinkedList<TargetItemExpansionDoor>();
     }
     
+    /**
+     * <p>get_item.</p>
+     *
+     * @return a {@link board.Item} object.
+     */
     public Item get_item()
     {
         return this.item;
     }
     
+    /**
+     * <p>get_object.</p>
+     *
+     * @return a {@link board.SearchTreeObject} object.
+     */
     public SearchTreeObject get_object()
     {
         return this.item;
     }
     
+    /** {@inheritDoc} */
     public boolean remove_door(ExpandableObject p_door)
     {
         return this.doors.remove(p_door);
@@ -186,6 +230,8 @@ public class ObstacleExpansionRoom implements CompleteExpansionRoom
     
     
     /**
+     * {@inheritDoc}
+     *
      * Draws the shape of this room.
      */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity)

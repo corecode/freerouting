@@ -27,10 +27,17 @@ import geometry.planar.FloatPoint;
  * especially the different behaviour of the mouse button 1.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class RouteMenuState extends MenuState
 {
-    /** Returns a new instance of RouteMenuState */
+    /**
+     * Returns a new instance of RouteMenuState
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.RouteMenuState} object.
+     */
     public static RouteMenuState get_instance(BoardHandling p_board_handling, Logfile p_logfile)
     {
         RouteMenuState new_state = new RouteMenuState(p_board_handling, p_logfile);
@@ -43,16 +50,25 @@ public class RouteMenuState extends MenuState
         super(p_board_handling, p_logfile);
     }
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         return RouteState.get_instance(p_location, this, hdlg, logfile);
     }
     
+    /**
+     * <p>display_default_message.</p>
+     */
     public void display_default_message()
     {
         hdlg.screen_messages.set_status_message(" in route menu");
     }
     
+    /**
+     * <p>get_help_id.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_help_id()
     {
         return "MenuState_RouteMenuState";

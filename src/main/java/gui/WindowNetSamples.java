@@ -30,11 +30,19 @@ import java.net.URLConnection;
  * Window with a list for selecting samples in the net.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class WindowNetSamples extends BoardSubWindow
 {
     
-    /** Creates a new instance of WindowNetSampleDesigns */
+    /**
+     * Creates a new instance of WindowNetSampleDesigns
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     * @param p_title a {@link java.lang.String} object.
+     * @param p_button_name a {@link java.lang.String} object.
+     * @param p_row_count a int.
+     */
     public WindowNetSamples(java.util.Locale p_locale, String p_title, String p_button_name, int p_row_count)
     {
         this.locale = p_locale;
@@ -94,6 +102,10 @@ public abstract class WindowNetSamples extends BoardSubWindow
      * Opens a zipped archive from an URL in the net.
      * Returns a zipped input stream, who is positioned at the start of p_file_name,
      * or null, if an error occured,
+     *
+     * @param p_archive_name a {@link java.lang.String} object.
+     * @param p_file_name a {@link java.lang.String} object.
+     * @return a {@link java.util.zip.ZipInputStream} object.
      */
     protected static ZipInputStream open_zipped_file(String p_archive_name, String p_file_name)
     {
@@ -167,6 +179,11 @@ public abstract class WindowNetSamples extends BoardSubWindow
     
     /**
      * Opens a sample design on the website.
+     *
+     * @param p_archive_name a {@link java.lang.String} object.
+     * @param p_design_name a {@link java.lang.String} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link gui.BoardFrame} object.
      */
     protected static BoardFrame open_design(String p_archive_name, String p_design_name, java.util.Locale p_locale)
     {

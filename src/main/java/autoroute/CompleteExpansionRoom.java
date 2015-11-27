@@ -24,24 +24,34 @@ package autoroute;
 import java.util.Collection;
 
 /**
+ * <p>CompleteExpansionRoom interface.</p>
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public interface CompleteExpansionRoom extends ExpansionRoom
 {
     
     /**
      * Returns the list of doors to target items of this room
+     *
+     * @return a {@link java.util.Collection} object.
      */
     Collection<TargetItemExpansionDoor> get_target_doors();
     
     /**
      * Returns the object of tthis complete_expansion_rooom.
+     *
+     * @return a {@link board.SearchTreeObject} object.
      */
     board.SearchTreeObject get_object();
     
     /**
      * Draws the shape of this room for test purposes
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_intensity a double.
      */
     void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity);
 }

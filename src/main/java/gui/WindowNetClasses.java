@@ -29,11 +29,16 @@ import board.ObjectInfoPanel.Printable;
  * Edit window for the table of net rules.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowNetClasses extends BoardSavableSubWindow
 {
 
-    /** Creates a new instance of NetClassesWindow */
+    /**
+     * Creates a new instance of NetClassesWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowNetClasses(BoardFrame p_board_frame)
     {
         this.resources = java.util.ResourceBundle.getBundle("gui.resources.WindowNetClasses", p_board_frame.get_locale());
@@ -92,6 +97,9 @@ public class WindowNetClasses extends BoardSavableSubWindow
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * <p>refresh.</p>
+     */
     public void refresh()
     {
         this.cl_class_combo_box.removeAllItems();
@@ -120,6 +128,9 @@ public class WindowNetClasses extends BoardSavableSubWindow
         }
     }
 
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         for (javax.swing.JFrame curr_subwindow : this.subwindows)

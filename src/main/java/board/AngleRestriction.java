@@ -24,13 +24,18 @@ package board;
  * Enum for angle restrictions none, fortyfive degree and ninety degree.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class AngleRestriction
 {
+    /** Constant <code>NONE</code> */
     public static final AngleRestriction NONE = new AngleRestriction("none", 0);
+    /** Constant <code>FORTYFIVE_DEGREE</code> */
     public static final AngleRestriction FORTYFIVE_DEGREE = new AngleRestriction("45 degree", 1);
+    /** Constant <code>NINETY_DEGREE</code> */
     public static final AngleRestriction NINETY_DEGREE = new AngleRestriction("90 degree", 2);
     
+    /** Constant <code>arr</code> */
     public static final AngleRestriction[] arr =
     {
         NONE, FORTYFIVE_DEGREE, NINETY_DEGREE
@@ -38,6 +43,8 @@ public class AngleRestriction
     
     /**
      * Returns the string of this instance
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String to_string()
     {
@@ -46,6 +53,8 @@ public class AngleRestriction
     
     /**
      * Returns the number of this instance
+     *
+     * @return a int.
      */
     public int get_no()
     {

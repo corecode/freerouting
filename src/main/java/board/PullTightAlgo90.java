@@ -35,7 +35,16 @@ import geometry.planar.TileShape;
 class PullTightAlgo90 extends PullTightAlgo
 {
     
-    /** Creates a new instance of PullTight90 */
+    /**
+     * Creates a new instance of PullTight90
+     *
+     * @param p_board a {@link board.RoutingBoard} object.
+     * @param p_only_net_no_arr an array of int.
+     * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
+     * @param p_time_limit a int.
+     * @param p_keep_point a {@link geometry.planar.Point} object.
+     * @param p_keep_point_layer a int.
+     */
     public PullTightAlgo90(RoutingBoard p_board, int[] p_only_net_no_arr, Stoppable p_stoppable_thread, int p_time_limit,
             Point p_keep_point, int p_keep_point_layer)
     {

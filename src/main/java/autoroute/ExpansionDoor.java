@@ -27,13 +27,19 @@ import geometry.planar.Point;
 /**
  * An ExpansionDoor is a common edge between two ExpansionRooms
  *
- *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ExpansionDoor implements ExpandableObject
 {
 
-    /** Creates a new instance of ExpansionDoor */
+    /**
+     * Creates a new instance of ExpansionDoor
+     *
+     * @param p_first_room a {@link autoroute.ExpansionRoom} object.
+     * @param p_second_room a {@link autoroute.ExpansionRoom} object.
+     * @param p_dimension a int.
+     */
     public ExpansionDoor(ExpansionRoom p_first_room, ExpansionRoom p_second_room, int p_dimension)
     {
         first_room = p_first_room;
@@ -41,7 +47,12 @@ public class ExpansionDoor implements ExpandableObject
         dimension = p_dimension;
     }
 
-    /** Creates a new instance of ExpansionDoor */
+    /**
+     * Creates a new instance of ExpansionDoor
+     *
+     * @param p_first_room a {@link autoroute.ExpansionRoom} object.
+     * @param p_second_room a {@link autoroute.ExpansionRoom} object.
+     */
     public ExpansionDoor(ExpansionRoom p_first_room, ExpansionRoom p_second_room)
     {
         first_room = p_first_room;
@@ -51,6 +62,8 @@ public class ExpansionDoor implements ExpandableObject
 
     /**
      * Calculates the intersection of the shapes of the 2 rooms belonging to this door.
+     *
+     * @return a {@link geometry.planar.TileShape} object.
      */
     public TileShape get_shape()
     {
@@ -62,6 +75,8 @@ public class ExpansionDoor implements ExpandableObject
     /**
      * The dimension of a door may be 1 or 2.
      * 2-dimensional doors can only exist between ObstacleExpansionRooms
+     *
+     * @return a int.
      */
     public int get_dimension()
     {
@@ -71,6 +86,9 @@ public class ExpansionDoor implements ExpandableObject
     /**
      * Returns the other room of this door, or null, if p_roon
      * is neither equal to this.first_room nor to this.second_room.
+     *
+     * @param p_room a {@link autoroute.ExpansionRoom} object.
+     * @return a {@link autoroute.ExpansionRoom} object.
      */
     public ExpansionRoom other_room(ExpansionRoom p_room)
     {
@@ -91,6 +109,8 @@ public class ExpansionDoor implements ExpandableObject
     }
 
     /**
+     * {@inheritDoc}
+     *
      * Returns the other room of this door, or null, if p_roon
      * is neither equal to this.first_room nor to this.second_room,
      * or if the other room is not a CompleteExpansionRoom.
@@ -117,11 +137,17 @@ public class ExpansionDoor implements ExpandableObject
         return (CompleteExpansionRoom) result;
     }
 
+    /**
+     * <p>maze_search_element_count.</p>
+     *
+     * @return a int.
+     */
     public int maze_search_element_count()
     {
         return this.section_arr.length;
     }
 
+    /** {@inheritDoc} */
     public MazeSearchElement get_maze_search_element(int p_no)
     {
         return this.section_arr[p_no];
@@ -129,6 +155,9 @@ public class ExpansionDoor implements ExpandableObject
 
     /**
      * Calculates the Line segments of the sections of this door.
+     *
+     * @param p_offset a double.
+     * @return an array of {@link geometry.planar.FloatLine} objects.
      */
     public FloatLine[] get_section_segments(double p_offset)
     {

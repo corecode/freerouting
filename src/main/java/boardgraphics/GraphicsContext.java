@@ -46,11 +46,18 @@ import java.awt.geom.AffineTransform;
  * Context for drawing items in the board package to the screen.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
-
 public class GraphicsContext implements java.io.Serializable
 {
+    /**
+     * <p>Constructor for GraphicsContext.</p>
+     *
+     * @param p_design_bounds a {@link geometry.planar.IntBox} object.
+     * @param p_panel_bounds a {@link java.awt.Dimension} object.
+     * @param p_layer_structure a {@link board.LayerStructure} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public GraphicsContext( IntBox p_design_bounds,
             Dimension p_panel_bounds, board.LayerStructure p_layer_structure, java.util.Locale p_locale)
     {
@@ -74,6 +81,8 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Copy constructor
+     *
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public GraphicsContext(GraphicsContext p_graphics_context)
     {
@@ -87,6 +96,8 @@ public class GraphicsContext implements java.io.Serializable
     /**
      *  Changes  the bounds of the board design to p_design_bounds.
      *  Useful when components are still placed outside the boaed.
+     *
+     * @param p_new_design_bounds a {@link geometry.planar.IntBox} object.
      */
     public void change_design_bounds(IntBox p_new_design_bounds)
     {
@@ -100,6 +111,8 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * changes the size of the panel to p_new_bounds
+     *
+     * @param p_new_bounds a {@link java.awt.Dimension} object.
      */
     public void change_panel_size(Dimension p_new_bounds)
     {
@@ -119,6 +132,12 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * draws a polygon with corners p_points
+     *
+     * @param p_points an array of {@link geometry.planar.FloatPoint} objects.
+     * @param p_half_width a double.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_translucency_factor a double.
      */
     public void draw(FloatPoint[] p_points, double p_half_width, Color p_color, Graphics p_g, double p_translucency_factor)
     {
@@ -175,6 +194,16 @@ public class GraphicsContext implements java.io.Serializable
     /*
      * draws the boundary of a circle
      */
+    /**
+     * <p>draw_circle.</p>
+     *
+     * @param p_center a {@link geometry.planar.FloatPoint} object.
+     * @param p_radius a double.
+     * @param p_draw_half_width a double.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_translucency_factor a double.
+     */
     public void draw_circle(FloatPoint p_center, double p_radius,  double p_draw_half_width,
             Color p_color, Graphics p_g, double p_translucency_factor)
     {
@@ -198,6 +227,16 @@ public class GraphicsContext implements java.io.Serializable
      /*
       * draws a rectangle
       */
+    /**
+     * <p>draw_rectangle.</p>
+     *
+     * @param p_corner1 a {@link geometry.planar.FloatPoint} object.
+     * @param p_corner2 a {@link geometry.planar.FloatPoint} object.
+     * @param p_draw_half_width a double.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_translucency_factor a double.
+     */
     public void draw_rectangle(FloatPoint p_corner1, FloatPoint p_corner2,
             double p_draw_half_width, Color p_color,  Graphics p_g, double p_translucency_factor)
     {
@@ -223,6 +262,12 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Draws the boundary of p_shape.
+     *
+     * @param p_shape a {@link geometry.planar.Shape} object.
+     * @param p_draw_half_width a double.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_translucency_factor a double.
      */
     public void draw_boundary(Shape p_shape, double p_draw_half_width, Color p_color,  Graphics p_g, double p_translucency_factor)
     {
@@ -248,6 +293,12 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Draws the boundary of p_area.
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_draw_half_width a double.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_translucency_factor a double.
      */
     public void draw_boundary(Area p_area, double p_draw_half_width, Color p_color,  Graphics p_g, double p_translucency_factor)
     {
@@ -261,6 +312,11 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Draws the interiour of a circle
+     *
+     * @param p_circle a {@link geometry.planar.Circle} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_translucency_factor a double.
      */
     public void fill_circle(Circle p_circle, Graphics p_g, Color p_color, double p_translucency_factor)
     {
@@ -286,6 +342,11 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Draws the interiour of an ellipse.
+     *
+     * @param p_ellipse a {@link geometry.planar.Ellipse} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_translucency_factor a double.
      */
     public void fill_ellipse(Ellipse  p_ellipse, Graphics p_g, Color p_color, double p_translucency_factor)
     {
@@ -298,6 +359,11 @@ public class GraphicsContext implements java.io.Serializable
     /**
      * Draws the interiour of an array  of ellipses.
      * Ellipses contained in an other ellipse are treated as holes.
+     *
+     * @param p_ellipse_arr an array of {@link geometry.planar.Ellipse} objects.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_translucency_factor a double.
      */
     public void fill_ellipse_arr(Ellipse []  p_ellipse_arr, Graphics p_g, Color p_color, double p_translucency_factor)
     {
@@ -357,6 +423,11 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Fill the interior of the polygon shape  represented by p_points.
+     *
+     * @param p_points an array of {@link geometry.planar.FloatPoint} objects.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_translucency_factor a double.
      */
     public void fill_shape(FloatPoint[] p_points, Graphics p_g, Color p_color, double p_translucency_factor)
     {
@@ -381,6 +452,11 @@ public class GraphicsContext implements java.io.Serializable
     /**
      * Fill the interiour of a list of polygons.
      * Used for example with an area consisting of a border polygon and some holes.
+     *
+     * @param p_point_lists an array of {@link geometry.planar.FloatPoint} objects.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_translucency_factor a double.
      */
     public void fill_area(FloatPoint[][] p_point_lists, Graphics p_g, Color p_color, double p_translucency_factor)
     {
@@ -410,6 +486,11 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * draws the interiour of an item of class geometry.planar.Area
+     *
+     * @param p_area a {@link geometry.planar.Area} object.
+     * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_color a {@link java.awt.Color} object.
+     * @param p_translucency_factor a double.
      */
     public void fill_area(Area p_area, Graphics p_g, Color p_color, double p_translucency_factor)
     {
@@ -477,177 +558,355 @@ public class GraphicsContext implements java.io.Serializable
         }
     }
     
+    /**
+     * <p>get_background_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_background_color()
     {
         return other_color_table.get_background_color();
     }
     
+    /**
+     * <p>get_hilight_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_hilight_color()
     {
         return other_color_table.get_hilight_color();
     }
     
+    /**
+     * <p>get_incomplete_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_incomplete_color()
     {
         return other_color_table.get_incomplete_color();
     }
     
+    /**
+     * <p>get_outline_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_outline_color()
     {
         return other_color_table.get_outline_color();
     }
     
+    /**
+     * <p>get_component_color.</p>
+     *
+     * @param p_front a boolean.
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_component_color(boolean p_front)
     {
         return other_color_table.get_component_color(p_front);
     }
     
+    /**
+     * <p>get_violations_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_violations_color()
     {
         return other_color_table.get_violations_color();
     }
     
+    /**
+     * <p>get_length_matching_area_color.</p>
+     *
+     * @return a {@link java.awt.Color} object.
+     */
     public Color get_length_matching_area_color()
     {
         return other_color_table.get_length_matching_area_color();
     }
     
+    /**
+     * <p>get_trace_colors.</p>
+     *
+     * @param p_fixed a boolean.
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_trace_colors(boolean p_fixed)
     {
         
         return item_color_table.get_trace_colors(p_fixed);
     }
     
+    /**
+     * <p>get_via_colors.</p>
+     *
+     * @param p_fixed a boolean.
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_via_colors(boolean p_fixed)
     {
         return item_color_table.get_via_colors(p_fixed);
     }
     
+    /**
+     * <p>get_pin_colors.</p>
+     *
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_pin_colors()
     {
         return item_color_table.get_pin_colors();
     }
     
+    /**
+     * <p>get_conduction_colors.</p>
+     *
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_conduction_colors()
     {
         return item_color_table.get_conduction_colors();
     }
     
+    /**
+     * <p>get_obstacle_colors.</p>
+     *
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_obstacle_colors()
     {
         return item_color_table.get_obstacle_colors();
     }
     
+    /**
+     * <p>get_via_obstacle_colors.</p>
+     *
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_via_obstacle_colors()
     {
         return item_color_table.get_via_obstacle_colors();
     }
     
+    /**
+     * <p>get_place_obstacle_colors.</p>
+     *
+     * @return an array of {@link java.awt.Color} objects.
+     */
     public Color[] get_place_obstacle_colors()
     {
         return item_color_table.get_place_obstacle_colors();
     }
     
+    /**
+     * <p>get_trace_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_trace_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.TRACES.ordinal());
     }
     
+    /**
+     * <p>get_via_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_via_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.VIAS.ordinal());
     }
     
+    /**
+     * <p>get_pin_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_pin_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.PINS.ordinal());
     }
     
+    /**
+     * <p>get_conduction_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_conduction_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.CONDUCTION_AREAS.ordinal());
     }
     
+    /**
+     * <p>get_obstacle_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_obstacle_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.KEEPOUTS.ordinal());
     }
     
+    /**
+     * <p>get_via_obstacle_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_via_obstacle_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.VIA_KEEPOUTS.ordinal());
     }
     
+    /**
+     * <p>get_place_obstacle_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_place_obstacle_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.PLACE_KEEPOUTS.ordinal());
     }
     
+    /**
+     * <p>get_component_outline_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_component_outline_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.COMPONENT_OUTLINES.ordinal());
     }
     
+    /**
+     * <p>get_hilight_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_hilight_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.HILIGHT.ordinal());
     }
     
+    /**
+     * <p>get_incomplete_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_incomplete_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.INCOMPLETES.ordinal());
     }
     
+    /**
+     * <p>get_length_matching_area_color_intensity.</p>
+     *
+     * @return a double.
+     */
     public double get_length_matching_area_color_intensity()
     {
         return color_intensity_table.get_value(ColorIntensityTable.ObjectNames.LENGTH_MATCHING_AREAS.ordinal());
     }
     
+    /**
+     * <p>set_trace_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_trace_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.TRACES.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_via_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_via_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.VIAS.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_pin_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_pin_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.PINS.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_conduction_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_conduction_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.CONDUCTION_AREAS.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_obstacle_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_obstacle_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.KEEPOUTS.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_via_obstacle_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_via_obstacle_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.VIA_KEEPOUTS.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_hilight_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_hilight_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.HILIGHT.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_incomplete_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_incomplete_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.INCOMPLETES.ordinal(), p_value);
     }
     
+    /**
+     * <p>set_length_matching_area_color_intensity.</p>
+     *
+     * @param p_value a double.
+     */
     public void set_length_matching_area_color_intensity(double p_value)
     {
         color_intensity_table.set_value(ColorIntensityTable.ObjectNames.LENGTH_MATCHING_AREAS.ordinal(), p_value);
     }
     
+    /**
+     * <p>get_panel_size.</p>
+     *
+     * @return a java$awt$Dimension object.
+     */
     public java.awt.Dimension get_panel_size()
     {
         return coordinate_transform.screen_bounds;
@@ -655,6 +914,8 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Returns the center of the design on the screen.
+     *
+     * @return a java$awt$geom$Point2D object.
      */
     public Point2D get_design_center()
     {
@@ -664,6 +925,8 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Returns the bounding box of the design in screen coordinates.
+     *
+     * @return a java$awt$Rectangle object.
      */
     public java.awt.Rectangle get_design_bounds()
     {
@@ -673,19 +936,29 @@ public class GraphicsContext implements java.io.Serializable
     /**
      * Sets the factor for automatic layer dimming.
      * Values are between 0 and 1. If 1, there is no automatic layer dimming.
+     *
+     * @param p_value a double.
      */
     public void set_auto_layer_dim_factor(double p_value)
     {
         auto_layer_dim_factor = p_value;
     }
     
-    /** gets the factor for automatic layer dimming */
+    /**
+     * gets the factor for automatic layer dimming
+     *
+     * @return a double.
+     */
     public double get_auto_layer_dim_factor()
     {
         return this.auto_layer_dim_factor;
     }
     
-    /** Sets the layer, which will be excluded from automatic layer  dimming. */
+    /**
+     * Sets the layer, which will be excluded from automatic layer  dimming.
+     *
+     * @param p_layer_no a int.
+     */
     public void set_fully_visible_layer(int p_layer_no)
     {
         fully_visible_layer = p_layer_no;
@@ -696,6 +969,9 @@ public class GraphicsContext implements java.io.Serializable
      * The result is between 0 and 1.
      * If the result is 0, the layer is invisible,
      * if the result is 1, the layer is fully visible.
+     *
+     * @param p_layer_no a int.
+     * @return a double.
      */
     public double get_layer_visibility(int p_layer_no)
     {
@@ -713,6 +989,9 @@ public class GraphicsContext implements java.io.Serializable
     
     /**
      * Gets the visibility factor of the input layer without the aoutomatic layer dimming.
+     *
+     * @param p_layer_no a int.
+     * @return a double.
      */
     public double get_raw_layer_visibility(int p_layer_no)
     {
@@ -725,18 +1004,30 @@ public class GraphicsContext implements java.io.Serializable
      * If the value is 0, the layer is invisible,
      * if the value is 1, the layer is fully visible.
      *
+     * @param p_layer_no a int.
+     * @param p_value a double.
      */
     public void set_layer_visibility(int p_layer_no, double p_value)
     {
         layer_visibility_arr[p_layer_no] = Math.max(0, Math.min(p_value, 1));
     }
     
+    /**
+     * <p>set_layer_visibility_arr.</p>
+     *
+     * @param p_layer_visibility_arr an array of double.
+     */
     public void set_layer_visibility_arr(double [] p_layer_visibility_arr)
     {
         this.layer_visibility_arr = p_layer_visibility_arr;
     }
     
     
+    /**
+     * <p>copy_layer_visibility_arr.</p>
+     *
+     * @return an array of double.
+     */
     public double[] copy_layer_visibility_arr()
     {
         double[] result = new double [this.layer_visibility_arr.length];
@@ -744,7 +1035,11 @@ public class GraphicsContext implements java.io.Serializable
         return result;
     }
     
-    /** Returns the number of layers on the board */
+    /**
+     * Returns the number of layers on the board
+     *
+     * @return a int.
+     */
     public int layer_count()
     {
         return layer_visibility_arr.length;

@@ -26,11 +26,20 @@ import library.Padstack;
  * used in interactive and automatic routing.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ViaInfo implements Comparable<ViaInfo>, board.ObjectInfoPanel.Printable, java.io.Serializable
 {
     
-    /** Creates a new instance of ViaRule */
+    /**
+     * Creates a new instance of ViaRule
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_padstack a {@link library.Padstack} object.
+     * @param p_clearance_class a int.
+     * @param p_drill_to_smd_allowed a boolean.
+     * @param p_board_rules a {@link rules.BoardRules} object.
+     */
     public ViaInfo(String p_name, Padstack p_padstack, int p_clearance_class, boolean p_drill_to_smd_allowed,
             BoardRules p_board_rules)
     {
@@ -41,56 +50,108 @@ public class ViaInfo implements Comparable<ViaInfo>, board.ObjectInfoPanel.Print
         board_rules = p_board_rules;
     }
     
+    /**
+     * <p>get_name.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_name()
     {
         return name;
     }
     
+    /**
+     * <p>set_name.</p>
+     *
+     * @param p_name a {@link java.lang.String} object.
+     */
     public void set_name(String p_name)
     {
         name = p_name;
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
     }
     
+    /**
+     * <p>get_padstack.</p>
+     *
+     * @return a {@link library.Padstack} object.
+     */
     public Padstack get_padstack()
     {
         return padstack;
     }
     
+    /**
+     * <p>set_padstack.</p>
+     *
+     * @param p_padstack a {@link library.Padstack} object.
+     */
     public void set_padstack(Padstack p_padstack)
     {
         padstack = p_padstack;
     }
     
+    /**
+     * <p>get_clearance_class.</p>
+     *
+     * @return a int.
+     */
     public int get_clearance_class()
     {
         return clearance_class;
     }
     
+    /**
+     * <p>set_clearance_class.</p>
+     *
+     * @param p_clearance_class a int.
+     */
     public void set_clearance_class(int p_clearance_class)
     {
         clearance_class = p_clearance_class;
     }
     
+    /**
+     * <p>attach_smd_allowed.</p>
+     *
+     * @return a boolean.
+     */
     public boolean attach_smd_allowed()
     {
         return attach_smd_allowed;
     }
     
+    /**
+     * <p>set_attach_smd_allowed.</p>
+     *
+     * @param p_attach_smd_allowed a boolean.
+     */
     public void set_attach_smd_allowed(boolean p_attach_smd_allowed)
     {
         attach_smd_allowed = p_attach_smd_allowed;
     }
     
+    /**
+     * <p>compareTo.</p>
+     *
+     * @param p_other a {@link rules.ViaInfo} object.
+     * @return a int.
+     */
     public int compareTo(ViaInfo p_other)
     {
         return this.name.compareTo(p_other.name);
     }
     
+    /** {@inheritDoc} */
     public void print_info(board.ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

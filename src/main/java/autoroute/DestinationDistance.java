@@ -31,6 +31,7 @@ import autoroute.AutorouteControl.ExpansionCostFactor;
  * and the destination set of the expansion.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class DestinationDistance
 {
@@ -38,6 +39,11 @@ public class DestinationDistance
     /**
      * Creates a new instance of DestinationDistance.
      * p_trace_costs and p_layer_active are arrays of dimension layer_count.
+     *
+     * @param p_trace_costs an array of {@link autoroute.AutorouteControl.ExpansionCostFactor} objects.
+     * @param p_layer_active an array of boolean.
+     * @param p_min_normal_via_cost a double.
+     * @param p_min_cheap_via_cost a double.
      */
     public DestinationDistance( ExpansionCostFactor [] p_trace_costs,
             boolean [] p_layer_active, double p_min_normal_via_cost, double p_min_cheap_via_cost)
@@ -105,6 +111,12 @@ public class DestinationDistance
         min_component_solder_inner_trace_cost = Math.min(min_component_inner_trace_cost, min_solder_inner_trace_cost);
     }
     
+    /**
+     * <p>join.</p>
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @param p_layer a int.
+     */
     public void join(IntBox p_box, int p_layer)
     {
         if (p_layer == 0)
@@ -125,11 +137,25 @@ public class DestinationDistance
         box_is_empty = false;
     }
     
+    /**
+     * <p>calculate.</p>
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double calculate(FloatPoint p_point, int p_layer)
     {
         return calculate( p_point.bounding_box(), p_layer);
     }
     
+    /**
+     * <p>calculate.</p>
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double calculate(IntBox p_box, int p_layer)
     {
         if (box_is_empty)
@@ -450,6 +476,13 @@ public class DestinationDistance
         return result;
     }
     
+    /**
+     * <p>calculate_cheap_distance.</p>
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @param p_layer a int.
+     * @return a double.
+     */
     public double calculate_cheap_distance(IntBox p_box, int p_layer)
     {
         double min_normal_via_cost_save = min_normal_via_cost;

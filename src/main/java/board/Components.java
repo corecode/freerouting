@@ -36,6 +36,7 @@ import library.Package;
  * Contains the lists of components on the board.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Components implements java.io.Serializable
 {
@@ -44,6 +45,15 @@ public class Components implements java.io.Serializable
      * The items of the component have to be inserted seperately into the board.
      * If p_on_front is false, the component will be placed on the back side,
      * and p_package_back is used instead of p_package_front.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_rotation_in_degree a double.
+     * @param p_on_front a boolean.
+     * @param p_package_front a {@link library.Package} object.
+     * @param p_package_back a {@link library.Package} object.
+     * @param p_position_fixed a boolean.
+     * @return a {@link board.Component} object.
      */
     public Component add(String p_name, Point p_location, double p_rotation_in_degree,
             boolean p_on_front, Package p_package_front, Package p_package_back, boolean p_position_fixed)
@@ -62,6 +72,12 @@ public class Components implements java.io.Serializable
      * The items of the component have to be inserted seperately into the board.
      * If p_on_front is false, the component will be placed on the back side.
      * The component name is generated internally.
+     *
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_rotation a double.
+     * @param p_on_front a boolean.
+     * @param p_package a {@link library.Package} object.
+     * @return a {@link board.Component} object.
      */
     public Component add(Point p_location, double p_rotation, boolean p_on_front, Package p_package)
     {
@@ -72,6 +88,9 @@ public class Components implements java.io.Serializable
     /**
      * Returns the component with the input name or null,
      * if no such component exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link board.Component} object.
      */
     public Component get(String p_name)
     {
@@ -91,6 +110,9 @@ public class Components implements java.io.Serializable
      * Returns the component with the input component number or null,
      * if no such component exists.
      * Component numbers are from 1 to component count
+     *
+     * @param p_component_no a int.
+     * @return a {@link board.Component} object.
      */
     public Component get(int p_component_no)
     {
@@ -104,6 +126,8 @@ public class Components implements java.io.Serializable
     
     /**
      * Returns the number of components on the board.
+     *
+     * @return a int.
      */
     public int count()
     {
@@ -121,6 +145,9 @@ public class Components implements java.io.Serializable
     /**
      * Restores the sitiation at the previous snapshot.
      * Returns false, if no more undo is possible.
+     *
+     * @param p_observers a {@link board.BoardObservers} object.
+     * @return a boolean.
      */
     public boolean undo(BoardObservers p_observers)
     {
@@ -135,6 +162,9 @@ public class Components implements java.io.Serializable
     /**
      * Restores the sitiation before the last undo.
      * Returns false, if no more redo is possible.
+     *
+     * @param p_observers a {@link board.BoardObservers} object.
+     * @return a boolean.
      */
     public boolean redo(BoardObservers p_observers)
     {
@@ -167,6 +197,9 @@ public class Components implements java.io.Serializable
     /**
      * Moves the component with number p_component_no.
      * Works contrary to Component.translate_by with the undo algorithm of the board.
+     *
+     * @param p_component_no a int.
+     * @param p_vector a {@link geometry.planar.Vector} object.
      */
     public void move(int p_component_no, geometry.planar.Vector p_vector )
     {
@@ -178,6 +211,10 @@ public class Components implements java.io.Serializable
     /**
      * Turns the component with number p_component_no  by p_factor times 90 degree around p_pole.
      * Works contrary to Component.turn_90_degree with the undo algorithm of the board.
+     *
+     * @param p_component_no a int.
+     * @param p_factor a int.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public void turn_90_degree(int p_component_no, int p_factor, IntPoint p_pole)
     {
@@ -186,9 +223,13 @@ public class Components implements java.io.Serializable
         curr_component.turn_90_degree(p_factor, p_pole);
     }
     
-       /**
+    /**
      * Rotates the component with number p_component_no  by p_rotation_in_degree around p_pole.
      * Works contrary to Component.rotate with the undo algorithm of the board.
+     *
+     * @param p_component_no a int.
+     * @param p_rotation_in_degree a double.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public void rotate (int p_component_no, double p_rotation_in_degree, IntPoint p_pole)
     {
@@ -201,6 +242,9 @@ public class Components implements java.io.Serializable
      * Changes the placement side of the component the component with numberp_component_no and
      * mirrors it  at the vertical line through p_pole.
      * Works contrary to Component.change_side the undo algorithm of the board.
+     *
+     * @param p_component_no a int.
+     * @param p_pole a {@link geometry.planar.IntPoint} object.
      */
     public void change_side(int p_component_no, IntPoint p_pole)
     {
@@ -212,6 +256,8 @@ public class Components implements java.io.Serializable
     /**
      * If true, components on the back side are rotated before mirroring,
      * else they are mirrored before rotating.
+     *
+     * @param p_value a boolean.
      */
     public void set_flip_style_rotate_first(boolean p_value)
     {
@@ -221,6 +267,8 @@ public class Components implements java.io.Serializable
     /**
      * If true, components on the back side are rotated before mirroring,
      * else they are mirrored before rotating.
+     *
+     * @return a boolean.
      */
     public boolean get_flip_style_rotate_first()
     {

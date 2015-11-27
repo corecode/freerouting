@@ -27,11 +27,16 @@ import java.awt.geom.Point2D;
  * Transformation function between the board and the screen coordinate systems.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
-
-
 public class CoordinateTransform implements java.io.Serializable
 {
+    /**
+     * <p>Constructor for CoordinateTransform.</p>
+     *
+     * @param p_design_box a {@link geometry.planar.IntBox} object.
+     * @param p_panel_bounds a java$awt$Dimension object.
+     */
     public CoordinateTransform(IntBox p_design_box, Dimension p_panel_bounds )
     {
         this.screen_bounds = p_panel_bounds;
@@ -60,7 +65,11 @@ public class CoordinateTransform implements java.io.Serializable
         display_y_offset = scale_factor * design_box_with_offset.ll.y ;
     }
     
-    /** Copy constructor */
+    /**
+     * Copy constructor
+     *
+     * @param p_coordinate_transform a {@link boardgraphics.CoordinateTransform} object.
+     */
     public CoordinateTransform(CoordinateTransform p_coordinate_transform)
     {
         this.screen_bounds = new Dimension(p_coordinate_transform.screen_bounds);
@@ -77,6 +86,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * scale a value from the board to the screen coordinate system
+     *
+     * @param p_val a double.
+     * @return a double.
      */
     public double board_to_screen(double p_val)
     {
@@ -85,6 +97,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * scale a value the screen to the board coordinate system
+     *
+     * @param p_val a double.
+     * @return a double.
      */
     public double screen_to_board(double p_val)
     {
@@ -94,6 +109,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * transform a geometry.planar.FloatPoint to a java.awt.geom.Point2D
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a java$awt$geom$Point2D object.
      */
     public Point2D board_to_screen(FloatPoint p_point)
     {
@@ -121,6 +139,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transform a java.awt.geom.Point2D to a geometry.planar.FloatPoint
+     *
+     * @param p_point a java$awt$geom$Point2D object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint screen_to_board(Point2D p_point)
     {
@@ -147,6 +168,9 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Transforms an angle in radian on the board to an angle on the screen.
+     *
+     * @param p_angle a double.
+     * @return a double.
      */
     public double board_to_screen_angle(double p_angle)
     {
@@ -174,6 +198,9 @@ public class CoordinateTransform implements java.io.Serializable
      * Transform a geometry.planar.IntBox to a java.awt.Rectangle
      * If the internal rotation is not a multiple of Pi/2, a bounding rectangle of the
      * rotated rectangular shape is returned.
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @return a java$awt$Rectangle object.
      */
     public java.awt.Rectangle board_to_screen(IntBox p_box)
     {
@@ -193,6 +220,9 @@ public class CoordinateTransform implements java.io.Serializable
      * Transform a java.awt.Rectangle to a geometry.planar.IntBox
      * If the internal rotation is not a multiple of Pi/2, a bounding box of the
      * rotated rectangular shape is returned.
+     *
+     * @param p_rect a java$awt$Rectangle object.
+     * @return a {@link geometry.planar.IntBox} object.
      */
     public IntBox screen_to_board(java.awt.Rectangle p_rect)
     {
@@ -208,6 +238,8 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * If p_value is true, the left side and the right side of the board will be swapped.
+     *
+     * @param p_value a boolean.
      */
     public void set_mirror_left_right(boolean p_value)
     {
@@ -216,6 +248,8 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Returns, if the left side and the right side of the board are swapped.
+     *
+     * @return a boolean.
      */
     public boolean is_mirror_left_right()
     {
@@ -224,6 +258,8 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * If p_value is true, the top side and the botton side of the board will be swapped.
+     *
+     * @param p_value a boolean.
      */
     public void set_mirror_top_bottom(boolean p_value)
     {
@@ -234,6 +270,8 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Returns, if the top side and the botton side of the board are swapped.
+     *
+     * @return a boolean.
      */
     public boolean is_mirror_top_bottom()
     {
@@ -244,6 +282,8 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Sets the rotation of the displayed board to p_value.
+     *
+     * @param p_value a double.
      */
     public void set_rotation(double p_value)
     {
@@ -252,6 +292,8 @@ public class CoordinateTransform implements java.io.Serializable
     
     /**
      * Returns the rotation of the displayed board.
+     *
+     * @return a double.
      */
     public double get_rotation()
     {
@@ -261,6 +303,8 @@ public class CoordinateTransform implements java.io.Serializable
     /**
      * Returns the internal rotation snapped to the nearest multiple of 90 degree.
      * The result will be 0, 1, 2 or 3.
+     *
+     * @return a int.
      */
     public int get_90_degree_rotation()
     {

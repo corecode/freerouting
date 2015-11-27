@@ -33,16 +33,29 @@ import datastructures.IdentifierType;
  * Class for reading and writing net scopes from dsn-files.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Net
 {
     
-    /** Creates a new instance of Net */
+    /**
+     * Creates a new instance of Net
+     *
+     * @param p_net_id a {@link designformats.specctra.Net.Id} object.
+     */
     public Net(Id p_net_id)
     {
         id = p_net_id;
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_net a {@link rules.Net} object.
+     * @param p_pin_list a {@link java.util.Collection} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par, rules.Net p_net, Collection<board.Pin> p_pin_list) throws java.io.IOException
     {
         p_par.file.start_scope();
@@ -63,6 +76,14 @@ public class Net
         p_par.file.end_scope();
     }
     
+    /**
+     * <p>write_net_id.</p>
+     *
+     * @param p_net a {@link rules.Net} object.
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_identifier_type a {@link datastructures.IdentifierType} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_net_id( rules.Net p_net, IndentFileWriter p_file, IdentifierType p_identifier_type) throws java.io.IOException
     {
         p_file.write("net ");
@@ -72,6 +93,13 @@ public class Net
         p_file.write(subnet_number.toString());
     }
     
+    /**
+     * <p>write_pin.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_pin a {@link board.Pin} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_pin(WriteScopeParameter p_par, board.Pin p_pin) throws java.io.IOException
     {
         board.Component curr_component = p_par.board.components.get(p_pin.get_component_no());
@@ -93,6 +121,11 @@ public class Net
         
     }
     
+    /**
+     * <p>set_pins.</p>
+     *
+     * @param p_pin_list a {@link java.util.Collection} object.
+     */
     public void set_pins(Collection<Pin> p_pin_list)
     {
         pin_list = new TreeSet<Pin>();
@@ -102,6 +135,11 @@ public class Net
         }
     }
     
+    /**
+     * <p>get_pins.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     public Set<Pin> get_pins()
     {
         return pin_list;

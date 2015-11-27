@@ -28,13 +28,15 @@ import java.io.InputStream;
  *  for automatic replay.
  *
  * @author Alfons Wirtz
- *
+ * @version $Id: $Id
  */
-
 public class Logfile
 {
     /**
      * opens the logfile for reading
+     *
+     * @param p_input_stream a {@link java.io.InputStream} object.
+     * @return a boolean.
      */
     public boolean start_read(InputStream p_input_stream)
     {
@@ -45,6 +47,8 @@ public class Logfile
     /**
      * Reads the next corner from the logfile.
      * Return null, if no valid corner is found.
+     *
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint read_corner()
     {
@@ -93,6 +97,9 @@ public class Logfile
     
     /**
      * opens a logfile for writing
+     *
+     * @param p_file a {@link java.io.File} object.
+     * @return a boolean.
      */
     public boolean start_write(File p_file)
     {
@@ -111,6 +118,8 @@ public class Logfile
     
     /**
      * Marks the beginning of a new item in the olutput stream
+     *
+     * @param p_logfile_scope a {@link interactive.LogfileScope} object.
      */
     public void start_scope(LogfileScope p_logfile_scope)
     {
@@ -131,6 +140,9 @@ public class Logfile
     /**
      * Marks the beginning of a new scope in the olutput stream
      * Writes also an integer value.
+     *
+     * @param p_logfile_scope a {@link interactive.LogfileScope} object.
+     * @param p_int_value a int.
      */
     public void start_scope(LogfileScope p_logfile_scope,  int p_int_value)
     {
@@ -141,6 +153,9 @@ public class Logfile
     /**
      * Marks the beginning of a new scope in the olutput stream
      * Writes also 1, if p_boolean_value is true, or 0, if p_boolean_value is false;
+     *
+     * @param p_logfile_scope a {@link interactive.LogfileScope} object.
+     * @param p_boolean_value a boolean.
      */
     public void start_scope(LogfileScope p_logfile_scope,  boolean p_boolean_value)
     {
@@ -160,6 +175,9 @@ public class Logfile
     /**
      * Marks the beginning of a new item in the olutput stream
      * Writes also the start corner.
+     *
+     * @param p_logfile_scope a {@link interactive.LogfileScope} object.
+     * @param p_start_corner a {@link geometry.planar.FloatPoint} object.
      */
     public void start_scope(LogfileScope p_logfile_scope, FloatPoint p_start_corner)
     {
@@ -172,6 +190,8 @@ public class Logfile
     /**
      * Reads the next scope iidentifier  from the logfile.
      * Returns null if no more item scope was found.
+     *
+     * @return a {@link interactive.LogfileScope} object.
      */
     public LogfileScope start_read_scope()
     {
@@ -192,6 +212,8 @@ public class Logfile
     
     /**
      * adds an int to the logfile
+     *
+     * @param p_int a int.
      */
     public void add_int(int p_int)
     {
@@ -213,6 +235,8 @@ public class Logfile
     /**
      * Reads the next int from the logfile.
      * Returns -1, if no valid integer was found.
+     *
+     * @return a int.
      */
     public int read_int()
     {
@@ -228,6 +252,8 @@ public class Logfile
     
     /**
      * adds a FloatPoint to the logfile
+     *
+     * @param p_corner a {@link geometry.planar.FloatPoint} object.
      */
     public void add_corner(FloatPoint p_corner)
     {

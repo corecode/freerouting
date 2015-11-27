@@ -44,7 +44,16 @@ import board.TestLevel;
 class LocateFoundConnectionAlgoAnyAngle extends LocateFoundConnectionAlgo
 {
     
-    /** Creates a new instance of LocateFoundConnectionAlgo */
+    /**
+     * Creates a new instance of LocateFoundConnectionAlgo
+     *
+     * @param p_maze_search_result a {@link autoroute.MazeSearchAlgo.Result} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     * @param p_angle_restriction a {@link board.AngleRestriction} object.
+     * @param p_ripped_item_list a {@link java.util.SortedSet} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     */
     protected LocateFoundConnectionAlgoAnyAngle(MazeSearchAlgo.Result p_maze_search_result, AutorouteControl p_ctrl,
             ShapeSearchTree p_search_tree, AngleRestriction p_angle_restriction,
             SortedSet<Item> p_ripped_item_list, TestLevel p_test_level)
@@ -55,6 +64,8 @@ class LocateFoundConnectionAlgoAnyAngle extends LocateFoundConnectionAlgo
     /**
      * Calculates a list with the next  point  of the trace under construction.
      * If the trace is completed, the result list will be empty.
+     *
+     * @return a {@link java.util.Collection} object.
      */
     protected Collection<FloatPoint> calculate_next_trace_corners()
     {

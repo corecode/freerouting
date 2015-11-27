@@ -24,16 +24,20 @@ package designformats.specctra;
  * Class for reading resolution scopes from dsn-files.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Resolution extends ScopeKeyword
 {
     
-    /** Creates a new instance of Resolution */
+    /**
+     * Creates a new instance of Resolution
+     */
     public Resolution()
     {
         super("resolution");
     }
     
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         try
@@ -75,6 +79,13 @@ public class Resolution extends ScopeKeyword
         }
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_file a {@link datastructures.IndentFileWriter} object.
+     * @param p_board_communication a {@link board.Communication} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(datastructures.IndentFileWriter p_file, board.Communication p_board_communication)  throws java.io.IOException
     {
         p_file.new_line();

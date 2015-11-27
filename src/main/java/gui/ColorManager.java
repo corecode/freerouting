@@ -48,11 +48,16 @@ import boardgraphics.GraphicsContext;
  * Window for changing the colors of board objects.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class ColorManager extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of ColorManager */
+    /**
+     * Creates a new instance of ColorManager
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public ColorManager(BoardFrame p_board_frame)
     {
         GraphicsContext graphics_context = p_board_frame.board_panel.board_handling.graphics_context;
@@ -82,6 +87,8 @@ public class ColorManager extends BoardSavableSubWindow
     
     /**
      * Reassigns the table model variables because they may have changed in p_graphics_context.
+     *
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void set_table_models(GraphicsContext p_graphics_context)
     {

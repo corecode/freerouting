@@ -38,12 +38,21 @@ import board.ShapeSearchTree;
 import board.Item;
 
 /**
+ * <p>SortedOrthogonalRoomNeighbours class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SortedOrthogonalRoomNeighbours
 {
     
+    /**
+     * <p>calculate.</p>
+     *
+     * @param p_room a {@link autoroute.ExpansionRoom} object.
+     * @param p_autoroute_engine a {@link autoroute.AutorouteEngine} object.
+     * @return a {@link autoroute.CompleteExpansionRoom} object.
+     */
     public static CompleteExpansionRoom calculate(ExpansionRoom p_room, AutorouteEngine p_autoroute_engine)
     {
         int net_no = p_autoroute_engine.get_net_no();

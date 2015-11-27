@@ -40,10 +40,22 @@ import library.Padstack;
  * Common superclass for Pins and Vias
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public abstract class DrillItem extends Item implements Connectable, java.io.Serializable
 {
     
+    /**
+     * <p>Constructor for DrillItem.</p>
+     *
+     * @param p_center a {@link geometry.planar.Point} object.
+     * @param p_net_no_arr an array of int.
+     * @param p_clearance_type a int.
+     * @param p_id_no a int.
+     * @param p_group_no a int.
+     * @param p_fixed_state a {@link board.FixedState} object.
+     * @param p_board a {@link board.BasicBoard} object.
+     */
     public DrillItem( Point p_center, int[] p_net_no_arr, int p_clearance_type, int p_id_no,
             int p_group_no, FixedState p_fixed_state, BasicBoard p_board)
     {
@@ -52,6 +64,8 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Works only for symmettric DrillItems
      */
     public void translate_by(Vector p_vector)
@@ -64,6 +78,7 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
     }
     
     
+    /** {@inheritDoc} */
     public void turn_90_degree(int p_factor, IntPoint p_pole)
     {
         if (center != null)
@@ -73,6 +88,7 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void rotate_approx(double p_angle_in_degree, FloatPoint p_pole)
     {
         if (center != null)
@@ -83,6 +99,7 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void change_placement_side(IntPoint p_pole)
     {
         if (center != null)
@@ -92,6 +109,7 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         this.clear_derived_data();
     }
     
+    /** {@inheritDoc} */
     public void move_by(Vector p_vector)
     {
         Point old_center = this.get_center();
@@ -150,6 +168,7 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         }
     }
     
+    /** {@inheritDoc} */
     public int shape_layer(int p_index)
     {
         int index = Math.max( p_index, 0);
@@ -159,12 +178,18 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return from_layer + index;
     }
     
+    /** {@inheritDoc} */
     public boolean is_on_layer(int p_layer)
     {
         return p_layer >=  first_layer() && p_layer <= last_layer();
     }
     
     
+    /**
+     * <p>first_layer.</p>
+     *
+     * @return a int.
+     */
     public int first_layer()
     {
         if (this.precalculated_first_layer < 0)
@@ -182,6 +207,11 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return this.precalculated_first_layer;
     }
     
+    /**
+     * <p>last_layer.</p>
+     *
+     * @return a int.
+     */
     public int last_layer()
     {
         if (this.precalculated_last_layer < 0)
@@ -199,8 +229,19 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return this.precalculated_last_layer;
     }
     
+    /**
+     * <p>get_shape.</p>
+     *
+     * @param p_index a int.
+     * @return a {@link geometry.planar.Shape} object.
+     */
     public abstract Shape get_shape(int p_index);
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         IntBox result = IntBox.EMPTY;
@@ -215,6 +256,11 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return result;
     }
     
+    /**
+     * <p>tile_shape_count.</p>
+     *
+     * @return a int.
+     */
     public int tile_shape_count()
     {
         Padstack padstack = get_padstack();
@@ -223,6 +269,7 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return to_layer - from_layer + 1;
     }
     
+    /** {@inheritDoc} */
     protected TileShape[] calculate_tree_shapes(ShapeSearchTree p_search_tree)
     {
         return p_search_tree.calculate_tree_shapes(this);
@@ -231,6 +278,8 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
     /**
      * Returns the smallest distance from the center to the border of
      * the shape on any layer.
+     *
+     * @return a double.
      */
     public double smallest_radius()
     {
@@ -248,12 +297,21 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
     }
     
     
-    /** Returns the center point of this DrillItem. */
+    /**
+     * Returns the center point of this DrillItem.
+     *
+     * @return a {@link geometry.planar.Point} object.
+     */
     public Point get_center()
     {
         return center;
     }
     
+    /**
+     * <p>set_center.</p>
+     *
+     * @param p_center a {@link geometry.planar.Point} object.
+     */
     protected void set_center(Point p_center)
     {
         center = p_center;
@@ -261,9 +319,18 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
     
     /**
      * Returns the padstack of this drillitem.
+     *
+     * @return a {@link library.Padstack} object.
      */
     public abstract Padstack get_padstack();
     
+    /**
+     * <p>get_tree_shape_on_layer.</p>
+     *
+     * @param p_tree a {@link board.ShapeSearchTree} object.
+     * @param p_layer a int.
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_tree_shape_on_layer(ShapeSearchTree p_tree, int p_layer)
     {
         int from_layer = first_layer();
@@ -276,6 +343,12 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return get_tree_shape(p_tree, p_layer - from_layer);
     }
     
+    /**
+     * <p>get_tile_shape_on_layer.</p>
+     *
+     * @param p_layer a int.
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_tile_shape_on_layer(int p_layer)
     {
         int from_layer = first_layer();
@@ -288,6 +361,12 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return get_tile_shape(p_layer - from_layer);
     }
     
+    /**
+     * <p>get_shape_on_layer.</p>
+     *
+     * @param p_layer a int.
+     * @return a {@link geometry.planar.Shape} object.
+     */
     public Shape get_shape_on_layer(int p_layer)
     {
         int from_layer = first_layer();
@@ -300,6 +379,11 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return get_shape(p_layer - from_layer);
     }
     
+    /**
+     * <p>get_normal_contacts.</p>
+     *
+     * @return a {@link java.util.Set} object.
+     */
     public Set<Item> get_normal_contacts()
     {
         Point drill_center = this.get_center();
@@ -347,6 +431,12 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return result;
     }
     
+    /**
+     * <p>normal_contact_point.</p>
+     *
+     * @param p_other a {@link board.Item} object.
+     * @return a {@link geometry.planar.Point} object.
+     */
     public Point normal_contact_point(Item p_other)
     {
         return p_other.normal_contact_point(this);
@@ -375,6 +465,11 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return null;
     }
     
+    /**
+     * <p>get_ratsnest_corners.</p>
+     *
+     * @return an array of {@link geometry.planar.Point} objects.
+     */
     public Point[] get_ratsnest_corners()
     {
         Point[] result = new Point[1];
@@ -382,12 +477,17 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return result;
     }
     
+    /** {@inheritDoc} */
     public TileShape get_trace_connection_shape(ShapeSearchTree p_search_tree, int p_index)
     {
         return TileShape.get_instance(this.get_center());
     }
     
-    /** False, if this drillitem is places on the back side of the board */
+    /**
+     * False, if this drillitem is places on the back side of the board
+     *
+     * @return a boolean.
+     */
     public boolean is_placed_on_front()
     {
         return true;
@@ -395,6 +495,8 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
     
     /**
      * Return the mininal width of the shapes of this DrillItem on all signal layers.
+     *
+     * @return a double.
      */
     public double min_width()
     {
@@ -422,6 +524,9 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
         return this.precalculated_min_width;
     }
     
+    /**
+     * <p>clear_derived_data.</p>
+     */
     public void clear_derived_data()
     {
           super.clear_derived_data();
@@ -429,11 +534,17 @@ public abstract class DrillItem extends Item implements Connectable, java.io.Ser
           this.precalculated_last_layer = -1;
     }
     
+    /**
+     * <p>get_draw_priority.</p>
+     *
+     * @return a int.
+     */
     public int get_draw_priority()
     {
         return boardgraphics.Drawable.MIDDLE_DRAW_PRIORITY;
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_g, boardgraphics.GraphicsContext p_graphics_context,
             java.awt.Color[] p_color_arr, double p_intensity)
     {

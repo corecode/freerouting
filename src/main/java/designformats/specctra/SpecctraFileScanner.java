@@ -19,12 +19,19 @@ class SpecctraFileScanner implements Scanner {
 
   /** lexical states */
   public static final int COMPONENT_NAME = 5;
+  /** Constant <code>IGNORE_QUOTE=7</code> */
   public static final int IGNORE_QUOTE = 7;
+  /** Constant <code>YYINITIAL=0</code> */
   public static final int YYINITIAL = 0;
+  /** Constant <code>SPEC_CHAR=6</code> */
   public static final int SPEC_CHAR = 6;
+  /** Constant <code>LAYER_NAME=4</code> */
   public static final int LAYER_NAME = 4;
+  /** Constant <code>STRING2=2</code> */
   public static final int STRING2 = 2;
+  /** Constant <code>STRING1=1</code> */
   public static final int STRING1 = 1;
+  /** Constant <code>NAME=3</code> */
   public static final int NAME = 3;
 
   /** 
@@ -722,7 +729,6 @@ class SpecctraFileScanner implements Scanner {
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
   private boolean zzRefill() throws java.io.IOException {
-
     /* first: make room (if you can) */
     if (zzStartRead > 0) {
       System.arraycopy(zzBuffer, zzStartRead,
@@ -759,9 +765,11 @@ class SpecctraFileScanner implements Scanner {
   }
 
     
-  /**
-   * Closes the input stream.
-   */
+    /**
+     * Closes the input stream.
+     *
+     * @throws java.io.IOException if any.
+     */
   public final void yyclose() throws java.io.IOException {
     zzAtEOF = true;            /* indicate end of file */
     zzEndRead = zzStartRead;  /* invalidate buffer    */
@@ -771,16 +779,16 @@ class SpecctraFileScanner implements Scanner {
   }
 
 
-  /**
-   * Resets the scanner to read from a new input stream.
-   * Does not close the old reader.
-   *
-   * All internal variables are reset, the old input stream 
-   * <b>cannot</b> be reused (internal buffer is discarded and lost).
-   * Lexical state is set to <tt>ZZ_INITIAL</tt>.
-   *
-   * @param reader   the new input stream 
-   */
+    /**
+     * Resets the scanner to read from a new input stream.
+     * Does not close the old reader.
+     *
+     * All internal variables are reset, the old input stream
+     * <b>cannot</b> be reused (internal buffer is discarded and lost).
+     * Lexical state is set to <tt>ZZ_INITIAL</tt>.
+     *
+     * @param reader   the new input stream
+     */
   public final void yyreset(java.io.Reader reader) {
     zzReader = reader;
     zzAtBOL  = true;
@@ -794,6 +802,8 @@ class SpecctraFileScanner implements Scanner {
 
   /**
    * Returns the current lexical state.
+   *
+   * @return a int.
    */
   public final int yystate() {
     return zzLexicalState;
@@ -801,9 +811,9 @@ class SpecctraFileScanner implements Scanner {
 
 
   /**
-   * Enters a new lexical state
+   * {@inheritDoc}
    *
-   * @param newState the new lexical state
+   * Enters a new lexical state
    */
   public final void yybegin(int newState) {
     zzLexicalState = newState;
@@ -812,6 +822,8 @@ class SpecctraFileScanner implements Scanner {
 
   /**
    * Returns the text matched by the current regular expression.
+   *
+   * @return a {@link java.lang.String} object.
    */
   public final String yytext() {
     return new String( zzBuffer, zzStartRead, zzMarkedPos-zzStartRead );
@@ -819,14 +831,13 @@ class SpecctraFileScanner implements Scanner {
 
 
   /**
-   * Returns the character at position <tt>pos</tt> from the 
-   * matched text. 
-   * 
+   * Returns the character at position <tt>pos</tt> from the
+   * matched text.
+   *
    * It is equivalent to yytext().charAt(pos), but faster
    *
-   * @param pos the position of the character to fetch. 
+   * @param pos the position of the character to fetch.
    *            A value from 0 to yylength()-1.
-   *
    * @return the character at position pos
    */
   public final char yycharat(int pos) {
@@ -836,6 +847,8 @@ class SpecctraFileScanner implements Scanner {
 
   /**
    * Returns the length of the matched text region.
+   *
+   * @return a int.
    */
   public final int yylength() {
     return zzMarkedPos-zzStartRead;
@@ -869,14 +882,14 @@ class SpecctraFileScanner implements Scanner {
   } 
 
 
-  /**
-   * Pushes the specified amount of characters back into the input stream.
-   *
-   * They will be read again by then next call of the scanning method
-   *
-   * @param number  the number of characters to be read again.
-   *                This number must not be greater than yylength()!
-   */
+      /**
+       * Pushes the specified amount of characters back into the input stream.
+       *
+       * They will be read again by then next call of the scanning method
+       *
+       * @param number  the number of characters to be read again.
+       *                This number must not be greater than yylength()!
+       */
   public void yypushback(int number)  {
     if ( number > yylength() )
       zzScanError(ZZ_PUSHBACK_2BIG);
@@ -885,13 +898,14 @@ class SpecctraFileScanner implements Scanner {
   }
 
 
-  /**
-   * Resumes scanning until the next regular expression is matched,
-   * the end of input is encountered or an I/O-Error occurs.
-   *
-   * @return      the next token
-   * @exception   java.io.IOException  if any I/O-Error occurs
-   */
+    /**
+     * Resumes scanning until the next regular expression is matched,
+     * the end of input is encountered or an I/O-Error occurs.
+     *
+     * @return      the next token
+     * @exception   java.io.IOException  if any I/O-Error occurs
+     * @throws java.io.IOException if any.
+     */
   public Object next_token() throws java.io.IOException {
     int zzInput;
     int zzAction;

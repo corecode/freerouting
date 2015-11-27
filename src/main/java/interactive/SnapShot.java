@@ -24,12 +24,17 @@ package interactive;
  * Snapshot of the client situation in an interactive session.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SnapShot implements java.io.Serializable
 {
     /**
      * Returns a new snapshot or null, if the current interactive state
      * is not suitable to generate a snapshot.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @return a {@link interactive.SnapShot} object.
      */
     public static SnapShot get_instance(String p_name, BoardHandling p_board_handling)
     {
@@ -52,12 +57,22 @@ public class SnapShot implements java.io.Serializable
         this.subwindow_filters = p_board_handling.get_panel().board_frame.get_snapshot_subwindow_selections();
     }
     
+    /**
+     * <p>toString.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String toString()
     {
         return this.name;
     }
     
     
+    /**
+     * <p>copy_viewport_position.</p>
+     *
+     * @return a {@link java.awt.Point} object.
+     */
     public java.awt.Point copy_viewport_position()
     {
         if (this.viewport_position == null)
@@ -69,6 +84,8 @@ public class SnapShot implements java.io.Serializable
     
     /**
      * Goes to this shnapshot in interactive board etiting.
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
      */
     public void go_to(interactive.BoardHandling p_board_handling)
     {
@@ -137,6 +154,10 @@ public class SnapShot implements java.io.Serializable
     
     /**
      * Returns a new InterativeState from the data of this instance.
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.InteractiveState} object.
      */
     public InteractiveState get_interactive_state(BoardHandling p_board_handling, Logfile p_logfile)
     {

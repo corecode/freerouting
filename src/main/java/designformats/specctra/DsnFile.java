@@ -28,6 +28,7 @@ import board.TestLevel;
  * Class for reading and writing dsn-files.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class DsnFile
 {
@@ -43,6 +44,13 @@ public class DsnFile
      * The parameters p_item_observers and p_item_id_no_generator are used,
      * in case the board is embedded into a host system.
      * Returns false, if an error occured.
+     *
+     * @param p_input_stream a {@link java.io.InputStream} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_observers a {@link board.BoardObservers} object.
+     * @param p_item_id_no_generator a {@link datastructures.IdNoGenerator} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     * @return a {@link designformats.specctra.DsnFile.ReadResult} object.
      */
     public static ReadResult read(java.io.InputStream p_input_stream, interactive.BoardHandling p_board_handling,
                                   board.BoardObservers p_observers, datastructures.IdNoGenerator p_item_id_no_generator, TestLevel p_test_level)
@@ -226,6 +234,12 @@ public class DsnFile
      * Returns false, if the write failed.
      * If p_compat_mode is true, only standard speecctra dsn scopes are written, so that any
      * host system with an specctra interface can read them.
+     *
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_file a {@link java.io.OutputStream} object.
+     * @param p_design_name a {@link java.lang.String} object.
+     * @param p_compat_mode a boolean.
+     * @return a boolean.
      */
     public static boolean write(interactive.BoardHandling p_board_handling, java.io.OutputStream p_file, String p_design_name, boolean p_compat_mode)
     {
@@ -370,6 +384,12 @@ public class DsnFile
         }
     }
 
+    /**
+     * <p>read_string_scope.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link java.lang.String} object.
+     */
     public static String read_string_scope(Scanner p_scanner)
     {
         try
@@ -396,6 +416,12 @@ public class DsnFile
         }
     }
 
+    /**
+     * <p>read_string_list_scope.</p>
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link java.util.Collection} object.
+     */
     public static java.util.Collection<String> read_string_list_scope(Scanner p_scanner)
     {
         java.util.Collection<String> result = new java.util.LinkedList<String>();

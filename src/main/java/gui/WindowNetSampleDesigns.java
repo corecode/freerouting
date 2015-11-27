@@ -25,16 +25,24 @@ package gui;
  * Window with a list for selecting sample board designs in the net.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowNetSampleDesigns extends WindowNetSamples
 {
 
-    /** Creates a new instance of WindowNeetSampleDesigns */
+    /**
+     * Creates a new instance of WindowNeetSampleDesigns
+     *
+     * @param p_locale a {@link java.util.Locale} object.
+     */
     public WindowNetSampleDesigns(java.util.Locale p_locale)
     {
         super(p_locale, "sample_designs", "open_sample_design", 11);
     }
 
+    /**
+     * <p>fill_list.</p>
+     */
     protected void fill_list()
     {
         list_model.addElement("hexapod_empty.dsn");
@@ -51,6 +59,9 @@ public class WindowNetSampleDesigns extends WindowNetSamples
         list_model.addElement("single_layer_handrouted.dsn");
     }
 
+    /**
+     * <p>button_pushed.</p>
+     */
     protected void button_pushed()
     {
         int index = list.getSelectedIndex();

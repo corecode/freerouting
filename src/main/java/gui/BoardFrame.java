@@ -33,8 +33,8 @@ import designformats.specctra.DsnFile;
  * Graphical frame of for interactive editing of a routing board.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
-
 public class BoardFrame extends javax.swing.JFrame
 {
     public enum Option
@@ -44,6 +44,12 @@ public class BoardFrame extends javax.swing.JFrame
     
     /**
      * Creates a new board frame with the input design file imbedded into a host cad software.
+     *
+     * @param p_design_file_path_name a {@link java.lang.String} object.
+     * @param p_observers a {@link board.BoardObservers} object.
+     * @param p_id_no_generator a {@link datastructures.IdNoGenerator} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @return a {@link gui.BoardFrame} object.
      */
     public static BoardFrame get_embedded_instance(String p_design_file_path_name,
             BoardObservers p_observers, IdNoGenerator p_id_no_generator, java.util.Locale p_locale)
@@ -85,6 +91,12 @@ public class BoardFrame extends javax.swing.JFrame
      * created by the application from scratch.
      * If p_test_level > RELEASE_VERSION, functionality not yet ready for release is included.
      * Also the warning output depends on p_test_level.
+     *
+     * @param p_design a {@link gui.DesignFile} object.
+     * @param p_option a {@link gui.BoardFrame.Option} object.
+     * @param p_test_level a {@link board.TestLevel} object.
+     * @param p_locale a {@link java.util.Locale} object.
+     * @param p_confirm_cancel a boolean.
      */
     public BoardFrame(DesignFile p_design, Option p_option, TestLevel p_test_level,
             java.util.Locale p_locale, boolean p_confirm_cancel)
@@ -362,6 +374,9 @@ public class BoardFrame extends javax.swing.JFrame
     
     /**
      * Sets contexts sensitive help for the input component, if the help system is used.
+     *
+     * @param p_component a {@link java.awt.Component} object.
+     * @param p_help_id a {@link java.lang.String} object.
      */
     public void set_context_sensitive_help(java.awt.Component p_component, String p_help_id)
     {
@@ -385,7 +400,9 @@ public class BoardFrame extends javax.swing.JFrame
         }
     }
     
-    /** Sets the toolbar to the buttons of the selected item state. */
+    /**
+     * Sets the toolbar to the buttons of the selected item state.
+     */
     public void set_select_toolbar()
     {
         getContentPane().remove(toolbar_panel);
@@ -393,7 +410,9 @@ public class BoardFrame extends javax.swing.JFrame
         repaint();
     }
     
-    /** Sets the toolbar buttons to the select. route and drag menu buttons of the main menu. */
+    /**
+     * Sets the toolbar buttons to the select. route and drag menu buttons of the main menu.
+     */
     public void set_menu_toolbar()
     {
         getContentPane().remove(select_toolbar);
@@ -418,7 +437,9 @@ public class BoardFrame extends javax.swing.JFrame
         return new java.awt.Point(x, y);
     }
     
-    /** Sets the displayed region to the whole board. */
+    /**
+     * Sets the displayed region to the whole board.
+     */
     public void zoom_all()
     {
         board_panel.board_handling.adjust_design_bounds();
@@ -553,6 +574,8 @@ public class BoardFrame extends javax.swing.JFrame
     
     /**
      * Returns the currently used locale for the language dependent output.
+     *
+     * @return a {@link java.util.Locale} object.
      */
     public java.util.Locale get_locale()
     {
@@ -561,6 +584,8 @@ public class BoardFrame extends javax.swing.JFrame
     
     /**
      * Sets the background of the board panel
+     *
+     * @param p_color a {@link java.awt.Color} object.
      */
     public void set_board_background(java.awt.Color p_color)
     {
@@ -626,6 +651,8 @@ public class BoardFrame extends javax.swing.JFrame
     
     /**
      * Used for storing the subwindowfilters in a snapshot.
+     *
+     * @return a {@link gui.BoardFrame.SubwindowSelections} object.
      */
     public SubwindowSelections get_snapshot_subwindow_selections()
     {
@@ -640,6 +667,8 @@ public class BoardFrame extends javax.swing.JFrame
     
     /**
      * Used for restoring the subwindowfilters from a snapshot.
+     *
+     * @param p_filters a {@link gui.BoardFrame.SubwindowSelections} object.
      */
     public void set_snapshot_subwindow_selections(SubwindowSelections p_filters)
     {

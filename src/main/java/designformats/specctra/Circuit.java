@@ -22,14 +22,19 @@
 package designformats.specctra;
 
 /**
+ * <p>Circuit class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class Circuit
 {
     /**
      * Currently only the length matching rule is read from a circuit scope.
      * If the scope does not contain a length matching rule, nulll is returned.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.Circuit.ReadScopeResult} object.
      */
     public static ReadScopeResult read_scope( Scanner p_scanner)
     {

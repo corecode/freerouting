@@ -28,6 +28,7 @@ import geometry.planar.Vector;
  * Describes areas of the board, where components arre not allowed.
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public class ComponentObstacleArea extends ObstacleArea
 {
@@ -43,6 +44,7 @@ public class ComponentObstacleArea extends ObstacleArea
                 p_clearance_type, p_id_no, p_component_no, p_name, p_fixed_state, p_board);
     }
     
+    /** {@inheritDoc} */
     public Item copy(int p_id_no)
     {
         return new ComponentObstacleArea(get_relative_area(), get_layer(), get_translation(),
@@ -50,17 +52,20 @@ public class ComponentObstacleArea extends ObstacleArea
                 get_component_no(), this.name, get_fixed_state(), board);
     }
     
+    /** {@inheritDoc} */
     public boolean is_obstacle(Item p_other)
     {
         return p_other != this && p_other instanceof ComponentObstacleArea
                 && p_other.get_component_no() != this.get_component_no();
     }
     
+    /** {@inheritDoc} */
     public boolean is_trace_obstacle(int p_net_no)
     {
         return false;
     }
     
+    /** {@inheritDoc} */
     public boolean is_selected_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -71,16 +76,24 @@ public class ComponentObstacleArea extends ObstacleArea
     }
     
     
+    /** {@inheritDoc} */
     public java.awt.Color[] get_draw_colors(boardgraphics.GraphicsContext p_graphics_context)
     {
         return  p_graphics_context.get_place_obstacle_colors();
     }
     
+    /** {@inheritDoc} */
     public double get_draw_intensity(boardgraphics.GraphicsContext p_graphics_context)
     {
         return p_graphics_context.get_place_obstacle_color_intensity();
     }
     
+    /**
+     * <p>is_selectrd_by_filter.</p>
+     *
+     * @param p_filter a {@link board.ItemSelectionFilter} object.
+     * @return a boolean.
+     */
     public boolean is_selectrd_by_filter(ItemSelectionFilter p_filter)
     {
         if (!this.is_selected_by_fixed_filter(p_filter))
@@ -90,6 +103,7 @@ public class ComponentObstacleArea extends ObstacleArea
         return p_filter.is_selected(ItemSelectionFilter.SelectableChoices.COMPONENT_KEEPOUT);
     }
     
+    /** {@inheritDoc} */
     public void print_info(ObjectInfoPanel p_window, java.util.Locale p_locale)
     {
         java.util.ResourceBundle resources = 

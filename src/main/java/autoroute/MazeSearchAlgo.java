@@ -49,6 +49,7 @@ import board.ItemSelectionFilter;
  * Class for autorouting an incomplete connection via a maze search algorithm.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class MazeSearchAlgo
 {
@@ -57,6 +58,12 @@ public class MazeSearchAlgo
      * Initializes a new instance of MazeSearchAlgo for secrching a connection
      * between p_start_items and p_destination_items.
      * Returns null, if the initialisation failed.
+     *
+     * @param p_start_items a {@link java.util.Set} object.
+     * @param p_destination_items a {@link java.util.Set} object.
+     * @param p_autoroute_database a {@link autoroute.AutorouteEngine} object.
+     * @param p_ctrl a {@link autoroute.AutorouteControl} object.
+     * @return a {@link autoroute.MazeSearchAlgo} object.
      */
     public static MazeSearchAlgo get_instance(Set<Item> p_start_items,
                                               Set<Item> p_destination_items, AutorouteEngine p_autoroute_database, AutorouteControl p_ctrl)
@@ -92,6 +99,8 @@ public class MazeSearchAlgo
      * destination items. If the algorithm succeeds, the ExpansionDoor and its section number of
      * the found destination is returned, from where the whole found connection
      * can be backtracked. Otherwise the return value will be null.
+     *
+     * @return a {@link autoroute.MazeSearchAlgo.Result} object.
      */
     public Result find_connection()
     {
@@ -108,6 +117,8 @@ public class MazeSearchAlgo
     /**
      * Expands the next element in the maze expansion list.
      * Returns false, if the expansion list is exhausted or the destination is reached.
+     *
+     * @return a boolean.
      */
     public boolean occupy_next_element()
     {

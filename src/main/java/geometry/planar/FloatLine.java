@@ -27,12 +27,16 @@ package geometry.planar;
  * If exactnesss is needed, use the class Line instead.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class FloatLine
 {
     
     /**
      * Creates a line from two FloatPoints.
+     *
+     * @param p_a a {@link geometry.planar.FloatPoint} object.
+     * @param p_b a {@link geometry.planar.FloatPoint} object.
      */
     public FloatLine(FloatPoint p_a, FloatPoint p_b)
     {
@@ -46,12 +50,20 @@ public class FloatLine
     
     /**
      * Returns the FloatLine with swapped end points.
+     *
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine opposite()
     {
         return new FloatLine(this.b, this.a);
     }
     
+    /**
+     * <p>adjust_direction.</p>
+     *
+     * @param p_other a {@link geometry.planar.FloatLine} object.
+     * @return a {@link geometry.planar.FloatLine} object.
+     */
     public FloatLine adjust_direction(FloatLine p_other)
     {
         if (this.b.side_of(this.a, p_other.a )== p_other.b.side_of(this.a, p_other.a ))
@@ -64,6 +76,9 @@ public class FloatLine
     /**
      * Calculates the intersection of this line with p_other.
      * Returns null, if the lines are parallel.
+     *
+     * @param p_other a {@link geometry.planar.FloatLine} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint intersection(FloatLine p_other)
     {
@@ -88,6 +103,9 @@ public class FloatLine
     /**
      * translates the line perpendicular at about p_dist.
      * If p_dist > 0, the line will be translated to the left, else to the right
+     *
+     * @param p_dist a double.
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine translate(double p_dist)
     {
@@ -117,6 +135,9 @@ public class FloatLine
      * Returns the signed distance of this line from p_point.
      * The result will be positive, if the line is on the left of p_point,
      * else negative.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public double signed_distance(FloatPoint p_point)
     {
@@ -133,6 +154,9 @@ public class FloatLine
     /**
      * Returns an approximation of the perpensicular projection
      * of p_point onto this line.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint perpendicular_projection(FloatPoint p_point)
     {
@@ -159,6 +183,9 @@ public class FloatLine
     /**
      * Returns the distance of p_point to the nearest point of this line
      * betweem this.a and this.b.
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a double.
      */
     public double segment_distance(FloatPoint p_point)
     {
@@ -178,6 +205,9 @@ public class FloatLine
     /**
      * Returns the perpendicular projection of p_line_segment onto this oriented line segment,
      * Returns null, if the projection is empty.
+     *
+     * @param p_line_segment a {@link geometry.planar.FloatLine} object.
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine segment_projection(FloatLine p_line_segment)
     {
@@ -222,6 +252,9 @@ public class FloatLine
      * Returns the projection of p_line_segment onto this oriented line segment
      * by moving p_line_segment perpendicular into the direction of this  line segmant
      * Returns null, if the projection is empty or p_line_segment.a  == p_line_segment.b
+     *
+     * @param p_line_segment a {@link geometry.planar.FloatLine} object.
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine segment_projection_2(FloatLine p_line_segment)
     {
@@ -271,6 +304,9 @@ public class FloatLine
     /**
      * Shrinks this line on both sides by p_value.
      * The result will contain at least the gravity point of the line.
+     *
+     * @param p_offset a double.
+     * @return a {@link geometry.planar.FloatLine} object.
      */
     public FloatLine shrink_segment(double p_offset)
     {
@@ -291,6 +327,9 @@ public class FloatLine
     /**
      * Calculates the nearest point on this line to p_from_point between
      * this.a and this.b.
+     *
+     * @param p_from_point a {@link geometry.planar.FloatPoint} object.
+     * @return a {@link geometry.planar.FloatPoint} object.
      */
     public FloatPoint nearest_segment_point(FloatPoint p_from_point)
     {
@@ -315,6 +354,9 @@ public class FloatLine
     /**
      * Divides this line segment into p_count line segments of nearly equal length.
      * and at most p_max_section_length.
+     *
+     * @param p_count a int.
+     * @return an array of {@link geometry.planar.FloatLine} objects.
      */
     public FloatLine[] divide_segment_into_sections(int p_count)
     {

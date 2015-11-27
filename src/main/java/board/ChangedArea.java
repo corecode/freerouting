@@ -31,6 +31,11 @@ import geometry.planar.IntOctagon;
 class ChangedArea
 {
 
+    /**
+     * <p>Constructor for ChangedArea.</p>
+     *
+     * @param p_layer_count a int.
+     */
     public ChangedArea(int p_layer_count)
     {
         layer_count = p_layer_count;
@@ -45,6 +50,9 @@ class ChangedArea
 
     /**
      * enlarges the octagon on p_layer, so that it contains p_point
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @param p_layer a int.
      */
     public void join (FloatPoint p_point, int p_layer)
     {
@@ -63,8 +71,11 @@ class ChangedArea
         curr.urx = Math.max(curr.urx, tmp);
     }
     
-     /**
+    /**
      * enlarges the octagon on p_layer, so that it contains p_shape
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_layer a int.
      */
     public void join (geometry.planar.TileShape p_shape, int p_layer)
     {
@@ -81,6 +92,9 @@ class ChangedArea
 
     /**
      * get the marking octagon on layer p_layer
+     *
+     * @param p_layer a int.
+     * @return a {@link geometry.planar.IntOctagon} object.
      */
     public IntOctagon get_area (int p_layer)
     {
@@ -88,6 +102,11 @@ class ChangedArea
         return arr[p_layer].to_int();
     }
 
+    /**
+     * <p>surrounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox surrounding_box()
     {
         int llx = Integer.MAX_VALUE;

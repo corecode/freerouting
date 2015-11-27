@@ -29,11 +29,19 @@ import java.util.Iterator;
  * Layer change expansion object in the maze search algorithm.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class ExpansionDrill implements ExpandableObject
 {
 
-    /** Creates a new instance of Drill */
+    /**
+     * Creates a new instance of Drill
+     *
+     * @param p_shape a {@link geometry.planar.TileShape} object.
+     * @param p_location a {@link geometry.planar.Point} object.
+     * @param p_first_layer a int.
+     * @param p_last_layer a int.
+     */
     public ExpansionDrill(TileShape p_shape, Point p_location, int p_first_layer, int p_last_layer)
     {
         shape = p_shape;
@@ -54,6 +62,9 @@ public class ExpansionDrill implements ExpandableObject
      * Creates a CompleteFreeSpaceExpansionRoom, if no expansion room is found.
      * Returns false, if that was not possible because of an obstacle at this.location
      * on some layer in the compensated search tree.
+     *
+     * @param p_autoroute_engine a {@link autoroute.AutorouteEngine} object.
+     * @return a boolean.
      */
     public boolean calculate_expansion_rooms(AutorouteEngine p_autoroute_engine)
     {
@@ -102,31 +113,51 @@ public class ExpansionDrill implements ExpandableObject
         return true;
     }
 
+    /**
+     * <p>get_shape.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_shape()
     {
         return this.shape;
     }
 
+    /**
+     * <p>get_dimension.</p>
+     *
+     * @return a int.
+     */
     public int get_dimension()
     {
         return 2;
     }
 
+    /** {@inheritDoc} */
     public CompleteExpansionRoom other_room(CompleteExpansionRoom p_room)
     {
         return null;
     }
 
+    /**
+     * <p>maze_search_element_count.</p>
+     *
+     * @return a int.
+     */
     public int maze_search_element_count()
     {
         return this.maze_search_info_arr.length;
     }
 
+    /** {@inheritDoc} */
     public MazeSearchElement get_maze_search_element(int p_no)
     {
         return this.maze_search_info_arr[p_no];
     }
 
+    /**
+     * <p>reset.</p>
+     */
     public void reset()
     {
         for (MazeSearchElement curr_info : maze_search_info_arr)
@@ -137,6 +168,13 @@ public class ExpansionDrill implements ExpandableObject
 
     /*
      * Test draw of the the shape of this drill.
+     */
+    /**
+     * <p>draw.</p>
+     *
+     * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_intensity a double.
      */
     public void draw(java.awt.Graphics p_graphics,
             boardgraphics.GraphicsContext p_graphics_context, double p_intensity)

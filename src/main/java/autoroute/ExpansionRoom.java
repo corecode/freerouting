@@ -26,18 +26,24 @@ import java.util.List;
 import geometry.planar.TileShape;
 
 /**
+ * <p>ExpansionRoom interface.</p>
  *
  * @author alfons
+ * @version $Id: $Id
  */
 public interface ExpansionRoom
 {
     /**
      * Adds p_door to the list of doors of this room.
+     *
+     * @param p_door a {@link autoroute.ExpansionDoor} object.
      */
     void add_door(ExpansionDoor p_door);
     
     /**
      * Returns the list of doors of this room to neighbour expansion rooms
+     *
+     * @return a {@link java.util.List} object.
      */
     List<ExpansionDoor> get_doors();
     
@@ -53,22 +59,32 @@ public interface ExpansionRoom
     
     /**
      * Checks, if this room has already a door to p_other
+     *
+     * @param p_other a {@link autoroute.ExpansionRoom} object.
+     * @return a boolean.
      */
     boolean door_exists(ExpansionRoom p_other);
     
     /**
      * Removes p_door from this room.
      * Returns false, if p_room did not contain p_door.
+     *
+     * @param p_door a {@link autoroute.ExpandableObject} object.
+     * @return a boolean.
      */
     boolean remove_door (ExpandableObject p_door);
     
     /**
      * Gets the shape of this room.
+     *
+     * @return a {@link geometry.planar.TileShape} object.
      */
     TileShape get_shape();
     
     /**
      * Returns the layer of this expansion room.
+     *
+     * @return a int.
      */
     int get_layer();
 }

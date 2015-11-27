@@ -23,13 +23,19 @@ package gui;
 import interactive.RatsNest;
 
 /**
+ * <p>WindowIncompletes class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowIncompletes extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of IncompletesWindow */
+    /**
+     * Creates a new instance of IncompletesWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowIncompletes(BoardFrame p_board_frame)
     {
         super(p_board_frame); 
@@ -57,6 +63,9 @@ public class WindowIncompletes extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(sorted_arr.length, DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_incompletes = list.getSelectedValues();

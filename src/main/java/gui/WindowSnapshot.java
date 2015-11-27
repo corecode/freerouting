@@ -24,11 +24,16 @@ package gui;
  * Window handling snapshots of the interactive situation.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowSnapshot extends BoardSavableSubWindow
 {
     
-    /** Creates a new instance of SnapshotFrame */
+    /**
+     * Creates a new instance of SnapshotFrame
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowSnapshot(BoardFrame p_board_frame)
     {
         this.board_frame = p_board_frame;
@@ -121,18 +126,27 @@ public class WindowSnapshot extends BoardSavableSubWindow
         this.pack();
     }
     
+    /**
+     * <p>dispose.</p>
+     */
     public void dispose()
     {
         settings_window.dispose();
         super.dispose();
     }
     
+    /**
+     * <p>parent_iconified.</p>
+     */
     public void parent_iconified()
     {
         settings_window.parent_iconified();
         super.parent_iconified();
     }
     
+    /**
+     * <p>parent_deiconified.</p>
+     */
     public void parent_deiconified()
     {
         settings_window.parent_deiconified();
@@ -140,6 +154,8 @@ public class WindowSnapshot extends BoardSavableSubWindow
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Reads the data of this frame from disk.
      * Returns false, if the reading failed.
      */
@@ -166,6 +182,8 @@ public class WindowSnapshot extends BoardSavableSubWindow
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Saves this frame to disk.
      */
     public void save(java.io.ObjectOutputStream p_object_stream)

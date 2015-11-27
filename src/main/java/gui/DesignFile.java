@@ -26,14 +26,25 @@ import datastructures.FileFilter;
  *  File functionality with security restrictions used, when the application is opened with Java Webstart
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class DesignFile
 {
 
+    /** Constant <code>all_file_extensions="{bin, dsn}"</code> */
     public static final String[] all_file_extensions = {"bin", "dsn"};
+    /** Constant <code>text_file_extensions="{dsn}"</code> */
     public static final String[] text_file_extensions = {"dsn"};
+    /** Constant <code>binary_file_extension="bin"</code> */
     public static final String binary_file_extension = "bin";
 
+    /**
+     * <p>get_instance.</p>
+     *
+     * @param p_design_file_name a {@link java.lang.String} object.
+     * @param p_is_webstart a boolean.
+     * @return a {@link gui.DesignFile} object.
+     */
     public static DesignFile get_instance(String p_design_file_name, boolean p_is_webstart)
     {
         if (p_design_file_name == null)
@@ -47,6 +58,10 @@ public class DesignFile
     /**
      * Shows a file chooser for opening a design file.
      * If p_is_webstart there are security restrictions because the application was opened with java web start.
+     *
+     * @param p_is_webstart a boolean.
+     * @param p_design_dir_name a {@link java.lang.String} object.
+     * @return a {@link gui.DesignFile} object.
      */
     public static DesignFile open_dialog(boolean p_is_webstart, String p_design_dir_name)
     {
@@ -97,6 +112,8 @@ public class DesignFile
 
     /**
      * Gets an InputStream from the file. Returns null, if the algorithm failed.
+     *
+     * @return a java$io$InputStream object.
      */
     public java.io.InputStream get_input_stream()
     {
@@ -135,6 +152,8 @@ public class DesignFile
 
     /**
      * Gets the file name as a String. Returns null on failure.
+     *
+     * @return a {@link java.lang.String} object.
      */
     public String get_name()
     {
@@ -161,6 +180,12 @@ public class DesignFile
         return result;
     }
 
+    /**
+     * <p>save_as_dialog.</p>
+     *
+     * @param p_parent a {@link java.awt.Component} object.
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public void save_as_dialog(java.awt.Component p_parent, BoardFrame p_board_frame)
     {
         final java.util.ResourceBundle resources =
@@ -257,6 +282,9 @@ public class DesignFile
     /**
      * Writes a Specctra Session File to update the design file in the host system.
      * Returns false, if the write failed
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a boolean.
      */
     public boolean write_specctra_session_file(BoardFrame p_board_frame)
     {
@@ -336,6 +364,16 @@ public class DesignFile
         return true;
     }
 
+    /**
+     * <p>read_rules_file.</p>
+     *
+     * @param p_design_name a {@link java.lang.String} object.
+     * @param p_parent_name a {@link java.lang.String} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_is_web_start a boolean.
+     * @param p_confirm_message a {@link java.lang.String} object.
+     * @return a boolean.
+     */
     public static boolean read_rules_file(String p_design_name, String p_parent_name,
             interactive.BoardHandling p_board_handling, boolean p_is_web_start, String p_confirm_message)
     {
@@ -396,6 +434,11 @@ public class DesignFile
         return result;
     }
 
+    /**
+     * <p>update_eagle.</p>
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public void update_eagle(BoardFrame p_board_frame)
     {
         final java.util.ResourceBundle resources =
@@ -554,17 +597,29 @@ public class DesignFile
     /**
      * Gets the binary file for saving or null, if the design file is not available
      * because the application is run with Java Web Start.
+     *
+     * @return a {@link java.io.File} object.
      */
     public java.io.File get_output_file()
     {
         return this.output_file;
     }
 
+    /**
+     * <p>get_input_file.</p>
+     *
+     * @return a {@link java.io.File} object.
+     */
     public java.io.File get_input_file()
     {
         return this.input_file;
     }
 
+    /**
+     * <p>get_parent.</p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String get_parent()
     {
         if (input_file != null)
@@ -574,6 +629,11 @@ public class DesignFile
         return null;
     }
 
+    /**
+     * <p>get_parent_file.</p>
+     *
+     * @return a {@link java.io.File} object.
+     */
     public java.io.File get_parent_file()
     {
         if (input_file != null)
@@ -583,6 +643,11 @@ public class DesignFile
         return null;
     }
 
+    /**
+     * <p>is_created_from_text_file.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_created_from_text_file()
     {
         return this.is_webstart || this.input_file != this.output_file;

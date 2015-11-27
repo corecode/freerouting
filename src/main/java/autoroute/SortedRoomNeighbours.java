@@ -52,6 +52,7 @@ import board.TestLevel;
  * Overlapping neighbours containing an item may be stored in an unordered list.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class SortedRoomNeighbours
 {
@@ -59,6 +60,10 @@ public class SortedRoomNeighbours
      * To calculate the neigbour rooms of an expansion room.
      * The neighbour rooms will be sorted in counterclock sense around the border of the shape of p_room.
      * Overlapping neighbours containing an item may be stored in an unordered list.
+     *
+     * @param p_room a {@link autoroute.ExpansionRoom} object.
+     * @param p_autoroute_engine a {@link autoroute.AutorouteEngine} object.
+     * @return a {@link autoroute.CompleteExpansionRoom} object.
      */
     public static CompleteExpansionRoom calculate(ExpansionRoom p_room, AutorouteEngine p_autoroute_engine)
     {
@@ -422,6 +427,8 @@ public class SortedRoomNeighbours
     /**
      * Called from calculate_doors().
      * The shape of the room p_result may change inside this function.
+     *
+     * @param p_autoroute_engine a {@link autoroute.AutorouteEngine} object.
      */
     public void calculate_new_incomplete_rooms(AutorouteEngine p_autoroute_engine)
     {

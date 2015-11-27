@@ -25,17 +25,22 @@ package designformats.specctra;
  * Handels the placement bata of a library component.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Component extends ScopeKeyword
 {
     
-    /** Creates a new instance of Component */
+    /**
+     * Creates a new instance of Component
+     */
     public Component()
     {
         super("component");
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Overwrites the function read_scope in ScopeKeyword
      */
     public boolean read_scope(ReadScopeParameter p_par)
@@ -59,6 +64,10 @@ public class Component extends ScopeKeyword
     
     /**
      * Used also when reading a session file.
+     *
+     * @param p_scanner a {@link designformats.specctra.Scanner} object.
+     * @return a {@link designformats.specctra.ComponentPlacement} object.
+     * @throws java.io.IOException if any.
      */
     public static ComponentPlacement read_scope(Scanner p_scanner) throws java.io.IOException
     {
@@ -88,6 +97,13 @@ public class Component extends ScopeKeyword
         return component_placement;
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_component a {@link board.Component} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par, board.Component p_component)
     throws java.io.IOException
     {

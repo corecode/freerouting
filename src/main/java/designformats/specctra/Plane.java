@@ -26,16 +26,20 @@ package designformats.specctra;
  * Class for reading and writing plane scopes from dsn-files.
  *
  * @author  alfons
+ * @version $Id: $Id
  */
 public class Plane extends ScopeKeyword
 {
     
-    /** Creates a new instance of Plane */
+    /**
+     * Creates a new instance of Plane
+     */
     public Plane()
     {
         super("plane");
     }
     
+    /** {@inheritDoc} */
     public boolean read_scope(ReadScopeParameter p_par)
     {
         // read the net name
@@ -66,6 +70,13 @@ public class Plane extends ScopeKeyword
         return true;
     }
     
+    /**
+     * <p>write_scope.</p>
+     *
+     * @param p_par a {@link designformats.specctra.WriteScopeParameter} object.
+     * @param p_conduction a {@link board.ConductionArea} object.
+     * @throws java.io.IOException if any.
+     */
     public static void write_scope(WriteScopeParameter p_par, board.ConductionArea p_conduction) throws java.io.IOException
     {
         int net_count = p_conduction.net_count();

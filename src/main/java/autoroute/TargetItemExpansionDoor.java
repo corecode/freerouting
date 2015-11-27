@@ -28,11 +28,19 @@ import board.ShapeSearchTree;
  * An expansion door leading to a start or destination item of the autoroute algorithm.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class TargetItemExpansionDoor implements ExpandableObject
 {
 
-    /** Creates a new instance of ItemExpansionInfo */
+    /**
+     * Creates a new instance of ItemExpansionInfo
+     *
+     * @param p_item a {@link board.Item} object.
+     * @param p_tree_entry_no a int.
+     * @param p_room a {@link autoroute.CompleteExpansionRoom} object.
+     * @param p_search_tree a {@link board.ShapeSearchTree} object.
+     */
     public TargetItemExpansionDoor(Item p_item, int p_tree_entry_no, CompleteExpansionRoom p_room, ShapeSearchTree p_search_tree)
     {
         item = p_item;
@@ -50,37 +58,62 @@ public class TargetItemExpansionDoor implements ExpandableObject
         maze_search_info = new MazeSearchElement();
     }
 
+    /**
+     * <p>get_shape.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape get_shape()
     {
         return this.shape;
     }
 
+    /**
+     * <p>get_dimension.</p>
+     *
+     * @return a int.
+     */
     public int get_dimension()
     {
         return 2;
     }
 
+    /**
+     * <p>is_destination_door.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_destination_door()
     {
         ItemAutorouteInfo item_info = this.item.get_autoroute_info();
         return !item_info.is_start_info();
     }
 
+    /** {@inheritDoc} */
     public CompleteExpansionRoom other_room(CompleteExpansionRoom p_room)
     {
         return null;
     }
 
+    /** {@inheritDoc} */
     public MazeSearchElement get_maze_search_element(int p_no)
     {
         return maze_search_info;
     }
 
+    /**
+     * <p>maze_search_element_count.</p>
+     *
+     * @return a int.
+     */
     public int maze_search_element_count()
     {
         return 1;
     }
 
+    /**
+     * <p>reset.</p>
+     */
     public void reset()
     {
         maze_search_info.reset();

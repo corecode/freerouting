@@ -45,11 +45,19 @@ import board.RoutingBoard;
  * Interactive copying of items.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CopyItemState extends InteractiveState
 {
     /**
      * Returns a new instance of CopyItemState or null, if p_item_list is empty.
+     *
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.CopyItemState} object.
      */
     public static CopyItemState get_instance(FloatPoint p_location, Collection<Item> p_item_list,
     InteractiveState p_parent_state, BoardHandling p_board_handling, Logfile p_logfile)
@@ -90,6 +98,11 @@ public class CopyItemState extends InteractiveState
         }
     }
     
+    /**
+     * <p>mouse_moved.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState mouse_moved()
     {
         super.mouse_moved();
@@ -118,6 +131,8 @@ public class CopyItemState extends InteractiveState
     }
     
     /**
+     * {@inheritDoc}
+     *
      * Changes the first layer of the items in the copy list to p_new_layer.
      */
     public boolean change_layer_action(int p_new_layer)
@@ -265,12 +280,14 @@ public class CopyItemState extends InteractiveState
         hdlg.repaint();
     }
     
+    /** {@inheritDoc} */
     public InteractiveState left_button_clicked(FloatPoint p_location)
     {
         insert();
         return this;
     }
     
+    /** {@inheritDoc} */
     public InteractiveState process_logfile_point(FloatPoint p_location)
     {
         change_position(p_location);
@@ -278,6 +295,7 @@ public class CopyItemState extends InteractiveState
         return this;
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         if (item_list == null)
@@ -293,6 +311,11 @@ public class CopyItemState extends InteractiveState
         }
     }
     
+    /**
+     * <p>get_popup_menu.</p>
+     *
+     * @return a {@link javax.swing.JPopupMenu} object.
+     */
     public javax.swing.JPopupMenu get_popup_menu()
     {
         return hdlg.get_panel().popup_menu_copy;

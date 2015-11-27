@@ -22,12 +22,19 @@
 package gui;
 
 /**
+ * <p>BoardMenuOther class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class BoardMenuOther extends javax.swing.JMenu
 {
-    /** Returns a new other menu for the board frame. */
+    /**
+     * Returns a new other menu for the board frame.
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     * @return a {@link gui.BoardMenuOther} object.
+     */
     public static BoardMenuOther get_instance(BoardFrame p_board_frame)
     {
         final BoardMenuOther other_menu = new BoardMenuOther(p_board_frame);

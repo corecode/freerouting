@@ -31,11 +31,16 @@ import java.util.LinkedList;
  * In case of equal y-value the corner with the lowest x-value comes first.
  *
  * @author  Alfons Wirtz
+ * @version $Id: $Id
  */
 public class PolygonShape extends PolylineShape
 {
     
-    /** Creates a new instance of PolygonShape */
+    /**
+     * Creates a new instance of PolygonShape
+     *
+     * @param p_polygon a {@link geometry.planar.Polygon} object.
+     */
     public PolygonShape(Polygon p_polygon)
     {
         Polygon curr_polygon = p_polygon;
@@ -115,12 +120,18 @@ public class PolygonShape extends PolylineShape
     }
     
     
+    /**
+     * <p>Constructor for PolygonShape.</p>
+     *
+     * @param p_corner_arr an array of {@link geometry.planar.Point} objects.
+     */
     public PolygonShape(Point[] p_corner_arr)
     {
         this(new Polygon(p_corner_arr));
     }
     
     
+    /** {@inheritDoc} */
     public Point corner(int p_no)
     {
         if (p_no < 0 || p_no >= corners.length)
@@ -131,21 +142,39 @@ public class PolygonShape extends PolylineShape
         return corners[p_no];
     }
     
+    /**
+     * <p>border_line_count.</p>
+     *
+     * @return a int.
+     */
     public int border_line_count()
     {
         return corners.length;
     }
     
+    /** {@inheritDoc} */
     public boolean corner_is_bounded(int p_no)
     {
         return true;
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_shape a {@link geometry.planar.Shape} object.
+     * @return a boolean.
+     */
     public boolean intersects(Shape p_shape)
     {
         return p_shape.intersects(this);
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_circle a {@link geometry.planar.Circle} object.
+     * @return a boolean.
+     */
     public boolean intersects(Circle p_circle)
     {
         TileShape[] convex_pieces = split_to_convex();
@@ -157,6 +186,12 @@ public class PolygonShape extends PolylineShape
         return false;
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_simplex a {@link geometry.planar.Simplex} object.
+     * @return a boolean.
+     */
     public boolean intersects(Simplex p_simplex)
     {
         TileShape[] convex_pieces = split_to_convex();
@@ -168,6 +203,7 @@ public class PolygonShape extends PolylineShape
         return false;
     }
     
+    /** {@inheritDoc} */
     public boolean intersects(IntOctagon p_oct)
     {
         TileShape[] convex_pieces = split_to_convex();
@@ -179,6 +215,12 @@ public class PolygonShape extends PolylineShape
         return false;
     }
     
+    /**
+     * <p>intersects.</p>
+     *
+     * @param p_box a {@link geometry.planar.IntBox} object.
+     * @return a boolean.
+     */
     public boolean intersects(IntBox p_box)
     {
         TileShape[] convex_pieces = split_to_convex();
@@ -190,12 +232,14 @@ public class PolygonShape extends PolylineShape
         return false;
     }
     
+    /** {@inheritDoc} */
     public Polyline[] cutout(Polyline p_polyline)
     {
         System.out.println("PolygonShape.cutout not yet implemented");
         return null;
     }
     
+    /** {@inheritDoc} */
     public PolygonShape enlarge(double p_offset)
     {
         if (p_offset == 0)
@@ -206,17 +250,29 @@ public class PolygonShape extends PolylineShape
         return null;
     }
     
+    /** {@inheritDoc} */
     public double border_distance(FloatPoint p_point)
     {
         System.out.println("PolygonShape.border_distance not yet implemented");
         return 0;
     }
     
+    /**
+     * <p>smallest_radius.</p>
+     *
+     * @return a double.
+     */
     public double smallest_radius()
     {
         return border_distance(centre_of_gravity());
     }
     
+    /**
+     * <p>contains.</p>
+     *
+     * @param p_point a {@link geometry.planar.FloatPoint} object.
+     * @return a boolean.
+     */
     public boolean contains(FloatPoint p_point)
     {
         TileShape[] convex_pieces = split_to_convex();
@@ -228,6 +284,7 @@ public class PolygonShape extends PolylineShape
         return false;
     }
     
+    /** {@inheritDoc} */
     public boolean contains_inside(Point p_point)
     {
         if (contains_on_border(p_point))
@@ -237,6 +294,7 @@ public class PolygonShape extends PolylineShape
         return !is_outside(p_point);
     }
     
+    /** {@inheritDoc} */
     public boolean is_outside(Point p_point)
     {
         TileShape[] convex_pieces = split_to_convex();
@@ -248,22 +306,26 @@ public class PolygonShape extends PolylineShape
         return true;
     }
     
+    /** {@inheritDoc} */
     public boolean contains(Point p_point)
     {
         return !is_outside(p_point);
     }
     
+    /** {@inheritDoc} */
     public boolean contains_on_border(Point p_point)
     {
         //System.out.println("PolygonShape.contains_on_edge not yet implemented");
         return false;
     }
     
+    /** {@inheritDoc} */
     public double distance(FloatPoint p_point)
     {
         System.out.println("PolygonShape.distance not yet implemented");
         return 0;
     }
+    /** {@inheritDoc} */
     public PolygonShape translate_by(Vector p_vector)
     {
         if (p_vector.equals(Vector.ZERO))
@@ -278,11 +340,17 @@ public class PolygonShape extends PolylineShape
         return new PolygonShape(new_corners);
     }
     
+    /** {@inheritDoc} */
     public RegularTileShape bounding_shape(ShapeBoundingDirections p_dirs)
     {
         return p_dirs.bounds(this);
     }
     
+    /**
+     * <p>bounding_box.</p>
+     *
+     * @return a {@link geometry.planar.IntBox} object.
+     */
     public IntBox bounding_box()
     {
         if (precalculated_bounding_box == null)
@@ -305,6 +373,11 @@ public class PolygonShape extends PolylineShape
         }
         return precalculated_bounding_box;
     }
+    /**
+     * <p>bounding_octagon.</p>
+     *
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon bounding_octagon()
     {
         if (precalculated_bounding_octagon == null)
@@ -345,6 +418,8 @@ public class PolygonShape extends PolylineShape
     /**
      * Checks, if every line segment between 2 points of the shape is contained
      * completely in the shape.
+     *
+     * @return a boolean.
      */
     public boolean is_comvex()
     {
@@ -386,6 +461,11 @@ public class PolygonShape extends PolylineShape
         return true;
     }
     
+    /**
+     * <p>convex_hull.</p>
+     *
+     * @return a {@link geometry.planar.PolygonShape} object.
+     */
     public PolygonShape convex_hull()
     {
         if (corners.length <= 2)
@@ -424,6 +504,11 @@ public class PolygonShape extends PolylineShape
         return this;
     }
     
+    /**
+     * <p>bounding_tile.</p>
+     *
+     * @return a {@link geometry.planar.TileShape} object.
+     */
     public TileShape bounding_tile()
     {
         PolygonShape hull = convex_hull();
@@ -437,6 +522,11 @@ public class PolygonShape extends PolylineShape
         return TileShape.get_instance(bounding_lines);
     }
     
+    /**
+     * <p>area.</p>
+     *
+     * @return a double.
+     */
     public double area()
     {
         
@@ -462,6 +552,11 @@ public class PolygonShape extends PolylineShape
         return result;
     }
     
+    /**
+     * <p>dimension.</p>
+     *
+     * @return a int.
+     */
     public int dimension()
     {
         if (corners.length == 0)
@@ -473,16 +568,27 @@ public class PolygonShape extends PolylineShape
         return 2;
     }
     
+    /**
+     * <p>is_bounded.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_bounded()
     {
         return true;
     }
     
+    /**
+     * <p>is_empty.</p>
+     *
+     * @return a boolean.
+     */
     public boolean is_empty()
     {
         return corners.length == 0;
     }
     
+    /** {@inheritDoc} */
     public Line border_line(int p_no)
     {
         if (p_no < 0 || p_no >= corners.length)
@@ -502,6 +608,7 @@ public class PolygonShape extends PolylineShape
         return new Line(corners[p_no], next_corner);
     }
     
+    /** {@inheritDoc} */
     public FloatPoint nearest_point_approx(FloatPoint p_from_point)
     {
         double min_dist = Double.MAX_VALUE;
@@ -520,6 +627,7 @@ public class PolygonShape extends PolylineShape
         return result;
     }
     
+    /** {@inheritDoc} */
     public PolygonShape turn_90_degree(int p_factor, IntPoint p_pole)
     {
         Point[] new_corners = new Point[corners.length];
@@ -530,6 +638,7 @@ public class PolygonShape extends PolylineShape
         return new PolygonShape(new_corners);
     }
     
+    /** {@inheritDoc} */
     public PolygonShape rotate_approx(double p_angle, FloatPoint p_pole)
     {
         if (p_angle == 0)
@@ -544,6 +653,7 @@ public class PolygonShape extends PolylineShape
         return new PolygonShape(new_corners);
     }
     
+    /** {@inheritDoc} */
     public PolygonShape mirror_vertical(IntPoint p_pole)
     {
         Point[] new_corners = new Point[corners.length];
@@ -554,6 +664,7 @@ public class PolygonShape extends PolylineShape
         return new PolygonShape(new_corners);
     }
     
+    /** {@inheritDoc} */
     public PolygonShape mirror_horizontal(IntPoint p_pole)
     {
         Point[] new_corners = new Point[corners.length];
@@ -569,6 +680,8 @@ public class PolygonShape extends PolylineShape
      * The result is not exact, because rounded intersections of lines are
      * used in the result pieces. It can be made exact, if Polylines are returned
      * instead of Polygons, so that no intersection points are needed in the result.
+     *
+     * @return an array of {@link geometry.planar.TileShape} objects.
      */
     public TileShape[]  split_to_convex()
     {

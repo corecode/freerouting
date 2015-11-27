@@ -26,10 +26,17 @@ import java.util.Vector;
  * The logical parts contain information for gate swap and pin swap.
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class LogicalParts implements java.io.Serializable
 {
-    /** Adds a logical part to the database. */
+    /**
+     * Adds a logical part to the database.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @param p_part_pin_arr an array of {@link library.LogicalPart.PartPin} objects.
+     * @return a {@link library.LogicalPart} object.
+     */
     public LogicalPart add(String p_name, LogicalPart.PartPin[] p_part_pin_arr)
     {
         java.util.Arrays.sort(p_part_pin_arr);
@@ -40,6 +47,9 @@ public class LogicalParts implements java.io.Serializable
     
     /**
      * Returns the logical part with the input name or null, if no such package exists.
+     *
+     * @param p_name a {@link java.lang.String} object.
+     * @return a {@link library.LogicalPart} object.
      */
     public LogicalPart get(String p_name)
     {
@@ -55,6 +65,9 @@ public class LogicalParts implements java.io.Serializable
     
     /**
      * Returns the logical part with index p_part_no. Part numbers are from 1 to part count.
+     *
+     * @param p_part_no a int.
+     * @return a {@link library.LogicalPart} object.
      */
     public LogicalPart get(int p_part_no)
     {
@@ -68,6 +81,8 @@ public class LogicalParts implements java.io.Serializable
     
     /**
      * Returns the count of logical parts.
+     *
+     * @return a int.
      */
     public int count()
     {

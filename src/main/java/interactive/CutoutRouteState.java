@@ -34,14 +34,22 @@ import board.Item;
 import board.PolylineTrace;
 
 /**
+ * <p>CutoutRouteState class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class CutoutRouteState extends SelectRegionState
 {
     
     /**
      * Returns a new instance of this class.
+     *
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.CutoutRouteState} object.
      */
     public static CutoutRouteState get_instance( Collection<Item> p_item_list, InteractiveState p_parent_state,
             BoardHandling p_board_handling, Logfile p_logfile)
@@ -51,6 +59,13 @@ public class CutoutRouteState extends SelectRegionState
     
     /**
      * Returns a new instance of this class.
+     *
+     * @param p_item_list a {@link java.util.Collection} object.
+     * @param p_location a {@link geometry.planar.FloatPoint} object.
+     * @param p_parent_state a {@link interactive.InteractiveState} object.
+     * @param p_board_handling a {@link interactive.BoardHandling} object.
+     * @param p_logfile a {@link interactive.Logfile} object.
+     * @return a {@link interactive.CutoutRouteState} object.
      */
     public static CutoutRouteState get_instance( Collection<Item> p_item_list, FloatPoint p_location, InteractiveState p_parent_state,
             BoardHandling p_board_handling, Logfile p_logfile)
@@ -88,6 +103,11 @@ public class CutoutRouteState extends SelectRegionState
         this.trace_list = p_item_list;
     }
     
+    /**
+     * <p>complete.</p>
+     *
+     * @return a {@link interactive.InteractiveState} object.
+     */
     public InteractiveState complete()
     {
         hdlg.screen_messages.set_status_message("");
@@ -134,6 +154,7 @@ public class CutoutRouteState extends SelectRegionState
         }
     }
     
+    /** {@inheritDoc} */
     public void draw(java.awt.Graphics p_graphics)
     {
         if (trace_list == null)

@@ -22,13 +22,17 @@
 package rules;
 
 /**
+ * <p>DefaultItemClearanceClasses class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class DefaultItemClearanceClasses implements java.io.Serializable
 {
     
-    /** Creates a new instance of DefaultItemClearancesClasses */
+    /**
+     * Creates a new instance of DefaultItemClearancesClasses
+     */
     public DefaultItemClearanceClasses()
     {
         for (int i = 1; i < ItemClass.values().length; ++i)
@@ -37,6 +41,11 @@ public class DefaultItemClearanceClasses implements java.io.Serializable
         }
     }
     
+    /**
+     * <p>Constructor for DefaultItemClearanceClasses.</p>
+     *
+     * @param p_classes a {@link rules.DefaultItemClearanceClasses} object.
+     */
     public DefaultItemClearanceClasses(DefaultItemClearanceClasses p_classes)
     {
         for (int i = 1; i < ItemClass.values().length; ++i)
@@ -56,6 +65,9 @@ public class DefaultItemClearanceClasses implements java.io.Serializable
     
     /**
      * Returns the number of the default clearance class for the input item class.
+     *
+     * @param p_item_class a {@link rules.DefaultItemClearanceClasses.ItemClass} object.
+     * @return a int.
      */
     public int get(ItemClass p_item_class)
     {
@@ -65,6 +77,9 @@ public class DefaultItemClearanceClasses implements java.io.Serializable
     /**
      * Sets the index of the default clearance class of the input item class
      * in the clearance matrix to p_index.
+     *
+     * @param p_item_class a {@link rules.DefaultItemClearanceClasses.ItemClass} object.
+     * @param p_index a int.
      */
     public void set(ItemClass p_item_class, int p_index)
     {
@@ -73,6 +88,8 @@ public class DefaultItemClearanceClasses implements java.io.Serializable
     
     /**
      * Sets the indices of all default item clearance classes to p_index.
+     *
+     * @param p_index a int.
      */
     public void set_all(int p_index)
     {

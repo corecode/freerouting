@@ -27,13 +27,19 @@ import rules.Nets;
 
 
 /**
+ * <p>WindowNets class.</p>
  *
  * @author Alfons Wirtz
+ * @version $Id: $Id
  */
 public class WindowNets extends WindowObjectListWithFilter
 {
     
-    /** Creates a new instance of NetsWindow */
+    /**
+     * Creates a new instance of NetsWindow
+     *
+     * @param p_board_frame a {@link gui.BoardFrame} object.
+     */
     public WindowNets(BoardFrame p_board_frame)
     {
         super(p_board_frame);
@@ -74,6 +80,9 @@ public class WindowNets extends WindowObjectListWithFilter
         this.list.setVisibleRowCount(Math.min(sorted_arr.length, DEFAULT_TABLE_SIZE));
     }
     
+    /**
+     * <p>select_instances.</p>
+     */
     protected void select_instances()
     {
         Object[] selected_nets = list.getSelectedValues();
