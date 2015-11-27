@@ -45,10 +45,11 @@
 	</developers>
 	<build>
 		<plugins>
+		 <!-- 
 			<plugin>
 				<groupId>com.github.github</groupId>
-				<artifactId>downloads-maven-plugin</artifactId>
-				<version>0.6</version>
+				<artifactId>download-maven-plugin</artifactId>
+				<version>1.2.1</version>
 				<configuration>
 					<description>unofficial ${project.name} build of the
 						${project.version} release</description>
@@ -65,6 +66,7 @@
 					</execution>
 				</executions>
 			</plugin>
+		 -->
 			<plugin>
 				<groupId>com.github.github</groupId>
 				<artifactId>site-maven-plugin</artifactId>
@@ -169,11 +171,6 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-jar-plugin</artifactId> 
-				<version>2.6</version> <configuration> <archive> <index>true</index> <manifest> 
-				<addClasspath>true</addClasspath> <mainClass>gui.MainApplication</mainClass> 
-				</manifest> <manifestEntries> <mode>development</mode> <url>${project.url}</url> 
-				<key>value</key> </manifestEntries> </archive> </configuration> </plugin> -->
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<executions>
@@ -197,6 +194,18 @@
 			</plugin>
 		</plugins>
 	</build>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>sonatype-public-repository</id>
+			<url>https://oss.sonatype.org/content/groups/public</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</pluginRepository>
+	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>javax.help</groupId>
