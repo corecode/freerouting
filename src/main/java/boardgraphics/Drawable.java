@@ -35,6 +35,7 @@ public interface Drawable
      *
      * @param p_g a {@link java.awt.Graphics} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_color_arr an array of {@link java.awt.Color} objects.
      * @param p_intensity a double.
      */
@@ -46,6 +47,7 @@ public interface Drawable
      * p_intensity is a number between 0 and 1.
      *
      * @param p_g a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_color a {@link java.awt.Color} object.
      * @param p_intensity a double.

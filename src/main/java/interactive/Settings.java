@@ -220,7 +220,7 @@ public class Settings implements java.io.Serializable
     }
     
     /**
-     * The horizontal placement grid when moving components, if > 0.
+     * The horizontal placement grid when moving components, {@code if > 0}.
      *
      * @return a int.
      */
@@ -230,7 +230,7 @@ public class Settings implements java.io.Serializable
     }
     
     /**
-     * The vertical placement grid when moving components, if > 0.
+     * The vertical placement grid when moving components, {@code if > 0}.
      *
      * @return a int.
      */
@@ -311,7 +311,7 @@ public class Settings implements java.io.Serializable
     }
     
     /**
-     * The horizontal placement grid when moving components, if > 0.
+     * The horizontal placement grid when moving components, {@code if > 0}.
      *
      * @param p_value a int.
      */
@@ -325,7 +325,7 @@ public class Settings implements java.io.Serializable
     }
     
     /**
-     * The vertical placement grid when moving components, if > 0.
+     * The vertical placement grid when moving components, {@code if > 0}.
      *
      * @param p_value a int.
      */
@@ -647,12 +647,12 @@ public class Settings implements java.io.Serializable
     boolean via_snap_to_smd_center;
     
     /**
-     * The horizontal placement grid when moving components, if > 0.
+     * The horizontal placement grid when moving components, {@code if > 0.}
      */
     int horizontal_component_grid;
     
     /**
-     * The vertical placement grid when moving components, if > 0.
+     * The vertical placement grid when moving components, {@code if > 0.}
      */
     int vertical_component_grid;
     

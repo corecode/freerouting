@@ -162,6 +162,7 @@ public class NetIncompletes
      *
      * @param p_graphics a {@link java.awt.Graphics} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_length_violations_only a boolean.
      */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context, boolean p_length_violations_only)

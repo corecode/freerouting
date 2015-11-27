@@ -441,7 +441,7 @@ public class BoardHandling
 
     /**
      * Sets the manual trace half width used in interactive routing.
-     * If p_layer_no < 0, the manual trace half width is changed on all layers.
+     * If {@code p_layer_no < 0}, the manual trace half width is changed on all layers.
      *
      * @param p_layer_no a int.
      * @param p_value a int.

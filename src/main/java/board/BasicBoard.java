@@ -863,7 +863,8 @@ public class BasicBoard implements java.io.Serializable
     /**
      * Combines the connected traces of this net, which have only 1 contact
      * at the connection point.
-     * if p_net_no < 0 traces of all nets are combined.
+     * 
+     * {@code if p_net_no < 0 traces of all nets are combined.}
      *
      * @param p_net_no a int.
      * @return a boolean.
@@ -1017,7 +1018,7 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns all SearchTreeObjects on layer p_layer, which overlap with p_shape.
-     * If p_layer < 0, the layer is ignored
+     * {@code If p_layer < 0, the layer is ignored}
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -1035,7 +1036,7 @@ public class BasicBoard implements java.io.Serializable
      * which describes the required clearance restrictions to other items.
      * The function may also return items, which are nearly overlapping,
      * but do not overlap with exact calculation.
-     * If p_layer < 0, the layer is ignored.
+     * {@code If p_layer < 0, the layer is ignored.}
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -1052,7 +1053,7 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns all items on layer p_layer, which overlap with p_area.
-     * If p_layer < 0, the layer is ignored
+     * {@code If p_layer < 0, the layer is ignored}
      *
      * @param p_area a {@link geometry.planar.Area} object.
      * @param p_layer a int.
@@ -1256,6 +1257,7 @@ public class BasicBoard implements java.io.Serializable
      *
      * @param p_graphics a {@link java.awt.Graphics} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)
     {
@@ -1293,8 +1295,8 @@ public class BasicBoard implements java.io.Serializable
 
     /**
      * Returns the list of items on the board, whose shape on layer p_layer contains the point at p_location.
-     * If p_layer < 0, the layer is ignored.
-     * If p_item_selection_filter != null, only items of types selected by the filter are picked.
+     * {@code If p_layer < 0, the layer is ignored.
+     * If p_item_selection_filter != null, only items of types selected by the filter are picked.}
      *
      * @param p_location a {@link geometry.planar.Point} object.
      * @param p_layer a int.

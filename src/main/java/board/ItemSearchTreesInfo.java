@@ -68,6 +68,7 @@ class ItemSearchTreesInfo
      * Sets the item tree entries for the  tree with identification number p_tree_no.
      *
      * @param p_tree_entries an array of {@link datastructures.ShapeTree.Leaf} objects.
+     * @param p_tree_entries an array of {@link datastructures.ShapeTree.Leaf} objects.
      * @param p_tree a {@link datastructures.ShapeTree} object.
      */
     public void set_tree_entries(ShapeTree.Leaf[] p_tree_entries, ShapeTree p_tree)

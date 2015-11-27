@@ -41,6 +41,9 @@ public class Simplex extends TileShape implements java.io.Serializable
      *
      * creates a Simplex as intersection of the halfplanes defined
      * by an array of directed lines
+     *
+     * @param p_line_arr an array of {@link geometry.planar.Line} objects.
+     * @return a {@link geometry.planar.Simplex} object.
      */
     public static Simplex get_instance(Line[] p_line_arr)
     {
@@ -95,7 +98,7 @@ public class Simplex extends TileShape implements java.io.Serializable
      * {@inheritDoc}
      *
      * Returns true,  if the determinant of the direction of index
-     * p_no -1 and the direction of index p_no is > 0
+     * p_no -1 and the direction of index {@code p_no is > 0}
      */
     public boolean corner_is_bounded(int p_no)
     {
@@ -735,7 +738,7 @@ public class Simplex extends TileShape implements java.io.Serializable
      * {@inheritDoc}
      *
      * Returns the simplex offseted by p_with.
-     * If p_width > 0, the offset is to the outer, else to the inner.
+     * {@code If p_width > 0, the offset is to the outer, else to the inner.}
      */
     public Simplex offset(double p_width)
     {
@@ -821,6 +824,9 @@ public class Simplex extends TileShape implements java.io.Serializable
      * {@inheritDoc}
      *
      * Returns the intersection of this simplex and p_other
+     *
+     * @param p_other a {@link geometry.planar.Simplex} object.
+     * @return a {@link geometry.planar.Simplex} object.
      */
     public Simplex intersection(Simplex p_other)
     {
@@ -837,10 +843,9 @@ public class Simplex extends TileShape implements java.io.Serializable
     }
     
     /**
-     * Returns the intersection of this simplex and the shape p_other
+     * {@inheritDoc}
      *
-     * @param p_other a {@link geometry.planar.TileShape} object.
-     * @return a {@link geometry.planar.TileShape} object.
+     * Returns the intersection of this simplex and the shape p_other
      */
     public TileShape intersection(TileShape p_other)
     {

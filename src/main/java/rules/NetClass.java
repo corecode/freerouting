@@ -241,7 +241,7 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Returns the minimum trace length of this net class.
-     * If the result is <= 0, there is no minimal trace length restriction.
+     * {@code If the result is <= 0, there is no minimal trace length restriction.}
      *
      * @return a double.
      */
@@ -252,7 +252,7 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the minimum trace length of this net class to p_value.
-     * If p_value is <= 0, there is no minimal trace length restriction.
+     * {@code If p_value is <= 0, there is no minimal trace length restriction.}
      *
      * @param p_value a double.
      */
@@ -263,7 +263,7 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Returns the maximum trace length of this net class.
-     * If the result is <= 0, there is no maximal trace length restriction.
+     * {@code If the result is <= 0, there is no maximal trace length restriction.}
      *
      * @return a double.
      */
@@ -274,7 +274,7 @@ public class NetClass implements java.io.Serializable, board.ObjectInfoPanel.Pri
 
     /**
      * Sets the maximum trace length of this net class to p_value.
-     * If p_value is <= 0, there is no maximal trace length restriction.
+     * {@code If p_value is <= 0, there is no maximal trace length restriction.}
      *
      * @param p_value a double.
      */

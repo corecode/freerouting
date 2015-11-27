@@ -63,7 +63,7 @@ public class BoardRules implements java.io.Serializable
     
     /**
      * Returns true, if the trace widths used for routing for the input net are equal on all layers.
-     * If p_net_no < 0, the default trace widths for all nets are checked.
+     * {@code If p_net_no < 0, the default trace widths for all nets are checked.}
      *
      * @param p_net_no a int.
      * @return a boolean.
@@ -465,7 +465,7 @@ public class BoardRules implements java.io.Serializable
     /**
      * Returns the minimum distance between the pin border and the next corner
      * of a connected trace por a pin with connection restrictions.
-     * If the result is <= 0, there are no exit restrictions.
+     * {@code If the result is <= 0, there are no exit restrictions.}
      *
      * @return a double.
      */
@@ -477,7 +477,7 @@ public class BoardRules implements java.io.Serializable
     /**
      * Sets he minimum distance between the pin border and the next corner
      * of a connected trace por a pin with connection restrictions.
-     * if p_value is <= 0, there are no exit restrictions.
+     * {@code if p_value is <= 0, there are no exit restrictions.}
      *
      * @param p_value a double.
      */
@@ -577,7 +577,12 @@ public class BoardRules implements java.io.Serializable
     }
     
     
-    /** Writes an instance of this class to a file */
+    /**
+     *  Writes an instance of this class to a file 
+     * 
+     * @param p_stream
+     * @throws java.io.IOException
+     */
     private void writeObject(java.io.ObjectOutputStream p_stream)
     throws java.io.IOException
     {
@@ -585,7 +590,13 @@ public class BoardRules implements java.io.Serializable
         p_stream.writeInt(trace_angle_restriction.get_no());
     }
     
-    /** Reads an instance of this class from a file */
+    /** 
+     * Reads an instance of this class from a file 
+     * 
+     * @param p_stream
+     * @throws java.io.IOException
+     * @throws java.lang.ClassNotFoundException
+     */
     private void readObject(java.io.ObjectInputStream p_stream)
     throws java.io.IOException, java.lang.ClassNotFoundException
     {
@@ -632,7 +643,7 @@ public class BoardRules implements java.io.Serializable
     /**
      * The minimum distance of the pad border to the first turn of a connected trace
      * to a pin with restricted exit directions.
-     * If the value is <= 0, there are no exit restrictions.
+     * {@code If the value is <= 0, there are no exit restrictions.}
      */
     private double pin_edge_to_turn_dist;
     

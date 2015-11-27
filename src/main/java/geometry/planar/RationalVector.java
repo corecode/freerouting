@@ -169,13 +169,12 @@ public class RationalVector extends Vector implements java.io.Serializable
     
     
     /**
-     * The function returns
-     *   Signum.POSITIVE, if the scalar product of this vector and p_other > 0,
-     *   Signum.NEGATIVE, if the scalar product is < 0,
-     *   and Signum.ZERO, if the scalar product is equal 0.
+     * {@inheritDoc}
      *
-     * @param p_other a {@link geometry.planar.Vector} object.
-     * @return a {@link datastructures.Signum} object.
+     * The function returns
+     *   Signum.POSITIVE, if the scalar product of this vector and {@code p_other > 0},
+     *   Signum.NEGATIVE, if the scalar product {@code is < 0},
+     *   and Signum.ZERO, if the scalar product {@code is equal 0}.
      */
     public Signum projection(Vector p_other)
     {
@@ -186,6 +185,9 @@ public class RationalVector extends Vector implements java.io.Serializable
      * {@inheritDoc}
      *
      * calculates  the scalar product of this vector and p_other
+     *
+     * @param p_other a {@link geometry.planar.Vector} object.
+     * @return a double.
      */
     public double scalar_product(Vector p_other)
     {

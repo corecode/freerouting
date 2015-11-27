@@ -35,7 +35,9 @@ public class CoordinateTransform implements java.io.Serializable
      * Creates a new instance of CoordinateTransform
      *
      * @param p_user_unit_factor a double.
+     * @param p_user_unit_factor a double.
      * @param p_user_unit a {@link board.Unit} object.
+     * @param p_board_unit_factor a double.
      * @param p_board_unit_factor a double.
      * @param p_board_unit a {@link board.Unit} object.
      */

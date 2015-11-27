@@ -224,11 +224,11 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * Optimizes the route in the internally marked area.
-     * If p_net_no > 0, only traces with net number p_net_no are optimized.
-     * If p_clip_shape != null the optimizing is restricted to p_clip_shape.
+     * If {@code p_net_no > 0}, only traces with net number p_net_no are optimized.
+     * If {@code p_clip_shape != null} the optimizing is restricted to p_clip_shape.
      * p_trace_cost_arr is used for optimizing vias and may be null.
-     * If p_stoppable_thread != null, the agorithm can be requested to be stopped.
-     * If p_time_limit > 0; the algorithm will be stopped after p_time_limit Milliseconds.
+     * If {@code p_stoppable_thread != null}, the agorithm can be requested to be stopped.
+     * If {@code p_time_limit > 0}; the algorithm will be stopped after p_time_limit Milliseconds.
      *
      * @param p_only_net_no_arr an array of int.
      * @param p_clip_shape a {@link geometry.planar.IntOctagon} object.
@@ -246,12 +246,12 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * Optimizes the route in the internally marked area.
-     * If p_net_no > 0, only traces with net number p_net_no are optimized.
-     * If p_clip_shape != null the optimizing is restricted to p_clip_shape.
+     * If {@code p_net_no > 0}, only traces with net number p_net_no are optimized.
+     * If {@code p_clip_shape != null} the optimizing is restricted to p_clip_shape.
      * p_trace_cost_arr is used for optimizing vias and may be null.
-     * If p_stoppable_thread != null, the agorithm can be requested to be stopped.
-     * If p_time_limit > 0; the algorithm will be stopped after p_time_limit Milliseconds.
-     * If p_keep_point != null, traces on layer p_keep_point_layer containing p_keep_point
+     * If {@code p_stoppable_thread != null}, the agorithm can be requested to be stopped.
+     * If {@code p_time_limit > 0}; the algorithm will be stopped after p_time_limit Milliseconds.
+     * If {@code p_keep_point != null}, traces on layer p_keep_point_layer containing p_keep_point
      *  will also contain this point after optimizing.
      *
      * @param p_only_net_no_arr an array of int.
@@ -261,6 +261,7 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
      * @param p_stoppable_thread a {@link datastructures.Stoppable} object.
      * @param p_time_limit a int.
      * @param p_keep_point a {@link geometry.planar.Point} object.
+     * @param p_keep_point_layer a int.
      * @param p_keep_point_layer a int.
      */
     public void opt_changed_area(int[] p_only_net_no_arr, IntOctagon p_clip_shape, int p_accuracy, ExpansionCostFactor[] p_trace_cost_arr,
@@ -556,10 +557,10 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
     /**
      * Checks, if there is an item near by sharing a net with p_net_no_arr, from where a routing can start,
      * or where the routig can connect to.
-     * If  p_from_item != null, items, which are connected to p_from_item, are
+     * If  {@code p_from_item != null}, items, which are connected to p_from_item, are
      * ignored.
      * Returns null, if no item is found,
-     * If p_layer < 0, the layer is ignored
+     * If {@code p_layer < 0}, the layer is ignored
      *
      * @param p_location a {@link geometry.planar.Point} object.
      * @param p_layer a int.
@@ -1120,7 +1121,7 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      *  Autoroutes from the input pin until the first via, in case the pin and its connected set
-     *  has only 1 layer. Ripup is allowed if p_ripup_costs is >= 0.
+     *  has only 1 layer. Ripup is allowed if {@code p_ripup_costs is >= 0}.
      *  Returns an enum of type AutorouteEngine.AutorouteResult
      *
      * @param p_pin a {@link board.Pin} object.
@@ -1279,7 +1280,7 @@ public class RoutingBoard extends BasicBoard implements java.io.Serializable
 
     /**
      * Removes all trace tails of the input net.
-     * If p_net_no <= 0, the tails of all nets are removed.
+     * If {@code p_net_no <= 0}, the tails of all nets are removed.
      *  Returns true, if something was removed.
      *
      * @param p_net_no a int.

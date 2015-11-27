@@ -78,7 +78,7 @@ public interface Connectable
     /**
      * Returns all connectable items of the net with number p_net_no, which can be reached recursively
      * from this item via normal contacts.
-     * if (p_net_no <= 0, the net number is ignored.
+     * if {@code p_net_no <= 0}, the net number is ignored.
      *
      * @param p_net_no a int.
      * @return a {@link java.util.Set} object.

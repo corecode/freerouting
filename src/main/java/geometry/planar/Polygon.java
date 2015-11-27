@@ -137,8 +137,8 @@ public class Polygon implements java.io.Serializable
     }
     /**
      * Returns the winding number of this polygon, treated as closed.
-     * It will be > 0, if the corners are in countercock sense,
-     * and < 0, if the corners are in clockwise sense.
+     * {@code It will be > 0, if the corners are in countercock sense,
+     * and < 0, if the corners are in clockwise sense.}
      *
      * @return a int.
      */

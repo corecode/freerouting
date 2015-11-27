@@ -170,10 +170,11 @@ public class RatsNest
     
     /**
      *  Returns the length of the violation of the length restriction of the net with number p_net_no,
-     *  > 0, if the cumulative trace length is to big,
-     *  < 0, if the trace length is to smalll,
-     *  0, if the thace length is ok or the net has no length restrictions
-     *
+     * {@code 
+       > 0, if the cumulative trace length is to big,
+       < 0, if the trace length is to smalll,
+       0, if the thace length is ok or the net has no length restrictions
+       }
      * @param p_net_no a int.
      * @return a double.
      */
@@ -272,6 +273,7 @@ public class RatsNest
      * <p>draw.</p>
      *
      * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)

@@ -89,7 +89,7 @@ public class BoardFrame extends javax.swing.JFrame
      * files are allowed, so that the frame can be used in an applet.
      * Currently Option.EXTENDED_TOOL_BAR is used only if a new board is
      * created by the application from scratch.
-     * If p_test_level > RELEASE_VERSION, functionality not yet ready for release is included.
+     * If {@code p_test_level > RELEASE_VERSION}, functionality not yet ready for release is included.
      * Also the warning output depends on p_test_level.
      *
      * @param p_design a {@link gui.DesignFile} object.

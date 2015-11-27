@@ -176,6 +176,9 @@ public class RationalPoint extends Point implements java.io.Serializable
      * {@inheritDoc}
      *
      * returns the translation of this point by p_vector
+     *
+     * @param p_vector a {@link geometry.planar.Vector} object.
+     * @return a {@link geometry.planar.Point} object.
      */
     public Point translate_by(Vector p_vector)
     {

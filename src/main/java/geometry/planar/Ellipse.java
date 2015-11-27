@@ -68,7 +68,7 @@ public class Ellipse implements java.io.Serializable
     
     public final FloatPoint center;
     
-    /** Rotation of the ellipse in radian normed to 0 <= rotation < pi */
+    /** Rotation of the ellipse in radian normed to {@code 0 <= rotation < pi }*/
     public final double rotation;
     public final double bigger_radius;
     public final double  smaller_radius;

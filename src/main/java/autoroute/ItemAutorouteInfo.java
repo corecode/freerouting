@@ -133,6 +133,7 @@ public class ItemAutorouteInfo
      *
      * @param p_graphics a {@link java.awt.Graphics} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_intensity a double.
      */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context, double p_intensity)

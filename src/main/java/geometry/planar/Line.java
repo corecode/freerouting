@@ -503,7 +503,7 @@ public class Line implements Comparable<Line>, java.io.Serializable
     
     /**
      * translates the line perpendicular at about p_dist.
-     * If p_dist > 0, the line will be translated to the left, else to the right
+     * If {@code p_dist > 0}, the line will be translated to the left, else to the right
      *
      * @param p_dist a double.
      * @return a {@link geometry.planar.Line} object.

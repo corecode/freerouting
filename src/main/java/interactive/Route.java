@@ -69,6 +69,7 @@ public class Route
      *
      * @param p_start_corner a {@link geometry.planar.Point} object.
      * @param p_layer a int.
+     * @param p_layer_active_arr an array of boolean.
      * @param p_pen_half_width_arr an array of int.
      * @param p_layer_active_arr an array of boolean.
      * @param p_net_no_arr an array of int.
@@ -521,6 +522,7 @@ public class Route
      * Hilights the targets and draws the incomplete.
      *
      * @param p_graphics a {@link java.awt.Graphics} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_graphics, GraphicsContext p_graphics_context)

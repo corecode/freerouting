@@ -206,8 +206,8 @@ public abstract class  Direction implements Comparable<Direction>, java.io.Seria
     /**
      * The function returns
      *   Signum.POSITIVE, if the scalar product of of a vector representing
-     *                    this direction and a vector representing p_other is > 0,
-     *   Signum.NEGATIVE, if the scalar product is < 0,
+     *                    this direction and a vector representing p_other is {@code > 0},
+     *   Signum.NEGATIVE, if the scalar product is {@code < 0},
      *   and Signum.ZERO, if the scalar product is equal 0.
      *
      * @param p_other a {@link geometry.planar.Direction} object.

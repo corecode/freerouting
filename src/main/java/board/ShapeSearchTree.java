@@ -350,7 +350,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Puts all items in the tree overlapping with p_shape
      * on layer p_layer into p_obstacles.
-     * If p_layer < 0, the layer is ignored.
+     * If {@code p_layer < 0}, the layer is ignored.
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -375,7 +375,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
 
     /**
      * Returns all SearchTreeObjects on layer p_layer, which overlap with p_shape.
-     * If p_layer < 0, the layer is ignored
+     * If {@code p_layer < 0}, the layer is ignored
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -391,7 +391,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Puts all tree entries overlapping with p_shape
      * on layer p_layer into the list p_obstacles.
-     * If p_layer < 0, the layer is ignored.
+     * If {@code p_layer < 0}, the layer is ignored.
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -405,7 +405,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Puts all tree entries overlapping with p_shape
      * on layer p_layer into the list p_obstacles.
-     * If p_layer < 0, the layer is ignored.
+     * If {@code p_layer < 0}, the layer is ignored.
      * tree_entries with object containing a net number of p_ignore_net_nos are ignored.
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
@@ -484,7 +484,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * layer p_layer whould produce a clearance violation, and puts them into
      * the set p_obstacle_entries.
      * The elements in p_obstacle_entries are of type TreeEntry.
-     * if p_layer < 0, the layer is ignored.
+     * if {@code p_layer < 0}, the layer is ignored.
      * Used only internally, because the clearance compensation is not taken iinnto account.
      */
     void overlapping_tree_entries_with_clearance(ConvexShape p_shape, int p_layer, int[] p_ignore_net_nos,
@@ -574,7 +574,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
     /**
      * Puts all items in the tree overlapping with p_shape
      * on layer p_layer into p_obstacles, if p_obstacles != null.
-     * If p_layer < 0, the layer is ignored.
+     * If {@code p_layer < 0}, the layer is ignored.
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -612,7 +612,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * which describes the required clearance restrictions to other items.
      * The function may also return items, which are nearly overlapping,
      * but do not overlap with exact calculation.
-     * If p_layer < 0, the layer is ignored.
+     * If {@code p_layer < 0}, the layer is ignored.
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.
@@ -643,7 +643,7 @@ public class ShapeSearchTree extends datastructures.MinAreaTree
      * inclusive clearance.
      * p_clearance_class is the index in the clearance matrix,
      * which describes the required clearance restrictions to other items.
-     * If p_layer < 0, the layer is ignored.
+     * If {@code p_layer < 0}, the layer is ignored.
      *
      * @param p_shape a {@link geometry.planar.ConvexShape} object.
      * @param p_layer a int.

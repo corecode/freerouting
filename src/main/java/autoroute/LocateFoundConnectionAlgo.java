@@ -294,6 +294,7 @@ public abstract class LocateFoundConnectionAlgo
      *
      * @param p_graphics a {@link java.awt.Graphics} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(java.awt.Graphics p_graphics, boardgraphics.GraphicsContext p_graphics_context)
     {

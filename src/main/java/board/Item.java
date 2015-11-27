@@ -240,7 +240,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Creates a copy of this item with id number p_id_no.
-     * If p_id_no <= 0, the id_no of the new item is generated internally
+     * If {@code p_id_no <= 0}, the id_no of the new item is generated internally
      *
      * @param p_id_no a int.
      * @return a {@link board.Item} object.
@@ -660,7 +660,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the set of all Connectable items of the net with number p_net_no which can be reached recursively
      * via normal contacts from this item.
-     * If p_net_no <= 0, the net number is ignored.
+     * If {@code p_net_no <= 0}, the net number is ignored.
      *
      * @param p_net_no a int.
      * @return a java$util$Set object.
@@ -673,7 +673,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the set of all Connectable items of the net with number p_net_no which can be reached recursively
      * via normal contacts from this item.
-     * If p_net_no <= 0, the net number is ignored.
+     * If {@code p_net_no <= 0}, the net number is ignored.
      * If p_stop_at_plane, the recursive algorithm stops, when a conduction area is reached,
      * which does not belong to a component.
      *
@@ -772,7 +772,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns the set of all Connectable items belonging to the net with number p_net_no,
      * which are not in the connected set of this item.
-     * If p_net_no <= 0, the net numbers contained in this items are used  instead of p_net_no.
+     * If {@code p_net_no <= 0}, the net numbers contained in this items are used  instead of p_net_no.
      *
      * @param p_net_no a int.
      * @return a java$util$Set object.
@@ -802,7 +802,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     /**
      * Returns all traces and vias from this item until the next fork or terminal item.
      *
-     * @return a java$util$Set object.
+     * @return a java.util.Set object.
      */
     public Set<Item> get_connection_items()
     {
@@ -815,7 +815,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * If p_stop_option == StopConnectionOption.VIA, the algorithm will stop at any via.
      *
      * @param p_stop_option a {@link board.Item.StopConnectionOption} object.
-     * @return a java$util$Set object.
+     * @return a java.util.Set object.
      */
     public Set<Item> get_connection_items(StopConnectionOption p_stop_option)
     {
@@ -960,6 +960,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      *
      * @param p_g a {@link java.awt.Graphics} object.
      * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
+     * @param p_graphics_context a {@link boardgraphics.GraphicsContext} object.
      */
     public void draw(Graphics p_g, GraphicsContext p_graphics_context)
     {
@@ -995,7 +996,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
      * {@inheritDoc}
      *
      * Returns for this item the layer of the shape with index p_index.
-     * If p_id_no <= 0, it w2ill be generated internally.
+     * If {@code p_id_no <= 0}, it w2ill be generated internally.
      */
     public abstract int shape_layer(int p_index);
 
@@ -1140,7 +1141,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
     }
 
     /**
-     * gets the p_no-th net number of this item for 0 <= p_no < this.net_count().
+     * gets the p_no-th net number of this item for {@code 0 <= p_no < this.net_count()}.
      *
      * @param p_no a int.
      * @return a int.
@@ -1255,7 +1256,7 @@ public abstract class Item implements Drawable, SearchTreeObject, ObjectInfoPane
 
     /**
      * Makes this item connectable and assigns it to the input net.
-     * If p_net_no < 0, the net items net number will be removed and the item will no longer be connectable.
+     * If {@code p_net_no < 0}, the net items net number will be removed and the item will no longer be connectable.
      *
      * @param p_net_no a int.
      */

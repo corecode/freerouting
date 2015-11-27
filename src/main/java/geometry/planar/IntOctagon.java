@@ -476,10 +476,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     }
     
     /**
-     * <p>union.</p>
+     * {@inheritDoc}
      *
-     * @param p_other a {@link geometry.planar.RegularTileShape} object.
-     * @return a {@link geometry.planar.RegularTileShape} object.
+     * <p>union.</p>
      */
     public RegularTileShape union(RegularTileShape p_other)
     {
@@ -487,10 +486,9 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
     }
     
     /**
-     * <p>intersection.</p>
+     * {@inheritDoc}
      *
-     * @param p_other a {@link geometry.planar.TileShape} object.
-     * @return a {@link geometry.planar.TileShape} object.
+     * <p>intersection.</p>
      */
     public TileShape intersection(TileShape p_other)
     {
@@ -865,7 +863,12 @@ public class IntOctagon extends RegularTileShape implements java.io.Serializable
         return result;
     }
     
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @param p_other a {@link geometry.planar.IntOctagon} object.
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon union(IntOctagon p_other)
     {
         IntOctagon result =

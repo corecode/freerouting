@@ -260,7 +260,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     /**
      * Calculates the sorted p_max_result_points nearest points on the  border of this box.
      * p_point is assumed to be located in the interiour of this nox.
-     * The funtion is only  imoplemented for p_max_result_points <= 2;
+     * The funtion is only  imoplemented for {@code p_max_result_points <= 2};
      *
      * @param p_point a {@link geometry.planar.IntPoint} object.
      * @param p_max_result_points a int.
@@ -433,10 +433,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     }
     
     /**
-     * <p>union.</p>
+     * {@inheritDoc}
      *
-     * @param p_other a {@link geometry.planar.RegularTileShape} object.
-     * @return a {@link geometry.planar.RegularTileShape} object.
+     * <p>union.</p>
      */
     public RegularTileShape union(RegularTileShape p_other)
     {
@@ -490,10 +489,9 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     }
     
     /**
-     * returns the intersection of this box with a ConvexShape
+     * {@inheritDoc}
      *
-     * @param p_other a {@link geometry.planar.TileShape} object.
-     * @return a {@link geometry.planar.TileShape} object.
+     * returns the intersection of this box with a ConvexShape
      */
     public TileShape intersection(TileShape p_other)
     {
@@ -667,7 +665,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
      * {@inheritDoc}
      *
      * Returns the box offseted by p_dist.
-     * If p_dist > 0, the offset is to the outside,
+     * If {@code p_dist > 0}, the offset is to the outside,
      * else to the inside.
      */
     public IntBox offset(double p_dist)
@@ -684,7 +682,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns the box, where the horizontal boundary is offseted by p_dist.
-     * If p_dist > 0, the offset is to the outside,
+     * If {@code p_dist > 0}, the offset is to the outside,
      * else to the inside.
      *
      * @param p_dist a double.
@@ -704,7 +702,7 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
     
     /**
      * Returns the box, where the vertical boundary is offseted by p_dist.
-     * If p_dist > 0, the offset is to the outside,
+     * If {@code p_dist > 0}, the offset is to the outside,
      * else to the inside.
      *
      * @param p_dist a double.
@@ -1021,7 +1019,12 @@ public class IntBox extends RegularTileShape implements java.io.Serializable
         return p_other.intersects(this);
     }
     
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     *
+     * @param p_other a {@link geometry.planar.IntOctagon} object.
+     * @return a {@link geometry.planar.IntOctagon} object.
+     */
     public IntOctagon union( IntOctagon p_other)
     {
         return p_other.union(to_IntOctagon());

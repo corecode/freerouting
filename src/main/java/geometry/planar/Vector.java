@@ -94,9 +94,10 @@ public abstract class Vector implements java.io.Serializable
     
     /**
      * The function returns
+     * {@code 
      *   Signum.POSITIVE, if the scalar product of this vector and p_other > 0,
      *   Signum.NEGATIVE, if the scalar product Vector is < 0,
-     *   and Signum.ZERO, if the scalar product is equal 0.
+     *   and Signum.ZERO, if the scalar product is equal 0.}
      *
      * @param p_other a {@link geometry.planar.Vector} object.
      * @return a {@link datastructures.Signum} object.
