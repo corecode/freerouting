@@ -252,7 +252,7 @@ public class ShapeSearchTree45Degree extends ShapeSearchTree
         // opposite of this line.
 
         Collection<IncompleteFreeSpaceExpansionRoom> result = new LinkedList<IncompleteFreeSpaceExpansionRoom>();
-        if (p_incomplete_room.get_contained_shape().is_empty())
+        if (p_incomplete_room.get_contained_shape()==null || p_incomplete_room.get_contained_shape().is_empty())
         {
             if (this.board.get_test_level().ordinal() >= TestLevel.ALL_DEBUGGING_OUTPUT.ordinal())
             {
