@@ -58,7 +58,6 @@ public class DesignFile {
 	 * Shows a file chooser for opening a design file. If p_is_webstart there are
 	 * security restrictions because the application was opened with java web start.
 	 *
-	 * @param p_is_webstart     a boolean.
 	 * @param p_design_dir_name a {@link java.lang.String} object.
 	 * @return a {@link gui.DesignFile} object.
 	 */

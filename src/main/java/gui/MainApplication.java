@@ -133,7 +133,6 @@ public class MainApplication extends javax.swing.JFrame
      *
      * @param p_design_dir a {@link java.lang.String} object.
      * @param p_is_test_version a boolean.
-     * @param p_webstart_option a boolean.
      * @param p_current_locale a {@link java.util.Locale} object.
      */
     public MainApplication(String p_design_dir, boolean p_is_test_version, java.util.Locale p_current_locale)
