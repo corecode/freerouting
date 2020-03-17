@@ -174,4 +174,12 @@
 			<version>1.7.29</version>
 		</dependency>
 	</dependencies>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub nick-less Apache Maven Packages</name>
+			<url>https://maven.pkg.github.com/nick-less</url>
+		</repository>
+	</distributionManagement>
+
 </project>
